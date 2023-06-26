@@ -4,14 +4,14 @@
 - [ ] Song CRUD - full crud
 - [ ] Playing songs with progress bar with continuous play
 - [ ] Comments - full crud 
-- [ ] User Pages - partial crud
+- [ ] User Pages - partial crud (watch-list: update profile, delete account)
 - [ ] Likes - partial crud
 - [ ] Playlist - full crud, if time permits
 
 ## User CRUD
 - [ ] User auth
 - [ ] create User model
-- [ ] sign up/login
+- [ ] sign up/login/logout
 - [ ] User page
 
 ### User endpoints
@@ -26,7 +26,29 @@
 
 ### Song Endpoints:
 - [ ] GET: /{user}/{song}
-- [ ] POST: /{user}/{song}
-- [ ] UPDATE: /{user}/{song}
+- [ ] POST: /{user}/upload
+- [ ] UPDATE: /{user}/{song.id}/
 -   Edit song desc & title
-- [ ] DELETE 
+- [ ] DELETE: /{user}/{song.id}
+
+
+##Comments CRUD:
+- [ ] create comments by a logged-in user
+- [ ] update comments by a logged-in user
+- [ ] delete comments by a logged-in user
+- [ ] read comments for a song by a logged-in user
+
+###Comments Endpoints: 
+- [ ] GET: /api/songs/song.id/comments
+- [ ] POST:　／api/songs/song.id/
+- [ ] UPDATE: /api/comments/comment.id 
+- [ ] DELETE: /api/comments/comment.id
+
+
+##Likes CRUD:
+
+- [ ] GET: /api/user/likes
+- [ ] POST: /
+- [ ] DELETE: /
+
+
