@@ -1,12 +1,11 @@
-# SoundCloud
+# Phlikr
 (link coming soon)
 ## Minimum Viable Product:
-- [ ] Song CRUD - full crud
-- [ ] Playing songs with progress bar with continuous play
+- [ ] Photo CRUD - full crud
 - [ ] Comments - full crud 
-- [ ] User Pages - partial crud (watch-list: update profile, delete account)
-- [ ] Likes - partial crud
-- [ ] Playlist - full crud, if time permits
+- [ ] User Pages - partial crud 
+- [ ] Favorites - partial crud
+- [ ] Albumns - full crud, if time permits
 
 ## User CRUD
 - [ ] User auth
