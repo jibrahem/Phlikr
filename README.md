@@ -1,3 +1,3 @@
-# Phlikr
+# Snapr
 
 
