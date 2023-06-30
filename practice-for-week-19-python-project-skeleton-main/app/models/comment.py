@@ -13,13 +13,15 @@ class Comment(db.Model):
 
     user = db.relationship("User", back_populates="comments")
     images = db.relationship("Image", back_populates="comments")
+    image = db.relationship("Image", back_populates="comments")
+
     # print(user)
 
-    @validates("description")
-    def validate_description(self, key, value):
-        if len(value) < 1:
-            raise ValueError('Description must have at least 1 character.')
-        return value
+    # @validates("description")
+    # def validate_description(self, key, value):
+    #     if len(value) < 1:
+    #         raise ('Description must have at least 1 character.')
+    #     return valueValueError
 
     def to_dict(self):
         return {
@@ -31,3 +33,4 @@ class Comment(db.Model):
             "updated_at": self.updated_at,
             "user": self.user
         }
+
