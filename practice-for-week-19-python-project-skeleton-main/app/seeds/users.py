@@ -5,11 +5,14 @@ from sqlalchemy.sql import text
 # Adds a demo user, you can add other users here if you want
 def seed_users():
     demo = User(
-        username='Demo', email='demo@aa.io', password='password')
+        username='Demo', email='demo@aa.io', password='password',
+        first_name = "Demo", last_name="lition", profile_photo="https://as2.ftcdn.net/v2/jpg/03/03/62/45/1000_F_303624505_u0bFT1Rnoj8CMUSs8wMCwoKlnWlh5Jiq.jpg", cover_photo="https://as2.ftcdn.net/v2/jpg/03/03/62/45/1000_F_303624505_u0bFT1Rnoj8CMUSs8wMCwoKlnWlh5Jiq.jpg", age=20)
     marnie = User(
-        username='marnie', email='marnie@aa.io', password='password')
+        username='marnie', email='marnie@aa.io', password='password',
+        first_name = "Marnie", last_name="Lovely", profile_photo='https://as1.ftcdn.net/v2/jpg/01/62/80/28/1000_F_162802836_bnhUGn0BxR14SjzByrCn2i2cdvxaPi6r.jpg', cover_photo='https://as1.ftcdn.net/v2/jpg/01/62/80/28/1000_F_162802836_bnhUGn0BxR14SjzByrCn2i2cdvxaPi6r.jpg', age=32)
     bobbie = User(
-        username='bobbie', email='bobbie@aa.io', password='password')
+        username='bobbie', email='bobbie@aa.io', password='password',
+        first_name = "Bobbie", last_name="Handsome", profile_photo='https://as2.ftcdn.net/v2/jpg/02/02/15/43/1000_F_202154347_jMRcgoxz7PuoWxe2IviHY3YFXVZUltIK.jpg', cover_photo='https://as2.ftcdn.net/v2/jpg/02/02/15/43/1000_F_202154347_jMRcgoxz7PuoWxe2IviHY3YFXVZUltIK.jpg', age=5)
 
     db.session.add(demo)
     db.session.add(marnie)
