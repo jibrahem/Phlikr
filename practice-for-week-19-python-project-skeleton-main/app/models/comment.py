@@ -12,7 +12,9 @@ class Comment(db.Model):
     image_id = db.Column(db.Integer, db.ForeignKey("images.id"))
 
     user = db.relationship("User", back_populates="comments")
+    images = db.relationship("Image", back_populates="comments")
     image = db.relationship("Image", back_populates="comments")
+
     # print(user)
 
     # @validates("description")
@@ -31,4 +33,4 @@ class Comment(db.Model):
             "updated_at": self.updated_at,
             "user": self.user
         }
-# ho
+
