@@ -31,3 +31,4 @@ class Comment(db.Model):
             "updated_at": self.updated_at,
             "user": self.user
         }
+# ho
