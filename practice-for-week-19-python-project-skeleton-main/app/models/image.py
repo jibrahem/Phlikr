@@ -12,7 +12,7 @@ class Image(db.Model):
     view_count = db.Column(db.Integer)
 
     user = db.relationship("User", back_populates="images")
-    # comments = db.relationship("Comment", back_populates="image")
+    comments = db.relationship("Comment", back_populates="image")
 
     def to_dict(self):
         return {
