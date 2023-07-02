@@ -36,9 +36,3 @@ def undo():
     undo_comments()
     undo_images()
     # Add other undo functions here
-
-# Creates the `flask seed undo` command
-@seed_commands.command('undo')
-def undo():
-    undo_users()
-    # Add other undo functions here
