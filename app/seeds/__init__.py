@@ -22,8 +22,9 @@ def seed():
         undo_comments()
         undo_images()
     seed_users()
-    seed_comments()
     seed_images()
+    seed_comments()
+    
 
     # Add other seed functions here
 
