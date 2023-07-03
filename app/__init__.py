@@ -7,8 +7,12 @@ from flask_login import LoginManager
 from .models import db, User
 from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
+from .api.image_routes import image_routes
 from .seeds import seed_commands
 from .config import Config
+from .models import Image
+from .forms import ImageForm
+
 
 app = Flask(__name__, static_folder='../react-app/build', static_url_path='/')
 
@@ -22,12 +26,13 @@ def load_user(id):
     return User.query.get(int(id))
 
 
-# Tell flask about our seed commands
+# # Tell flask about our seed commands
 app.cli.add_command(seed_commands)
 
 app.config.from_object(Config)
 app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
+app.register_blueprint(image_routes, url_prefix='/api/images')
 db.init_app(app)
 Migrate(app, db)
 
@@ -35,11 +40,31 @@ Migrate(app, db)
 CORS(app)
 
 
-# Since we are deploying with Docker and Flask,
-# we won't be using a buildpack when we deploy to Heroku.
-# Therefore, we need to make sure that in production any
-# request made over http is redirected to https.
-# Well.........
+@app.route('/new_image')
+def get_new_image():
+    form=ImageForm()
+    return render_template('simple_form.html', form=form)
+
+
+@app.route('/new_image', methods=['POST'])
+# @login_required
+def post_image():
+    form = ImageForm()
+    if form.validate_on_submit():
+        title = form.data['title']
+        description = form.data['description']
+        img = form.data['img']
+        new_image = Image(title=title, description=description, img=img, user_id=1, view_count=0)
+        db.session.add(new_image)
+        db.session.commit()
+        return 'that worked'
+    return 'bad data'
+
+# # Since we are deploying with Docker and Flask,
+# # we won't be using a buildpack when we deploy to Heroku.
+# # Therefore, we need to make sure that in production any
+# # request made over http is redirected to https.
+# # Well.........
 @app.before_request
 def https_redirect():
     if os.environ.get('FLASK_ENV') == 'production':
