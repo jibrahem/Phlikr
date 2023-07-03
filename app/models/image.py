@@ -12,7 +12,7 @@ class Image(db.Model):
     img = db.Column(db.String(255), nullable=False)
     taken_on = db.Column(db.Date)
     uploaded_on = db.Column(db.Date)
-    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
     view_count = db.Column(db.Integer)
 
     user = db.relationship("User", back_populates="images")
