@@ -4,17 +4,16 @@ from flask_cors import CORS
 from flask_migrate import Migrate
 from flask_wtf.csrf import CSRFProtect, generate_csrf
 from flask_login import LoginManager
-from .models import db, User
+from .models import db, User, Image
 from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .api.image_routes import image_routes
 from .seeds import seed_commands
 from .config import Config
-from .models import Image
-from .forms import ImageForm
 
 
-app = Flask(__name__, static_folder='../react-app/build', static_url_path='/')
+
+app = Flask(__name__, static_folder='../r   eact-app/build', static_url_path='/')
 
 # Setup login manager
 login = LoginManager(app)
@@ -39,26 +38,6 @@ Migrate(app, db)
 # Application Security
 CORS(app)
 
-
-@app.route('/new_image')
-def get_new_image():
-    form=ImageForm()
-    return render_template('simple_form.html', form=form)
-
-
-@app.route('/new_image', methods=['POST'])
-# @login_required
-def post_image():
-    form = ImageForm()
-    if form.validate_on_submit():
-        title = form.data['title']
-        description = form.data['description']
-        img = form.data['img']
-        new_image = Image(title=title, description=description, img=img, user_id=1, view_count=0)
-        db.session.add(new_image)
-        db.session.commit()
-        return 'that worked'
-    return 'bad data'
 
 # # Since we are deploying with Docker and Flask,
 # # we won't be using a buildpack when we deploy to Heroku.
