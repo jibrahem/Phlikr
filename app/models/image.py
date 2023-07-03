@@ -27,6 +27,6 @@ class Image(db.Model):
             'taken_on': self.taken_on,
             'uploaded_on': self.uploaded_on,
             'user_id': self.user_id,
-            'user': self.user,
+            # 'user': self.user,
             'view_count': self.view_count,
         }
