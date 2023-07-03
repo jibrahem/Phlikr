@@ -11,8 +11,8 @@ class Comment(db.Model):
     description = db.Column(db.String(500))
     created_at = db.Column(db.DateTime)
     updated_at = db.Column(db.DateTime)
-    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
-    image_id = db.Column(db.Integer, db.ForeignKey("images.id"))
+    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
+    image_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("images.id")))
 
     user = db.relationship("User", back_populates="comments")
     # images = db.relationship("Image", back_populates="comments")
