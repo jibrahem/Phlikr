@@ -68,7 +68,6 @@ def update_image(id):
             return redirect("/api/images")
         return {'bye': 'bad data'}
 
-
 #GET ALL CURRENT USER IMAGES
 @image_routes.route('/current')
 # @login_required
