@@ -47,12 +47,10 @@ def update_image_form(id):
 def update_image(id):
     form = ImageForm()
     image_to_update = Image.query.get(id)
-    print("form data: ", form.data, "image: ", image_to_update.view_count)
-
-    # print("form errors", form.errors)
+    
     # form data {'title': None, 'description': None, 'img': None, 'submit': False, 'csrf_token': None}
     #evaluating to false so form.validate() is not running 
- 
+    print(image_to_update.img)
     if form.validate_on_submit():
         # image_to_update = Image.query.get(id)
         image_to_update.img = form.data['img']
