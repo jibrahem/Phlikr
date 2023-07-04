@@ -13,7 +13,7 @@ from .config import Config
 
 
 
-app = Flask(__name__, static_folder='../r   eact-app/build', static_url_path='/')
+app = Flask(__name__, static_folder='../react-app/build', static_url_path='/')
 
 # Setup login manager
 login = LoginManager(app)
