@@ -67,16 +67,18 @@ export default function DefaultHome() {
   <footer className='splash-page-footer'>
     <span className='splash-span'>About</span>
     <span className='splash-span'>Jobs</span>
-    <span>Blog</span>
-    <span>Developers</span>
-    <span>Guidelines</span>
-    <span>Help</span>
-    <span>Help forum</span>
-    <span>Privacy</span>
-    <span>Terms</span>
-    <span>Cookies</span>
-    <span>English</span>
-
+    <span className='splash-span'>Blog</span>
+    <span className='splash-span'>Developers</span>
+    <span className='splash-span'>Guidelines</span>
+    <span className='splash-span'>Help</span>
+    <span className='splash-span'>Help forum</span>
+    <span className='splash-span'>Privacy</span>
+    <span className='splash-span'>Terms</span>
+    <span className='splash-span'>Cookies</span>
+    <span className='splash-span'>English</span>
+    <a href="#" class="icon-link"><i class="fab fa-facebook-f"></i></a>
+    <a href="#" class="icon-link"><i class="fab fa-twitter"></i></a>
+    <a href="#" class="icon-link"><i class="fab fa-instagram"></i></a>
   </footer>
 </>
     )   
