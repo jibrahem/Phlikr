@@ -5,7 +5,7 @@ from app.forms import ImageForm
 
 image_routes = Blueprint("images", __name__)
 
-#get all images, add user info to their image
+#GET ALL IMAGES
 @image_routes.route('/')
 @login_required
 def get_all_images():
@@ -14,7 +14,7 @@ def get_all_images():
         return {'images' : [image.to_dict() for image in images]}
 
 
-#get image by id
+#GET AN IMAGE BY IMAGE ID
 @image_routes.route('/<int:id>')
 @login_required
 def get_image(id):
@@ -22,7 +22,7 @@ def get_image(id):
     return image.to_dict()
 
 
-#Delete a users image
+#DELETE AN IMAGE BY ID
 @image_routes.route('/delete/<int:id>')
 @login_required
 def delete_image(id):
@@ -31,29 +31,42 @@ def delete_image(id):
     db.session.commit()
     return {'image': 'your image has been deleted'}
 
+# Edit image form
 
-#Edit an image for user, DOESNT WORK
-@image_routes.route('/<int:id>/update', methods=['PUT'])
+@image_routes.route('/<int:id>/update')
+@login_required
+def update_image_form(id):
+    form = ImageForm()
+
+    return render_template("simple_form.html", form=form)
+
+
+#EDIT AN IMAGE BY ID
+@image_routes.route('/<int:id>/update', methods=['GET','POST'])
 @login_required
 def update_image(id):
     form = ImageForm()
-    print('gtryhfueijdHELOOOOOOOOO', Image.query.get(id))
+    image_to_update = Image.query.get(id)
+    print("form data: ", form.data, "image: ", image_to_update.view_count)
 
+    # print("form errors", form.errors)
+    # form data {'title': None, 'description': None, 'img': None, 'submit': False, 'csrf_token': None}
+    #evaluating to false so form.validate() is not running 
+ 
     if form.validate_on_submit():
-        image_to_update = Image.query.get(id)
-        print('IMAGEEEEEEEEEE')
-
+        # image_to_update = Image.query.get(id)
         image_to_update.img = form.data['img']
-        image_to_update.view_count = form.data['view_count']
+        # image_to_update.view_count = form.data['view_count']
         image_to_update.user_id = current_user.id
         image_to_update.title = form.data['title']
         image_to_update.description = form.data['description']
+        image_to_update.view_count = image_to_update.view_count
         db.session.commit()
-        return render_template('simple_form', form=form)
+        return redirect("/api/images")
     return {'bye': 'bad data'}
 
 
-#get all images for logged in user
+#GET ALL CURRENT USER IMAGES
 @image_routes.route('/current')
 @login_required
 def get_logged_user_images():
@@ -61,7 +74,7 @@ def get_logged_user_images():
     return {'images' : [image.to_dict() for image in images]}
 
 
-#Get all images for a certain user
+#GET ALL USER IMAGES
 @image_routes.route('/user/<int:userId>')
 @login_required
 def get_user_images(userId):
@@ -69,7 +82,7 @@ def get_user_images(userId):
     return {'images' : [image.to_dict() for image in images]}
 
 
-#post an image
+#POST AN IMAGE
 @image_routes.route('/<int:userId>/images', methods=['POST'])
 @login_required
 def post_image(userId):

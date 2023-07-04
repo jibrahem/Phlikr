@@ -38,6 +38,10 @@ Migrate(app, db)
 # Application Security
 CORS(app)
 
+#REMOVES FAVICON ERROR
+@app.route('/favicon.ico')
+def favicon():
+    return '', 204  # Return an empty response with status code 204 (No Content)
 
 # # Since we are deploying with Docker and Flask,
 # # we won't be using a buildpack when we deploy to Heroku.
