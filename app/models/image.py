@@ -27,6 +27,14 @@ class Image(db.Model):
             'taken_on': self.taken_on,
             'uploaded_on': self.uploaded_on,
             'user_id': self.user_id,
-            # 'user': self.user,
             'view_count': self.view_count,
+            'User': {
+            "id": self.user.id,
+            "username": self.user.username,
+            "email": self.user.email,
+            'first_name': self.user.first_name,
+            'last_name': self.user.last_name,
+            'profile_photo': self.user.profile_photo,
+            'cover_photo': self.user.cover_photo,
+            }
         }
