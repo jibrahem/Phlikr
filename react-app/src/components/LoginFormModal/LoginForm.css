@@ -21,23 +21,25 @@
     margin-top: 15rem;
 }
 
-input[type=text]:focus{
-    outline:1px solid rgb(0, 166, 255);
-    border: none;
-    border-radius: 2px;
-}
-input[type=email]:focus{
-    outline:1px solid rgb(0, 166, 255);
-     border: none;
-     border-radius: 2px;
-}
-input[type=password]:focus{
-    outline:1px solid rgb(0, 166, 255);
+input[type=text]:focus {
+    outline: 1px solid rgb(0, 166, 255);
     border: none;
     border-radius: 2px;
 }
 
-input:focus::placeholder{
+input[type=email]:focus {
+    outline: 1px solid rgb(0, 166, 255);
+    border: none;
+    border-radius: 2px;
+}
+
+input[type=password]:focus {
+    outline: 1px solid rgb(0, 166, 255);
+    border: none;
+    border-radius: 2px;
+}
+
+input:focus::placeholder {
     color: rgb(0, 166, 255);
 }
 
@@ -52,13 +54,27 @@ input:focus::placeholder{
     color: white;
     border: none;
     border-radius: 3px;
-    background-color:rgb(0, 166, 255);
+    background-color: rgb(0, 166, 255);
 }
 
-.loggin h3{
-    font-family:Proxima Nova,
+.loggin a:hover {
+    text-decoration: none;
+}
+
+.loggin a {
+    color: rgb(0, 166, 255)
+}
+
+.login2 {
+    margin-top: 1rem;
+}
+
+.form-text {
+    font-family: Proxima Nova,
         helvetica neue,
         helvetica,
         arial,
         sans-serif;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
 }

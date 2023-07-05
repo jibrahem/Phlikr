@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { signUp } from "../../store/session";
 import './SignupForm.css';
+import { Link } from "react-router-dom";
 
 function SignupFormPage() {
   const dispatch = useDispatch();
@@ -31,7 +32,8 @@ function SignupFormPage() {
     <>
       <div className="loggin">
         <form onSubmit={handleSubmit}>
-          <h3>Sign up for Snapr</h3>
+          <div>⚫️⚪️</div>
+          <div className="form-text">Sign up for Snapr</div>
           <ul>
             {errors.map((error, idx) => (
               <li key={idx}>{error}</li>
@@ -75,6 +77,10 @@ function SignupFormPage() {
           </label>
           <div className="login">
             <button type="submit">Sign Up</button>
+          </div>
+          <div className="login2">Already a Flickr member? <Link to='/login'>
+            Log in here.
+          </Link>
           </div>
         </form>
       </div>
