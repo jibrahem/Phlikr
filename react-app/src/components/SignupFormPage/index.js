@@ -78,7 +78,7 @@ function SignupFormPage() {
           <div className="login">
             <button type="submit">Sign Up</button>
           </div>
-          <div className="login2">Already a Flickr member? <Link to='/login'>
+          <div className="login2">Already a Snapr member? <Link to='/login'>
             Log in here.
           </Link>
           </div>

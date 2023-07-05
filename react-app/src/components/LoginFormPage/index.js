@@ -54,7 +54,7 @@ function LoginFormPage() {
           <div className="login">
             <button type="submit">Sign in</button>
           </div>
-          <div className="login2">Not a Flickr member? <Link to='/signup'>
+          <div className="login2">Not a Snapr member? <Link to='/signup'>
             Sign up here.
           </Link>
           </div>
