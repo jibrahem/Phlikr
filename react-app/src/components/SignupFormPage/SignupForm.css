@@ -7,7 +7,7 @@
     object-fit: cover;
     z-index: -1;
 }
-/* 
-.form-text {
 
-} */
+.form-text {
+    font-family: Proxima Nova,helvetica neue,helvetica,arial,sans-serif;
+}
