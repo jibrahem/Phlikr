@@ -83,6 +83,11 @@ nav {
 
 .snapr a {
   color: white;
+  display: flex;
+  flex-direction: row;
+  margin-top: 1rem;
+  align-items: center;
+  gap:.2rem
 }
 
 .sign-up button:hover{
@@ -103,3 +108,8 @@ nav {
   text-decoration: none;
 }
 
+.profile-dropdown.hidden {
+  display: flex;
+  flex-direction: column;
+ color: black
+}
