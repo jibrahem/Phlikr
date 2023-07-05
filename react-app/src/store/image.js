@@ -7,6 +7,7 @@ const CREATE_IMAGE = "image/CREATE_IMAGE";
 const UPDATE_IMAGE = "image/UPDATE_IMAGE";
 const DELETE_IMAGE = "image/DELETE_IMAGE";
 const GET_USER_IMAGES = "image/GET_USER_IMAGES";
+const GET_SINGLE_IMAGE = "image/GET_SINGLE_IMAGE";
 
 //action creator
 const getAllImages = (images) => ({
@@ -33,6 +34,11 @@ const getUserImages = (images) => ({
   type: GET_USER_IMAGES,
   images,
 });
+
+const getSingleImage = (image) => ({
+  type: GET_SINGLE_IMAGE,
+  image,
+})
 
 //thunk
 export const getAllImageThunk = () => async (dispatch) => {
@@ -106,13 +112,29 @@ export const deleteImageThunk = (image_id) => async (dispatch) => {
 
 export const getUserImagesThunk = (user_id) => async (dispatch) => {
   try {
-    console.log("userimages user Id", user_id);
+    // console.log("userimages user Id", user_id);
     const res = await fetch(`/api/images/user/${user_id}`);
 
     if (res.ok) {
       const userImages = await res.json();
       dispatch(getUserImages(userImages));
       return userImages;
+    }
+  } catch (err) {
+    const errors = err.json();
+    return errors;
+  }
+};
+export const getSingleImageThunk = (imageId) => async (dispatch) => {
+  console.log("single image in thunk!!!!!")
+  try {
+    const res = await fetch(`/api/images/${imageId}`);
+
+    if (res.ok) {
+      const singleImage = await res.json();
+      console.log("singleImage in the thunk: ", singleImage)
+      dispatch(getSingleImage(singleImage));
+      return singleImage;
     }
   } catch (err) {
     const errors = err.json();
@@ -126,7 +148,7 @@ const initialState = { allImages: {}, userImages: {}, singleImage: {} };
 
 const imageReducer = (state = initialState, action) => {
   let newState = {};
-  console.log("Image state in reducer function: ", action, state);
+  // console.log("Image state in reducer function: ", action, state);
 
   switch (action.type) {
     case GET_ALL_IMAGES: {
@@ -156,7 +178,11 @@ const imageReducer = (state = initialState, action) => {
       newState.userImages = action.images;
       return newState;
     }
-
+    case GET_SINGLE_IMAGE: {
+      newState = { ...state, singleImage: {...state.singleImage}};
+      newState.singleImage = action.image;
+      return newState;
+    }
     default:
       return state;
   }
