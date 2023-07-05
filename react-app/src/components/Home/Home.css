@@ -19,11 +19,12 @@
 
 .splash-page-header {
     position: absolute;
-    top: 70%;
+    margin-top: 250px;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1;
     color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     text-align: center;
     font-size: 56px;
     font-weight: 500;
@@ -36,7 +37,8 @@
     /* position: absolute; */
     font-family: Proxima Nova,helvetica neue,helvetica,arial,sans-serif;
     color: #fff;
-    margin-top: 260px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin-top: 340px;
     font-size: 25px;
     z-index: 1;
     font-weight: 400;
@@ -46,7 +48,8 @@
     /* position: absolute; */
     font-family: Proxima Nova,helvetica neue,helvetica,arial,sans-serif;
     color: #fff;
-    margin-top: 330px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin-top: 410px;
     font-size: 25px;
     z-index: 1;
     font-weight: 400;
@@ -59,14 +62,14 @@
     height: 64px;
     width: 200px;
     line-height: 64px;
-    margin-top: 500px;
+    margin-top: 600px;
     z-index: 1;
 
-    border: 3px, solid, lightgray;
+    border: none;
     border-radius: 3px;
-    box-sizing: border-box;
     cursor: pointer;
     display: inline-block;
+    box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.1);
 
 }
 
@@ -86,31 +89,62 @@
     /* position: absolute; */
     font-family: Proxima Nova,helvetica neue,helvetica,arial,sans-serif;
     color: #fff;
+    font-size: 14px;
 }
 
 .splash-page-BGI1 {
-    margin-top: 750px;
+    margin-top: 790px;
 }
 
 .splash-page-BGI2 {
-    margin-top: -10px;
+    margin-top: 10px;
 }
 
-/* .splash-page-prefooter {
-    background-color: grey;
-    width: 100%;
-    position: absolute;
-} */
-/* .splash-page-prefooter {
+.splash-page-prefooter {
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
-    background-color: black;
-    color: grey;
+    height: 80px;
+    background-color: #979ea2;
+    color: white;
+    font-family: Proxima_Nova_Regular;
     text-align: center;
     padding: 10px 0;
-    margin-bottom: 20px;
+    margin-bottom: 38px;
+    box-sizing: border-box
+}
+
+.splash-page-prefooter-container {
+    font-size: 14px;
+    font-family: Proxima Nova,helvetica neue,helvetica,arial,sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+}
+
+.prefooter-text1 {
+   margin-right: 110px;
+}
+
+.prefooter-btn {
+    background-color: none;
+    font-family: Proxima Nova,helvetica neue,helvetica,arial,sans-serif;
+    color: white;
+    background-color: #979ea2;
+    border-radius: 2px;
+    border: 1px solid white;
+    width: 80px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+.prefooter-btn:hover {
+    cursor: not-allowed;
+}
+
+/* .prefooter-text2 {
 } */
 
 .splash-page-footer {
@@ -126,17 +160,25 @@
     justify-content: space-evenly;
 }
 
-/* .splash-span {
-
-} */
-
-.fab {
-    color: grey;
+.splash-span {
+    margin-top: 10px;
+    font-size: 14px;
+    font-family:  Proxima Nova,helvetica neue,helvetica,arial,sans-serif;
 }
 
-/* .fab:hover {
+.splash-span:hover {
+    color: white;
+    cursor: not-allowed;
+}
 
-} */
+.fab {
+    color: lightgray;
+    margin-top: 10px;
+}
+
+.fab:hover {
+    cursor: not-allowed;
+}
 
 
 
