@@ -3,6 +3,13 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
 
+user_favorite = db.Table(
+    "user_favorites",
+    db.Column("user_id", db.Integer, db.ForeignKey("users.id"), primary_key=True),
+    db.Column("image_id", db.Integer, db.ForeignKey("images.id"), primary_key=True),
+)
+
+
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
 
@@ -18,11 +25,22 @@ class User(db.Model, UserMixin):
     profile_photo = db.Column(db.String(255))
     cover_photo = db.Column(db.String(255))
     age = db.Column(db.Integer, nullable=False)
+    occupation = db.Column(db.String(50))
+    hometown = db.Column(db.String(50))
+    city = db.Column(db.String(50))
+    country = db.Column(db.String(50))
+    website = db.Column(db.String(100))
+    facebook = db.Column(db.String(75))
+    twitter = db.Column(db.String(50))
+    instagram = db.Column(db.String(50))
+    pinterest = db.Column(db.String(50))
+    tumblr = db.Column(db.String(50))
 
 
     images = db.relationship("Image", back_populates="user")
     comments = db.relationship("Comment", back_populates='user')
 
+    favorites = db.relationship("Image", secondary = "user_favorites", back_populates="favorites")
 
     @property
     def password(self):
@@ -43,5 +61,15 @@ class User(db.Model, UserMixin):
             'first_name': self.first_name,
             'last_name': self.last_name,
             'profile_photo': self.profile_photo,
-            'cover_photo': self.cover_photo,    
+            'cover_photo': self.cover_photo,
+            'occupation' : self.occupation,
+            'hometown' : self.hometown,
+            'city' : self.city,
+            'country': self.country,
+            'website' : self.website,
+            'facebook': self.facebook,
+            'twitter': self.twitter,
+            'instagram' : self.instagram,
+            'pinterest' : self.pinterest,
+            'tumblr' : self.tumblr,
         }
