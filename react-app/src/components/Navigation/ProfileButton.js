@@ -5,6 +5,7 @@ import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import { useHistory, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom/cjs/react-router-dom";
 
 
 function ProfileButton({ user }) {
@@ -64,6 +65,9 @@ function ProfileButton({ user }) {
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
+          <Link to={'/photos/upload'}>
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+            </Link>
             <li>{user.username}</li>
             <li>{user.email}</li>
             <li>
@@ -73,11 +77,6 @@ function ProfileButton({ user }) {
         ) : (
           <div className="modals">
             <div className="login-nav">
-              {/* <OpenModalButton
-                  buttonText="Log In"
-                  onItemClick={closeMenu}
-                  modalComponent={<LoginFormModal />}
-                /> */}
               <button onClick={() => history.push(`/login`)}>
                 Log In
               </button>
