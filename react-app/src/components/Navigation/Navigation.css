@@ -49,6 +49,7 @@ nav {
   font-size: 33px;
   margin-left: 2rem;
   text-decoration: none;
+  margin-bottom: 1rem;
 }
 
 .snapr span {
@@ -94,4 +95,8 @@ nav {
 
 .login button{
   cursor: pointer;
+}
+
+.snapr a:hover{
+  text-decoration: none;
 }

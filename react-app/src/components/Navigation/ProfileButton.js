@@ -4,7 +4,7 @@ import { logout } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 
 
 function ProfileButton({ user }) {
@@ -12,6 +12,7 @@ function ProfileButton({ user }) {
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
   const history = useHistory()
+  const location = useLocation();
 
   const openMenu = () => {
     if (showMenu) return;
@@ -40,6 +41,24 @@ function ProfileButton({ user }) {
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
   const closeMenu = () => setShowMenu(false);
 
+  if (user !== null) {
+    <ul className={ulClassName} ref={ulRef}>
+      <li>{user.username}</li>
+      <li>{user.email}</li>
+      <li>
+        <button onClick={handleLogout}>Log Out</button>
+      </li>
+    </ul>
+  }
+
+  if (user === null && location.pathname === '/login') {
+    return ("")
+  }
+
+  if (user === null && location.pathname === '/signup') {
+    return ("")
+  }
+
   return (
     <>
       <ul className={ulClassName} ref={ulRef}>
@@ -53,21 +72,21 @@ function ProfileButton({ user }) {
           </>
         ) : (
           <div className="modals">
-              <div className="login-nav">
-                {/* <OpenModalButton
+            <div className="login-nav">
+              {/* <OpenModalButton
                   buttonText="Log In"
                   onItemClick={closeMenu}
                   modalComponent={<LoginFormModal />}
                 /> */}
-                <button onClick={() => history.push(`/login`)}>
-                  Log In
-                  </button>
-              </div>
-              <div className="sign-up">
-                <button onClick={() => history.push(`/signup`)}>
-                  Sign Up
-                </button>
-              </div>
+              <button onClick={() => history.push(`/login`)}>
+                Log In
+              </button>
+            </div>
+            <div className="sign-up">
+              <button onClick={() => history.push(`/signup`)}>
+                Sign Up
+              </button>
+            </div>
           </div>
         )}
       </ul>
