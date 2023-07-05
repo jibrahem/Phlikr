@@ -1,8 +1,10 @@
-from flask import Blueprint, jsonify, session, request
+from flask import Blueprint, jsonify, session, request, render_template
 from app.models import User, db
 from app.forms import LoginForm
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
+
+
 
 auth_routes = Blueprint('auth', __name__)
 
@@ -53,6 +55,12 @@ def logout():
     logout_user()
     return {'message': 'User logged out'}
 
+@auth_routes.route('/signup', methods=['GET'])
+# @login_required
+def signup_form():
+    form = SignUpForm()
+
+    return render_template("signup.html", form=form)
 
 @auth_routes.route('/signup', methods=['POST'])
 def sign_up():
@@ -65,7 +73,10 @@ def sign_up():
         user = User(
             username=form.data['username'],
             email=form.data['email'],
-            password=form.data['password']
+            password=form.data['password'],
+            first_name = form.data['first_name'],
+            last_name = form.data['last_name'],
+            age = form.data['age']
         )
         db.session.add(user)
         db.session.commit()

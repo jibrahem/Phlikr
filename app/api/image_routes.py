@@ -1,9 +1,16 @@
 from flask import Blueprint, jsonify, redirect, render_template
 from flask_login import login_required, current_user
-from ..models import Image, User, db
+from ..models import Image, User, db, Comment
 from app.forms import ImageForm
 
 image_routes = Blueprint("images", __name__)
+
+#Get all comments by image id
+@image_routes.route('/<int:image_id>/comments')
+def get_comment_by_image_id(image_id):
+    comments = Comment.query.filter(Comment.image_id == image_id).all()
+    return {'comments': [comment.to_dict() for comment in comments]}
+
 
 #GET ALL IMAGES
 @image_routes.route('/')
@@ -44,7 +51,7 @@ def update_image_form(id):
 
 
 #EDIT AN IMAGE BY ID
-@image_routes.route('/<int:id>/update', methods=['GET','POST'])
+@image_routes.route('/<int:id>/update', methods=['GET', 'POST'])
 # @login_required
 def update_image(id):
     if current_user.is_authenticated :
@@ -65,8 +72,8 @@ def update_image(id):
             image_to_update.description = form.data['description']
             image_to_update.view_count = image_to_update.view_count
             db.session.commit()
-            return redirect("/api/images")
-        return {'bye': 'bad data'}
+            return 'image updated'
+        return 'bad data'
 
 #GET ALL CURRENT USER IMAGES
 @image_routes.route('/current')
@@ -99,3 +106,5 @@ def post_image(userId):
             db.session.commit()
             return 'that worked'
         return 'bad data'
+
+#increment view count
