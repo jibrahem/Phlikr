@@ -7,6 +7,7 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import Home from "./components/Home";
 import UserPage from "./components/UserPage";
+import SingleImageIndex from "./components/Image";
 
 function App() {
   const dispatch = useDispatch();
@@ -26,9 +27,14 @@ function App() {
           <Route exact path="/signup">
             <SignupFormPage />
           </Route>
-          <Route path="/:userId/:page">
+          <Route exact path="/photos/:imageId">
+              {console.log("hitting the SingleImage page")}
+              <SingleImageIndex />
+          </Route>
+          <Route exact path="/:userId/:page">
             <UserPage />
           </Route>
+          
           <Route exact path="/">
             <Home />
           </Route>
