@@ -12,7 +12,7 @@ function Navigation({ isLoaded }) {
 			<ul>
 				<div className='snapr'>
 					<li>
-						<NavLink exact to="/"> <span>⚫️⚪️</span> snapr</NavLink>
+						<NavLink exact to="/"> <span>⚫️⚪️</span>snapr</NavLink>
 					</li>
 				</div>
 				{isLoaded && (

@@ -7,12 +7,12 @@ export default function DefaultHome() {
 
     const backGroundInfo = [
         {
-            url: "https://wallpapers.com/images/featured/4k-space-pictures-9w27dqmc4nrs3xwd.jpg",
+            url: "https://wallpaperaccess.com/full/17520.jpg",
             title:"Picture1",
             author:"author1"
         },
         {
-            url: "https://img.freepik.com/premium-photo/abstract-rainbow-colorful-bright-feather-closeup-up-macro-view-background-plumage-texture-with-dew-drops_753134-644.jpg",
+            url: "https://wallpaperaccess.com/full/32822.jpg",
             title:"Picture2",
             author:"author2"
         },
@@ -65,14 +65,14 @@ export default function DefaultHome() {
       </div>
     </div>
   </div>
-  <footer className='splash-page-prefooter'>
+  {/* <footer className='splash-page-prefooter'>
     <div className='splash-page-prefooter-container'>
         <span className='prefooter-text1'>By using this site, you agree with our use of cookies. Please see our privacy statement for more information.</span>
         <span><button className='prefooter-btn'>Accept</button></span>
         <span><button className='prefooter-btn'>Opt-out</button></span>
         <span className='prefooter-text2'>Please select your preferences</span>
     </div>
-  </footer>
+  </footer> */}
 
   <footer className='splash-page-footer'>
     <span className='splash-span'>About</span>
