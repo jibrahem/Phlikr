@@ -7,7 +7,9 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import Home from "./components/Home";
 import UserPage from "./components/UserPage";
+import UploadPhoto from "./components/UploadPhoto";
 import SingleImageIndex from "./components/Image";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -21,6 +23,9 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          <Route exact path='/photos/upload/'>
+            <UploadPhoto/>
+          </Route>
           <Route exact path="/login">
             <LoginFormPage />
           </Route>

@@ -31,7 +31,9 @@ function SignupFormPage() {
   return (
     <>
       <div className="loggin">
-        <form onSubmit={handleSubmit}>
+        <img className="login-background-image" src={"https://identity.flickr.com/img/033120190455-by-Henry.2edde7a9.jpg"} alt="Background Image"/>
+        <div className="form-container-signup">
+        <form className='login-form' onSubmit={handleSubmit}>
           <div>⚫️⚪️</div>
           <div className="form-text">Sign up for Snapr</div>
           <ul>
@@ -78,11 +80,12 @@ function SignupFormPage() {
           <div className="login">
             <button type="submit">Sign Up</button>
           </div>
-          <div className="login2">Already a Flickr member? <Link to='/login'>
+          <div className="login2">Already a Snapr member? <Link to='/login'>
             Log in here.
           </Link>
           </div>
         </form>
+        </div>
       </div>
     </>
   );

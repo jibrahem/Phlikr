@@ -1,24 +1,44 @@
-import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useSelector, useDispatch, } from "react-redux";
+import { useEffect, useRef, useState } from "react";
 import { getAllImageThunk } from "../../store/image";
 import { Link } from "react-router-dom";
-import "./Home.css";
+import "./UserHome.css";
+import CommentModal from "../CommentModal";
+import OpenModalButton from '../OpenModalButton'
+
 
 export default function UserHome() {
   const sessionUser = useSelector((state) => state.session.user);
   const imagesStore = useSelector((state) => state.images.allImages);
   const imagesArr = Object.values(imagesStore);
+  const ulRef = useRef();
+  const [showMenu, setShowMenu] = useState(false);
   const currDate = new Date();
 //   console.log("current in UserHome: ", currDate)
 
   const dispatch = useDispatch();
 
   useEffect(() => {
+    if (!showMenu) return;
+
+    const closeMenu = (e) => {
+      if (!ulRef.current.contains(e.target)) {
+        setShowMenu(false);
+      }
+    };
+
+    document.addEventListener('click', closeMenu);
+
+    return () => document.removeEventListener("click", closeMenu);
+  }, [showMenu]);
+
+  const closeMenu = () => setShowMenu(false);
+
+  useEffect(() => {
     dispatch(getAllImageThunk());
   }, []);
 
   if (imagesArr.length < 1) return null;
-
 
     return (
         <>
@@ -56,17 +76,23 @@ export default function UserHome() {
                                     <div>
                                         <div>{image.view_count > 1000 ? parseFloat(image.view_count) / 1000 + "K" : image.view_count} views
                                         </div>
-                                        <div>
+                                        
+                                           <div className="icon">
                                             <i className="fa-regular fa-star"></i>
-                                            <i className="fa-regular fa-comment"></i>
+                                            <OpenModalButton
+                                              onItemClick={closeMenu}
+                                              modalComponent={<CommentModal />}
+                                              itemText= <i className="fa-regular fa-comment"></i>
+                                            />
                                             <i className="fa-light fa-album-circle-plus"></i>
-                                        </div>
+                                            <i className="fa-solid fa-tree"></i>
+                                          </div>
+                                        
                                     </div>
                                 </Link>
                             </li>
                         ))}
                     </ul>
-
                 </div>
             </div>
         </>
