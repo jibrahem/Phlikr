@@ -3,7 +3,7 @@
 }
 
 .splash-page-images {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
@@ -33,7 +33,7 @@
 }
 
 .splash-page-subheaderp1 {
-    position: absolute;
+    /* position: absolute; */
     font-family: Proxima Nova,helvetica neue,helvetica,arial,sans-serif;
     color: #fff;
     margin-top: 260px;
@@ -43,7 +43,7 @@
 }
 
 .splash-page-subheaderp2 {
-    position: absolute;
+    /* position: absolute; */
     font-family: Proxima Nova,helvetica neue,helvetica,arial,sans-serif;
     color: #fff;
     margin-top: 330px;
@@ -53,7 +53,7 @@
 }
 
 .start-for-free-btn {
-    position: absolute;
+    /* position: absolute; */
     font-size: 24px;
     font-weight: 800;
     height: 64px;
@@ -67,7 +67,7 @@
     box-sizing: border-box;
     cursor: pointer;
     display: inline-block;
-    
+
 }
 
 .start-for-free-btn:hover {
@@ -83,7 +83,7 @@
 }
 
 .splash-page-BGI {
-    position: absolute;
+    /* position: absolute; */
     font-family: Proxima Nova,helvetica neue,helvetica,arial,sans-serif;
     color: #fff;
 }
@@ -146,7 +146,7 @@
 
 
 /* .splash-page-header {
-    margin-top: 500px; 
+    margin-top: 500px;
     margin-left: 500px;
     font-size: 56px;
     font-weight: normal;
@@ -169,7 +169,5 @@
     z-index: 1;
     color: #fff;
     text-align: center;
-    
-} */
 
-  
+} */

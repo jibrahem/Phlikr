@@ -50,7 +50,7 @@ function ProfileButton({ user }) {
           </>
         ) : (
           <div className="modals">
-              <div className="login">
+              <div className="login-nav">
                 <OpenModalButton
                   buttonText="Log In"
                   onItemClick={closeMenu}
