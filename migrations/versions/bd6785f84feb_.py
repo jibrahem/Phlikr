@@ -1,19 +1,16 @@
-"""create user/image/comment tables
+"""empty message
 
-Revision ID: 56002e07f6a8
+Revision ID: bd6785f84feb
 Revises: 
-Create Date: 2023-07-02 13:38:35.148771
+Create Date: 2023-07-04 12:20:28.312558
 
 """
 from alembic import op
 import sqlalchemy as sa
 
-import os
-environment = os.getenv("FLASK_ENV")
-SCHEMA = os.environ.get("SCHEMA")
 
 # revision identifiers, used by Alembic.
-revision = '56002e07f6a8'
+revision = 'bd6785f84feb'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -59,11 +56,6 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
     # ### end Alembic commands ###
-
-    if environment == "production":
-        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
-        op.execute(f"ALTER TABLE images SET SCHEMA {SCHEMA};")
-        op.execute(f"ALTER TABLE comments SET SCHEMA {SCHEMA};")
 
 
 def downgrade():
