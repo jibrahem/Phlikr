@@ -1,27 +1,41 @@
 import { useEffect, useState } from 'react'
 import './Home.css'
 
-
 export default function DefaultHome() {
     // let currentBGI = 0;
     const [currentBGI, setCurrentBGI] = useState(0)
 
     const backGroundInfo = [
         {
-            url: "https://i.natgeofe.com/n/cfa19a0d-eff0-4628-8fdd-2ad8d66845dd/mountain-range-appenzell-switzerland.jpg",
+            url: "https://wallpapers.com/images/featured/4k-space-pictures-9w27dqmc4nrs3xwd.jpg",
             title:"Picture1",
             author:"author1"
         },
         {
-            url: "https://wallpaperaccess.com/full/2749339.jpg",
+            url: "https://img.freepik.com/premium-photo/abstract-rainbow-colorful-bright-feather-closeup-up-macro-view-background-plumage-texture-with-dew-drops_753134-644.jpg",
             title:"Picture2",
             author:"author2"
         },
         {
-            url: "https://w0.peakpx.com/wallpaper/165/918/HD-wallpaper-mountain-view-rocks-pretty-glow-shine-beautiful-sunset-mountain-nice-cliffs-sunrise-amazing-lovely-view-sky-paradise-rays-slope-nature.jpg",
+            url: "https://wallpaperaccess.com/full/222577.jpg",
             title:"Picture3",
             author:"author3"
         }
+      //   {
+      //     url: "https://i.natgeofe.com/n/cfa19a0d-eff0-4628-8fdd-2ad8d66845dd/mountain-range-appenzell-switzerland.jpg",
+      //     title:"Picture1",
+      //     author:"author1"
+      // },
+      // {
+      //     url: "https://wallpaperaccess.com/full/2749339.jpg",
+      //     title:"Picture2",
+      //     author:"author2"
+      // },
+      // {
+      //     url: "https://w0.peakpx.com/wallpaper/165/918/HD-wallpaper-mountain-view-rocks-pretty-glow-shine-beautiful-sunset-mountain-nice-cliffs-sunrise-amazing-lovely-view-sky-paradise-rays-slope-nature.jpg",
+      //     title:"Picture3",
+      //     author:"author3"
+      // }
     ]
 
     useEffect(() => {
@@ -35,17 +49,7 @@ export default function DefaultHome() {
 
 
     return (
-        // <>
-        // <h1 className='splash-page-header'>Find your inspiration.</h1>
-        // <h3>Join the Snapr community, home to tens of billions of photos and 2 million groups.</h3>
-        // <button className='start-for-free-btn'>
-        //     Start for free 
-        // </button>
-        // <img className='splash-page-images' src={backGroundInfo[currentBGI].url} />
-        // <p>{backGroundInfo[currentBGI].title}</p>
-        // <p>{backGroundInfo[currentBGI].author}</p>
-        // </>
-        <>
+<>
   <div className='container'>
     <img className='splash-page-images' src={backGroundInfo[currentBGI].url} alt="Background Image" />
     <div className='content'>
@@ -60,10 +64,16 @@ export default function DefaultHome() {
         <p className='splash-page-BGI2'>{backGroundInfo[currentBGI].author}</p>
       </div>
     </div>
-    {/* <div className='splash-page-footer'></div> */}
   </div>
-  {/* <footer className='splash-page-prefooter'>hey</footer> */}
-  <footer className='splash-page-prefooter'>hey</footer>
+  <footer className='splash-page-prefooter'>
+    <div className='splash-page-prefooter-container'>
+        <span className='prefooter-text1'>By using this site, you agree with our use of cookies. Please see our privacy statement for more information.</span>
+        <span><button className='prefooter-btn'>Accept</button></span>
+        <span><button className='prefooter-btn'>Opt-out</button></span>
+        <span className='prefooter-text2'>Please select your preferences</span>
+    </div>
+  </footer>
+
   <footer className='splash-page-footer'>
     <span className='splash-span'>About</span>
     <span className='splash-span'>Jobs</span>
