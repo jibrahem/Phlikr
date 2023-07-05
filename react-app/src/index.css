@@ -17,3 +17,7 @@ a {
 a:hover {
     text-decoration: underline;
 }
+
+body{
+    background-color: hsl(202, 25%, 94%);
+}

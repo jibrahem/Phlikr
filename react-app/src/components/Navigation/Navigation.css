@@ -35,19 +35,24 @@ nav ul {
 }
 
 nav {
-  background-color: rgba(128, 128, 128, 0.806);
-  position: absolute;
+  /* background-color: rgba(128, 128, 128, 0.806); */
+  background-color: #00000040;
   /* position: fixed; */
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
+  /* height: 4rem; */
   z-index: 1;
-} 
+}
 
 .snapr {
   font-size: 33px;
+  font-weight: bold;
   margin-left: 2rem;
   text-decoration: none;
+  margin-bottom: 1rem;
+  font-family: Proxima Nova,helvetica neue,helvetica,arial,sans-serif;
 }
 
 .snapr span {
@@ -74,11 +79,16 @@ nav {
   height: 2rem;
   border-radius: 4px;
   margin-right: 1rem;
-  font-weight:500
+  font-weight:600;
 }
 
 .snapr a {
   color: white;
+  display: flex;
+  flex-direction: row;
+  margin-top: 1rem;
+  align-items: center;
+  gap:.2rem
 }
 
 .sign-up button:hover{
@@ -89,4 +99,18 @@ nav {
 .hidden .modals{
   display: flex;
   flex-direction: row;
+}
+
+.login button{
+  cursor: pointer;
+}
+
+.snapr a:hover{
+  text-decoration: none;
+}
+
+.profile-dropdown.hidden {
+  display: flex;
+  flex-direction: column;
+ color: black
 }
