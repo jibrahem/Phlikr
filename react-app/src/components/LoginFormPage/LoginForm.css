@@ -1,5 +1,6 @@
 .loggin {
     display: flex;
+    justify-content: center;
 }
 
 .login-background-image {
@@ -12,6 +13,10 @@
     z-index: -1;
 }
 
+.form-container {
+    margin-top: -100px;
+}
+
 .login-form {
     font-family: Proxima Nova,helvetica neue,helvetica,arial,sans-serif;
     /* border: 1px solid white;
@@ -20,10 +25,9 @@
     width: 400px;
     box-sizing: border-box;
     border-radius: 10px;
-    margin-left: 500px;
-
+    padding-bottom: 40px;
 }   
 
-.form-text {
+.login {
     font-family: Proxima Nova,helvetica neue,helvetica,arial,sans-serif;
 }
