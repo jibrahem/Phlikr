@@ -19,7 +19,6 @@ export default function UserHome() {
 
   if (imagesArr.length < 1) return null;
 
-    if (imagesArr.length < 1) return null;
 
     return (
         <>

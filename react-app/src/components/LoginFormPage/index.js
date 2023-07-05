@@ -3,6 +3,7 @@ import { login } from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import './LoginForm.css';
+import { Link } from "react-router-dom";
 
 function LoginFormPage() {
   const dispatch = useDispatch();
@@ -23,33 +24,42 @@ function LoginFormPage() {
 
   return (
     <>
-      <h1>Log in to Snapr</h1>
-      <form onSubmit={handleSubmit}>
-        <ul>
-          {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
-          ))}
-        </ul>
-        <label>
-          Email
-          <input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Password
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        <button type="submit">Sign in</button>
-      </form>
+      <div className="loggin">
+        <form onSubmit={handleSubmit}>
+          <div>⚫️⚪️</div>
+          <div className="form-text">Log in to Snapr</div>
+          <ul>
+            {errors.map((error, idx) => (
+              <li key={idx}>{error}</li>
+            ))}
+          </ul>
+          <label>
+            <input
+              type="email"
+              placeholder="Email Address"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </label>
+          <label>
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </label>
+          <div className="login">
+            <button type="submit">Sign in</button>
+          </div>
+          <div className="login2">Not a Flickr member? <Link to='/signup'>
+            Sign up here.
+          </Link>
+          </div>
+        </form>
+      </div >
     </>
   );
 }
