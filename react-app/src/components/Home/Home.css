@@ -141,7 +141,7 @@
 }
 
 .prefooter-btn:hover {
-    cursor: pointer;
+    cursor: not-allowed;
 }
 
 /* .prefooter-text2 {
@@ -168,7 +168,7 @@
 
 .splash-span:hover {
     color: white;
-    cursor: pointer;
+    cursor: not-allowed;
 }
 
 .fab {
@@ -176,9 +176,9 @@
     margin-top: 10px;
 }
 
-/* .fab:hover {
-
-} */
+.fab:hover {
+    cursor: not-allowed;
+}
 
 
 
