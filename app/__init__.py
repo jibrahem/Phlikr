@@ -13,7 +13,7 @@ from .config import Config
 
 
 
-app = Flask(__name__, static_folder='../r   eact-app/build', static_url_path='/')
+app = Flask(__name__, static_folder='../react-app/build', static_url_path='/')
 
 # Setup login manager
 login = LoginManager(app)
@@ -38,6 +38,10 @@ Migrate(app, db)
 # Application Security
 CORS(app)
 
+#REMOVES FAVICON ERROR
+@app.route('/favicon.ico')
+def favicon():
+    return '', 204  # Return an empty response with status code 204 (No Content)
 
 # # Since we are deploying with Docker and Flask,
 # # we won't be using a buildpack when we deploy to Heroku.

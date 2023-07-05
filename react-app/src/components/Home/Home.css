@@ -1,0 +1,230 @@
+.container {
+    position: relative;
+    overflow: hidden;
+}
+
+.splash-page-images {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    /* z-index: -1; */
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.splash-page-header {
+    /* position: absolute; */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    font-size: 56px;
+    font-weight: 500;
+    line-height: 56px;
+    font-family: Proxima Nova,helvetica neue,helvetica,arial,sans-serif;
+    white-space: nowrap;
+    margin-top: 410px;
+    position: fixed;
+}
+
+.splash-page-subheaderp1 {
+    /* position: absolute; */
+    font-family: Proxima Nova,helvetica neue,helvetica,arial,sans-serif;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-size: 25px;
+    z-index: 1;
+    font-weight: 400;
+    margin-top: 490px;
+    position: fixed;
+}
+
+.splash-page-subheaderp2 {
+    /* position: absolute; */
+    font-family: Proxima Nova,helvetica neue,helvetica,arial,sans-serif;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-size: 25px;
+    z-index: 1;
+    font-weight: 400;
+    margin-top: 560px;
+    position: fixed;
+}
+
+.start-for-free-btn {
+    /* position: absolute; */
+    font-size: 24px;
+    font-weight: 800;
+    height: 64px;
+    width: 200px;
+    line-height: 64px;
+    z-index: 1;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    display: inline-block;
+    box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.1);
+    margin-top: 770px;
+    position: fixed;
+}
+
+.start-for-free-btn:hover {
+    background-color: #fff;
+    color: rgba(0,0,0,.5);
+    transition: color .15s;
+    text-decoration: none;
+}
+
+.btn-text {
+    font-size: 20px;
+    font-family: Proxima Nova,helvetica neue,helvetica,arial,sans-serif;
+}
+
+.splash-page-BGI {
+    /* position: absolute; */
+    font-family: Proxima Nova,helvetica neue,helvetica,arial,sans-serif;
+    color: #fff;
+    font-size: 14px;
+}
+
+.splash-page-BGI1 {
+    /* margin-top: 790px; */
+    margin-top: 0;
+}
+
+.splash-page-BGI2 {
+    /* margin-top: 10px; */
+    margin-top: 1px;
+}
+
+.splash-page-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 55px;
+    background-color: black;
+    color: grey;
+    text-align: center;
+    padding-right: 20px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    
+}
+
+.splash-span {
+    /* margin-top: 10px; */
+    font-size: 13px;
+    font-family:  Proxima Nova,helvetica neue,helvetica,arial,sans-serif;
+}
+
+.splash-span:hover {
+    color: white;
+    cursor: not-allowed;
+}
+
+.fab {
+    color: lightgray;
+    /* margin-top: 10px; */
+}
+
+.fab:hover {
+    cursor: not-allowed;
+}
+
+/* .upside-down-caret {
+    font-size: 16px;
+} */
+
+
+
+
+
+
+
+/* .splash-page-header {
+    margin-top: 500px;
+    margin-left: 500px;
+    font-size: 56px;
+    font-weight: normal;
+    line-height: 56px;
+    font-family: Proxima Nova,helvetica neue,helvetica,arial,sans-serif;
+    color: white;
+    /* z-index: 1; */
+    /* transform: translate(-50%, -50%);
+    white-space: nowrap;
+} */
+
+
+
+/* use whats inside this to place element over the picture */
+/* .content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    color: #fff;
+    text-align: center;
+
+} */
+
+
+/* .splash-page-prefooter {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background-color: #979ea2;
+    color: white;
+    font-family: Proxima_Nova_Regular;
+    text-align: center;
+    padding: 10px 0;
+    margin-bottom: 38px;
+    box-sizing: border-box
+} */
+
+/* .splash-page-prefooter-container {
+    font-size: 14px;
+    font-family: Proxima Nova,helvetica neue,helvetica,arial,sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+} */
+
+/* .prefooter-text1 {
+   
+}  */
+
+/* .prefooter-btn {
+    background-color: none;
+    font-family: Proxima Nova,helvetica neue,helvetica,arial,sans-serif;
+    color: white;
+    background-color: #979ea2;
+    border-radius: 2px;
+    border: 1px solid white;
+    width: 80px;
+    height: 30px;
+    /* margin-right: 10px; */
+ 
+
+
+/* .prefooter-btn:hover {
+    cursor: not-allowed;
+} */
+
+/* .prefooter-text2 {
+} */
