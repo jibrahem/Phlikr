@@ -91,3 +91,7 @@ nav {
   display: flex;
   flex-direction: row;
 }
+
+.login button{
+  cursor: pointer;
+}
