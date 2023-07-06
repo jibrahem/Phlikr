@@ -44,3 +44,14 @@ class Image(db.Model):
             'occupation': self.user.occupation,
             }
         }
+    
+    # @property
+    # def _view_count(self):
+    #     return self.view_count
+    
+    # @_view_count.setter
+    # def _view_count(self):
+    #     self.view_count = 5
+    #     # return self.view_count
+
+
