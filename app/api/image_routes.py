@@ -1,7 +1,9 @@
-from flask import Blueprint, jsonify, redirect, render_template
+from flask import Blueprint, jsonify, redirect, render_template, request
 from flask_login import login_required, current_user
 from ..models import Image, User, db, Comment
 from app.forms import ImageForm
+
+
 
 image_routes = Blueprint("images", __name__)
 
@@ -26,6 +28,8 @@ def get_all_images():
 # @login_required
 def get_image(id):
     image = Image.query.get(id)
+    image.view_count += 1  
+    db.session.commit()
     return image.to_dict()
 
 
@@ -35,8 +39,9 @@ def get_image(id):
 def delete_image(id):
     if current_user.is_authenticated :
         image_to_delete = Image.query.get(id)
-        db.session.delete(image_to_delete)
-        db.session.commit()
+        if image_to_delete.User.id == current_user.id:
+            db.session.delete(image_to_delete)
+            db.session.commit()
         return {'image': 'your image has been deleted'}
 
 # Edit image form
@@ -62,17 +67,18 @@ def update_image(id):
         # print("form errors", form.errors)
         # form data {'title': None, 'description': None, 'img': None, 'submit': False, 'csrf_token': None}
         #evaluating to false so form.validate() is not running
+        if image_to_update.User.id == current_user.id: 
 
-        if form.validate_on_submit():
-            # image_to_update = Image.query.get(id)
-            image_to_update.img = form.data['img']
-            # image_to_update.view_count = form.data['view_count']
-            image_to_update.user_id = current_user.id
-            image_to_update.title = form.data['title']
-            image_to_update.description = form.data['description']
-            image_to_update.view_count = image_to_update.view_count
-            db.session.commit()
-            return 'image updated'
+            if form.validate_on_submit():
+                # image_to_update = Image.query.get(id)
+                image_to_update.img = form.data['img']
+                # image_to_update.view_count = form.data['view_count']
+                image_to_update.user_id = current_user.id
+                image_to_update.title = form.data['title']
+                image_to_update.description = form.data['description']
+                image_to_update.view_count = image_to_update.view_count
+                db.session.commit()
+                return 'image updated'
         return 'bad data'
 
 #GET ALL CURRENT USER IMAGES
@@ -108,3 +114,25 @@ def post_image(userId):
         return 'bad data'
 
 #increment view count
+
+
+@image_routes.route('/user_favorite', methods=['POST'])
+def add_user_favorite():
+    # with app.app_context(): #not need in image route file
+        # Get the user_id and image_id from the request data
+        user_id = request.json.get('user_id')
+        image_id = request.json.get('image_id')
+
+        # Retrieve the User and image objects
+        user = User.query.get(user_id)
+        image = Image.query.get(image_id)
+
+        if not user or not image:
+            return 'User or image not found!', 404
+
+        # Add the user to the role and commit the changes
+        user.favorites.append(image)
+        db.session.commit()
+
+        return 'Image added to user successfully!'
+
