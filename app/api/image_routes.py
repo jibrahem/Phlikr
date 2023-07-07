@@ -28,7 +28,7 @@ def get_all_images():
 # @login_required
 def get_image(id):
     image = Image.query.get(id)
-    image.view_count += 1  
+    image.view_count += 1
     db.session.commit()
     return image.to_dict()
 
@@ -67,7 +67,7 @@ def update_image(id):
         # print("form errors", form.errors)
         # form data {'title': None, 'description': None, 'img': None, 'submit': False, 'csrf_token': None}
         #evaluating to false so form.validate() is not running
-        if image_to_update.User.id == current_user.id: 
+        if image_to_update.User.id == current_user.id:
 
             if form.validate_on_submit():
                 # image_to_update = Image.query.get(id)
@@ -81,12 +81,23 @@ def update_image(id):
                 return 'image updated'
         return 'bad data'
 
+@image_routes.route('/showcase/<int:imageId>')
+def toggle_showcase(imageId):
+    image = Image.query.get(imageId)
+    if current_user.id == image.user_id:
+        image.showcase = not image.showcase
+        db.session.commit()
+        return 'showcase toggled'
+    return 'not your image'
+
 #GET ALL CURRENT USER IMAGES
 @image_routes.route('/current')
 # @login_required
 def get_logged_user_images():
     images = Image.query.filter(Image.user_id == current_user.id).all()
     return {'images' : [image.to_dict() for image in images]}
+
+
 
 
 #GET ALL USER IMAGES
@@ -135,4 +146,3 @@ def add_user_favorite():
         db.session.commit()
 
         return 'Image added to user successfully!'
-
