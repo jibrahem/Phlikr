@@ -14,7 +14,7 @@ export default function UserHome() {
   const ulRef = useRef();
   const [showMenu, setShowMenu] = useState(false);
   const currDate = new Date();
-//   console.log("current in UserHome: ", currDate)
+  //   console.log("current in UserHome: ", currDate)
 
   const dispatch = useDispatch();
 
@@ -40,62 +40,73 @@ export default function UserHome() {
 
   if (imagesArr.length < 1) return null;
 
-    return (
-        <>
-            <div className='user-home-wrapper'>
-                <div className='user-home-banner'>
-                    <div>
-                        <p>All Activity</p>
-                        <p>What's new?</p>
-                    </div>
-                    <div>
-                        <p>layout 1</p>
-                        <p>layout 2</p>
-                        <p>layout 3</p>
-                    </div>
-                </div>
-                <div className='image-list-div'>
+  return (
+    <>
+      <div className='user-home-wrapper'>
+        <div className='user-home-banner'>
+          <div className="act">
+            <p>All Activity</p>
+            <p>What's new?</p>
+          </div>
+          <div className="layout">
+            <p>layout 1</p>
+            <p>layout 2</p>
+            <p>layout 3</p>
+          </div>
+        </div>
+        <div className='image-list-div'>
 
-                    <ul>
+          <ul>
 
-                        {imagesArr.map((image) => (
-                            <li key={image.id} className='image-card'>
-                                <Link key={image.id} to={`/photos/${image.id}`}>
-                                    <p>{image.User.firstName} {image.User.lastName}</p>
-                                    {(() => {
-                                        const uploadedOn = new Date(image.uploaded_on);
-                                        const timeDiff = Math.round((currDate - uploadedOn) / (1000 * 60 * 60 * 24));
-                                        if (timeDiff > 1) {
-                                            return <p>{timeDiff}ds ago</p>
-                                        }
-                                        return <p>{timeDiff}d ago</p>
-                                    })()}
-                                    <img src={image.img} alt={image.title} />
-                                    <p>{image.title}</p>
-                                    <p>{image.description}</p>
-                                    <div>
-                                        <div>{image.view_count > 1000 ? parseFloat(image.view_count) / 1000 + "K" : image.view_count} views
-                                        </div>
-                                        
-                                           <div className="icon">
-                                            <i className="fa-regular fa-star"></i>
-                                            <OpenModalButton
-                                              onItemClick={closeMenu}
-                                              modalComponent={<CommentModal />}
-                                              itemText= <i className="fa-regular fa-comment"></i>
-                                            />
-                                            <i className="fa-light fa-album-circle-plus"></i>
-                                            <i className="fa-solid fa-tree"></i>
-                                          </div>
-                                        
-                                    </div>
-                                </Link>
-                            </li>
-                        ))}
-                    </ul>
+            {imagesArr.map((image) => (
+              <li key={image.id} className='image-card'>
+                <div className="profile-photo">
+                  <img src={image.User.profile_photo} alt={image.User.user_name}></img>
+                  <div className="date">
+                    <p>{image.User.first_name} {image.User.last_name}</p>
+                    {(() => {
+                      const uploadedOn = new Date(image.uploaded_on);
+                      const timeDiff = Math.round((currDate - uploadedOn) / (1000 * 60 * 60 * 24));
+                      if (timeDiff > 1) {
+                        return <div>{timeDiff}ds ago</div>
+                      }
+                      return <div>{timeDiff}d ago</div>
+                    })()}
+                  </div>
                 </div>
-            </div>
-        </>
-    );
+                <Link to={`/photos/${image.id}`}>
+                  <div className="photo">
+                    <img src={image.img} alt={image.title} />
+                  </div>
+                </Link>
+                <Link to={`/photos/${image.id}`}>
+                  <div className="img-title">{image.title}</div>
+                </Link>
+                {/* <p>{image.description}</p> */}
+                <div className="icons">
+                <div className="views">
+                  <div>{image.view_count > 1000 ? parseFloat(image.view_count) / 1000 + "K" : image.view_count} views
+                  </div>
+
+                  <div className="icon">
+                    <i className="fa-regular fa-star"></i>
+                    <OpenModalButton
+                      onItemClick={closeMenu}
+                      modalComponent={<CommentModal
+                      image={image}/>}
+                      itemText=<i className="fa-regular fa-comment"></i>
+                    />
+                    <i className="fa-solid fa-tree"></i>
+                  </div>
+                  </div>
+                </div>
+
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </>
+  );
 
 }

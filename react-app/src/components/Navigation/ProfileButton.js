@@ -65,6 +65,7 @@ function ProfileButton({ user }) {
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
+           
           <Link to={'/photos/upload'}>
             <i class="fa-solid fa-cloud-arrow-up"></i>
             </Link>
@@ -92,5 +93,6 @@ function ProfileButton({ user }) {
     </>
   );
 }
+
 
 export default ProfileButton;
