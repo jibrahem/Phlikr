@@ -46,7 +46,7 @@ def edit_comment(comment_id):
         form = CommentForm()
         target_comment = Comment.query.get(comment_id)
         print("hi from comment update 1")
-        if target_comment.User.id == current_user.id:
+        if target_comment.user_id == current_user.id:
             if form.validate_on_submit():
                 print("hi from comment update 2")
                 target_comment.description = form.data['description']
@@ -60,7 +60,7 @@ def edit_comment(comment_id):
 def delete_comment(comment_id):
     if current_user.is_authenticated:
         comment_to_delete = Comment.query.get(comment_id)
-        if comment_to_delete.user.id == current_user.id:
+        if comment_to_delete.user_id == current_user.id:
             db.session.delete(comment_to_delete)
             db.session.commit()
         return {'comment': 'comment has been deleted'}

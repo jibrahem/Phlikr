@@ -24,6 +24,7 @@ class User(db.Model, UserMixin):
     last_name = db.Column(db.String(50), nullable=False)
     profile_photo = db.Column(db.String(255))
     cover_photo = db.Column(db.String(255))
+    biography = db.Column(db.String(1000))
     age = db.Column(db.Integer, nullable=False)
     occupation = db.Column(db.String(50))
     hometown = db.Column(db.String(50))
@@ -62,6 +63,7 @@ class User(db.Model, UserMixin):
             'last_name': self.last_name,
             'profile_photo': self.profile_photo,
             'cover_photo': self.cover_photo,
+            'biography' : self.biography,
             'occupation' : self.occupation,
             'hometown' : self.hometown,
             'city' : self.city,
