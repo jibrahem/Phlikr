@@ -5,8 +5,8 @@ from flask_login import UserMixin
 
 user_favorite = db.Table(
     "user_favorites",
-    db.Column("user_id", db.Integer, db.ForeignKey("users.id"), primary_key=True),
-    db.Column("image_id", db.Integer, db.ForeignKey("images.id"), primary_key=True),
+    db.Column("user_id", db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), primary_key=True),
+    db.Column("image_id", db.Integer, db.ForeignKey(add_prefix_for_prod("images.id")), primary_key=True),
 )
 
 
