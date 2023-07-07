@@ -61,11 +61,11 @@ export default function UserHome() {
             <p>All Activity</p>
             <p>What's new?</p>
           </div>
-          <div className="layout">
+          {/* <div className="layout">
             <p>layout 1</p>
             <p>layout 2</p>
             <p>layout 3</p>
-          </div>
+          </div> */}
         </div>
         <div className='image-list-div'>
 
@@ -103,7 +103,7 @@ export default function UserHome() {
                     </button>
 
                     {/* <AddUserFav image={image} /> */}
-             
+
                     <Link to={`/photos/${image.id}`}>
                   <i className="fa-regular fa-comment"></i>
                   </Link>

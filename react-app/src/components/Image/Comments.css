@@ -56,7 +56,7 @@
 }
 
 #image-container{
-    margin-top:5.5rem;
+    margin-top:5rem;
     display: flex;
     flex-direction: column;
     background-color: rgb(50, 49, 49);
