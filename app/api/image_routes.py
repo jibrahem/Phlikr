@@ -114,16 +114,20 @@ def get_user_images(userId):
 def post_image(userId):
     if current_user.is_authenticated :
         form = ImageForm()
-        if form.validate_on_submit():
-            title = form.data['title']
-            description = form.data['description']
-            img = form.data['img']
-            new_image = Image(title=title, description=description, img=img, view_count=0, user_id=userId)
-            db.session.add(new_image)
-            db.session.commit()
-            return 'that worked'
-        return 'bad data'
-
+        print("form", form.data)
+        # if form.validate_on_submit():
+        title = form.data['title']
+        description = form.data['description']
+        img = form.data['img']
+        new_image = Image(title=title, description=description, img=img, view_count=0, user_id=userId)
+        db.session.add(new_image)
+        db.session.commit()
+        print(form.data['title'])
+        print(form.data['description'])
+        print(form.data['img'])
+        return new_image.to_dict()
+        # return 'bad data'
+    
 
 # add fav in favorite table by user id
 @image_routes.route('/user_favorite', methods=['POST'])

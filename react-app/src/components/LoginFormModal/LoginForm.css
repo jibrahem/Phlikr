@@ -21,13 +21,20 @@
     margin-top: 15rem;
 }
 
-input[type=text]:focus {
+.login-modal {
     outline: 1px solid rgb(0, 166, 255);
     border: none;
     border-radius: 2px;
 }
 
-input[type=email]:focus {
+
+/* input[type=text]:focus {
+    outline: 1px solid rgb(0, 166, 255);
+    border: none;
+    border-radius: 2px;
+} */
+
+/* input[type=email]:focus {
     outline: 1px solid rgb(0, 166, 255);
     border: none;
     border-radius: 2px;
@@ -37,7 +44,7 @@ input[type=password]:focus {
     outline: 1px solid rgb(0, 166, 255);
     border: none;
     border-radius: 2px;
-}
+} */
 
 input:focus::placeholder {
     color: rgb(0, 166, 255);
