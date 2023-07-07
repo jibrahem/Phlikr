@@ -25,13 +25,17 @@ function LoginFormPage() {
   };
 
   const demoUser = () => {
-    return dispatch(login('demo@aa.io','password'))
+    return dispatch(login(
+      'demo@aa.io',
+      'password',
+    ))
   }
 
   return (
     <>
       <div className="loggin">
-        <img className="login-background-image" src={"https://identity.flickr.com/img/033120190455-by-Henry.2edde7a9.jpg"} alt="Background Image"/>
+        <div className="login-box">
+        <img className="login-background-image" src={"https://identity.flickr.com/img/033120190455-by-Henry.2edde7a9.jpg"} alt="Background Image" />
         <div className="form-container">
         <form className='login-form' onSubmit={handleSubmit}>
           <div>🔵🔴</div>
@@ -67,11 +71,12 @@ function LoginFormPage() {
           </Link>
           </div>
         </form>
-          <div className="login2">
+           <div className="demo">
             <button type='submit' onClick={demoUser}>Demo User</button>
           </div>
         </div>
-      </div >
+        </div>
+      </div>
     </>
   );
 }

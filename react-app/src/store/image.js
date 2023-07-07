@@ -39,12 +39,12 @@ const getUserImages = (images) => ({
 const getSingleImage = (image) => ({
   type: GET_SINGLE_IMAGE,
   image,
-})
+});
 
 const getImageComments = (image) => ({
   type: GET_IMAGE_COMMENTS,
   image,
-})
+});
 
 //thunk
 export const getAllImageThunk = () => async (dispatch) => {
@@ -120,7 +120,8 @@ export const deleteImageThunk = (image_id) => async (dispatch) => {
 
 export const getUserImagesThunk = (user_id) => async (dispatch) => {
   try {
-    // console.log("userimages user Id", user_id);
+    console.log("userimages user Id", user_id);
+
     const res = await fetch(`/api/images/user/${user_id}`);
 
     if (res.ok) {
@@ -135,7 +136,7 @@ export const getUserImagesThunk = (user_id) => async (dispatch) => {
 };
 
 export const getSingleImageThunk = (imageId) => async (dispatch) => {
-  console.log("single image in thunk!!!!!")
+  console.log("single image in thunk!!!!!");
   try {
     const res = await fetch(`/api/images/${imageId}`);
 
@@ -163,11 +164,16 @@ export const getImageCommentsThunk = (image_id) => async (dispatch) => {
     const errors = err.json();
     return errors;
   }
-}
+};
 
 //reducer function
 
-const initialState = { allImages: {}, userImages: {}, singleImage: {}, imageComments: {} };
+const initialState = {
+  allImages: {},
+  userImages: {},
+  singleImage: {},
+  imageComments: {},
+};
 
 const imageReducer = (state = initialState, action) => {
   let newState = {};
