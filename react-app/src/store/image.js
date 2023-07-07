@@ -9,6 +9,7 @@ const DELETE_IMAGE = "image/DELETE_IMAGE";
 const GET_USER_IMAGES = "image/GET_USER_IMAGES";
 const GET_SINGLE_IMAGE = "image/GET_SINGLE_IMAGE";
 const GET_IMAGE_COMMENTS = "image/GET_IMAGE_COMMENTS";
+const GET_USER_FAV_IMG = "image/GET_USER_FAV_IMG";
 
 //action creator
 const getAllImages = (images) => ({
@@ -46,6 +47,11 @@ const getImageComments = (image) => ({
   image,
 });
 
+const getUserFavImg = (images) => ({
+  type: GET_USER_FAV_IMG,
+  images,
+})
+
 //thunk
 export const getAllImageThunk = () => async (dispatch) => {
   try {
@@ -57,7 +63,7 @@ export const getAllImageThunk = () => async (dispatch) => {
       return images;
     }
   } catch (err) {
-    const errors = err.json();
+    const errors = await err.json();
     return errors;
   }
 };
@@ -78,7 +84,7 @@ export const createImageThunk = (image, user) => async (dispatch) => {
       return newImage;
     }
   } catch (err) {
-    const errors = err.json();
+    const errors = await err.json();
     return errors;
   }
 };
@@ -97,7 +103,7 @@ export const updateImageThunk = (image) => async (dispatch) => {
       return updatedImage;
     }
   } catch (err) {
-    const errors = err.json();
+    const errors = await err.json();
     return errors;
   }
 };
@@ -113,7 +119,7 @@ export const deleteImageThunk = (image_id) => async (dispatch) => {
       return;
     }
   } catch (err) {
-    const errors = err.json();
+    const errors = await err.json();
     return errors;
   }
 };
@@ -130,7 +136,7 @@ export const getUserImagesThunk = (user_id) => async (dispatch) => {
       return userImages;
     }
   } catch (err) {
-    const errors = err.json();
+    const errors = await err.json();
     return errors;
   }
 };
@@ -146,7 +152,7 @@ export const getSingleImageThunk = (imageId) => async (dispatch) => {
       return singleImage;
     }
   } catch (err) {
-    const errors = err.json();
+    const errors = await err.json();
     return errors;
   }
 };
@@ -161,19 +167,33 @@ export const getImageCommentsThunk = (image_id) => async (dispatch) => {
       return imageComments;
     }
   } catch (err) {
-    const errors = err.json();
+    const errors = await err.json();
+    return errors;
+  }
+};
+
+export const getUserFavImgThunk = (userId) => async (dispatch) => {
+  console.log("getuserfavimg in the Thunk!!!")
+
+  try {
+    const res = await fetch(`/api/images/${userId}/user_favorite`);
+
+    if (res.ok) {
+      console.log("res return if res is OK: ", res)
+      const userFavImgs = await res.json();
+      console.log("userFavImgs in res.ok: ", userFavImgs)
+      dispatch(getUserFavImg(userFavImgs));
+      return userFavImgs;
+    } 
+  } catch (err) {
+    const errors = await err.json();
     return errors;
   }
 };
 
 //reducer function
 
-const initialState = {
-  allImages: {},
-  userImages: {},
-  singleImage: {},
-  imageComments: {},
-};
+const initialState = { allImages: {}, userImages: {}, singleImage: {}, imageComments: {}, userFavImg: {} };
 
 const imageReducer = (state = initialState, action) => {
   let newState = {};
@@ -219,6 +239,15 @@ const imageReducer = (state = initialState, action) => {
       });
       return newState;
     }
+    case GET_USER_FAV_IMG: {
+      newState = {...state, userFavImg: {}};
+        action.images.forEach((image) => {
+          newState.userFavImg[image.id] = image;
+    })
+        
+        return newState;
+      }
+    
     default:
       return state;
   }

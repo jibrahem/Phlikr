@@ -15,7 +15,6 @@ function ProfileButton({ user }) {
   const history = useHistory()
   const location = useLocation();
 
-
   const handleLogout = (e) => {
     e.preventDefault();
     dispatch(logout());
@@ -44,6 +43,7 @@ function ProfileButton({ user }) {
 
   const closeMenu = () => setShowMenu(false);
 
+
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
 
   // if (user !== null) {
@@ -66,6 +66,8 @@ function ProfileButton({ user }) {
 
   return (
     <>
+      <ul className={ulClassName} ref={ulRef}>
+        
       {user ? (
         <>
           <div className="top-nav">
@@ -98,9 +100,11 @@ function ProfileButton({ user }) {
           </div>
         </div>
       )}
+      </ul>
     </>
   );
 }
 
 
 export default ProfileButton;
+
