@@ -29,7 +29,6 @@ def delete_user(id):
 
 
 @user_routes.route('/<int:id>')
-@login_required
 def user(id):
     """
     Query for a user by id and returns that user in a dictionary
@@ -48,7 +47,9 @@ def edit_user_details(user_id):
 def user_details(user_id):
     update_user = User.query.get(user_id)
     form = UserDetailsForm(user=update_user)
-    form.populate_obj(user)
+    print(form.data)
+    if form.data['biography']:
+        update_user.biography = form.data['biography']
     if form.data['profile_photo']:
         update_user.profile_photo = form.data['profile_photo']
     if form.data['cover_photo']:

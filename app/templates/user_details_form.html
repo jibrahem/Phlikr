@@ -1,6 +1,7 @@
 <form method="post" action="">
     {{ form.csrf_token }}
     <p>{{form.profile_photo.label}}: {{form.profile_photo}}</p>
+    <p>{{form.biography.label}}: {{form.biography}}</p>
     <p>{{form.cover_photo.label}}: {{form.cover_photo}}</p>
     <p>{{form.occupation.label}}: {{form.occupation}}</p>
     <p>{{form.hometown.label}}: {{form.hometown}}</p>

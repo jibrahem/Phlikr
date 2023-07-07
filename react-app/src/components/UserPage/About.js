@@ -2,14 +2,26 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 import { getUserImagesThunk } from "../../store/image";
+import { userInfoThunk } from "../../store/users";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import ProfileFormBio from "../ProfileForms/ProfileFormBio";
+import ProfileFormDetails from "../ProfileForms/ProfileFormDetails";
 
-export default function AboutPage({ userImagesProp, userInfo }) {
+export default function AboutPage({ userImagesProp, userInfoProp }) {
   const sessionUser = useSelector((state) => state.session.user);
+  const userInfo = useSelector((state) => state.users.userInfo);
   const [showBioForm, setShowBioForm] = useState(false);
   const [showShowcaseTitleForm, setShowShowcaseTitleForm] = useState(false);
   const [showDetailForm, setShowDetailForm] = useState(false);
   const currDate = Date();
+  const dispatch = useDispatch();
+  useEffect(
+    () => {
+      dispatch(userInfoThunk(userInfo.id));
+    },
+    showBioForm,
+    showDetailForm
+  );
 
   if (userImagesProp.length < 1) return null;
 
@@ -26,21 +38,33 @@ export default function AboutPage({ userImagesProp, userInfo }) {
     setShowDetailForm(!showDetailForm);
   };
 
+  console.log("userInfo in about page", userInfoProp);
   return (
     <>
       <>About</>
       <div className="biography">
-        {!showBioForm ? <>Write a little about yourself</> : <></>}
+        {!showBioForm ? (
+          <>
+            {userInfo.biography ? (
+              userInfo.biography
+            ) : (
+              <>Write a little about yourself</>
+            )}
+          </>
+        ) : (
+          <></>
+        )}
         <button onClick={bioClick}>Bio</button>
-        {showBioForm ? <p>bio form</p> : <></>}
+        {showBioForm ? <ProfileFormBio userInfo={userInfoProp} /> : <></>}
       </div>
       <div className="showcase">
-        {!showShowcaseTitleForm ? <>Write a little about yourself</> : <></>}
+        display showcase photos here
+        {/* {!showShowcaseTitleForm ? <>Write a little about yourself</> : <></>}
         <button onClick={showcaseTitleClick}>Showcase title</button>
-        {showShowcaseTitleForm ? <p>showcase title form</p> : <></>}
+        {showShowcaseTitleForm ? <p>showcase title form</p> : <></>} */}
       </div>
       <div className="details">
-        {!showDetailForm ? <>{userInfo.email}</> : <></>}
+        {!showDetailForm ? <ProfileFormDetails /> : <></>}
         <button onClick={detailClick}>Detail button</button>
         {showDetailForm ? <p>showcase title form</p> : <></>}
         {console.log("userinfo", userInfo.occupation)}

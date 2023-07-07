@@ -5,6 +5,7 @@ from app.models import User
 
 
 class UserDetailsForm(FlaskForm):
+    biography = StringField('biography')
     profile_photo = StringField('profile_photo')
     cover_photo = StringField('cover_photo')
     occupation = StringField('occupation')
