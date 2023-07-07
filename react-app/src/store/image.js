@@ -140,7 +140,6 @@ export const getSingleImageThunk = (imageId) => async (dispatch) => {
 
     if (res.ok) {
       const singleImage = await res.json();
-      console.log("singleImage in the thunk: ", singleImage);
       dispatch(getSingleImage(singleImage));
       return singleImage;
     }

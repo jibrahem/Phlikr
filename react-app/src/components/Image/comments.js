@@ -7,6 +7,8 @@ import { createCommentThunk } from "../../store/comment";
 import DeleteCommentModal from "../DeleteCommentModal";
 import OpenModalMenuItem from '../OpenModalButton'
 import UpdateComment from "../UpdateComment";
+import './Comments.css'
+
 
 
 function Comments(image) {
@@ -47,19 +49,19 @@ function Comments(image) {
         setShowMenu(true);
     };
 
-    useEffect(() => {
-        if (!showMenu) return;
+    // useEffect(() => {
+    //     if (!showMenu) return;
 
-        const closeMenu = (e) => {
-            if (!ulRef.current.contains(e.target)) {
-                setShowMenu(false);
-            }
-        };
+    //     const closeMenu = (e) => {
+    //         if (!ulRef.current.contains(e.target)) {
+    //             setShowMenu(false);
+    //         }
+    //     };
 
-        document.addEventListener('click', closeMenu);
+    //     document.addEventListener('click', closeMenu);
 
-        return () => document.removeEventListener("click", closeMenu);
-    }, [showMenu]);
+    //     return () => document.removeEventListener("click", closeMenu);
+    // }, [showMenu]);
 
     const closeMenu = () => setShowMenu(false);
 
@@ -67,39 +69,41 @@ function Comments(image) {
         return null
     }
 
-    console.log('THE COMMMENTS', commentArr)
+    // console.log('THE COMMMENTS', commentArr)
 
-    const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
+    // const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
 
     return (
-        <>
+        <div className="comments">
             {commentArr.length > 0 && commentArr.map(comment => (
                 <div key={comment.id} className="comment">
                     <p>{comment.description}</p>
                     <div>
                         {comment.user_id === user.id &&
-                        <div>
-                                    <div>
-                            <UpdateComment
-                            comment={comment}
-                            image={image}
-                            />
-                            </div>
                             <div>
-                                    <button onClick={openMenu}>
-                                        <i class="fa-regular fa-pen-to-square"></i>
-                                    </button>
-                                <div className="hidden">
-                                <OpenModalMenuItem
-                                    buttonText="Delete"
-                                    onItemClick={closeMenu}
-                                    modalComponent={<DeleteCommentModal
-                                        comment={comment}
-                                        image={image}
-                                    />}
-                                />
+                                <div>
+                                    <div className="icon">
+                                        <button onClick={
+                                            <UpdateComment
+                                                comment={comment}
+                                                image={image}
+                                            />}
+                                            >
+                                            <i class="fa-regular fa-pen-to-square"></i>
+                                            </button>
+                                        <div className="delete-modal">
+                                            <OpenModalMenuItem
+                                                buttonText="🗑️"
+                                                onItemClick={closeMenu}
+                                                modalComponent={<DeleteCommentModal
+                                                    comment={comment}
+                                                    image={image}
+                                                />}
+                                            />
+                                        </div>
+                                    </div>
+
                                 </div>
-                            </div>
                             </div>
                         }
                     </div>
@@ -123,7 +127,7 @@ function Comments(image) {
                     </div>
                 </form>
             </div>
-        </>
+        </div>
     );
 }
 
