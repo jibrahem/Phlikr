@@ -24,15 +24,9 @@ function LoginFormPage() {
     }
   };
 
-  // const demoUser = () => {
-  //   const data = dispatch(login({
-  //     email: 'demo@aa.io',
-  //     password: 'password',
-  //    }))
-  //    if(data){
-  //     setErrors(data)
-  //    }
-  // }
+  const demoUser = () => {
+    return dispatch(login('demo@aa.io','password'))
+  }
 
   return (
     <>
@@ -73,9 +67,9 @@ function LoginFormPage() {
           </Link>
           </div>
         </form>
-          {/* <div className="login2">
+          <div className="login2">
             <button type='submit' onClick={demoUser}>Demo User</button>
-          </div> */}
+          </div>
         </div>
       </div >
     </>

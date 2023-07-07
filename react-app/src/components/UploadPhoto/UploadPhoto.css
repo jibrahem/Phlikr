@@ -10,3 +10,19 @@
     color: white;
     background-color: black;
 }
+
+/* .whole-upload-form {
+    background-color: blue;
+} */
+
+.upload-image-form {
+    display: flex;
+    flex-direction: column;
+    /* margin-top: 300px; */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background-color: white;
+    width: 200px;
+    height: 200px; 
+}
