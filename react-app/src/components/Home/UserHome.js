@@ -4,7 +4,9 @@ import { getAllImageThunk } from "../../store/image";
 import { Link } from "react-router-dom";
 import "./UserHome.css";
 import CommentModal from "../CommentModal";
-import OpenModalButton from '../OpenModalButton'
+import OpenModalButton from '../OpenModalButton';
+import { userFavThunk } from "../../store/users";
+
 
 
 export default function UserHome() {
@@ -14,9 +16,20 @@ export default function UserHome() {
   const ulRef = useRef();
   const [showMenu, setShowMenu] = useState(false);
   const currDate = new Date();
+
   //   console.log("current in UserHome: ", currDate)
 
   const dispatch = useDispatch();
+  const addFavorite = (imageId) => {
+
+    const payload = {
+      user_id : sessionUser.id,
+      image_id : imageId,
+
+    }
+
+   dispatch(userFavThunk(payload));
+  }
 
   useEffect(() => {
     if (!showMenu) return;
@@ -58,55 +71,50 @@ export default function UserHome() {
 
           <ul>
 
-            {imagesArr.map((image) => (
-              <li key={image.id} className='image-card'>
-                <div className="profile-photo">
-                  <img src={image.User.profile_photo} alt={image.User.user_name}></img>
-                  <div className="date">
-                    <p>{image.User.first_name} {image.User.last_name}</p>
-                    {(() => {
-                      const uploadedOn = new Date(image.uploaded_on);
-                      const timeDiff = Math.round((currDate - uploadedOn) / (1000 * 60 * 60 * 24));
-                      if (timeDiff > 1) {
-                        return <div>{timeDiff}ds ago</div>
-                      }
-                      return <div>{timeDiff}d ago</div>
-                    })()}
-                  </div>
-                </div>
-                <Link to={`/photos/${image.id}`}>
-                  <div className="photo">
-                    <img src={image.img} alt={image.title} />
-                  </div>
-                </Link>
-                <Link to={`/photos/${image.id}`}>
-                  <div className="img-title">{image.title}</div>
-                </Link>
-                {/* <p>{image.description}</p> */}
-                <div className="icons">
-                <div className="views">
-                  <div>{image.view_count > 1000 ? parseFloat(image.view_count) / 1000 + "K" : image.view_count} views
-                  </div>
+                        {imagesArr.map((image) => (
+                            <li key={image.id} className='image-card'>
+                                <Link key={image.id} to={`/photos/${image.id}`}>
+                                    <p>{image.User.first_name} {image.User.last_name}</p>
+                                    {(() => {
+                                        const uploadedOn = new Date(image.uploaded_on);
+                                        const timeDiff = Math.round((currDate - uploadedOn) / (1000 * 60 * 60 * 24));
+                                        if (timeDiff > 1) {
+                                            return <p>{timeDiff}ds ago</p>
+                                        }
+                                        return <p>{timeDiff}d ago</p>
+                                    })()}
+                                    <img src={image.img} alt={image.title} />
+                                    <p>{image.title}</p>
+                                    </Link>
+                                    <p>{image.description}</p>
+                                    <div>
+                                        <div>{image.view_count > 1000 ? parseFloat(image.view_count) / 1000 + "K" : image.view_count} views
+                                        </div>
 
-                  <div className="icon">
-                    <i className="fa-regular fa-star"></i>
-                    <OpenModalButton
-                      onItemClick={closeMenu}
-                      modalComponent={<CommentModal
-                      image={image}/>}
-                      itemText=<i className="fa-regular fa-comment"></i>
-                    />
-                    <i className="fa-solid fa-tree"></i>
-                  </div>
-                  </div>
-                </div>
+                                           <div className="icon">
+                                            <button
+                                              onClick={() => addFavorite(image.id)}>
+                                              <i className="fa-regular fa-star"></i>
+                                            </button>
 
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    </>
-  );
+                                            {/* <AddUserFav image={image} /> */}
+                                            <OpenModalButton
+                                              onItemClick={closeMenu}
+                                              modalComponent={<CommentModal />}
+                                              itemText= <i className="fa-regular fa-comment"></i>
+                                            />
+                                            <i className="fa-light fa-album-circle-plus"></i>
+                                            {/* <i className="fa-solid fa-tree"></i> we don't need the tree icon*/}
+                                          </div>
+
+                                    </div>
+                                {/* </Link> */}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            </div>
+        </>
+    );
 
 }
