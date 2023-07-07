@@ -40,12 +40,12 @@ const getUserImages = (images) => ({
 const getSingleImage = (image) => ({
   type: GET_SINGLE_IMAGE,
   image,
-})
+});
 
 const getImageComments = (image) => ({
   type: GET_IMAGE_COMMENTS,
   image,
-})
+});
 
 const getUserFavImg = (images) => ({
   type: GET_USER_FAV_IMG,
@@ -68,9 +68,11 @@ export const getAllImageThunk = () => async (dispatch) => {
   }
 };
 
-export const createImageThunk = (image) => async (dispatch) => {
+export const createImageThunk = (image, user) => async (dispatch) => {
   try {
-    const res = await fetch("/api/images", {
+    console.log("userId", user.id)
+    console.log(image)
+    const res = await fetch(`/api/images/${user.id}/images`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(image),
@@ -124,7 +126,8 @@ export const deleteImageThunk = (image_id) => async (dispatch) => {
 
 export const getUserImagesThunk = (user_id) => async (dispatch) => {
   try {
-    // console.log("userimages user Id", user_id);
+    console.log("userimages user Id", user_id);
+
     const res = await fetch(`/api/images/user/${user_id}`);
 
     if (res.ok) {
@@ -139,13 +142,12 @@ export const getUserImagesThunk = (user_id) => async (dispatch) => {
 };
 
 export const getSingleImageThunk = (imageId) => async (dispatch) => {
-  console.log("single image in thunk!!!!!")
+  console.log("single image in thunk!!!!!");
   try {
     const res = await fetch(`/api/images/${imageId}`);
 
     if (res.ok) {
       const singleImage = await res.json();
-      console.log("singleImage in the thunk: ", singleImage)
       dispatch(getSingleImage(singleImage));
       return singleImage;
     }
@@ -187,7 +189,7 @@ export const getUserFavImgThunk = (userId) => async (dispatch) => {
     const errors = await err.json();
     return errors;
   }
-}
+};
 
 //reducer function
 

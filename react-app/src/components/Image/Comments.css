@@ -1,0 +1,137 @@
+.comment-button button {
+    cursor: pointer;
+
+}
+
+.hidden {
+    display: none;
+}
+
+.comment {
+    display: flex;
+    flex-direction: column;
+    margin-left: 4rem;
+    width: 420px;
+    justify-content: space-between;
+}
+
+.profile-pic .iconic {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 1rem;
+}
+
+.iconic{
+    display: flex;
+    flex-direction: row;
+}
+
+.delete-modal li {
+    list-style: none;
+}
+
+.delete-modal{
+    display: none;
+}
+div.prof-com:hover .delete-modal {
+    display: block;
+}
+
+#single-image-comment-div img {
+    height: 50px;
+    width: 50px;
+    border-radius: 20px;
+}
+
+#single-image-comment-div {
+    margin-left: 1rem;
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+
+#single-image-pro-fav-div {
+    margin-left: 1rem;
+    margin-top: 1rem;
+}
+
+.icon {
+    margin-right: 1rem;
+}
+
+.appreciate {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.fav {
+    display: flex;
+    flex-direction: row;
+    margin-top: 2rem;
+    gap: 1rem;
+}
+
+.comments {
+    border-top: 1px solid rgb(199, 195, 195);
+    margin-top: 3rem;
+    padding-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem
+}
+
+#image-container {
+    margin-top: 5rem;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(50, 49, 49);
+
+}
+
+#image-container img {
+    height: 500px;
+    align-self: center;
+}
+
+.iconss {
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    padding-bottom: .5rem;
+}
+
+#single-image-info-div {
+    margin-left: 2rem;
+}
+
+.comments-form img {
+    height: 40px;
+    width: 40px;
+    border-radius: 20px;
+}
+
+.form-image {
+    display: flex;
+    flex-direction: row;
+}
+
+.profile-pic {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem
+}
+
+.profile-pic img {
+    height: 30px;
+    width: 30px;
+    border-radius: 15px;
+}

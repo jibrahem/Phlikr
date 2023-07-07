@@ -1,13 +1,14 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { NavLink, useParams } from "react-router-dom/cjs/react-router-dom.min";
+import "./UserPage.css";
 
 export default function ProfileBanner({ userInfo, photoCount }) {
   const sessionUser = useSelector((state) => state.session.user);
   const { userId } = useParams();
 
   const dispatch = useDispatch();
-
+  
   return (
     <>
       <div id='profile-banner-div>'>

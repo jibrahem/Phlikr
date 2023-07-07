@@ -7,6 +7,8 @@ import { createCommentThunk } from "../../store/comment";
 import DeleteCommentModal from "../DeleteCommentModal";
 import OpenModalMenuItem from '../OpenModalButton'
 import UpdateComment from "../UpdateComment";
+import './Comments.css'
+
 
 
 function Comments(image) {
@@ -67,39 +69,46 @@ function Comments(image) {
         return null
     }
 
-    console.log('THE COMMMENTS', commentArr)
-
-    const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
+    const ulClassName = "comment-dropdown" + (showMenu ? "" : " hidden");
 
     return (
-        <>
+        <div className="comments">
             {commentArr.length > 0 && commentArr.map(comment => (
                 <div key={comment.id} className="comment">
-                    <p>{comment.description}</p>
-                    <div>
-                        {comment.user_id === user.id &&
-                        <div>
-                                    <div>
-                            <UpdateComment
-                            comment={comment}
-                            image={image}
-                            />
+                    <div className="profile-pic">
+                        <img src={comment.User.profile_photo} alt={comment.User.first_name}></img>
                             </div>
+                        <div className="prof-com">
+                            <div>{comment.User.first_name} {comment.User.last_name}</div>
+                            <div>{comment.description}</div>
                             <div>
-                                    <button onClick={openMenu}>
-                                        <i class="fa-regular fa-pen-to-square"></i>
-                                    </button>
-                                <div className="hidden">
-                                <OpenModalMenuItem
-                                    buttonText="Delete"
-                                    onItemClick={closeMenu}
-                                    modalComponent={<DeleteCommentModal
-                                        comment={comment}
-                                        image={image}
-                                    />}
-                                />
+                        </div>
+                        {comment.user_id === user.id &&
+                            <div>
+                                <div>
+                                    <div className="iconic">
+                                        <ul className={ulClassName} ref={ulRef}>
+                                            <UpdateComment
+                                                comment={comment}
+                                                image={image}
+                                            />
+                                        </ul>
+                                        <div className="delete-modal">
+                                        <button onClick={openMenu}>
+                                            <i class="fa-regular fa-pen-to-square"></i>
+                                        </button>
+                                            <OpenModalMenuItem
+                                                buttonText="🗑️"
+                                                onItemClick={closeMenu}
+                                                modalComponent={<DeleteCommentModal
+                                                    comment={comment}
+                                                    image={image}
+                                                />}
+                                            />
+                                        </div>
+                                    </div>
+
                                 </div>
-                            </div>
                             </div>
                         }
                     </div>
@@ -112,18 +121,21 @@ function Comments(image) {
                             <li key={idx}>{error}</li>
                         ))}
                     </ul>
-                    <textarea
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
-                        placeholder="Add a comment about this photo"
-                        required
-                    />
+                    <div className='form-image'>
+                        <img src={user.profile_photo} alt={user.username}></img>
+                        <textarea
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
+                            placeholder=" Add a comment"
+                            required
+                        />
+                    </div>
                     <div className="comment-button">
-                        <button type="submit" onSubmit={handleSubmit}>Add Comment</button>
+                        <button type="submit" onSubmit={handleSubmit}>Comment</button>
                     </div>
                 </form>
             </div>
-        </>
+        </div>
     );
 }
 

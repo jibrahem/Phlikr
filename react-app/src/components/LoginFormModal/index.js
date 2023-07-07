@@ -33,6 +33,7 @@ function LoginFormModal() {
           </ul>
           <label>
             <input
+              className="login-modal"
               type="email"
               placeholder="Email Address"
               value={email}
@@ -42,6 +43,7 @@ function LoginFormModal() {
           </label>
           <label>
             <input
+              className="login-modal"
               type="password"
               placeholder="Password"
               value={password}

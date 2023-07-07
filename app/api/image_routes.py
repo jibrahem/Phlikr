@@ -28,7 +28,7 @@ def get_all_images():
 # @login_required
 def get_image(id):
     image = Image.query.get(id)
-    image.view_count += 1  
+    image.view_count += 1
     db.session.commit()
     return image.to_dict()
 
@@ -67,7 +67,7 @@ def update_image(id):
         # print("form errors", form.errors)
         # form data {'title': None, 'description': None, 'img': None, 'submit': False, 'csrf_token': None}
         #evaluating to false so form.validate() is not running
-        if image_to_update.User.id == current_user.id: 
+        if image_to_update.User.id == current_user.id:
 
             if form.validate_on_submit():
                 # image_to_update = Image.query.get(id)
@@ -81,12 +81,23 @@ def update_image(id):
                 return 'image updated'
         return 'bad data'
 
+@image_routes.route('/showcase/<int:imageId>')
+def toggle_showcase(imageId):
+    image = Image.query.get(imageId)
+    if current_user.id == image.user_id:
+        image.showcase = not image.showcase
+        db.session.commit()
+        return 'showcase toggled'
+    return 'not your image'
+
 #GET ALL CURRENT USER IMAGES
 @image_routes.route('/current')
 # @login_required
 def get_logged_user_images():
     images = Image.query.filter(Image.user_id == current_user.id).all()
     return {'images' : [image.to_dict() for image in images]}
+
+
 
 
 #GET ALL USER IMAGES
@@ -103,16 +114,20 @@ def get_user_images(userId):
 def post_image(userId):
     if current_user.is_authenticated :
         form = ImageForm()
-        if form.validate_on_submit():
-            title = form.data['title']
-            description = form.data['description']
-            img = form.data['img']
-            new_image = Image(title=title, description=description, img=img, view_count=0, user_id=userId)
-            db.session.add(new_image)
-            db.session.commit()
-            return 'that worked'
-        return 'bad data'
-
+        print("form", form.data)
+        # if form.validate_on_submit():
+        title = form.data['title']
+        description = form.data['description']
+        img = form.data['img']
+        new_image = Image(title=title, description=description, img=img, view_count=0, user_id=userId)
+        db.session.add(new_image)
+        db.session.commit()
+        print(form.data['title'])
+        print(form.data['description'])
+        print(form.data['img'])
+        return new_image.to_dict()
+        # return 'bad data'
+    
 
 
 # add fav in favorite table by user id
@@ -143,21 +158,11 @@ def user_favorite_toggle():
         for favorite in user.favorites:
             favorite_list.append(favorite.id)
         print("favorite list in the route: ", favorite_list)
-        
         # Add the user to the role and commit the changes
-        if image_id in favorite_list :
-            user.favorites.remove(image)
-            # db.session.add(user)
-            db.session.commit()
-            return 'Favorite image deleted successfully!'
-           
-        else:
-            print("in the add fav if statement")
-            user.favorites.append(image)
-            db.session.add(user)
-            db.session.commit()
-            return 'Favorite image added to user successfully!'
+        user.favorites.append(image)
+        db.session.commit()
 
+        
 
 @image_routes.route('/<int:userId>/user_favorite', methods=['GET'])
 def get_user_favorite(userId):
@@ -179,4 +184,6 @@ def get_user_favorite(userId):
     
     except Exception as e: 
         return {"error": str(e)}, 500
+    
+
     
