@@ -30,6 +30,7 @@ function UploadPhoto() {
   
     return (
         <div className='whole-upload-form'>
+            {/* <span>""</span> */}
            <form className="upload-image-form" onSubmit={handleSubmit}>
             <h3>Upload Photo</h3>
           {/* <ul>
@@ -48,16 +49,6 @@ function UploadPhoto() {
             />
           </label>
           <label>
-            <input
-              type="text"
-              placeholder="Description"
-              className='upload-image-description'
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              required
-            />
-          </label>
-          <label>
             <input 
                type="text" 
                placeholder="Image Url"
@@ -66,6 +57,16 @@ function UploadPhoto() {
                onChange={(e) => setImg(e.target.value)}
                required
             />
+          </label>
+          <label>
+            <textarea
+              type="textarea"
+              placeholder="Description"
+              className='upload-image-description'
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              required
+            ></textarea>
           </label>
           <label>
             <button className='upload-image-btn' onSubmit={handleSubmit}>Upload</button>
