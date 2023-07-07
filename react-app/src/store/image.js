@@ -8,6 +8,7 @@ const UPDATE_IMAGE = "image/UPDATE_IMAGE";
 const DELETE_IMAGE = "image/DELETE_IMAGE";
 const GET_USER_IMAGES = "image/GET_USER_IMAGES";
 const GET_SINGLE_IMAGE = "image/GET_SINGLE_IMAGE";
+const GET_IMAGE_COMMENTS = "image/GET_IMAGE_COMMENTS";
 
 //action creator
 const getAllImages = (images) => ({
@@ -37,6 +38,11 @@ const getUserImages = (images) => ({
 
 const getSingleImage = (image) => ({
   type: GET_SINGLE_IMAGE,
+  image,
+})
+
+const getImageComments = (image) => ({
+  type: GET_IMAGE_COMMENTS,
   image,
 })
 
@@ -78,7 +84,7 @@ export const createImageThunk = (image) => async (dispatch) => {
 export const updateImageThunk = (image) => async (dispatch) => {
   try {
     const res = await fetch(`/api/images/${image.id}`, {
-      method: "PUT",
+      method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(image),
     });
@@ -125,6 +131,7 @@ export const getUserImagesThunk = (user_id) => async (dispatch) => {
     return errors;
   }
 };
+
 export const getSingleImageThunk = (imageId) => async (dispatch) => {
   console.log("single image in thunk!!!!!")
   try {
@@ -132,7 +139,6 @@ export const getSingleImageThunk = (imageId) => async (dispatch) => {
 
     if (res.ok) {
       const singleImage = await res.json();
-      console.log("singleImage in the thunk: ", singleImage)
       dispatch(getSingleImage(singleImage));
       return singleImage;
     }
@@ -142,9 +148,24 @@ export const getSingleImageThunk = (imageId) => async (dispatch) => {
   }
 };
 
+export const getImageCommentsThunk = (image_id) => async (dispatch) => {
+  try {
+    const res = await fetch(`/api/images/${image_id}/comments`);
+
+    if (res.ok) {
+      const imageComments = await res.json();
+      dispatch(getImageComments(imageComments));
+      return imageComments;
+    }
+  } catch (err) {
+    const errors = err.json();
+    return errors;
+  }
+}
+
 //reducer function
 
-const initialState = { allImages: {}, userImages: {}, singleImage: {} };
+const initialState = { allImages: {}, userImages: {}, singleImage: {}, imageComments: {} };
 
 const imageReducer = (state = initialState, action) => {
   let newState = {};
@@ -179,8 +200,15 @@ const imageReducer = (state = initialState, action) => {
       return newState;
     }
     case GET_SINGLE_IMAGE: {
-      newState = { ...state, singleImage: {...state.singleImage}};
+      newState = { ...state, singleImage: { ...state.singleImage } };
       newState.singleImage = action.image;
+      return newState;
+    }
+    case GET_IMAGE_COMMENTS: {
+      newState = { ...state, imageComments: {} };
+      action.image.comments.forEach((comment) => {
+        newState.imageComments[comment.id] = comment;
+      });
       return newState;
     }
     default:

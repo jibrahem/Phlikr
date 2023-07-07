@@ -43,6 +43,8 @@ export default function AboutPage({ userImagesProp, userInfo }) {
         {!showDetailForm ? <>{userInfo.email}</> : <></>}
         <button onClick={detailClick}>Detail button</button>
         {showDetailForm ? <p>showcase title form</p> : <></>}
+        {console.log("userinfo", userInfo.occupation)}
+        {userInfo.occupation}
       </div>
     </>
   );
