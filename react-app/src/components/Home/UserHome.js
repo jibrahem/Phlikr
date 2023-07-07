@@ -17,10 +17,9 @@ export default function UserHome() {
   const [showMenu, setShowMenu] = useState(false);
   const currDate = new Date();
 
-//   console.log("current in UserHome: ", currDate)
+  //   console.log("current in UserHome: ", currDate)
 
   const dispatch = useDispatch();
-
   const addFavorite = (imageId) => {
 
     const payload = {
@@ -28,10 +27,10 @@ export default function UserHome() {
       image_id : imageId,
 
     }
-     
+
    dispatch(userFavThunk(payload));
   }
- 
+
   useEffect(() => {
     if (!showMenu) return;
 
@@ -54,23 +53,23 @@ export default function UserHome() {
 
   if (imagesArr.length < 1) return null;
 
-    return (
-        <>
-            <div className='user-home-wrapper'>
-                <div className='user-home-banner'>
-                    <div>
-                        <p>All Activity</p>
-                        <p>What's new?</p>
-                    </div>
-                    <div>
-                        <p>layout 1</p>
-                        <p>layout 2</p>
-                        <p>layout 3</p>
-                    </div>
-                </div>
-                <div className='image-list-div'>
+  return (
+    <>
+      <div className='user-home-wrapper'>
+        <div className='user-home-banner'>
+          <div className="act">
+            <p>All Activity</p>
+            <p>What's new?</p>
+          </div>
+          <div className="layout">
+            <p>layout 1</p>
+            <p>layout 2</p>
+            <p>layout 3</p>
+          </div>
+        </div>
+        <div className='image-list-div'>
 
-                    <ul>
+          <ul>
 
                         {imagesArr.map((image) => (
                             <li key={image.id} className='image-card'>
@@ -91,13 +90,13 @@ export default function UserHome() {
                                     <div>
                                         <div>{image.view_count > 1000 ? parseFloat(image.view_count) / 1000 + "K" : image.view_count} views
                                         </div>
-                                        
+
                                            <div className="icon">
                                             <button
                                               onClick={() => addFavorite(image.id)}>
                                               <i className="fa-regular fa-star"></i>
                                             </button>
-                                            
+
                                             {/* <AddUserFav image={image} /> */}
                                             <OpenModalButton
                                               onItemClick={closeMenu}
@@ -105,9 +104,9 @@ export default function UserHome() {
                                               itemText= <i className="fa-regular fa-comment"></i>
                                             />
                                             <i className="fa-light fa-album-circle-plus"></i>
-                                            {/* <i className="fa-solid fa-tree"></i> we don't need the tree icon*/} 
+                                            {/* <i className="fa-solid fa-tree"></i> we don't need the tree icon*/}
                                           </div>
-                                        
+
                                     </div>
                                 {/* </Link> */}
                             </li>

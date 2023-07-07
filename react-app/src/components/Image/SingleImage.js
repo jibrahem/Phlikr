@@ -12,17 +12,18 @@ import info from './resource/info.png';
 import EXIF from './exif';
 import SingelImageFooter from './SingleImageFooter';
 import Footer from '../Footer/Footer'
+import Comments from "./comments";
 
 console.log("Before userParams");
 
-export default function SingleImage() { 
+export default function SingleImage() {
     // console.log("SingleImage in SingelImage component: ");
     const { imageId } = useParams();
     const singleImage = useSelector((state) => state.images.singleImage);
     console.log("singleImage Store: ", singleImage)
     const sessionUser = useSelector((state) => state.session.user);
     const [showEXIF, setShowEXIF] = useState(false)
-   
+
     // const singleImageArr = Object.values(singleImage)
     const dispatch = useDispatch();
 
@@ -69,6 +70,8 @@ export default function SingleImage() {
                        })()}
                     </div>
                 </div>
+                <Comments
+                image={singleImage}/>
                 <div id='single-image-info-right'>
                    <div id='views-faves-comment'>
                     <p>{singleImage.view_count} views</p>
@@ -118,7 +121,7 @@ export default function SingleImage() {
                         <i className="fa-regular fa-flag"></i>
                         <p>Flag Photo</p>
                     </div>
-                </div>            
+                </div>
                 </div>
             </div>
             {/* <div id='single-image-footer'>

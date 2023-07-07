@@ -1,58 +1,36 @@
 import React, { useState, useEffect } from "react";
 import { login } from "../../store/session";
+import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useModal } from "../../context/Modal";
-import './CommentModal.css'
-import { getImageCommentsThunk } from '../../store/image'
-import { createCommentThunk } from "../../store/comment";
+import { getImageCommentsThunk, getSingleImageThunk } from '../../store/image'
+import { updateCommentThunk } from "../../store/comment";
+import DeleteCommentModal from "../DeleteCommentModal";
+import OpenModalMenuItem from '../OpenModalButton'
 
 
-function CommentModal(image) {
+function UpdateComment(image, comment) {
     const dispatch = useDispatch();
     const [errors, setErrors] = useState([]);
-    const { closeModal } = useModal();
-    const [description, setDescription] = useState('')
+    const [description, setDescription] = useState(comment?.description)
     const user = useSelector(state => state.session.user)
-    const imageId = image.image.id
 
-    const comments = useSelector((state) => state.images.imageComments);
-    const commentArr = Object.values(comments)
-
-    useEffect(() => {
-        dispatch(getImageCommentsThunk(imageId))
-    }, [dispatch, imageId])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         const comment = {
             user_id: user.id,
-            image_id: imageId,
+            image_id: image.image.id,
             description: description,
             updated_at: new Date().toUTCString(),
             created_at: new Date().toUTCString()
         }
 
-        console.log(comment)
-        const data = await dispatch(createCommentThunk(imageId, user.id, comment))
-        .then(dispatch(getImageCommentsThunk(imageId)))
-        console.log('data', data)
-        // if (data) {
+        const data = await dispatch(updateCommentThunk(comment))
+        await dispatch(getImageCommentsThunk(image.image.id))
 
-        //     setErrors(data);
-        // }
-    };
-
-
-    if(!commentArr){
-        return null
     }
-
     return (
         <>
-            {commentArr.length > 0 && commentArr.map(comment=> (
-               
-                <div>{comment.description}</div>
-            ))}
             <div className="comments-form">
                 <form onSubmit={handleSubmit}>
                     <ul>
@@ -64,14 +42,14 @@ function CommentModal(image) {
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
                         placeholder="Add a comment about this photo"
+                        required
                     />
                     <div className="comment-button">
-                        <button type="submit" onSubmit={handleSubmit}>Add Comment</button>
+                        <button type="submit" onSubmit={handleSubmit}>Done</button>
                     </div>
                 </form>
             </div>
         </>
-    );
+    )
 }
-
-export default CommentModal;
+export default UpdateComment

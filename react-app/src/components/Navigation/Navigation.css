@@ -5,16 +5,29 @@
   background: none;
 }
 
+/* .hidden {
+  display: none;
+} */
+
+/* .profile-dropdown {
+  margin-top: .5rem;
+  border: 1px solid black;
+  position: absolute;
+  background-color: whitesmoke;
+  top: 70px;
+  right: 40px
+} */
+
 .modals {
   display: flex;
   flex-direction: column;
   margin: .5rem;
 }
 
-.active{
+.active {
   display: flex;
   align-items: center;
-  gap:.25rem;
+  gap: .25rem;
 }
 
 .active:hover {
@@ -52,7 +65,7 @@ nav {
   margin-left: 2rem;
   text-decoration: none;
   margin-bottom: 1rem;
-  font-family: Proxima Nova,helvetica neue,helvetica,arial,sans-serif;
+  font-family: Proxima Nova, helvetica neue, helvetica, arial, sans-serif;
 }
 
 .snapr span {
@@ -79,7 +92,7 @@ nav {
   height: 2rem;
   border-radius: 4px;
   margin-right: 1rem;
-  font-weight:600;
+  font-weight: 600;
 }
 
 .snapr a {
@@ -88,29 +101,42 @@ nav {
   flex-direction: row;
   margin-top: 1rem;
   align-items: center;
-  gap:.2rem
+  gap: .2rem
 }
 
-.sign-up button:hover{
+.sign-up button:hover {
   color: gray;
 
 }
 
-.hidden .modals{
+.hidden .modals {
   display: flex;
   flex-direction: row;
 }
 
-.login button{
+.login button {
   cursor: pointer;
 }
 
-.snapr a:hover{
+.snapr a:hover {
   text-decoration: none;
 }
 
 .profile-dropdown.hidden {
   display: flex;
   flex-direction: column;
- color: black
+  color: black
+}
+
+.profile img {
+  height: 30px;
+  width: 30px;
+  border-radius: 15px;
+}
+
+.profile button{
+  border-radius: 15px;
+  height:30px;
+  border: none;
+  cursor: pointer;
 }
