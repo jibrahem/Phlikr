@@ -33,7 +33,7 @@ function App() {
             <SignupFormPage />
           </Route>
           <Route exact path="/photos/:imageId">
-              {console.log("hitting the SingleImage page")}
+              {/* {console.log("hitting the SingleImage page")} */}
               <SingleImageIndex />
           </Route>
           <Route exact path="/:userId/:page">

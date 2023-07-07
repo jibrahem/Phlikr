@@ -14,6 +14,7 @@ function ProfileButton({ user }) {
   const ulRef = useRef();
   const history = useHistory()
   const location = useLocation();
+  const [show, setShow] = useState(false);
 
   const openMenu = () => {
     if (showMenu) return;
@@ -38,6 +39,15 @@ function ProfileButton({ user }) {
     e.preventDefault();
     dispatch(logout());
   };
+
+  const showUserInfo =() => {
+    setShow(!show);
+  }
+
+  const notShowUserInfo = () => {
+    setShow(false)
+  }
+
 
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
   const closeMenu = () => setShowMenu(false);
@@ -68,12 +78,21 @@ function ProfileButton({ user }) {
            
           <Link to={'/photos/upload'}>
             <i class="fa-solid fa-cloud-arrow-up"></i>
-            </Link>
-            <li>{user.username}</li>
-            <li>{user.email}</li>
-            <li>
-              <button onClick={handleLogout}>Log Out</button>
-            </li>
+          </Link>
+            
+            <div id='nav-profile-img-div' onClick={showUserInfo}>
+              <img src={user.profile_photo} id='nav-profile-img'/>
+            </div>
+
+            {show ? <div id='nav-user-info'>
+              <div id='nav-user-info-p'>
+                <p>Hello, {user.username}</p>
+                <p id='nav-p'>Now you know how to greet people in Icelandic</p>
+              </div>
+              {/* <li>{user.username}</li>
+              <li>{user.email}</li> */}
+                <button onClick={handleLogout}>Log Out</button>
+            </div> : ''}
           </>
         ) : (
           <div className="modals">
@@ -85,7 +104,7 @@ function ProfileButton({ user }) {
             <div className="sign-up">
               <button onClick={() => history.push(`/signup`)}>
                 Sign Up
-              </button>
+            </button>
             </div>
           </div>
         )}
