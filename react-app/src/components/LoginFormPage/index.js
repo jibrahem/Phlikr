@@ -71,7 +71,7 @@ function LoginFormPage() {
           </Link>
           </div>
         </form>
-           <div className="login2">
+           <div className="demo">
             <button type='submit' onClick={demoUser}>Demo User</button>
           </div>
         </div>
