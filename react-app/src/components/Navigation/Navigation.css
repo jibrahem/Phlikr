@@ -1,8 +1,14 @@
-.hidden button {
-  cursor: pointer;
-  padding: 0;
-  border: none;
-  background: none;
+.profile-dropdown{
+  display: none;
+}
+
+.profile-dropdown {
+  margin-top: .5rem;
+  border: 1px solid black;
+  position: absolute;
+  background-color: whitesmoke;
+  top: 60px;
+  right: 10px;
 }
 
 .modals {
@@ -11,10 +17,10 @@
   margin: .5rem;
 }
 
-.active{
+.active {
   display: flex;
   align-items: center;
-  gap:.25rem;
+  gap: .25rem;
 }
 
 .active:hover {
@@ -42,6 +48,7 @@ nav {
   top: 0;
   left: 0;
   right: 0;
+  /* height: 4rem; */
   z-index: 1;
 }
 
@@ -51,7 +58,7 @@ nav {
   margin-left: 2rem;
   text-decoration: none;
   margin-bottom: 1rem;
-  font-family: Proxima Nova,helvetica neue,helvetica,arial,sans-serif;
+  font-family: Proxima Nova, helvetica neue, helvetica, arial, sans-serif;
 }
 
 .snapr span {
@@ -69,6 +76,9 @@ nav {
   color: white;
   margin: .5rem;
   margin-right: 1.5rem;
+  border: none;
+  background-color:#00000040;
+  cursor: pointer;
 }
 
 .sign-up button {
@@ -78,28 +88,70 @@ nav {
   height: 2rem;
   border-radius: 4px;
   margin-right: 1rem;
-  font-weight:600;
+  font-weight: 600;
+  outline: none;
+  border: none;
+  cursor: pointer;
 }
 
 .snapr a {
   color: white;
+  display: flex;
+  flex-direction: row;
+  margin-top: 1rem;
+  align-items: center;
+  gap: .2rem
 }
 
-.sign-up button:hover{
+.sign-up button:hover {
   color: gray;
 
 }
 
-.hidden .modals{
+.modals {
   display: flex;
   flex-direction: row;
 }
 
-.login button{
+.login button {
   cursor: pointer;
 }
 
-.snapr a:hover{
+.snapr a:hover {
   text-decoration: none;
 }
 
+.profile-dropdown.hidden {
+  display: flex;
+  flex-direction: column;
+  color: black;
+  align-items: flex-start;
+}
+
+.profile img {
+  height: 30px;
+  width: 30px;
+  border-radius: 15px;
+}
+
+.profile button{
+  border-radius: 15px;
+  height:30px;
+  border: none;
+  cursor: pointer;
+}
+
+.top-nav{
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+}
+
+.logout{
+  cursor: pointer;
+  width:150px
+}
+li .logout:hover{
+  background-color: rgb(222, 219, 219);
+}

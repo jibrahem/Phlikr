@@ -1,0 +1,78 @@
+.comment-button button {
+    cursor: pointer;
+
+}
+
+.comment {
+    display: flex;
+    flex-direction: column;
+    margin-left: 1rem;
+}
+
+.delete-modal li {
+    list-style: none;
+}
+
+#single-image-comment-div img{
+    height: 50px;
+    width: 50px;
+    border-radius: 20px;
+}
+
+#single-image-comment-div{
+    margin-left: 1rem;
+    display: flex;
+    flex-direction: row;
+    gap:1rem;
+    margin-top: 1rem;
+}
+
+
+#single-image-pro-fav-div{
+    margin-left: 1rem;
+    margin-top: 1rem;
+}
+.icon{
+    margin-right: 1rem;
+}
+.appreciate{
+    display: flex;
+    flex-direction: row;
+    gap:1rem;
+    margin-top: 2rem;
+}
+
+.fav{
+    display: flex;
+    flex-direction: row;
+    margin-top: 2rem;
+    gap:1rem;
+}
+
+.comments{
+    border-top: 1px solid rgb(199, 195, 195);
+    margin-top: 3rem;
+    padding-top: 2rem;
+}
+
+#image-container{
+    margin-top:5rem;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(50, 49, 49);
+
+}
+#image-container img{
+    height: 500px;
+    align-self: center;
+}
+.iconss{
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap:1rem;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    padding-bottom: .5rem;
+}

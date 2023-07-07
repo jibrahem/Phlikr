@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import './LoginForm.css';
 import { Link } from "react-router-dom";
+import { useModal } from "../../context/Modal";
 
 function LoginFormPage() {
   const dispatch = useDispatch();
@@ -11,6 +12,7 @@ function LoginFormPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
+
 
   if (sessionUser) return <Redirect to="/" />;
 
@@ -21,6 +23,16 @@ function LoginFormPage() {
       setErrors(data);
     }
   };
+
+  // const demoUser = () => {
+  //   const data = dispatch(login({
+  //     email: 'demo@aa.io',
+  //     password: 'password',
+  //    }))
+  //    if(data){
+  //     setErrors(data)
+  //    }
+  // }
 
   return (
     <>
@@ -61,6 +73,9 @@ function LoginFormPage() {
           </Link>
           </div>
         </form>
+          {/* <div className="login2">
+            <button type='submit' onClick={demoUser}>Demo User</button>
+          </div> */}
         </div>
       </div >
     </>

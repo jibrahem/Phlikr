@@ -1,5 +1,6 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 
+
 class Image(db.Model):
     __tablename__ = "images"
 
@@ -14,9 +15,12 @@ class Image(db.Model):
     uploaded_on = db.Column(db.Date)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
     view_count = db.Column(db.Integer)
+    showcase = db.Column(db.Boolean(), default=False)
 
     user = db.relationship("User", back_populates="images")
     comments = db.relationship("Comment", back_populates="image")
+
+    favorites = db.relationship("User", secondary = "user_favorites", back_populates="favorites")
 
     def to_dict(self):
         return {
@@ -28,6 +32,7 @@ class Image(db.Model):
             'uploaded_on': self.uploaded_on,
             'user_id': self.user_id,
             'view_count': self.view_count,
+            'showcase':self.showcase,
             'User': {
             "id": self.user.id,
             "username": self.user.username,
@@ -36,5 +41,17 @@ class Image(db.Model):
             'last_name': self.user.last_name,
             'profile_photo': self.user.profile_photo,
             'cover_photo': self.user.cover_photo,
+            'occupation': self.user.occupation,
             }
         }
+    
+    # @property
+    # def _view_count(self):
+    #     return self.view_count
+    
+    # @_view_count.setter
+    # def _view_count(self):
+    #     self.view_count = 5
+    #     # return self.view_count
+
+

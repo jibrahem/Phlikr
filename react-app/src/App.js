@@ -7,6 +7,9 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import Home from "./components/Home";
 import UserPage from "./components/UserPage";
+import UploadPhoto from "./components/UploadPhoto";
+import SingleImageIndex from "./components/Image";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -20,15 +23,23 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          <Route exact path='/photos/upload/'>
+            <UploadPhoto/>
+          </Route>
           <Route exact path="/login">
             <LoginFormPage />
           </Route>
           <Route exact path="/signup">
             <SignupFormPage />
           </Route>
-          <Route path="/:userId/:page">
+          <Route exact path="/photos/:imageId">
+              {console.log("hitting the SingleImage page")}
+              <SingleImageIndex />
+          </Route>
+          <Route exact path="/:userId/:page">
             <UserPage />
           </Route>
+          
           <Route exact path="/">
             <Home />
           </Route>

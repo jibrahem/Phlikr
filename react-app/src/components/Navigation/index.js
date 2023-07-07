@@ -12,9 +12,11 @@ function Navigation({ isLoaded }) {
 			<ul>
 				<div className='snapr'>
 					<li>
-						<NavLink exact to="/"> <span>🔵🔴</span>snapr</NavLink>
+						<NavLink exact to="/"> <span>⚫️⚪️</span>
+							<div className='snap'> snapr</div></NavLink>
 					</li>
 				</div>
+			
 				{isLoaded && (
 					<li>
 						<ProfileButton user={sessionUser} />
