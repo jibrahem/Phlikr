@@ -4,7 +4,9 @@ import { getAllImageThunk } from "../../store/image";
 import { Link } from "react-router-dom";
 import "./UserHome.css";
 import CommentModal from "../CommentModal";
-import OpenModalButton from '../OpenModalButton'
+import OpenModalButton from '../OpenModalButton';
+import { userFavThunk } from "../../store/users";
+
 
 
 export default function UserHome() {
@@ -14,10 +16,22 @@ export default function UserHome() {
   const ulRef = useRef();
   const [showMenu, setShowMenu] = useState(false);
   const currDate = new Date();
+
 //   console.log("current in UserHome: ", currDate)
 
   const dispatch = useDispatch();
 
+  const addFavorite = (imageId) => {
+
+    const payload = {
+      user_id : sessionUser.id,
+      image_id : imageId,
+
+    }
+     
+   dispatch(userFavThunk(payload));
+  }
+ 
   useEffect(() => {
     if (!showMenu) return;
 
@@ -61,7 +75,7 @@ export default function UserHome() {
                         {imagesArr.map((image) => (
                             <li key={image.id} className='image-card'>
                                 <Link key={image.id} to={`/photos/${image.id}`}>
-                                    <p>{image.User.firstName} {image.User.lastName}</p>
+                                    <p>{image.User.first_name} {image.User.last_name}</p>
                                     {(() => {
                                         const uploadedOn = new Date(image.uploaded_on);
                                         const timeDiff = Math.round((currDate - uploadedOn) / (1000 * 60 * 60 * 24));
@@ -72,24 +86,30 @@ export default function UserHome() {
                                     })()}
                                     <img src={image.img} alt={image.title} />
                                     <p>{image.title}</p>
+                                    </Link>
                                     <p>{image.description}</p>
                                     <div>
                                         <div>{image.view_count > 1000 ? parseFloat(image.view_count) / 1000 + "K" : image.view_count} views
                                         </div>
                                         
                                            <div className="icon">
-                                            <i className="fa-regular fa-star"></i>
+                                            <button
+                                              onClick={() => addFavorite(image.id)}>
+                                              <i className="fa-regular fa-star"></i>
+                                            </button>
+                                            
+                                            {/* <AddUserFav image={image} /> */}
                                             <OpenModalButton
                                               onItemClick={closeMenu}
                                               modalComponent={<CommentModal />}
                                               itemText= <i className="fa-regular fa-comment"></i>
                                             />
                                             <i className="fa-light fa-album-circle-plus"></i>
-                                            <i className="fa-solid fa-tree"></i>
+                                            {/* <i className="fa-solid fa-tree"></i> we don't need the tree icon*/} 
                                           </div>
                                         
                                     </div>
-                                </Link>
+                                {/* </Link> */}
                             </li>
                         ))}
                     </ul>

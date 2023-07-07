@@ -113,15 +113,16 @@ def post_image(userId):
             return 'that worked'
         return 'bad data'
 
-#increment view count
 
-
+# add fav in favorite table by user id
 @image_routes.route('/user_favorite', methods=['POST'])
-def add_user_favorite():
+def user_favorite_toggle():
     # with app.app_context(): #not need in image route file
         # Get the user_id and image_id from the request data
         user_id = request.json.get('user_id')
+        print("request user_id: ", user_id)
         image_id = request.json.get('image_id')
+        print("request image_id: ", image_id)
 
         # Retrieve the User and image objects
         user = User.query.get(user_id)
@@ -130,9 +131,30 @@ def add_user_favorite():
         if not user or not image:
             return 'User or image not found!', 404
 
-        # Add the user to the role and commit the changes
-        user.favorites.append(image)
-        db.session.commit()
+        # user.favorites.append(image)
+        # db.session.add(user)
+        # db.session.commit()
+        # return 'Favorite image added to user successfully!'
 
-        return 'Image added to user successfully!'
+        print("join table in the route: ", user.favorites)
+        # return 'hi'
+        favorite_list = []
+        for favorite in user.favorites:
+            favorite_list.append(favorite.id)
+        print("favorite list in the route: ", favorite_list)
+        
+        # Add the user to the role and commit the changes
+        if image_id in favorite_list :
+            user.favorites.remove(image)
+            # db.session.add(user)
+            db.session.commit()
+            return 'Favorite image deleted successfully!'
+           
+        else:
+            print("in the add fav if statement")
+            user.favorites.append(image)
+            db.session.add(user)
+            db.session.commit()
+            return 'Favorite image added to user successfully!'
+
 
