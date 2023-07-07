@@ -3,15 +3,13 @@ import { useDispatch } from "react-redux"
 import { useModal } from '../../context/Modal'
 import { deleteCommentThunk } from "../../store/comment"
 import { getSingleImageThunk, getImageCommentsThunk } from "../../store/image"
-
+import'./DeleteComment.css'
 
 function DeleteCommentModal(comment, image){
     const dispatch = useDispatch()
     const { closeModal } = useModal();
 
-    console.log('commemt', comment.comment)
-    console.log('image', image)
-
+    console.log('comment', comment)
     const handleDelete = async (e) => {
         e.preventDefault()
         const deleted = await dispatch(deleteCommentThunk(comment.comment))
@@ -26,17 +24,17 @@ function DeleteCommentModal(comment, image){
     return (
         <>
             <div className="delete">
-                <h1>Delete Comment</h1>
-                <h4>Are you sure you want to delete this comment?</h4>
+                <div className="delete-comment">Delete Comment</div>
+                <div className="delete-check">Are you sure you want to delete this comment?</div>
                 <form onSubmit={handleDelete}>
-                    <div className="red">
-                        <button type='submit'>
-                            Delete
-                        </button>
-                    </div>
                     <div className="grey">
                         <button onClick={closeModal}>
                             Cancel
+                        </button>
+                    </div>
+                    <div className="blue">
+                        <button type='submit'>
+                            Delete
                         </button>
                     </div>
                 </form>

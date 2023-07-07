@@ -24,9 +24,10 @@
     background-color: white;
     width: 400px;
     box-sizing: border-box;
-    border-radius: 10px;
+    border-radius: 5px;
     padding-bottom: 40px;
-}   
+    padding-top: 20px;
+}
 
 .login {
     font-family: Proxima Nova,helvetica neue,helvetica,arial,sans-serif;

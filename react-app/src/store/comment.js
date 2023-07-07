@@ -35,7 +35,6 @@ export const deleteCommentThunk = (comment) => async (dispatch) => {
         const res = await fetch(`/api/comments/${comment.id}/delete`, {
             method: "DELETE",
         });
-
         if (res.ok) {
             dispatch(deleteComment(comment));
             return;
@@ -75,15 +74,12 @@ export const createCommentThunk = (image_id, user_id, comment) => async (dispatc
             body: JSON.stringify(comment),
         });
 
-        console.log('response', res)
         if (res.ok) {
             const newComment = await res.json();
-            console.log('the comment', newComment)
             dispatch(createComment(newComment));
             return newComment;
         }
     } catch (err) {
-        console.log('error', err)
         const errors = err.json();
         return errors;
     }
