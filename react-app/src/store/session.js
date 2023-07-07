@@ -40,7 +40,7 @@ export const login = (email, password) => async (dispatch) => {
 			password,
 		}),
 	});
-
+	console.log('response for login', response)
 	if (response.ok) {
 		const data = await response.json();
 		dispatch(setUser(data));

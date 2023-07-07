@@ -41,8 +41,6 @@ function UpdateComment(image, comment) {
                     <textarea
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
-                        placeholder="Add a comment about this photo"
-                        required
                     />
                     <div className="comment-button">
                         <button type="submit" onSubmit={handleSubmit}>Done</button>
