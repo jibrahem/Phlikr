@@ -34,4 +34,10 @@ class Comment(db.Model):
             "image_id": self.image_id,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
+            'User': {
+            "id": self.user.id,
+            'first_name': self.user.first_name,
+            'last_name': self.user.last_name,
+            'profile_photo': self.user.profile_photo
+            }
         }

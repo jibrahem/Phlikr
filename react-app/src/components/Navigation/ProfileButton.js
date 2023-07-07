@@ -15,26 +15,6 @@ function ProfileButton({ user }) {
   const history = useHistory()
   const location = useLocation();
 
-  const openMenu = () => {
-    if (showMenu) return;
-    setShowMenu(true);
-  };
-  const closeMenu = () => setShowMenu(true);
-
-  useEffect(() => {
-    if (!showMenu) return;
-
-    const closeMenu = (e) => {
-      // if (!ulRef.current.contains(e.target)) {
-        setShowMenu(false);
-
-    };
-
-    document.addEventListener("click", closeMenu);
-
-    return () => document.removeEventListener("click", closeMenu);
-  }, [showMenu]);
-
 
   const handleLogout = (e) => {
     e.preventDefault();
@@ -42,6 +22,27 @@ function ProfileButton({ user }) {
     closeMenu()
     history.push('/')
   };
+
+  const openMenu = () => {
+    if (showMenu) return;
+    setShowMenu(true);
+  };
+
+  useEffect(() => {
+    if (!showMenu) return;
+
+    const closeMenu = (e) => {
+      if (!ulRef.current.contains(e.target)) {
+        setShowMenu(false);
+      }
+    };
+
+    document.addEventListener("click", closeMenu);
+
+    return () => document.removeEventListener("click", closeMenu);
+  }, [showMenu]);
+
+  const closeMenu = () => setShowMenu(false);
 
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
 
@@ -71,13 +72,11 @@ function ProfileButton({ user }) {
             <Link to={'/photos/upload'}>
               <i class="fa-solid fa-cloud-arrow-up"></i>
             </Link>
-            <div className="profile" onClick={closeMenu}>
+            <div className="profile" onClick={openMenu}>
               <img src={user.profile_photo} alt={user.user_name}></img>
             </div>
           </div>
           <ul className={ulClassName} ref={ulRef}>
-
-
             <li>Ciao, {user.username}!</li>
             <li>{user.email}</li>
             <li>

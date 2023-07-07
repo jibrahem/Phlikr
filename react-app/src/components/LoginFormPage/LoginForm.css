@@ -25,10 +25,22 @@
     width: 400px;
     box-sizing: border-box;
     border-radius: 5px;
-    padding-bottom: 40px;
+    padding-bottom: 50px;
     padding-top: 20px;
 }
 
 .login {
     font-family: Proxima Nova,helvetica neue,helvetica,arial,sans-serif;
+}
+
+.demo button{
+    border: none;
+    cursor: pointer;
+    background-color: white;
+}
+.demo{
+    margin-top: 2rem;
+    position: absolute;
+    top: 430px;
+    left: 540px
 }

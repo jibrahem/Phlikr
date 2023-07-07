@@ -35,13 +35,7 @@ function CommentModal(image) {
         console.log(comment)
         const data = await dispatch(createCommentThunk(imageId, user.id, comment))
         .then(dispatch(getImageCommentsThunk(imageId)))
-        console.log('data', data)
-        // if (data) {
-
-        //     setErrors(data);
-        // }
     };
-
 
     if(!commentArr){
         return null
@@ -50,7 +44,7 @@ function CommentModal(image) {
     return (
         <>
             {commentArr.length > 0 && commentArr.map(comment=> (
-               
+
                 <div>{comment.description}</div>
             ))}
             <div className="comments-form">
@@ -66,7 +60,7 @@ function CommentModal(image) {
                         placeholder="Add a comment about this photo"
                     />
                     <div className="comment-button">
-                        <button type="submit" onSubmit={handleSubmit}>Add Comment</button>
+                        <button type="submit" onSubmit={handleSubmit}>Comment</button>
                     </div>
                 </form>
             </div>
