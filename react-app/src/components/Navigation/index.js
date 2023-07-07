@@ -16,6 +16,7 @@ function Navigation({ isLoaded }) {
 							<div className='snap'> snapr</div></NavLink>
 					</li>
 				</div>
+			
 				{isLoaded && (
 					<li>
 						<ProfileButton user={sessionUser} />

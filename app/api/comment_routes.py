@@ -24,15 +24,15 @@ def post_comment_form(image_id,user_id):
 def post_comment(image_id, user_id):
     if current_user.is_authenticated:
         form = CommentForm()
-        if form.validate_on_submit():
-            description = form.data['description']
-            comment = Comment(description=description, user_id=user_id,
-                              image_id=image_id, created_at= date.today(),
-                              updated_at = date.today())
-            db.session.add(comment)
-            db.session.commit()
-            return 'Comment submitted'
-        return 'Bad Data'
+        # if form.validate_on_submit():
+        description = form.data['description']
+        comment = Comment(description=description, user_id=user_id,
+                            image_id=image_id, created_at= date.today(),
+                            updated_at = date.today())
+        db.session.add(comment)
+        db.session.commit()
+        return comment.to_dict()
+        # return 'Bad Data'
 
 @comment_routes.route('/update/<int:comment_id>')
 def update_comment_form(comment_id):
