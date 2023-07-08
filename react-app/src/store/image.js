@@ -10,6 +10,8 @@ const GET_USER_IMAGES = "image/GET_USER_IMAGES";
 const GET_SINGLE_IMAGE = "image/GET_SINGLE_IMAGE";
 const GET_IMAGE_COMMENTS = "image/GET_IMAGE_COMMENTS";
 const GET_USER_FAV_IMG = "image/GET_USER_FAV_IMG";
+const ADD_USER_FAV_IMG = "image/ADD_USER_FAV_IMG";
+const DELETE_USER_FAV_IMG = "image/DELETE_USER_FAV_IMG";
 
 //action creator
 const getAllImages = (images) => ({
@@ -50,6 +52,16 @@ const getImageComments = (image) => ({
 const getUserFavImg = (images) => ({
   type: GET_USER_FAV_IMG,
   images,
+});
+
+const addUserFavImg = (image) => ({
+  type: ADD_USER_FAV_IMG,
+  image
+});
+
+const deleteUserFavImg = (image_id) => ({
+  type: DELETE_USER_FAV_IMG,
+  image_id
 })
 
 //thunk
@@ -173,15 +185,15 @@ export const getImageCommentsThunk = (image_id) => async (dispatch) => {
 };
 
 export const getUserFavImgThunk = (userId) => async (dispatch) => {
-  console.log("getuserfavimg in the Thunk!!!")
+  // console.log("getuserfavimg in the Thunk!!!")
 
   try {
     const res = await fetch(`/api/images/${userId}/user_favorite`);
 
     if (res.ok) {
-      console.log("res return if res is OK: ", res)
+      // console.log("res return if res is OK: ", res)
       const userFavImgs = await res.json();
-      console.log("userFavImgs in res.ok: ", userFavImgs)
+      // console.log("userFavImgs in res.ok: ", userFavImgs)
       dispatch(getUserFavImg(userFavImgs));
       return userFavImgs;
     } 
@@ -189,6 +201,47 @@ export const getUserFavImgThunk = (userId) => async (dispatch) => {
     const errors = await err.json();
     return errors;
   }
+};
+
+export const addUserFavThunk = (image) => async (dispatch) => {
+  console.log("In the adduserFav thunk!!!!");
+  try {
+    // console.log("request body: ", JSON.stringify(image));
+    const res = fetch("/api/images/user_favorite", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(image),
+    });
+
+    // console.log("after res !!!!!!!!!", res);
+
+    if (res.ok) {
+      const newFavImg = await res.json();
+      // console.log("res in the add user fav!!!", res);
+      dispatch(addUserFavImg(newFavImg));
+      return newFavImg;
+    }
+  } catch (err) {
+    const errors = err.json();
+    return errors;
+  }
+};
+
+export const deleteUserFavImgThunk = (userId, imageId) => async(dispatch) => {
+  console.log("in deleteUserFavImgThunk~~~~")
+  try {
+    const res = await fetch(`/api/images/delete/${userId}/user_favorite/${imageId}`, {
+      method: "GET",
+    });
+
+    if (res.ok) {
+      dispatch(deleteUserFavImg(imageId));
+      return;
+    } 
+  }catch (err) {
+      const errors = await err.json();
+      return errors;
+  } 
 };
 
 //reducer function
@@ -243,11 +296,19 @@ const imageReducer = (state = initialState, action) => {
       newState = {...state, userFavImg: {}};
         action.images.forEach((image) => {
           newState.userFavImg[image.id] = image;
-    })
-        
+        })
         return newState;
-      }
-    
+    }
+    case ADD_USER_FAV_IMG: {
+        const newState = { ...state, userFavImg: {...state.userFavImg} };
+        newState.userFavImg[action.image.id] = action.image;
+        return newState;
+    }
+    case DELETE_USER_FAV_IMG: {
+      newState = {...state, userFavImg: {...state.userFavImg}};
+      delete newState.userFavImg[action.image_id];
+      return newState
+    }    
     default:
       return state;
   }

@@ -35,21 +35,91 @@
 
 
 /* Faves*/
+#user-fav-container {
+    padding: 30px 10%;
+}
+
+#user-fav-container ul {
+    display: flex;
+    gap: 3px;
+    flex-wrap: wrap;
+}
+
+.user-fav-div {
+    width: 33%;
+    position: relative;
+}
+
+.user-fav-div img {
+    width: 100%;
+}
 
 #fav-star {
     display: flex;
-
+    gap: 5px;
 }
 #fav-star i, 
 #fav-star p {
     color: #FFFFFF;
-    /* background-color: #FFFFFF; */
-    /* border: none; */
 }
 
+#no-detail {
+    display: none;
+}
+
+#title-name-fav-comment-div {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 10px;
+    position: absolute;
+    bottom: 10px;
+    z-index: 1;
+}
+
+#title {
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#name {
+    color: #B1B0B4;
+    font-size: 14px;
+}
+
+#name:hover {
+    color: #FFFFFF;
+}
 
 #fav-comment {
     display: flex;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
 }
 
+#fav-comment button {
+    border: none;
+    background-color: transparent;
+    /* display: flex; */
+    gap: 5px;
+}
 
+#fav-comment i, 
+#fav-comment p {
+    color: #FFFFFF;
+    background-color: transparent;
+}
+
+#fav-comment-button {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+#fav-comment-div {
+    width: 400px;
+    position: absolute;
+    top: 
+}
