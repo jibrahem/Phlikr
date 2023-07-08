@@ -21,17 +21,18 @@ const updateUserInfoAction = (userInfo) => ({
 });
 
 //thunk creator
-export const updateUserInfoThunk = (userInfo, userId) => async (dispatch) => {
-  try {
-    const res = await fetch(`/api/users/${userId}/details`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(userInfo),
-    });
-  } catch (err) {
-    return err;
-  }
-};
+export const updateUserInfoThunk =
+  (userInfo, userId, formType) => async (dispatch) => {
+    try {
+      const res = await fetch(`/api/users/${userId}/details/${formType}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(userInfo),
+      });
+    } catch (err) {
+      return err;
+    }
+  };
 
 export const userInfoThunk = (userId) => async (dispatch) => {
   //   console.log("userinfo thunk called", userId);

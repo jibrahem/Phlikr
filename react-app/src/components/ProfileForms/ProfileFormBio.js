@@ -15,8 +15,9 @@ function ProfileFormBio() {
     let newBio = {
       biography: biography,
     };
+    let formType = "bio";
     console.log("userInfoProp", user.id);
-    const data = await dispatch(updateUserInfoThunk(newBio, user.id));
+    const data = await dispatch(updateUserInfoThunk(newBio, user.id, formType));
   };
 
   return (

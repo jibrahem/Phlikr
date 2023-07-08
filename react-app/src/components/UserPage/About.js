@@ -67,8 +67,18 @@ export default function AboutPage({ userImagesProp, userInfoProp }) {
         {!showDetailForm ? <ProfileFormDetails /> : <></>}
         <button onClick={detailClick}>Detail button</button>
         {showDetailForm ? <p>showcase title form</p> : <></>}
-        {console.log("userinfo", userInfo.occupation)}
-        {userInfo.occupation}
+        <div className="profile-details">
+          <div>{userInfo.occupation}</div>
+          <div>{userInfo.hometown}</div>
+          <div>{userInfo.city}</div>
+          <div>{userInfo.country}</div>
+          <div>{userInfo.website}</div>
+          <div>{userInfo.facebook}</div>
+          <div>{userInfo.twitter}</div>
+          <div>{userInfo.instagram}</div>
+          <div>{userInfo.pinterest}</div>
+          <div>{userInfo.tumblr}</div>
+        </div>
       </div>
     </>
   );
