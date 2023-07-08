@@ -134,3 +134,24 @@
 .img-title{
     margin-left: 1rem;
 }
+
+
+#user-fav {
+    border: none;
+}
+
+#user-fav i {
+    color: yellow;
+    font-size: 20px;
+    background-color: #FFFFFF;
+}
+
+#not-user-fav {
+    border: none;
+}
+
+#not-user-fav i {
+    color: #F5F5F5;
+    font-size: 20px;
+    background-color: #FFFFFF;
+}
