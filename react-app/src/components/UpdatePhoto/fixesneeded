@@ -1,0 +1,5 @@
+Need to get the form to show on the page. 
+-Attemped to fix 
+    -the updateimage thunk's fetch in store
+    -added updatephoto component to app.js
+    -added a link to singleimage.js
