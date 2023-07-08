@@ -1,0 +1,1 @@
+import './updatePhoto.css'
