@@ -103,7 +103,7 @@ export const createImageThunk = (image, user) => async (dispatch) => {
 
 export const updateImageThunk = (image) => async (dispatch) => {
   try {
-    const res = await fetch(`/api/images/${image.id}`, {
+    const res = await fetch(`/api/images/${image.id}/update`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(image),

@@ -40,7 +40,7 @@ function SignupFormPage() {
         <img className="login-background-image" src={"https://identity.flickr.com/img/033120190455-by-Henry.2edde7a9.jpg"} alt="Background Image"/>
         <div className="form-container-signup">
         <form className='login-form' onSubmit={handleSubmit}>
-          <div>⚫️⚪️</div>
+          <div>🔵🔴</div>
           <div className="form-text">Sign up for Snapr</div>
           <ul>
             {errors.map((error, idx) => (
