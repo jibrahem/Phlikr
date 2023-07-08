@@ -30,42 +30,59 @@ function UploadPhoto() {
   
     return (
         <div className='whole-upload-form'>
+          {/* <img className='upload-background' src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSz8OSqoAMqjlVNKYv8LqYMBHaNNkk6JVXk2g&usqp=CAU"} alt="BGI" /> */}
             {/* <span>""</span> */}
            <form className="upload-image-form" onSubmit={handleSubmit}>
-            <h3>Upload Photo</h3>
+            <h3 className='upload-title'>Upload Photo</h3>
           {/* <ul>
             {errors.map((error, idx) => (
               <li key={idx}>{error}</li>
             ))}
           </ul> */}
-          <label>
+          <label className='upload-label'>
+          Title
+            <br></br>
             <input
               type="text"
-              placeholder="Title"
+              // placeholder="Title"
               className='upload-image-title'
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               required
+              style={{ fontFamily: 'Proxima Nova, Helvetica Neue, Helvetica, Arial, sans-serif', 
+                       fontSize: "14px"
+              }}  
             />
           </label>
-          <label>
+          <label className='upload-label'>
+          Image Url
+          <br></br>
             <input 
                type="text" 
-               placeholder="Image Url"
+              //  placeholder="Image Url"
                className='upload-image-url'
                value={img}
                onChange={(e) => setImg(e.target.value)}
                required
+               style={{ fontFamily: 'Proxima Nova, Helvetica Neue, Helvetica, Arial, sans-serif', 
+                        fontSize: "14px"
+               }}  
             />
           </label>
-          <label>
+          <label className='upload-label'>
+            Description
+            <br></br>
             <textarea
               type="textarea"
-              placeholder="Description"
+              // placeholder="Description"
               className='upload-image-description'
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               required
+              style={{ fontFamily: 'Proxima Nova, Helvetica Neue, Helvetica, Arial, sans-serif', 
+                       fontSize: "14px"
+              }}  
+
             ></textarea>
           </label>
           <label>

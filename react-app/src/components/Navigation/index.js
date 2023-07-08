@@ -25,7 +25,7 @@ function Navigation({ isLoaded }) {
 				<div id='nav-snapr-div'>
 					<div className='snapr' onMouseLeave={notYou}>
 						<li>
-							<NavLink exact to="/"> <span>⚫️⚪️</span>
+							<NavLink exact to="/"> <span>🔵🔴</span>
 								<div className='snap'> snapr</div></NavLink>
 						</li>
 						<div id='nav-you-div' >

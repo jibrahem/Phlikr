@@ -1,4 +1,12 @@
-.whole-upload-form {
+/* .whole-upload-form {
+    background-color: grey;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+  } */
+  .whole-upload-form {
     background-color: white;
     position: absolute;
     top: 0;
@@ -6,6 +14,15 @@
     height: 100%;
     width: 100%;
   }
+
+/* .upload-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+} */
 
 /* .upload{
     margin-top: 15rem;
@@ -20,33 +37,69 @@
     background-color: black;
 } */
 
+.upload-title {
+    font-size: 26px;
+    color: black;
+}
+/* .upload-title {
+    font-size: 26px;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+} */
 
 .upload-image-form {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 200px;
+    margin-top: 150px;
     margin-left: 450px;
-    position: absolute;   
+    position: absolute; 
     background-color: white;
     width: 500px;
     height: 400px;
-    border: 1px solid grey;
+    border: .5px solid lightgrey;
+    border-radius: 4px;
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.3);
 }
 
-.upload-image-title {
+/* .upload-image-title {
     width: 500px;
+    height: 50px;
+    border-radius: 4px;
+    border: none;
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.3);
+    margin-top: 3px;
 }
 
 .upload-image-url {
     width: 500px;
+    height: 50px;
+    border-radius: 4px;
+    border: none;
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.3);
+    margin-top: 3px;
 }
 
 .upload-image-description {
     width: 500px;
+    height: 50px;
+    border-radius: 4px;
+    border: none;
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.3);
+    margin-top: 3px;
 }
 
 .upload-image-btn {
+    width: 100px;
+    height: 20px;
+    margin-top: 50px;
 
 }
+
+.upload-label {
+    font-family: Nova,helvetica neue,helvetica,arial,sans-serif;
+    color: white;
+    margin-top: 30px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+} */
