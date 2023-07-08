@@ -31,9 +31,11 @@ function CommentShow(image) {
 
     const openMenu = (e) => {
         if (showMenu) return;
-        commentArr.forEach(comment =>{
+        commentArr.forEach(comment => {
             if (Number(comment.id) === Number(e.target.id)) {
                 setShowMenu(true);
+            } else {
+                setShowMenu(false)
             }
         })
     };
@@ -42,6 +44,8 @@ function CommentShow(image) {
         if (!showMenu) return;
 
         const closeMenu = (e) => {
+            console.log('ulred', ulRef)
+            console.log('etarget', e.target)
             if (!ulRef.current.contains(e.target)) {
                 setShowMenu(false);
             }
@@ -79,6 +83,9 @@ function CommentShow(image) {
                             {comment.user_id === user.id &&
                                 <div>
                                     <div className="iconic">
+                                        <button onClick={openMenu}>
+                                            <i class="fa-regular fa-pen-to-square" id={comment.id}></i>
+                                        </button>
                                         <ul className={ulClassName} ref={ulRef}>
                                             <UpdateComment
                                                 comment={comment}
@@ -87,9 +94,6 @@ function CommentShow(image) {
                                         </ul>
                                         <div className="delete-modal">
                                             <div>
-                                                <button onClick={openMenu}>
-                                                    <i class="fa-regular fa-pen-to-square" id={comment.id}></i>
-                                                </button>
                                                 <OpenModalMenuItem
                                                     buttonText="🗑️"
                                                     modalComponent={<DeleteCommentModal
