@@ -18,9 +18,9 @@ export default function UserHome() {
   const currDate = new Date();
   const [fav, setFav] = useState(false);
   const userFavImagesStore = useSelector((state) => state.images.userFavImg);
-  console.log("user favorite images in UserHome: ", userFavImagesStore);
+  // console.log("user favorite images in UserHome: ", userFavImagesStore);
   const userFavImgArr = Object.values(userFavImagesStore);
-  console.log("user favorite images array in UserHome: ", userFavImgArr);
+  // console.log("user favorite images array in UserHome: ", userFavImgArr);
 
   //   console.log("current in UserHome: ", currDate)
 
@@ -75,7 +75,7 @@ export default function UserHome() {
     dispatch(getUserFavImgThunk(sessionUser.id));
   }, []);
 
-  if (imagesArr.length < 1 || userFavImgArr.length < 1) return null;
+  if (imagesArr.length < 1) return null;
 
   return (
     <>

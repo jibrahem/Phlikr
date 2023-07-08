@@ -1,8 +1,8 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import { getSingleImageThunk } from "../../store/image";
+import { getSingleImageThunk, deleteImageThunk } from "../../store/image";
 import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import camera from "./resource/camera.png";
 import aperture from "./resource/aperture.png";
 import angle from "./resource/angle.png";
@@ -21,16 +21,29 @@ export default function SingleImage() {
   // console.log("SingleImage in SingelImage component: ");
   const { imageId } = useParams();
   const singleImage = useSelector((state) => state.images.singleImage);
-  console.log("singleImage Store: ", singleImage);
+  // console.log("singleImage Store: ", singleImage);
   const sessionUser = useSelector((state) => state.session.user);
   const [showEXIF, setShowEXIF] = useState(false);
+  const [showEdit, setShowEdit] = useState(false);
+
 
   // const singleImageArr = Object.values(singleImage)
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const showEXIFFunction = () => {
     setShowEXIF(!showEXIF);
   };
+
+  const editImg = () => {
+    setShowEdit(!showEdit)
+  }
+
+  const deleteImg = () => {
+    dispatch(deleteImageThunk(singleImage.id));
+    history.push(`/${sessionUser.id}/photos`);
+  }
+
 
   useEffect(() => {
     dispatch(getSingleImageThunk(imageId));
@@ -48,11 +61,16 @@ export default function SingleImage() {
                     <img src={singleImage.img} />
                     <div className="iconss">
                         <i className="fa-regular fa-star"></i>
-                        <i className="fa-solid fa-folder-plus"></i>
+                        {/* <i className="fa-solid fa-folder-plus"></i> */}
                         {/* <i className="fa-regular fa-comment"></i> */}
                         {/* <i className="fa-light fa-album-circle-plus"></i> */}
-                        <i className="fa-solid fa-share"></i>
-                    </div>
+                        {/* <i className="fa-solid fa-share"></i> */}
+                        {singleImage.User.id === sessionUser.id ? 
+                        <div onClick={editImg}>
+                          <i className="fa-solid fa-pen-to-square"></i></div> : null}
+                        </div>
+                        {showEdit ? 
+                        <div id='delete-img-div'><p onClick={deleteImg}>Delete Image</p></div> : null}
                     {/* <img src={singleImage.img} /> */}
                 </div>
                 <div id='single-image-info-div'>
@@ -67,15 +85,17 @@ export default function SingleImage() {
                                 <h4>{singleImage.title}</h4>
                             </div>
                             {/* started working on updatePhoto */}
-                            <div className="temp-spot-for-update">
+                            {/* <div className="temp-spot-for-update">
                               <Link to={`${imageId}/update`}>Update Photo</Link>
-                            </div>
-                        
+                            </div> */}
+                            {singleImage.User.id === sessionUser.id ? 
+                            <div>
+                              <Link to={`/${singleImage.id}/update`}><i className="fa-solid fa-pen-to-square"></i></Link></div> : null}
                         </div>
                         <div id='single-image-pro-fav-div'>
                             <div className="appreciate">
                                 <i className="fa-solid fa-gift"></i>
-                                <p>Show your appreciation with the gift of Flickr Pro</p>
+                                <p>Show your appreciation with the gift of Snapr Pro</p>
                             </div>
                             <div className="fav">
                                 <i className="fa-regular fa-star"></i>
