@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { getSingleImageThunk } from "../../store/image";
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import camera from "./resource/camera.png";
 import aperture from "./resource/aperture.png";
 import angle from "./resource/angle.png";
@@ -65,6 +66,11 @@ export default function SingleImage() {
                                 <h3>{singleImage.User.first_name} {singleImage.User.last_name}</h3>
                                 <h4>{singleImage.title}</h4>
                             </div>
+                            {/* started working on updatePhoto */}
+                            <div className="temp-spot-for-update">
+                              <Link to={`${imageId}/update`}>Update Photo</Link>
+                            </div>
+                        
                         </div>
                         <div id='single-image-pro-fav-div'>
                             <div className="appreciate">
