@@ -61,7 +61,7 @@ function UpdateComment(image) {
         <>
 
             <div className="comments-form">
-                <ul className={ulClassName} ref={ulRef}>
+                {/* <ul className={ulClassName} ref={ulRef}> */}
                     <form onSubmit={handleSubmit}>
                         <ul>
                             {errors.map((error, idx) => (
@@ -73,10 +73,10 @@ function UpdateComment(image) {
                             onChange={(e) => setDescription(e.target.value)}
                         />
                         <div className="comment-button">
-                            <button type="submit" onClick={closeMenu}>Done</button>
+                            <button type="submit">Done</button>
                         </div>
                     </form>
-                </ul>
+                {/* </ul> */}
             </div >
         </>
     )

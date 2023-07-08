@@ -32,14 +32,10 @@ function CommentShow(image) {
     const openMenu = (e) => {
         if (showMenu) return;
         commentArr.forEach(comment =>{
-            console.log('comment in for eahc', comment)
-            console.log('e', e.target)
-            if(comment.id === e.target.id){
+            if (Number(comment.id) === Number(e.target.id)) {
                 setShowMenu(true);
             }
-            setShowMenu(true);
         })
-        setShowMenu(true);
     };
 
     useEffect(() => {
@@ -84,9 +80,7 @@ function CommentShow(image) {
                                 <div>
                                     <div className="iconic">
                                         <ul className={ulClassName} ref={ulRef}>
-
                                             <UpdateComment
-                                                onItemClick={closeMenu}
                                                 comment={comment}
                                                 image={image}
                                             />
@@ -94,8 +88,7 @@ function CommentShow(image) {
                                         <div className="delete-modal">
                                             <div>
                                                 <button onClick={openMenu}>
-                                                    hi
-                                                    <i class="fa-regular fa-pen-to-square"></i>
+                                                    <i class="fa-regular fa-pen-to-square" id={comment.id}></i>
                                                 </button>
                                                 <OpenModalMenuItem
                                                     buttonText="🗑️"
