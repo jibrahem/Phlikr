@@ -30,7 +30,7 @@ function UploadPhoto() {
   
     return (
         <div className='whole-upload-form'>
-          {/* <img className='upload-background' src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSz8OSqoAMqjlVNKYv8LqYMBHaNNkk6JVXk2g&usqp=CAU"} alt="BGI" /> */}
+          <img className='upload-background' src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSz8OSqoAMqjlVNKYv8LqYMBHaNNkk6JVXk2g&usqp=CAU"} alt="BGI" />
             {/* <span>""</span> */}
            <form className="upload-image-form" onSubmit={handleSubmit}>
             <h3 className='upload-title'>Upload Photo</h3>
