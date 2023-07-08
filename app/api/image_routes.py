@@ -34,12 +34,12 @@ def get_image(id):
 
 
 #DELETE AN IMAGE BY ID
-@image_routes.route('/delete/<int:id>')
+@image_routes.route('/delete/<int:id>', methods=["GET"])
 # @login_required
 def delete_image(id):
     if current_user.is_authenticated :
         image_to_delete = Image.query.get(id)
-        if image_to_delete.User.id == current_user.id:
+        if image_to_delete.user.id == current_user.id:
             db.session.delete(image_to_delete)
             db.session.commit()
         return {'image': 'your image has been deleted'}
@@ -56,29 +56,32 @@ def update_image_form(id):
 
 
 #EDIT AN IMAGE BY ID
-@image_routes.route('/<int:id>/update', methods=['GET', 'POST'])
+@image_routes.route('/<int:id>/update', methods=['POST'])
 # @login_required
 def update_image(id):
+    print("in the edit image route!!!!!")
     if current_user.is_authenticated :
         form = ImageForm()
+        print("From data in the update img route: ", form.data)
         image_to_update = Image.query.get(id)
-        print("form data: ", form.data, "image: ", image_to_update.view_count)
+        # print("form data: ", form.data, "image: ", image_to_update.view_count)
 
         # print("form errors", form.errors)
         # form data {'title': None, 'description': None, 'img': None, 'submit': False, 'csrf_token': None}
         #evaluating to false so form.validate() is not running
-        if image_to_update.User.id == current_user.id:
+        if image_to_update.user.id == current_user.id:
+            print("current user is editing the image in the route!!!!!!")
 
-            if form.validate_on_submit():
+            # if form.validate_on_submit():
                 # image_to_update = Image.query.get(id)
-                image_to_update.img = form.data['img']
-                # image_to_update.view_count = form.data['view_count']
-                image_to_update.user_id = current_user.id
-                image_to_update.title = form.data['title']
-                image_to_update.description = form.data['description']
-                image_to_update.view_count = image_to_update.view_count
-                db.session.commit()
-                return 'image updated'
+            image_to_update.img = form.data['img']
+            # image_to_update.view_count = form.data['view_count']
+            # image_to_update.user_id = current_user.id
+            image_to_update.title = form.data['title']
+            image_to_update.description = form.data['description']
+            # image_to_update.view_count = image_to_update.view_count
+            db.session.commit()
+            return image_to_update.to_dict()
         return 'bad data'
 
 @image_routes.route('/showcase/<int:imageId>')
