@@ -1,4 +1,4 @@
-Need to get the form to show on the page. 
+Need to get the form to show on the page. Nothing is showing when going to the single image update url or when clicking the link to it.
 -Attemped to fix 
     -the updateimage thunk's fetch in store
     -added updatephoto component to app.js
