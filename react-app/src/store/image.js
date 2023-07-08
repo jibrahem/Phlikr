@@ -82,13 +82,15 @@ export const getAllImageThunk = () => async (dispatch) => {
 
 export const createImageThunk = (image, user) => async (dispatch) => {
   try {
-    console.log("userId", user.id)
-    console.log(image)
+    // console.log("userId", user.id)
+    // console.log(image)
     const res = await fetch(`/api/images/${user.id}/images`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(image),
     });
+
+    console.log("res in the CREATIMGAEJ:JDK:JSDKJ;", res)
 
     if (res.ok) {
       const newImage = await res.json();
@@ -101,17 +103,23 @@ export const createImageThunk = (image, user) => async (dispatch) => {
   }
 };
 
-export const updateImageThunk = (image) => async (dispatch) => {
+export const updateImageThunk = (image, imageId) => async (dispatch) => {
+  console.log(" in the update image thunk!!!!!")
   try {
-    const res = await fetch(`/api/images/${image.id}/update`, {
+    const res = await fetch(`/api/images/${imageId}/update`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(image),
     });
 
+    console.log("Res in the updateimagethunk::", res);
+
     if (res.ok) {
-      const updatedImage = await res.json();
+      console.log("update image in the upated thunk~~~~")
+      const updatedImage = await res.json(); 
+      console.log("updateImage in the res.ok: ", updatedImage)
       dispatch(updateImage(updatedImage));
+     
       return updatedImage;
     }
   } catch (err) {
@@ -122,8 +130,8 @@ export const updateImageThunk = (image) => async (dispatch) => {
 
 export const deleteImageThunk = (image_id) => async (dispatch) => {
   try {
-    const res = await fetch(`/api/images/${image_id}`, {
-      method: "DELETE",
+    const res = await fetch(`/api/images/delete/${image_id}`, {
+      method: "GET",
     });
 
     if (res.ok) {
@@ -138,7 +146,7 @@ export const deleteImageThunk = (image_id) => async (dispatch) => {
 
 export const getUserImagesThunk = (user_id) => async (dispatch) => {
   try {
-    console.log("userimages user Id", user_id);
+    // console.log("userimages user Id", user_id);
 
     const res = await fetch(`/api/images/user/${user_id}`);
 
@@ -154,7 +162,7 @@ export const getUserImagesThunk = (user_id) => async (dispatch) => {
 };
 
 export const getSingleImageThunk = (imageId) => async (dispatch) => {
-  console.log("single image in thunk!!!!!");
+  // console.log("single image in thunk!!!!!");
   try {
     const res = await fetch(`/api/images/${imageId}`);
 
@@ -204,7 +212,7 @@ export const getUserFavImgThunk = (userId) => async (dispatch) => {
 };
 
 export const addUserFavThunk = (image) => async (dispatch) => {
-  console.log("In the adduserFav thunk!!!!");
+  // console.log("In the adduserFav thunk!!!!");
   try {
     // console.log("request body: ", JSON.stringify(image));
     const res = fetch("/api/images/user_favorite", {
@@ -228,7 +236,7 @@ export const addUserFavThunk = (image) => async (dispatch) => {
 };
 
 export const deleteUserFavImgThunk = (userId, imageId) => async(dispatch) => {
-  console.log("in deleteUserFavImgThunk~~~~")
+  // console.log("in deleteUserFavImgThunk~~~~")
   try {
     const res = await fetch(`/api/images/delete/${userId}/user_favorite/${imageId}`, {
       method: "GET",
@@ -266,8 +274,11 @@ const imageReducer = (state = initialState, action) => {
       return newState;
     }
     case UPDATE_IMAGE: {
-      newState = { ...state, singleImage: { ...state.singleImage } };
-      newState.singleImage = action.image;
+      // newState = { ...state, singleImage: { ...state.singleImage } };
+      // newState = { ...state, singleImage: {} };
+      console.log("Update image in the reducer function~~~~~")
+      newState = {...state, allImages: {...state.allImages}};
+      newState.allImages[action.image.id] = action.image;
       return newState;
     }
     case DELETE_IMAGE: {

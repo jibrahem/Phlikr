@@ -55,9 +55,12 @@ export default function FavesPage() {
                 <img src={image.img} alt={image.title} onMouseOver={() => showImgDetail(image.id)} onMouseLeave={() => hideImgDetail(image.id)} />
               </Link>
             </div>
-             {console.log("image Detail in the loop: ", imgDetail[image.id])}
+             {/* {console.log("image Detail in the loop: ", imgDetail[image.id])} */}
             
-            <div id={imgDetail[image.id] ? 'title-name-fav-comment-div' : 'no-detail'}>
+            <div id={imgDetail[image.id] ? 'title-name-fav-comment-div' : 'no-detail'}
+            onMouseOver={() => showImgDetail(image.id)} onMouseLeave={() => hideImgDetail(image.id)}
+            
+            >
               <div id='title-name'>
                 <Link to={`/photos/${image.id}`}>
                   <p id='title'>{image.title}</p>
@@ -73,17 +76,12 @@ export default function FavesPage() {
                 </div>
                 <div id='fav-comment-button'>
                   <button onClick={favComment}>
-                    <i className="fa-regular fa-comment"></i>
+                    <Link to={`/photos/${image.id}`}><i className="fa-regular fa-comment"></i></Link>
                   </button>
                   <p>{image.image_comment_count}</p>
                 </div>
                 {/* <i className="fa-light fa-album-circle-plus"></i> */}
               </div>
-              
-              {/* {showComment ? <div id='fav-comment-div'>
-                <Comments image={image}/>
-              </div> : null} */}
-
             </div>
           </div>
         ))}
