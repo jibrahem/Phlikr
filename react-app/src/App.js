@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation";
 import Home from "./components/Home";
 import UserPage from "./components/UserPage";
 import UploadPhoto from "./components/UploadPhoto";
+import UpdatePhoto from "./components/UpdatePhoto";
 import SingleImageIndex from "./components/Image";
 
 
@@ -23,6 +24,9 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          <Route exact path='/:imageId/update'>
+            <UpdatePhoto/>
+          </Route>
           <Route exact path='/photos/upload/'>
             <UploadPhoto/>
           </Route>
@@ -33,13 +37,12 @@ function App() {
             <SignupFormPage />
           </Route>
           <Route exact path="/photos/:imageId">
-              {console.log("hitting the SingleImage page")}
+              {/* {console.log("hitting the SingleImage page")} */}
               <SingleImageIndex />
           </Route>
           <Route exact path="/:userId/:page">
             <UserPage />
           </Route>
-          
           <Route exact path="/">
             <Home />
           </Route>

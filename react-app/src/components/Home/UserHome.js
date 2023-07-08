@@ -1,11 +1,11 @@
 import { useSelector, useDispatch, } from "react-redux";
 import { useEffect, useRef, useState } from "react";
 import { getAllImageThunk } from "../../store/image";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import "./UserHome.css";
 import CommentModal from "../CommentModal";
 import OpenModalButton from '../OpenModalButton';
-import { userFavThunk } from "../../store/users";
+import { getUserFavImgThunk, deleteUserFavImgThunk, addUserFavThunk} from "../../store/image";
 
 
 
@@ -16,19 +16,42 @@ export default function UserHome() {
   const ulRef = useRef();
   const [showMenu, setShowMenu] = useState(false);
   const currDate = new Date();
+  const [fav, setFav] = useState(false);
+  const userFavImagesStore = useSelector((state) => state.images.userFavImg);
+  console.log("user favorite images in UserHome: ", userFavImagesStore);
+  const userFavImgArr = Object.values(userFavImagesStore);
+  console.log("user favorite images array in UserHome: ", userFavImgArr);
 
   //   console.log("current in UserHome: ", currDate)
 
   const dispatch = useDispatch();
-  const addFavorite = (imageId) => {
+
+  const userFavorite = async (imageId) => {
 
     const payload = {
       user_id: sessionUser.id,
       image_id: imageId,
 
     }
+    const res = [];
 
-    dispatch(userFavThunk(payload));
+    for (let favImg of userFavImgArr) {
+      // console.log("favimg in userFavorite function: ", favImg)
+      res.push(favImg.id)
+   }
+    //  console.log("res in the for loop: ", res);
+    if (res.includes(imageId)) {
+     dispatch(deleteUserFavImgThunk(sessionUser.id, imageId))
+
+    
+    } else {
+      dispatch(addUserFavThunk(payload))
+      .then(dispatch(getUserFavImgThunk(sessionUser.id)))
+    }
+  };
+
+  const setFavButton = () => {
+    setFav(true)
   }
 
   useEffect(() => {
@@ -49,9 +72,10 @@ export default function UserHome() {
 
   useEffect(() => {
     dispatch(getAllImageThunk());
+    dispatch(getUserFavImgThunk(sessionUser.id));
   }, []);
 
-  if (imagesArr.length < 1) return null;
+  if (imagesArr.length < 1 || userFavImgArr.length < 1) return null;
 
   return (
     <>
@@ -98,8 +122,21 @@ export default function UserHome() {
 
                   <div className="icon">
                     <button
-                      onClick={() => addFavorite(image.id)}>
-                      <i className="fa-regular fa-star"></i>
+                      onClick={() => userFavorite(image.id)}
+                      id={(() => {
+                        const res = [];
+                        for (let favImg of userFavImgArr) {
+                          res.push(favImg.id)
+                       }
+                      //  console.log("res in the for loop: ", res);
+                       if (res.includes(image.id)) {
+                        return 'user-fav'
+                       } else {
+                        return 'not-user-fav'
+                       }
+                      })()}
+                      >
+                      <i className="fa-solid fa-star"></i>
                     </button>
 
                     {/* <AddUserFav image={image} /> */}

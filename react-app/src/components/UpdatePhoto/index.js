@@ -1,21 +1,19 @@
 import { useState, useEffect } from 'react';
-import { createImageThunk } from '../../store/image';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from "react-router-dom";
-import './UploadPhoto.css';
+import { updateImageThunk } from '../../store/image';
+import { useHistory } from 'react-router-dom';
+import './updatePhoto.css';
 
-function UploadPhoto() {
-    const dispatch = useDispatch();
+
+export default function UpdatePhoto() {
+    const dispatch = useDispatch;
     const history = useHistory();
-    const sessionUser = useSelector((state) => state.session.user)
-    
-    const [title, setTitle] = useState("");
-    const [description, setDescription] = useState("");
-    const [img, setImg] = useState("");
-    const [errors, setErrors] = useState([]);
-    const [submitted, setSubmitted] = useState(false);
-    // console.log("state", state)
-     
+    const sessionUser = useSelector((state) => state.session.user);
+    const [title, setTitle] = useState(sessionUser.title);
+    const [description, setDescription] = useState(sessionUser.description);
+    const [img, setImg] = useState(sessionUser.img);
+
+    console.log("hello")
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -24,28 +22,28 @@ function UploadPhoto() {
             description,
             img
         }
-        const data = await dispatch(createImageThunk(imageDetails, sessionUser))
+        const data = await dispatch(updateImageThunk(imageDetails))
         history.push('/');
     }
-  
+    
     return (
-        <div className='whole-upload-form'>
-          <img className='upload-background' src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSz8OSqoAMqjlVNKYv8LqYMBHaNNkk6JVXk2g&usqp=CAU"} alt="BGI" />
+        <div className='whole-update-form'>
+          <img className='update-background' src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSz8OSqoAMqjlVNKYv8LqYMBHaNNkk6JVXk2g&usqp=CAU"} alt="BGI" />
             {/* <span>""</span> */}
-           <form className="upload-image-form" onSubmit={handleSubmit}>
-            <h3 className='upload-title'>Upload Photo</h3>
+           <form className="update-image-form" onSubmit={handleSubmit}>
+            <h3 className='update-title'>Update Photo</h3>
           {/* <ul>
             {errors.map((error, idx) => (
               <li key={idx}>{error}</li>
             ))}
           </ul> */}
-          <label className='upload-label'>
+          <label className='update-label'>
           Title
             <br></br>
             <input
               type="text"
               // placeholder="Title"
-              className='upload-image-title'
+              className='update-image-title'
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               required
@@ -54,13 +52,13 @@ function UploadPhoto() {
               }}  
             />
           </label>
-          <label className='upload-label'>
+          <label className='update-label'>
           Image Url
           <br></br>
             <input 
                type="text" 
               //  placeholder="Image Url"
-               className='upload-image-url'
+               className='update-image-url'
                value={img}
                onChange={(e) => setImg(e.target.value)}
                required
@@ -75,7 +73,7 @@ function UploadPhoto() {
             <textarea
               type="textarea"
               // placeholder="Description"
-              className='upload-image-description'
+              className='update-image-description'
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               required
@@ -86,12 +84,9 @@ function UploadPhoto() {
             ></textarea>
           </label>
           <label>
-            <button className='upload-image-btn' onSubmit={handleSubmit}>Upload</button>
+            <button className='update-image-btn' onSubmit={handleSubmit}>Update</button>
           </label>
         </form>
         </div>
     )
 }
-
-
-export default UploadPhoto

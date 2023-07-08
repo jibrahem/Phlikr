@@ -129,6 +129,7 @@ def post_image(userId):
         # return 'bad data'
     
 
+
 # add fav in favorite table by user id
 @image_routes.route('/user_favorite', methods=['POST'])
 def user_favorite_toggle():
@@ -157,8 +158,54 @@ def user_favorite_toggle():
         for favorite in user.favorites:
             favorite_list.append(favorite.id)
         print("favorite list in the route: ", favorite_list)
-
-        # Add the user to the role and commit the changes
+        # # Add the user to the role and commit the changes
         user.favorites.append(image)
         db.session.commit()
+        return 'Bad request'
+
+        
+#get user favorite images from user_favorite table
+@image_routes.route('/<int:userId>/user_favorite', methods=['GET'])
+def get_user_favorite(userId):
+    # user_id = request.json.get('user_id')
+
+    try: 
+        user = User.query.get(userId)
+
+        if not user: 
+            return 'user not found', 404
+        
+        favorites = user.favorites
+        print("favotrites in the route: ", favorites)
+
+        result= [image.to_dict() for image in  favorites]
+        print("result in the route: ", result)
+
+        return  result
+    
+    except Exception as e: 
+        return {"error": str(e)}, 500
+    
+#delete user favorite image from user_favorite table
+@image_routes.route('/delete/<int:userId>/user_favorite/<int:imageId>', methods=['GET'])
+def delete_user_favorite(userId, imageId):
+    try: 
+        print("userId in the delete user fav route: ", userId)
+        print("imageId in the delete user fav route: ", imageId)
+        user = User.query.get(userId)
+        image = Image.query.get(imageId)
+
+        if not user: 
+            return 'user not found', 404
+        
+        user.favorites.remove(image)
+        db.session.commit()
+        return 'image succefully deleted'
+    
+    except Exception as e: 
+        return {"error" : str(e)}, 500
+        
+
+    
+
     

@@ -50,40 +50,12 @@ export const userInfoThunk = (userId) => async (dispatch) => {
   }
 };
 
-export const userFavThunk = (fav) => async (dispatch) => {
-  console.log("In the adduserFav thunk!!!!");
-  try {
-    console.log("request body: ", JSON.stringify(fav));
-    const res = fetch("/api/images/user_favorite", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(fav),
-    });
-
-    console.log("after res !!!!!!!!!", res);
-
-    if (res.ok) {
-      const userFav = await res.json();
-      console.log("res in the add user fav!!!", res);
-      dispatch(addUserFavAction(userFav));
-      return userFav;
-    }
-  } catch (err) {
-    const errors = err.json();
-    return errors;
-  }
-};
 
 //reducer function
 const initialState = { userFav: {}, userInfo: {} };
 
 const userReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_USER_FAV: {
-      const newState = { ...state };
-      newState.userFav = action.fav;
-      return newState;
-    }
     case GET_USER_INFO: {
       console.log("get user info called");
       const newState = { ...state };
