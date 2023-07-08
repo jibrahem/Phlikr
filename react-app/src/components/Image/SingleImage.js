@@ -12,7 +12,7 @@ import info from "./resource/info.png";
 import EXIF from "./exif";
 import SingelImageFooter from "./SingleImageFooter";
 import Footer from "../Footer/Footer";
-import Comments from "./comments";
+import CommentShow from "./CommentShow";
 
 console.log("Before userParams");
 
@@ -38,7 +38,7 @@ export default function SingleImage() {
 
     if (!singleImage.User) return null;
 
-   
+
 
     return (
         <>
@@ -77,7 +77,7 @@ export default function SingleImage() {
                             </div>
                         </div>
                     </div>
-                    <Comments
+                    <CommentShow
                         image={singleImage} />
                     <div id='single-image-info-right'>
                         <div id='views-faves-comment'>

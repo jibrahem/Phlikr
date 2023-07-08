@@ -1,18 +1,12 @@
 .comment-button button {
     cursor: pointer;
-
-}
-
-.hidden {
-    display: none;
 }
 
 .comment {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     margin-left: 4rem;
     width: 420px;
-    justify-content: space-between;
 }
 
 .profile-pic .iconic {
@@ -31,12 +25,19 @@
     list-style: none;
 }
 
-.delete-modal{
+/* .delete-modal{
     display: none;
+} */
+
+.prof-com{
+    display: flex;
+    flex-direction: row;
+    width: 380px;
+    justify-content: space-between;
 }
-div.prof-com:hover .delete-modal {
+/* div.prof-com:hover .delete-modal {
     display: block;
-}
+} */
 
 #single-image-comment-div img {
     height: 50px;
