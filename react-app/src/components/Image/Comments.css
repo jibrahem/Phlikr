@@ -90,6 +90,7 @@ div.prof-com:hover .delete-modal {
     display: flex;
     flex-direction: column;
     background-color: rgb(50, 49, 49);
+    position: relative;
 
 }
 
@@ -107,6 +108,7 @@ div.prof-com:hover .delete-modal {
     margin-right: 1rem;
     margin-bottom: 1rem;
     padding-bottom: .5rem;
+    /* position: relative; */
 }
 
 #single-image-info-div {
@@ -134,4 +136,23 @@ div.prof-com:hover .delete-modal {
     height: 30px;
     width: 30px;
     border-radius: 15px;
+}
+
+#delete-img-div {
+    position: absolute;
+    bottom: 50px;
+    right: 10px;
+    background-color: pink;
+    padding: 10px;
+    border-radius: 3px;
+    background-color: #FFFFFF;
+}
+
+#delete-img-div p {
+    color: red;
+    cursor: pointer;
+}
+
+#delete-img-div p:hover {
+    background-color: #ECF1F4;
 }
