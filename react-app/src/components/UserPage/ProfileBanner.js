@@ -8,7 +8,7 @@ export default function ProfileBanner({ userInfo, photoCount }) {
   const { userId } = useParams();
 
   const dispatch = useDispatch();
-  
+
   return (
     <>
       <div id='profile-banner-div>'>
@@ -19,9 +19,9 @@ export default function ProfileBanner({ userInfo, photoCount }) {
           <div id='profile-photo'>
             <img src={userInfo.profile_photo} />
             <div>
-              <p>{userInfo.first_name} {userInfo.last_name}</p>
+              <h1>{userInfo.first_name} {userInfo.last_name}</h1>
             </div>
-          </div> 
+          </div>
         </div>
       </div>
       <div className="profile-navigation">

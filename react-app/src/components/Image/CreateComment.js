@@ -54,6 +54,8 @@ function CreateComment(image) {
                         onChange={(e) => setDescription(e.target.value)}
                         placeholder=" Add a comment"
                         required
+                        minLength={1}
+                        maxLength={300}
                     />
                 </div>
                 <div className="comment-button">

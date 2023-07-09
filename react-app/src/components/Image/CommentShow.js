@@ -32,10 +32,10 @@ function CommentShow(image) {
     const openMenu = (e) => {
         if (showMenu) return;
         commentArr.forEach(comment => {
+            console.log('comment', comment.id)
+            console.log('e', e.target.id)
             if (Number(comment.id) === Number(e.target.id)) {
                 setShowMenu(true);
-            } else {
-                setShowMenu(false)
             }
         })
     };
@@ -64,6 +64,8 @@ function CommentShow(image) {
         return null
     }
 
+    const [userComment] = commentArr.filter(comment => comment.user_id === user.id)
+
 
     return (
         <>
@@ -83,15 +85,17 @@ function CommentShow(image) {
                             {comment.user_id === user.id &&
                                 <div>
                                     <div className="iconic">
-                                        <button onClick={openMenu}>
-                                            <i class="fa-regular fa-pen-to-square" id={comment.id}></i>
-                                        </button>
-                                        <ul className={ulClassName} ref={ulRef}>
-                                            <UpdateComment
-                                                comment={comment}
-                                                image={image}
-                                            />
-                                        </ul>
+                                        <div onClick={openMenu}>
+                                            <button >
+                                                <i class="fa-regular fa-pen-to-square" id={comment.id}></i>
+                                            </button>
+                                            <ul className={ulClassName} ref={ulRef}>
+                                                <UpdateComment
+                                                    comment={comment}
+                                                    image={image}
+                                                />
+                                            </ul>
+                                        </div>
                                         <div className="delete-modal">
                                             <div>
                                                 <OpenModalMenuItem
@@ -106,12 +110,14 @@ function CommentShow(image) {
                                     </div>
                                 </div>
                             }
+                        {!userComment &&
+                        <CreateComment
+                            image={image} />
+                        }
                         </div>
                     </div>
                 ))}
             </div>
-            <CreateComment
-                image={image} />
         </>
     );
 }
