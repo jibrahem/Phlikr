@@ -131,8 +131,8 @@ export default function SingleImage() {
                             </div>
                         </div>
                     </div>
-                    {/* <CommentShow
-                        image={singleImage} /> */}
+                    <CommentShow
+                        image={singleImage} />
                     <div id='single-image-info-right'>
                         <div id='views-faves-comment'>
                             <p>{singleImage.view_count} views</p>

@@ -40,9 +40,9 @@ export default function UserHome() {
       [imageId]: false,
     }));
   }
-  const setFavButton = () => {
-    setFav(true);
-  };
+  // const setFavButton = () => {
+  //   setFav(true);
+  // };
 
   useEffect(() => {
     if (!showMenu) return;
