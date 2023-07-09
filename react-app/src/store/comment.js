@@ -43,30 +43,28 @@ export const deleteCommentThunk = (comment) => async (dispatch) => {
 
 
 
-export const updateCommentThunk = (comment) => async (dispatch) => {
-    try {
-        const res = await fetch(`/api/comments/update/${comment.id}`, {
+export const updateCommentThunk = (comment, id) => async (dispatch) => {
+    // try {
+        const res = await fetch(`/api/comments/update/${id}`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(comment),
         });
 
+        console.log('responde in update', res)
         if (res.ok) {
             const updatedComment = await res.json();
             dispatch(updateComment(updatedComment));
             return updatedComment;
         }
-    } catch (err) {
-        const errors = err.json();
-        return errors;
-    }
+    // } catch (err) {
+    //     const errors = err.json();
+    //     return errors;
+    // }
 };
 
 
-
-
 export const createCommentThunk = (image_id, user_id, comment) => async (dispatch) => {
-    console.log('in the thunk')
     try {
         const res = await fetch(`/api/comments/${image_id}/${user_id}`, {
             method: "POST",

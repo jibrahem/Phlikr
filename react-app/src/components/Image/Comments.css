@@ -1,78 +1,163 @@
 .comment-button button {
     cursor: pointer;
-
 }
 
 .comment {
     display: flex;
-    flex-direction: column;
-    margin-left: 1rem;
+    flex-direction: row;
+    margin-left: 3rem;
+    width: 420px;
+    gap:1rem
+}
+
+.profile-pic .iconic {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 1rem;
+}
+
+.iconic{
+    display: flex;
+    flex-direction: row;
 }
 
 .delete-modal li {
     list-style: none;
 }
 
-#single-image-comment-div img{
+/* .delete-modal{
+    display: none;
+} */
+
+.prof-com{
+    display: flex;
+    flex-direction: column;
+    width: 380px;
+    justify-content: space-between;
+}
+/* div.prof-com:hover .delete-modal {
+    display: block;
+} */
+
+#single-image-comment-div img {
     height: 50px;
     width: 50px;
     border-radius: 20px;
 }
 
-#single-image-comment-div{
+#single-image-comment-div {
     margin-left: 1rem;
     display: flex;
     flex-direction: row;
-    gap:1rem;
+    gap: 1rem;
     margin-top: 1rem;
 }
 
 
-#single-image-pro-fav-div{
+#single-image-pro-fav-div {
     margin-left: 1rem;
     margin-top: 1rem;
 }
-.icon{
+
+.icon {
     margin-right: 1rem;
 }
-.appreciate{
+
+.appreciate {
     display: flex;
     flex-direction: row;
-    gap:1rem;
+    gap: 1rem;
     margin-top: 2rem;
 }
 
-.fav{
+.fav {
     display: flex;
     flex-direction: row;
     margin-top: 2rem;
-    gap:1rem;
+    gap: 1rem;
 }
 
-.comments{
+.comments {
     border-top: 1px solid rgb(199, 195, 195);
     margin-top: 3rem;
     padding-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem
 }
 
-#image-container{
-    margin-top:5rem;
+#image-container {
+    margin-top: 5rem;
     display: flex;
     flex-direction: column;
     background-color: rgb(50, 49, 49);
+    position: relative;
 
 }
-#image-container img{
+
+#image-container img {
     height: 500px;
     align-self: center;
 }
-.iconss{
+
+.iconss {
     color: white;
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-    gap:1rem;
+    gap: 1rem;
     margin-right: 1rem;
     margin-bottom: 1rem;
     padding-bottom: .5rem;
+    /* position: relative; */
 }
+
+#single-image-info-div {
+    margin-left: 2rem;
+}
+
+.comments-form img {
+    height: 40px;
+    width: 40px;
+    border-radius: 20px;
+}
+
+.form-image {
+    display: flex;
+    flex-direction: row;
+    margin-top: 1rem;
+}
+
+.profile-pic {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem
+}
+
+.profile-pic img {
+    height: 30px;
+    width: 30px;
+    border-radius: 15px;
+}
+
+#delete-img-div {
+    position: absolute;
+    bottom: 50px;
+    right: 10px;
+    background-color: pink;
+    padding: 10px;
+    border-radius: 3px;
+    background-color: #FFFFFF;
+}
+
+#delete-img-div p {
+    color: red;
+    cursor: pointer;
+}
+
+#delete-img-div p:hover {
+    background-color: #ECF1F4;
+}
+
+

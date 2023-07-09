@@ -1,11 +1,12 @@
 import { useSelector, useDispatch, } from "react-redux";
 import { useEffect, useRef, useState } from "react";
 import { getAllImageThunk } from "../../store/image";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import "./UserHome.css";
 import CommentModal from "../CommentModal";
 import OpenModalButton from '../OpenModalButton';
-import { userFavThunk } from "../../store/users";
+import { getUserFavImgThunk, deleteUserFavImgThunk, addUserFavThunk} from "../../store/image";
+import Favorites from "../Favorites";
 
 
 
@@ -16,19 +17,18 @@ export default function UserHome() {
   const ulRef = useRef();
   const [showMenu, setShowMenu] = useState(false);
   const currDate = new Date();
+  const [fav, setFav] = useState(false);
+  const userFavImagesStore = useSelector((state) => state.images.userFavImg);
+  // console.log("user favorite images in UserHome: ", userFavImagesStore);
+  const userFavImgArr = Object.values(userFavImagesStore);
+  // console.log("user favorite images array in UserHome: ", userFavImgArr);
 
   //   console.log("current in UserHome: ", currDate)
 
   const dispatch = useDispatch();
-  const addFavorite = (imageId) => {
 
-    const payload = {
-      user_id: sessionUser.id,
-      image_id: imageId,
-
-    }
-
-    dispatch(userFavThunk(payload));
+  const setFavButton = () => {
+    setFav(true)
   }
 
   useEffect(() => {
@@ -49,6 +49,7 @@ export default function UserHome() {
 
   useEffect(() => {
     dispatch(getAllImageThunk());
+    dispatch(getUserFavImgThunk(sessionUser.id));
   }, []);
 
   if (imagesArr.length < 1) return null;
@@ -97,10 +98,8 @@ export default function UserHome() {
                   </div>
 
                   <div className="icon">
-                    <button
-                      onClick={() => addFavorite(image.id)}>
-                      <i className="fa-regular fa-star"></i>
-                    </button>
+
+                    <Favorites imageId={image.id} />
 
                     {/* <AddUserFav image={image} /> */}
 

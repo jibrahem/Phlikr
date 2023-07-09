@@ -45,22 +45,22 @@ def edit_comment(comment_id):
     if current_user.is_authenticated:
         form = CommentForm()
         target_comment = Comment.query.get(comment_id)
-        print("hi from comment update 1")
-        if target_comment.User.id == current_user.id:
-            if form.validate_on_submit():
-                print("hi from comment update 2")
-                target_comment.description = form.data['description']
-                target_comment.updated_at = date.today()
-                db.session.commit()
-                return 'updated comment'
-        return 'bad data'
+        if target_comment.user.id == current_user.id:
+            # if form.validate_on_submit():
+
+            target_comment.description = form.data['description']
+            target_comment.updated_at = date.today()
+            db.session.add(target_comment)
+            db.session.commit()
+            return target_comment.to_dict()
+        # return 'bad data'
 
 # Delete a comment by comment id
 @comment_routes.route('/<int:comment_id>/delete', methods=['DELETE'])
 def delete_comment(comment_id):
     if current_user.is_authenticated:
         comment_to_delete = Comment.query.get(comment_id)
-        if comment_to_delete.user.id == current_user.id:
+        if comment_to_delete.user_id == current_user.id:
             db.session.delete(comment_to_delete)
             db.session.commit()
         return {'comment': 'comment has been deleted'}

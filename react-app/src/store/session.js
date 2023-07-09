@@ -30,6 +30,7 @@ export const authenticate = () => async (dispatch) => {
 };
 
 export const login = (email, password) => async (dispatch) => {
+
 	const response = await fetch("/api/auth/login", {
 		method: "POST",
 		headers: {
@@ -40,7 +41,7 @@ export const login = (email, password) => async (dispatch) => {
 			password,
 		}),
 	});
-	console.log('response for login', response)
+
 	if (response.ok) {
 		const data = await response.json();
 		dispatch(setUser(data));
@@ -67,7 +68,7 @@ export const logout = () => async (dispatch) => {
 	}
 };
 
-export const signUp = (username, email, password) => async (dispatch) => {
+export const signUp = (username, email, password, first_name, last_name, age) => async (dispatch) => {
 	const response = await fetch("/api/auth/signup", {
 		method: "POST",
 		headers: {
@@ -77,9 +78,12 @@ export const signUp = (username, email, password) => async (dispatch) => {
 			username,
 			email,
 			password,
+			first_name,
+			last_name,
+			age
 		}),
 	});
-
+	console.log("res", response)
 	if (response.ok) {
 		const data = await response.json();
 		dispatch(setUser(data));

@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import './Home.css'
+import { Link } from 'react-router-dom';
 
 export default function DefaultHome() {
+    const history = useHistory();
     // let currentBGI = 0;
     const [currentBGI, setCurrentBGI] = useState(0)
 
@@ -57,7 +60,7 @@ export default function DefaultHome() {
       <h3 className='splash-page-subheaderp1'>Join the Snapr community, home to tens of billions of</h3>
       <h3 className='splash-page-subheaderp2'>photos and 2 million groups.</h3>
       <button className='start-for-free-btn'>
-        <span className='btn-text'>Start for free</span> 
+      <Link to="/signup" style={{ textDecoration: 'none' }}><span className='btn-text' style={{ color: 'black' }}>Start for free</span></Link>
       </button>
       <div className='splash-page-BGI'>
         <p className='splash-page-BGI1'>{backGroundInfo[currentBGI].title}</p>
@@ -65,15 +68,6 @@ export default function DefaultHome() {
       </div>
     </div>
   </div>
-  {/* <footer className='splash-page-prefooter'>
-    <div className='splash-page-prefooter-container'>
-        <span className='prefooter-text1'>By using this site, you agree with our use of cookies. Please see our privacy statement for more information.</span>
-        <span><button className='prefooter-btn'>Accept</button></span>
-        <span><button className='prefooter-btn'>Opt-out</button></span>
-        <span className='prefooter-text2'>Please select your preferences</span>
-    </div>
-  </footer> */}
-
   <footer className='splash-page-footer'>
     <span className='splash-span'>About</span>
     <span className='splash-span'>Jobs</span>
