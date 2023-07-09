@@ -30,10 +30,10 @@ export default function PhotostreamPage({ userImagesArr }) {
             {/* <p>{currDate - image.uploadedAt}d ago</p> */}
             
             </div>
-            <Link key={image.id} to={`/photos/${image.id}`}>
+            <NavLink style={{textDecoration: "none"}} key={image.id} to={`/photos/${image.id}`}>
               <img className="photo-stream-image" src={image.img} alt={image.title} />
               <p className="photo-stream-image-title">{image.title}</p>
-            </Link>
+            </NavLink>
               <p className="photo-stream-image-description">{image.description}</p>
             <div>
               <div className="photo-stream-view-date">
@@ -56,7 +56,7 @@ export default function PhotostreamPage({ userImagesArr }) {
               </div>
               <div className="photo-stream-icons">
                 <i className="fa-regular fa-star"></i>
-                <Link to={`/photos/${image.id}`}><i className="fa-regular fa-comment"></i></Link>
+                <NavLink style={{color: "black"}} to={`/photos/${image.id}`}><i className="fa-regular fa-comment"></i></NavLink>
                 <i className="fa-light fa-album-circle-plus"></i>
                 {/* <i className="fa-solid fa-tree"></i> */}
               </div>
