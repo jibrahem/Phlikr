@@ -56,8 +56,8 @@ export default function PhotostreamPage({ userImagesArr }) {
               </div>
               </div>
               <div className="photo-stream-icons">
-                <i style={{color: "white", fontSize: "20px"}}className="fa-regular fa-star"></i>
-                <NavLink style={{color: "white", fontSize: "20px"}} to={`/photos/${image.id}`}><i className="fa-regular fa-comment"></i></NavLink>
+                <i style={{color: "grey", fontSize: "20px"}}className="fa-regular fa-star"></i>
+                <NavLink style={{color: "grey", fontSize: "20px"}} to={`/photos/${image.id}`}><i className="fa-regular fa-comment"></i></NavLink>
                 <i className="fa-light fa-album-circle-plus"></i>
                 {/* <i className="fa-solid fa-tree"></i> */}
               </div>
