@@ -15,7 +15,7 @@ function ProfileFormCover() {
     let newCover = {
       cover_photo: coverPhoto,
     };
-
+    //temp
     let formType = "cover_photo";
     console.log("userInfoProp", user.id);
     const data = await dispatch(
