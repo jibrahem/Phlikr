@@ -25,7 +25,7 @@ export default function PhotostreamPage({ userImagesArr }) {
             {/* {console.log("image in user images page", image[0])} */}
             <div className="photo-stream-user-container">
             <h4 className="photo-stream-user-name">
-              {image.User.first_name} {image.User.last_name}'s post #{i + 1}
+              {image.User.first_name} {image.User.last_name}'s Post #{i + 1}
             </h4>
             {/* <p>{currDate - image.uploadedAt}d ago</p> */}
             </div>
