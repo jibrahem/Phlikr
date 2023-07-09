@@ -23,21 +23,12 @@ export default function PhotostreamPage({ userImagesArr }) {
         {userImagesArr[0].map((image) => (
           <div key={image.id}>
             {/* {console.log("image in user images page", image[0])} */}
-            <div className="photo-stream-user-date-container">
+            <div className="photo-stream-user-container">
             <h4 className="photo-stream-user-name">
               {image.User.first_name} {image.User.last_name}
             </h4>
             {/* <p>{currDate - image.uploadedAt}d ago</p> */}
-            <div className="photo-stream-date">
-            {(() => {
-                const uploadedOn = new Date(image.uploaded_on);
-                const timeDiff = Math.round((currDate - uploadedOn) / (1000 * 60 * 60 * 24));
-                if (timeDiff > 1) {
-                    return <p>{timeDiff}ds ago</p>
-                }
-                return <p>{timeDiff}d ago</p>
-            })()}
-            </div>
+            
             </div>
             <Link key={image.id} to={`/photos/${image.id}`}>
               <img className="photo-stream-image" src={image.img} alt={image.title} />
@@ -45,11 +36,23 @@ export default function PhotostreamPage({ userImagesArr }) {
             </Link>
               <p className="photo-stream-image-description">{image.description}</p>
             <div>
+              <div className="photo-stream-view-date">
               <div>
                 {image.view_count > 1000
                   ? parseFloat(image.view_count) / 1000 + "K"
                   : image.view_count}{" "}
                 views
+              </div>
+              <div className="photo-stream-date">
+                {(() => {
+                    const uploadedOn = new Date(image.uploaded_on);
+                    const timeDiff = Math.round((currDate - uploadedOn) / (1000 * 60 * 60 * 24));
+                    if (timeDiff > 1) {
+                        return <p>{timeDiff}ds ago</p>
+                    }
+                    return <p>{timeDiff}d ago</p>
+                })()}
+              </div>
               </div>
               <div className="photo-stream-icons">
                 <i className="fa-regular fa-star"></i>
