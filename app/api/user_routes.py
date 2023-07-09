@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, render_template
 from flask_login import login_required, current_user
-from app.models import User
+from app.models import User, Image
 from ..models import db
 from app.forms import UserDetailsForm
 
@@ -41,6 +41,12 @@ def user(id):
 def edit_user_details(user_id):
     form  = UserDetailsForm()
     return render_template("user_details_form.html", form=form)
+
+#get user showcase
+@user_routes.route('/showcase/<int:userId>')
+def get_user_showcase(userId):
+    showcase_images = Image.query.filter(Image.user_id == userId).filter(Image.showcase == True)
+    return {'showcase_images': [image.to_dict() for image in showcase_images]}
 
 #user detail edit route
 @user_routes.route('/<int:user_id>/details/<form_type>', methods=["POST"])

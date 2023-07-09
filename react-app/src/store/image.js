@@ -196,7 +196,7 @@ export const getUserFavImgThunk = (userId) => async (dispatch) => {
       // console.log("userFavImgs in res.ok: ", userFavImgs)
       dispatch(getUserFavImg(userFavImgs));
       return userFavImgs;
-    } 
+    }
   } catch (err) {
     const errors = await err.json();
     return errors;
@@ -237,11 +237,11 @@ export const deleteUserFavImgThunk = (userId, imageId) => async(dispatch) => {
     if (res.ok) {
       dispatch(deleteUserFavImg(imageId));
       return;
-    } 
+    }
   }catch (err) {
       const errors = await err.json();
       return errors;
-  } 
+  }
 };
 
 //reducer function
@@ -308,7 +308,7 @@ const imageReducer = (state = initialState, action) => {
       newState = {...state, userFavImg: {...state.userFavImg}};
       delete newState.userFavImg[action.image_id];
       return newState
-    }    
+    }
     default:
       return state;
   }

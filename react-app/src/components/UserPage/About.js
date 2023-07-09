@@ -2,36 +2,43 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 import { getUserImagesThunk } from "../../store/image";
-import { userInfoThunk } from "../../store/users";
+import { userInfoThunk, getUserShowcaseThunk } from "../../store/users";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import ProfileFormBio from "../ProfileForms/ProfileFormBio";
 import ProfileFormDetails from "../ProfileForms/ProfileFormDetails";
+import ShowcaseModal from "../ShowcaseModal";
+import OpenModalButton from "../OpenModalButton";
 
 export default function AboutPage({ userImagesProp, userInfoProp }) {
   const sessionUser = useSelector((state) => state.session.user);
   const userInfo = useSelector((state) => state.users.userInfo);
+  const userImages = useSelector((state) => state.images.userImages);
+  const userShowcase = useSelector((state) => state.users.userShowcase);
   const [showBioForm, setShowBioForm] = useState(false);
-  const [showShowcaseTitleForm, setShowShowcaseTitleForm] = useState(false);
   const [showDetailForm, setShowDetailForm] = useState(false);
+  const { userId } = useParams();
   const currDate = Date();
   const dispatch = useDispatch();
+
+  let userShowcaseArr = userShowcase["showcase_images"];
+
+  let userImageArr = Object.values(userImages)[0];
   useEffect(
     () => {
-      dispatch(userInfoThunk(userInfo.id));
+      dispatch(userInfoThunk(userId));
+      dispatch(getUserShowcaseThunk(userId));
     },
     showBioForm,
-    showDetailForm
+    showDetailForm,
+    userShowcase
   );
 
   if (userImagesProp.length < 1) return null;
+  if (userInfoProp.length < 1) return null;
 
   const bioClick = (e) => {
     console.log("bioform", showBioForm);
     setShowBioForm(!showBioForm);
-  };
-
-  const showcaseTitleClick = (e) => {
-    setShowShowcaseTitleForm(!showShowcaseTitleForm);
   };
 
   const detailClick = (e) => {
@@ -39,6 +46,7 @@ export default function AboutPage({ userImagesProp, userInfoProp }) {
   };
 
   console.log("userInfo in about page", userInfoProp);
+  console.log("User showcase arr info ", userShowcaseArr);
   return (
     <>
       <>About</>
@@ -58,7 +66,17 @@ export default function AboutPage({ userImagesProp, userInfoProp }) {
         {showBioForm ? <ProfileFormBio userInfo={userInfoProp} /> : <></>}
       </div>
       <div className="showcase">
-        display showcase photos here
+        <h3>{userInfo.first_name}'s Showcase</h3>
+        {userShowcaseArr
+          ? userShowcaseArr.map((image) => {
+              console.log("image in map", image.img);
+              return <img src={image.img} />;
+            })
+          : ""}
+        <OpenModalButton
+          buttonText="Update Showcase"
+          modalComponent={<ShowcaseModal userImageArr={userImageArr} />}
+        />
         {/* {!showShowcaseTitleForm ? <>Write a little about yourself</> : <></>}
         <button onClick={showcaseTitleClick}>Showcase title</button>
         {showShowcaseTitleForm ? <p>showcase title form</p> : <></>} */}

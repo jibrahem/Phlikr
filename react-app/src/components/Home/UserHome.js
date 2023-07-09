@@ -1,13 +1,15 @@
-import { useSelector, useDispatch, } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useRef, useState } from "react";
 import { getAllImageThunk } from "../../store/image";
 import { Link, useHistory } from "react-router-dom";
 import "./UserHome.css";
 import CommentModal from "../CommentModal";
-import OpenModalButton from '../OpenModalButton';
-import { getUserFavImgThunk, deleteUserFavImgThunk, addUserFavThunk} from "../../store/image";
-
-
+import OpenModalButton from "../OpenModalButton";
+import {
+  getUserFavImgThunk,
+  deleteUserFavImgThunk,
+  addUserFavThunk,
+} from "../../store/image";
 
 export default function UserHome() {
   const sessionUser = useSelector((state) => state.session.user);
@@ -27,32 +29,29 @@ export default function UserHome() {
   const dispatch = useDispatch();
 
   const userFavorite = async (imageId) => {
-
     const payload = {
       user_id: sessionUser.id,
       image_id: imageId,
-
-    }
+    };
     const res = [];
 
     for (let favImg of userFavImgArr) {
       // console.log("favimg in userFavorite function: ", favImg)
-      res.push(favImg.id)
-   }
+      res.push(favImg.id);
+    }
     //  console.log("res in the for loop: ", res);
     if (res.includes(imageId)) {
-     dispatch(deleteUserFavImgThunk(sessionUser.id, imageId))
-
-    
+      dispatch(deleteUserFavImgThunk(sessionUser.id, imageId));
     } else {
-      dispatch(addUserFavThunk(payload))
-      .then(dispatch(getUserFavImgThunk(sessionUser.id)))
+      dispatch(addUserFavThunk(payload)).then(
+        dispatch(getUserFavImgThunk(sessionUser.id))
+      );
     }
   };
 
   const setFavButton = () => {
-    setFav(true)
-  }
+    setFav(true);
+  };
 
   useEffect(() => {
     if (!showMenu) return;
@@ -63,7 +62,7 @@ export default function UserHome() {
       }
     };
 
-    document.addEventListener('click', closeMenu);
+    document.addEventListener("click", closeMenu);
 
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu]);
@@ -75,12 +74,12 @@ export default function UserHome() {
     dispatch(getUserFavImgThunk(sessionUser.id));
   }, []);
 
-  if (imagesArr.length < 1 || userFavImgArr.length < 1) return null;
+  if (imagesArr.length < 1) return null;
 
   return (
     <>
-      <div className='user-home-wrapper'>
-        <div className='user-home-banner'>
+      <div className="user-home-wrapper">
+        <div className="user-home-banner">
           <div className="act">
             <p>All Activity</p>
             <p>What's new?</p>
@@ -91,23 +90,24 @@ export default function UserHome() {
             <p>layout 3</p>
           </div> */}
         </div>
-        <div className='image-list-div'>
-
+        <div className="image-list-div">
           <ul>
-
             {imagesArr.map((image) => (
-              <li key={image.id} className='image-card'>
-                <p>{image.User.first_name} {image.User.last_name}</p>
+              <li key={image.id} className="image-card">
+                <p>
+                  {image.User.first_name} {image.User.last_name}
+                </p>
                 {(() => {
                   const uploadedOn = new Date(image.uploaded_on);
-                  const timeDiff = Math.round((currDate - uploadedOn) / (1000 * 60 * 60 * 24));
+                  const timeDiff = Math.round(
+                    (currDate - uploadedOn) / (1000 * 60 * 60 * 24)
+                  );
                   if (timeDiff > 1) {
-                    return <p>{timeDiff}ds ago</p>
+                    return <p>{timeDiff}ds ago</p>;
                   }
-                  return <p>{timeDiff}d ago</p>
+                  return <p>{timeDiff}d ago</p>;
                 })()}
                 <Link key={image.id} to={`/photos/${image.id}`}>
-
                   <div className="photo">
                     <img src={image.img} alt={image.title} />
                   </div>
@@ -117,7 +117,11 @@ export default function UserHome() {
                 </Link>
                 <p>{image.description}</p>
                 <div>
-                  <div>{image.view_count > 1000 ? parseFloat(image.view_count) / 1000 + "K" : image.view_count} views
+                  <div>
+                    {image.view_count > 1000
+                      ? parseFloat(image.view_count) / 1000 + "K"
+                      : image.view_count}{" "}
+                    views
                   </div>
 
                   <div className="icon">
@@ -126,28 +130,27 @@ export default function UserHome() {
                       id={(() => {
                         const res = [];
                         for (let favImg of userFavImgArr) {
-                          res.push(favImg.id)
-                       }
-                      //  console.log("res in the for loop: ", res);
-                       if (res.includes(image.id)) {
-                        return 'user-fav'
-                       } else {
-                        return 'not-user-fav'
-                       }
+                          res.push(favImg.id);
+                        }
+                        //  console.log("res in the for loop: ", res);
+                        if (res.includes(image.id)) {
+                          return "user-fav";
+                        } else {
+                          return "not-user-fav";
+                        }
                       })()}
-                      >
+                    >
                       <i className="fa-solid fa-star"></i>
                     </button>
 
                     {/* <AddUserFav image={image} /> */}
 
                     <Link to={`/photos/${image.id}`}>
-                  <i className="fa-regular fa-comment"></i>
-                  </Link>
+                      <i className="fa-regular fa-comment"></i>
+                    </Link>
                     <i className="fa-light fa-album-circle-plus"></i>
                     {/* <i className="fa-solid fa-tree"></i> we don't need the tree icon*/}
                   </div>
-
                 </div>
                 {/* </Link> */}
               </li>
@@ -157,5 +160,4 @@ export default function UserHome() {
       </div>
     </>
   );
-
 }
