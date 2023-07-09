@@ -8,26 +8,26 @@ export default function ProfileBanner({ userInfo, photoCount }) {
   const { userId } = useParams();
 
   const dispatch = useDispatch();
-
+  
   return (
     <>
       <div id='profile-banner-div>'>
-        <div>
+        <div className="profile-banner-top">
           <div id='cover-photo'>
             <img src={userInfo.cover_photo} />
           </div>
           <div id='profile-photo'>
             <img src={userInfo.profile_photo} />
             <div>
-              <h1>{userInfo.first_name} {userInfo.last_name}</h1>
+              <p className="profile-photo-name">{userInfo.first_name} {userInfo.last_name}</p>
             </div>
-          </div>
+          </div> 
         </div>
       </div>
       <div className="profile-navigation">
-        <NavLink to={`/${userInfo.id}/people`}>About</NavLink>
-        <NavLink to={`/${userInfo.id}/photos`}>Photostream</NavLink>
-        <NavLink to={`/${userInfo.id}/favorites`}>Faves</NavLink>
+        <NavLink style={{ color: "black", fontSize: "18px"}} to={`/${userInfo.id}/people`}>About</NavLink>
+        <NavLink style={{ color: "black", fontSize: "18px" }} to={`/${userInfo.id}/photos`}>Photostream</NavLink>
+        <NavLink style={{ color: "black", fontSize: "18px" }} to={`/${userInfo.id}/favorites`}>Faves</NavLink>
       </div>
     </>
   );

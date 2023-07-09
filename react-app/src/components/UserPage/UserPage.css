@@ -1,60 +1,53 @@
 /* Profile Banner*/
 #profile-banner-div {
- position: relative;
-}
-
-#cover-photo {
-    width: 100%;
-    height: 400px;
-    margin-top: 1rem;
-    border-bottom: 1px solid white;
-}
-
-#cover-photo img {
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-
-}
-
-#profile-photo {
-    width: 100%;
-    position: absolute;
-    top: 200px;
-    z-index: 1;
-    display: block;
-    left: 200px;
-
-}
-
-#profile-photo h1{
-    font-weight: 100;
-    color: white;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-
-#profile-photo img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-}
-
-.profile-navigation{
+    position: relative;
+   }
+.profile-banner-top {
     display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    background-color: white;
-    padding: .5rem;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    flex-direction: column;
 }
+   #cover-photo {
+       width: 100%;
+       height: 400px;
+       margin-top: 1rem;
+       border-bottom: 1px solid white;
+   }
+   
+   #cover-photo img {
+       width: 100%;
+       height: 100%;
+       z-index: 0;
+   
+   }
+   
+   #profile-photo {
+       width: 100%;
+  
+       /* top: 200px; */
+       /* z-index: 1; */
+       /* display: block; */
+       /* left: 200px; */
+        margin-top: -123px;
+        margin-left: 10px;
+   }
+   
+   #profile-photo h1{
+       font-weight: 100;
+       color: white;
+       font-family: Verdana, Geneva, Tahoma, sans-serif;
+   }
+   
+   #profile-photo img {
+       width: 100px;
+       height: 100px;
+       border-radius: 50%;
+   }
 
-.profile-navigation a{
-    color: rgb(60, 59, 59);
-}
-
-.profile-navigation a:hover{
-    border: bottom 2px solid rgb(58, 159, 227);
-}
+   .profile-photo-name {
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+   }
 
 
 
@@ -80,14 +73,14 @@
 
 .user-fav-div img {
     width: 100%;
-    height: fit-content
+    height: 100%;
 }
 
 #fav-star {
     display: flex;
     gap: 5px;
 }
-#fav-star i,
+#fav-star i, 
 #fav-star p {
     color: #FFFFFF;
 }
@@ -135,7 +128,7 @@
     gap: 5px;
 }
 
-#fav-comment i,
+#fav-comment i, 
 #fav-comment p {
     color: #FFFFFF;
     background-color: transparent;
@@ -150,5 +143,15 @@
 #fav-comment-div {
     width: 400px;
     position: absolute;
-    top: 1px
+    /* top:  */
+}
+
+/*  */
+.profile-navigation {
+    background-color: white;
+    color: black;
+    display: flex;
+    justify-content: center;
+    gap: 10rem;
+    font-family: Proxima Nova,helvetica neue,helvetica,arial,sans-serif;
 }
