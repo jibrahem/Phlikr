@@ -66,7 +66,7 @@ export default function SingleImage() {
                     <img src={singleImage.img} />
                     <div className="iconss">
                         {/* <i className="fa-regular fa-star"></i> */}
-                        {/* <Favorites imageId={singleImage.id} /> */}
+                        <Favorites imageId={singleImage.id} />
                         {singleImage.User.id === sessionUser.id ? 
                         <div onClick={editImg}>
                           <i className="fa-solid fa-pen-to-square"></i></div> : null}
@@ -121,8 +121,8 @@ export default function SingleImage() {
                             </div>
                         </div>
                     </div>
-                    <Comments
-                        image={singleImage} />
+                    {/* <Comments
+                        image={singleImage} /> */}
                     <div id='single-image-info-right'>
                         <div id='views-faves-comment'>
                             <p>{singleImage.view_count} views</p>

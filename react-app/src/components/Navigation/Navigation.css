@@ -139,9 +139,9 @@ nav {
 }
 
 .profile img {
-  height: 30px;
-  width: 30px;
-  border-radius: 15px;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
 }
 
 .profile button{
@@ -228,10 +228,8 @@ nav {
   background-color: #202123;
   position: fixed;
   width: 100%;
-}
-
-#nav-profile-img-div {
-
+  display: flex;
+  justify-content: space-between;
 }
 
 #nav-profile-img-div img {
@@ -252,7 +250,7 @@ nav {
   font-family: Proxima Nova, helvetica neue, helvetica, arial, sans-serif;
 }
 
-#nav-user-info-p {
+#nav-user-info p {
   margin-bottom: 20px;
   display: flex;
   flex-direction: column;
@@ -276,4 +274,18 @@ nav {
 }
 li .logout:hover{
   background-color: rgb(222, 219, 219);
+}
+
+
+#nav-upload-profile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  /* background-color: pink; */
+  padding-right: 20px;
+}
+
+#nav-upload-profile i {
+  font-size: 25px;
 }
