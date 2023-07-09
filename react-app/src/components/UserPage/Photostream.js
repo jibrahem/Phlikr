@@ -35,7 +35,7 @@ export default function PhotostreamPage({ userImagesArr }) {
             <NavLink style={{textDecoration: "none"}} key={image.id} to={`/photos/${image.id}`}>
               <img className="photo-stream-image" src={image.img} alt={image.title} />
             </NavLink>
-              <p className="photo-stream-image-description">{image.description}</p>
+              <p className="photo-stream-image-description">{ image.description.length < 30 ? image.description : image.description.substring(0,30) + "..."}</p>
             <div>
               <div className="photo-stream-view-date">
               <div>
