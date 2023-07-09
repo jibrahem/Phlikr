@@ -83,15 +83,6 @@ def update_image(id):
             return image_to_update.to_dict()
         return 'bad data'
 
-@image_routes.route('/showcase/<int:imageId>')
-def toggle_showcase(imageId):
-    image = Image.query.get(imageId)
-    if current_user.id == image.user_id:
-        image.showcase = not image.showcase
-        db.session.commit()
-        return 'showcase toggled'
-    return 'not your image'
-
 #GET ALL CURRENT USER IMAGES
 @image_routes.route('/current')
 # @login_required
@@ -109,6 +100,28 @@ def get_user_images(userId):
     images = Image.query.filter(Image.user_id == userId).all()
     return {'images' : [image.to_dict() for image in images]}
 
+#GET USER SHOWCASE IMAGES
+@image_routes.route('/showcase/<int:userId>')
+def get_user_showcase(userId):
+    showcase_images = Image.query.filter(Image.user_id == userId).filter(Image.showcase == True)
+    return {'showcase_images': [image.to_dict() for image in showcase_images]}
+
+def set_showcase(imageId, val):
+    print(imageId)
+    image = Image.query.get(imageId)
+    if current_user.id == image.user_id:
+        image.showcase = val
+        db.session.commit()
+        return 'showcase toggled'
+    return 'not your image'
+
+@image_routes.route('/update/showcase/<int:userId>', methods=["POST"])
+def update_showcase_form(userId):
+    showcase_update = request.get_json()
+    print('showcase requestjson', showcase_update)
+    for img in showcase_update:
+        set_showcase(img, showcase_update[img])
+    return 'nice'
 
 #POST AN IMAGE
 @image_routes.route('/<int:userId>/images', methods=['POST'])
@@ -129,7 +142,7 @@ def post_image(userId):
         print(form.data['img'])
         return new_image.to_dict()
         # return 'bad data'
-    
+
 
 
 # add fav in favorite table by user id
@@ -165,18 +178,18 @@ def user_favorite_toggle():
         db.session.commit()
         return 'Bad request'
 
-        
+
 #get user favorite images from user_favorite table
 @image_routes.route('/<int:userId>/user_favorite', methods=['GET'])
 def get_user_favorite(userId):
     # user_id = request.json.get('user_id')
 
-    try: 
+    try:
         user = User.query.get(userId)
 
-        if not user: 
+        if not user:
             return 'user not found', 404
-        
+
         favorites = user.favorites
         print("favotrites in the route: ", favorites)
 
@@ -184,36 +197,36 @@ def get_user_favorite(userId):
         print("result in the  route: ", result)
 
         return  result
-    
-    except Exception as e: 
+
+    except Exception as e:
         return {"error": str(e)}, 500
-    
+
 #delete user favorite image from user_favorite table
 @image_routes.route('/delete/<int:userId>/user_favorite/<int:imageId>', methods=['GET'])
 def delete_user_favorite(userId, imageId):
-    try: 
+    try:
         # print("userId in the delete user fav route: ", userId)
         # print("imageId in the delete user fav route: ", imageId)
         user = User.query.get(userId)
         image = Image.query.get(imageId)
 
-        if not user: 
+        if not user:
             return 'user not found', 404
-        
+
         user.favorites.remove(image)
         db.session.commit()
         return 'image succefully deleted'
-    
-    except Exception as e: 
+
+    except Exception as e:
         return {"error" : str(e)}, 500
-    
+
 
 #get all images from user_fav table
 @image_routes.route('/favorites/<int:imageId>/all')
 
 def get_all_fav_img(imageId):
     # print("in the get all fav image route~~~~")
-    try: 
+    try:
         fav_img = Image.query.get(imageId)
         # print("fav_img in the route: ", fav_img.favorites)
 
@@ -221,11 +234,10 @@ def get_all_fav_img(imageId):
         # print("result in get all images from user_fav table: ", result)
 
         return result
-    
-    except Exception as e: 
+
+    except Exception as e:
         return {"error" : str(e)}, 500
-        
 
-    
 
-    
+    except Exception as e:
+        return {"error" : str(e)}, 500

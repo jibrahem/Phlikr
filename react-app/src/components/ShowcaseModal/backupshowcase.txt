@@ -1,0 +1,16 @@
+          {/* <h3>Select Photos for Showcase</h3> */}
+
+          {console.log("userImgArr in showcase component", userImageArr)}
+
+          {userImageArr.map((image) => (
+            <>
+              <input
+                type="checkbox"
+                key={image.id}
+                // value={image.id}
+                // onChange={(event) => handleChange(index, event)}
+              />
+              <img className="showcase-preview" src={image.img} />
+            </>
+          ))}
+          {/* {input_list} */}

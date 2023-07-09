@@ -25,7 +25,10 @@ function ProfileFormDetails() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    console.log("occupation here", occupation);
     let newBio = {
+      occupation: occupation,
       hometown: hometown,
       city: city,
       country: country,
@@ -38,7 +41,7 @@ function ProfileFormDetails() {
       tumblr: tumblr,
     };
     console.log("userInfoProp", user.id);
-    const data = await dispatch(updateUserInfoThunk(newBio, user.id));
+    const data = await dispatch(updateUserInfoThunk(newBio, user.id, 'details'));
   };
 
   return (

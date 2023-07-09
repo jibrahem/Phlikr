@@ -3,7 +3,9 @@
 const ADD_USER_FAV = "users/ADD_USER_FAV";
 const GET_USER_INFO = "users/GET_USER_INFO";
 const UPDATE_USER_INFO = "users/UPDATE_USER_INFO";
-
+const UPDATE_USER_SHOWCASE = "users/UPDATE_SHOWCASE";
+const GET_USER_SHOWCASE = "users/GET_SHOWCASE";
+const DELETE_USER = "users/DELETE_USER";
 //action creator
 const addUserFavAction = (fav) => ({
   type: ADD_USER_FAV,
@@ -20,18 +22,73 @@ const updateUserInfoAction = (userInfo) => ({
   userInfo,
 });
 
+const updateUserShowcaseAction = (userShowcase) => ({
+  type: UPDATE_USER_SHOWCASE,
+  userShowcase,
+});
+
+const getUserShowcaseAction = (userShowcase) => ({
+  type: GET_USER_SHOWCASE,
+  userShowcase,
+});
+
+const deleteUserAction = () => ({
+  type: DELETE_USER,
+});
+
 //thunk creator
-export const updateUserInfoThunk = (userInfo, userId) => async (dispatch) => {
+export const updateUserShowcaseThunk =
+  (userId, showcaseInputs) => async (dispatch) => {
+    console.log("in update showcase thunk");
+    try {
+      const res = await fetch(`/api/users/update/showcase`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(showcaseInputs),
+      });
+      // console.log("update user showcase thunk midpoint");
+      if (res.ok) {
+        const userShowcase = await res.json();
+        dispatch(updateUserShowcaseAction(userShowcase));
+      }
+    } catch (err) {
+      return err;
+    }
+  };
+
+export const getUserShowcaseThunk = (userId) => async (dispatch) => {
   try {
-    const res = await fetch(`/api/users/${userId}/details`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(userInfo),
-    });
+    const res = await fetch(`/api/users/showcase/${userId}`);
+
+    if (res.ok) {
+      const userShowcase = await res.json();
+      console.log("user Showcase in thunk", userShowcase);
+      dispatch(getUserShowcaseAction(userShowcase));
+      return userId;
+    }
   } catch (err) {
     return err;
   }
 };
+
+export const updateUserInfoThunk =
+  (userInfo, userId, formType) => async (dispatch) => {
+    try {
+      const res = await fetch(`/api/users/${userId}/details/${formType}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(userInfo),
+      });
+
+      if (res.ok) {
+        let newUserInfo = await res.json();
+        console.log("res.json", newUserInfo);
+        dispatch(updateUserInfoAction(newUserInfo));
+      }
+    } catch (err) {
+      return err;
+    }
+  };
 
 export const userInfoThunk = (userId) => async (dispatch) => {
   //   console.log("userinfo thunk called", userId);
@@ -49,9 +106,20 @@ export const userInfoThunk = (userId) => async (dispatch) => {
   }
 };
 
+export const userDeleteThunk = (userId) => async (dispatch) => {
+  console.log("in delete thunk");
+  try {
+    const res = await fetch(`/api/users/deleteuser/${userId}`);
+    if (res.ok) {
+      dispatch(deleteUserAction());
+    }
+  } catch (err) {
+    return err;
+  }
+};
 
 //reducer function
-const initialState = { userFav: {}, userInfo: {} };
+const initialState = { userFav: {}, userInfo: {}, userShowcase: {} };
 
 const userReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -64,6 +132,33 @@ const userReducer = (state = initialState, action) => {
     case UPDATE_USER_INFO: {
       const newState = { ...state, userInfo: { ...state.userInfo } };
       newState.userInfo = action.userInfo;
+      return newState;
+    }
+    case GET_USER_SHOWCASE: {
+      const newState = { ...state, userShowcase: { ...state.userShowcase } };
+      newState.userShowcase = action.userShowcase;
+      return newState;
+    }
+    case DELETE_USER: {
+      const newState = {
+        ...state,
+        userFav: {},
+        userInfo: {},
+        userShowcase: {},
+      };
+      newState = newState;
+      return newState;
+    }
+    case UPDATE_USER_SHOWCASE: {
+      console.log(
+        "in update user showcase reducer usershowcase",
+        action.userShowcase
+      );
+      const newState = {
+        ...state,
+        userShowcase: { ...state.userShowcase },
+      };
+      newState.userShowcase = action.userShowcase;
       return newState;
     }
     default:

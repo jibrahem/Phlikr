@@ -18,7 +18,7 @@ class Image(db.Model):
     showcase = db.Column(db.Boolean(), default=False)
 
     user = db.relationship("User", back_populates="images")
-    comments = db.relationship("Comment", back_populates="image")
+    comments = db.relationship("Comment", cascade="delete, merge, save-update", back_populates="image")
 
     favorites = db.relationship("User", secondary = "user_favorites", back_populates="favorites")
 
@@ -48,14 +48,12 @@ class Image(db.Model):
             'occupation': self.user.occupation,
             }
         }
-    
+
     # @property
     # def _view_count(self):
     #     return self.view_count
-    
+
     # @_view_count.setter
     # def _view_count(self):
     #     self.view_count = 5
     #     # return self.view_count
-
-
