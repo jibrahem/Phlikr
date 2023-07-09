@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, render_template
-from flask_login import login_required, current_user
+from flask_login import login_required, current_user, logout_user
 from app.models import User, Image
 from ..models import db
 from app.forms import UserDetailsForm
@@ -17,11 +17,13 @@ def users():
     return jsonify({'users': [user.to_dict() for user in users]})
 
 
-@user_routes.route('/delete/<int:id>', methods=["DELETE"])
+@user_routes.route('/deleteuser/<int:id>')
 @login_required
 def delete_user(id):
     deleted_user = User.query.get(id)
     if deleted_user.id == current_user.id:
+        logout_user()
+        print(current_user)
         db.session.delete(deleted_user)
         db.session.commit()
     return 'User deleted'

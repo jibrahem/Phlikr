@@ -38,10 +38,10 @@ class User(db.Model, UserMixin):
     tumblr = db.Column(db.String(50))
 
 
-    images = db.relationship("Image", back_populates="user")
-    comments = db.relationship("Comment", back_populates='user')
+    images = db.relationship("Image", back_populates="user", cascade="delete, merge, save-update")
+    comments = db.relationship("Comment", back_populates='user', cascade="delete, merge, save-update")
 
-    favorites = db.relationship("Image", secondary = "user_favorites", back_populates="favorites")
+    favorites = db.relationship("Image", secondary = "user_favorites", cascade="delete, merge, save-update", back_populates="favorites")
 
     @property
     def password(self):

@@ -5,7 +5,7 @@ const GET_USER_INFO = "users/GET_USER_INFO";
 const UPDATE_USER_INFO = "users/UPDATE_USER_INFO";
 const UPDATE_USER_SHOWCASE = "users/UPDATE_SHOWCASE";
 const GET_USER_SHOWCASE = "users/GET_SHOWCASE";
-
+const DELETE_USER = "users/DELETE_USER";
 //action creator
 const addUserFavAction = (fav) => ({
   type: ADD_USER_FAV,
@@ -30,6 +30,10 @@ const updateUserShowcaseAction = (showcaseUpdate) => ({
 const getUserShowcaseAction = (userShowcase) => ({
   type: GET_USER_SHOWCASE,
   userShowcase,
+});
+
+const deleteUserAction = () => ({
+  type: DELETE_USER,
 });
 
 //thunk creator
@@ -70,6 +74,10 @@ export const updateUserInfoThunk =
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(userInfo),
       });
+
+      if (res.ok) {
+        dispatch(updateUserInfoAction(userInfo));
+      }
     } catch (err) {
       return err;
     }
@@ -85,6 +93,18 @@ export const userInfoThunk = (userId) => async (dispatch) => {
       //   console.log("userInfo in thunk after res", userInfo);
       dispatch(getUserInfoAction(userInfo));
       return userInfo;
+    }
+  } catch (err) {
+    return err;
+  }
+};
+
+export const userDeleteThunk = (userId) => async (dispatch) => {
+  console.log("in delete thunk");
+  try {
+    const res = await fetch(`/api/users/deleteuser/${userId}`);
+    if (res.ok) {
+      dispatch(deleteUserAction());
     }
   } catch (err) {
     return err;
@@ -110,6 +130,16 @@ const userReducer = (state = initialState, action) => {
     case GET_USER_SHOWCASE: {
       const newState = { ...state, userShowcase: { ...state.userShowcase } };
       newState.userShowcase = action.userShowcase;
+      return newState;
+    }
+    case DELETE_USER: {
+      const newState = {
+        ...state,
+        userFav: {},
+        userInfo: {},
+        userShowcase: {},
+      };
+      newState = newState;
       return newState;
     }
     default:
