@@ -4,6 +4,7 @@ import { Link, NavLink } from "react-router-dom";
 import { getUserImagesThunk } from "../../store/image";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import './Photostream.css'
+import Favorites from "../Favorites";
 
 
 export default function PhotostreamPage({ userImagesArr }) {
@@ -56,7 +57,8 @@ export default function PhotostreamPage({ userImagesArr }) {
               </div>
               </div>
               <div className="photo-stream-icons">
-                <i style={{color: "grey", fontSize: "20px"}}className="fa-regular fa-star"></i>
+                {/* <i style={{color: "grey", fontSize: "20px"}}className="fa-regular fa-star"></i> */}
+                <Favorites imageId={image.id} />
                 <NavLink style={{color: "grey", fontSize: "20px"}} to={`/photos/${image.id}`}><i className="fa-regular fa-comment"></i></NavLink>
                 <i className="fa-light fa-album-circle-plus"></i>
                 {/* <i className="fa-solid fa-tree"></i> */}
