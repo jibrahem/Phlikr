@@ -1,3 +1,5 @@
+
+
 .image-list-div li {
     display: flex;
     flex-direction: column;
@@ -39,6 +41,7 @@
     margin-top: 6rem;
     margin-left: 1rem;
     margin-right: 1rem;
+    font-family: Proxima Nova,helvetica neue,helvetica,arial,sans-serif;
 }
 
 .image-list-div a {
@@ -48,7 +51,8 @@
 .act {
     display: flex;
     flex-direction: row;
-    gap: 1rem
+    gap: 1rem;
+    margin-bottom: 10px;
 }
 
 .layout {
@@ -154,4 +158,23 @@
     color: #F5F5F5;
     font-size: 20px;
     background-color: #FFFFFF;
+}
+
+
+.home-question-mark {
+    border: 2px solid;
+    border-radius: 100%;
+    width: 20px;
+    display: flex;
+    justify-content: center;
+    border-color: #006dac;
+}
+
+.triangle {
+    width: 10px;
+      height: 10px;
+      border-left: 2.5px solid transparent;
+      border-right: 2.5px solid transparent;
+      border-bottom: 10px solid #898989;
+      transform: rotate(180deg);
 }

@@ -82,8 +82,9 @@ export default function UserHome() {
       <div className='user-home-wrapper'>
         <div className='user-home-banner'>
           <div className="act">
-            <p>All Activity</p>
-            <p>What's new?</p>
+            <p style={{color: "#898989"}}>All Activity</p>
+            <div class="triangle"></div>
+            <div style={{color: "#006dac", display: "flex", fontWeight: "600"}} ><div className="home-question-mark">?</div>What's new?</div>
           </div>
           {/* <div className="layout">
             <p>layout 1</p>
