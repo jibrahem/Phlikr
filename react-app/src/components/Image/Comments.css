@@ -1,18 +1,13 @@
 .comment-button button {
     cursor: pointer;
-
-}
-
-.hidden {
-    display: none;
 }
 
 .comment {
     display: flex;
-    flex-direction: column;
-    margin-left: 4rem;
+    flex-direction: row;
+    margin-left: 3rem;
     width: 420px;
-    justify-content: space-between;
+    gap:1rem
 }
 
 .profile-pic .iconic {
@@ -31,12 +26,19 @@
     list-style: none;
 }
 
-.delete-modal{
+/* .delete-modal{
     display: none;
+} */
+
+.prof-com{
+    display: flex;
+    flex-direction: column;
+    width: 380px;
+    justify-content: space-between;
 }
-div.prof-com:hover .delete-modal {
+/* div.prof-com:hover .delete-modal {
     display: block;
-}
+} */
 
 #single-image-comment-div img {
     height: 50px;
@@ -90,6 +92,7 @@ div.prof-com:hover .delete-modal {
     display: flex;
     flex-direction: column;
     background-color: rgb(50, 49, 49);
+    position: relative;
 
 }
 
@@ -107,6 +110,7 @@ div.prof-com:hover .delete-modal {
     margin-right: 1rem;
     margin-bottom: 1rem;
     padding-bottom: .5rem;
+    /* position: relative; */
 }
 
 #single-image-info-div {
@@ -122,6 +126,7 @@ div.prof-com:hover .delete-modal {
 .form-image {
     display: flex;
     flex-direction: row;
+    margin-top: 1rem;
 }
 
 .profile-pic {
@@ -135,3 +140,24 @@ div.prof-com:hover .delete-modal {
     width: 30px;
     border-radius: 15px;
 }
+
+#delete-img-div {
+    position: absolute;
+    bottom: 50px;
+    right: 10px;
+    background-color: pink;
+    padding: 10px;
+    border-radius: 3px;
+    background-color: #FFFFFF;
+}
+
+#delete-img-div p {
+    color: red;
+    cursor: pointer;
+}
+
+#delete-img-div p:hover {
+    background-color: #ECF1F4;
+}
+
+

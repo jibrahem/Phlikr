@@ -6,24 +6,38 @@ import './updatePhoto.css';
 
 
 export default function UpdatePhoto() {
-    const dispatch = useDispatch;
+    const dispatch = useDispatch();
     const history = useHistory();
     const sessionUser = useSelector((state) => state.session.user);
-    const [title, setTitle] = useState(sessionUser.title);
-    const [description, setDescription] = useState(sessionUser.description);
-    const [img, setImg] = useState(sessionUser.img);
+    const editImg = useSelector((state) => state.images.singleImage)
+    console.log("editImg in update image component: ", editImg)
+
+    // const [title, setTitle] = useState(sessionUser.title);
+    const [editTitle, setTitle] = useState('');
+    // const [description, setDescription] = useState(sessionUser.description);
+    const [editDescription, setDescription] = useState('');
+    // const [img, setImg] = useState(sessionUser.img);
+    const [editImgUrl, setImg] = useState(editImg.img);
+
 
     console.log("hello")
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
+      console.log("handleSubmit function is running~~~~")
         e.preventDefault();
         const imageDetails = {
-            title,
-            description,
-            img
+          // user_id : sessionUser.id,
+          title : editTitle,
+          description : editDescription,
+          img : editImgUrl,
         }
-        const data = await dispatch(updateImageThunk(imageDetails))
-        history.push('/');
+        
+      console.log("before dispatch updatedImageThunk~~~~~~~~~");
+      // const data = await dispatch(updateImageThunk(imageDetails))
+      dispatch(updateImageThunk(imageDetails, editImg.id ))
+      console.log("after dispatch updatedImageThunk~~~~~~~~~");
+
+      history.push('/');
     }
     
     return (
@@ -42,9 +56,9 @@ export default function UpdatePhoto() {
             <br></br>
             <input
               type="text"
-              // placeholder="Title"
+              placeholder={editImg.title}
               className='update-image-title'
-              value={title}
+              value={editTitle}
               onChange={(e) => setTitle(e.target.value)}
               required
               style={{ fontFamily: 'Proxima Nova, Helvetica Neue, Helvetica, Arial, sans-serif', 
@@ -57,11 +71,11 @@ export default function UpdatePhoto() {
           <br></br>
             <input 
                type="text" 
-              //  placeholder="Image Url"
+               placeholder={editImg.img}
                className='update-image-url'
-               value={img}
+               value={editImgUrl}
                onChange={(e) => setImg(e.target.value)}
-               required
+              //  required
                style={{ fontFamily: 'Proxima Nova, Helvetica Neue, Helvetica, Arial, sans-serif', 
                         fontSize: "14px"
                }}  
@@ -72,9 +86,9 @@ export default function UpdatePhoto() {
             <br></br>
             <textarea
               type="textarea"
-              // placeholder="Description"
+              placeholder={editImg.description}
               className='update-image-description'
-              value={description}
+              value={editDescription}
               onChange={(e) => setDescription(e.target.value)}
               required
               style={{ fontFamily: 'Proxima Nova, Helvetica Neue, Helvetica, Arial, sans-serif', 

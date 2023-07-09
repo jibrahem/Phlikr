@@ -1,29 +1,36 @@
-/* Profile Banner*/
+/* Profile Banner
 #profile-banner-div {
  position: relative;
 }
 
 #cover-photo {
     width: 100%;
-    /* margin-top: */
+    height: 400px;
+    margin-top: 1rem;
+    border-bottom: 1px solid white;
 }
 
 #cover-photo img {
     width: 100%;
-    height: 400px;
+    height: 100%;
     z-index: 0;
+
 }
 
 #profile-photo {
     width: 100%;
     position: absolute;
     top: 200px;
-
     z-index: 1;
-    display: flex;
-    justify-content: flex-start;
-    padding-left: 200px;
+    display: block;
+    left: 200px;
 
+}
+
+#profile-photo h1{
+    font-weight: 100;
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 #profile-photo img {
@@ -32,16 +39,27 @@
     border-radius: 50%;
 }
 
-   .profile-photo-name {
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-   }
+.profile-navigation{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    background-color: white;
+    padding: .5rem;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.profile-navigation a{
+    color: rgb(60, 59, 59);
+}
+
+.profile-navigation a:hover{
+    border: bottom 2px solid rgb(58, 159, 227);
+}
 
 
 
 /* Faves*/
-#user-fav-container {
+/* #user-fav-container {
     padding: 30px 10%;
 }
 
@@ -62,7 +80,7 @@
 
 .user-fav-div img {
     width: 100%;
-    height: 100%;
+    height: fit-content
 }
 
 #fav-star {
@@ -113,7 +131,7 @@
 #fav-comment button {
     border: none;
     background-color: transparent;
-    /* display: flex; */
+    /* display: flex;
     gap: 5px;
 }
 
@@ -132,15 +150,5 @@
 #fav-comment-div {
     width: 400px;
     position: absolute;
-    /* top: */
-}
-
-/*  */
-.profile-navigation {
-    background-color: white;
-    color: black;
-    display: flex;
-    justify-content: center;
-    gap: 10rem;
-    font-family: Proxima Nova,helvetica neue,helvetica,arial,sans-serif;
-}
+    top: 1px
+} */ 
