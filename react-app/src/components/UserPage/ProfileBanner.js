@@ -16,16 +16,16 @@ export default function ProfileBanner({ userInfo, photoCount }) {
           <div id='cover-photo'>
             <img src={userInfo.cover_photo} />
           </div>
-          <div id='profile-photo'>
+          {/* <div id='profile-photo'>
             <img src={userInfo.profile_photo} />
             <div>
               <p>{userInfo.first_name} {userInfo.last_name}</p>
             </div>
-          </div> 
+          </div>  */}
         </div>
       </div>
       <div className="profile-navigation">
-        <NavLink style={{ color: "black", fontSize: "18px" }} to={`/${userInfo.id}/people`}>About</NavLink>
+        <NavLink style={{ color: "black", fontSize: "18px"}} to={`/${userInfo.id}/people`}>About</NavLink>
         <NavLink style={{ color: "black", fontSize: "18px" }} to={`/${userInfo.id}/photos`}>Photostream</NavLink>
         <NavLink style={{ color: "black", fontSize: "18px" }} to={`/${userInfo.id}/favorites`}>Faves</NavLink>
       </div>

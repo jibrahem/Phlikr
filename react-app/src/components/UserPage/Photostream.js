@@ -49,9 +49,9 @@ export default function PhotostreamPage({ userImagesArr }) {
                     const uploadedOn = new Date(image.uploaded_on);
                     const timeDiff = Math.round((currDate - uploadedOn) / (1000 * 60 * 60 * 24));
                     if (timeDiff > 1) {
-                        return <p>{timeDiff}ds ago</p>
+                        return <p>{timeDiff} days ago</p>
                     }
-                    return <p>{timeDiff}d ago</p>
+                    return <p>{timeDiff} day ago</p>
                 })()}
               </div>
               </div>
