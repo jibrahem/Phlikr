@@ -23,22 +23,22 @@ export default function UserPage() {
 
   //   const photoCount = userImagesArr[0].length;
   useEffect(() => {
-    console.log("userId before dispatch in userpage", userId);
+    // console.log("userId before dispatch in userpage", userId);
     dispatch(getUserImagesThunk(parseInt(userId)));
     dispatch(userInfoThunk(parseInt(userId)));
   }, []);
 
-  console.log("userinfo", userInfo);
+  // console.log("userinfo", userInfo);
   if (userImagesArr.length < 1) {
-    console.log("info not loaded yet");
+    // console.log("info not loaded yet");
     return null;
   } else {
-    console.log("info loaded ", userImagesArr);
-    console.log("userinfo", userInfo);
+    // console.log("info loaded ", userImagesArr);
+    // console.log("userinfo", userInfo);
   }
 
   if (!userInfo) return null;
-  console.log("userImagesArr", userImagesArr);
+  // console.log("userImagesArr", userImagesArr);
 
   return (
     <>
