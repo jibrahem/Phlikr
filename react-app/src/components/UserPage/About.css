@@ -1,7 +1,7 @@
 .about-container {
     padding-top: 2vh;
-    width:100vw;
-    display:flex;
+    width: 100vw;
+    display: flex;
     justify-content: center;
     font-family: Proxima Nova
 }
@@ -12,7 +12,7 @@
     background-color: white;
 }
 
-.about-wrapper > div {
+.about-wrapper>div {
     border-top: 2px solid rgb(215, 212, 212);
     border-width: 1px;
     padding-top: 30px;
@@ -23,11 +23,12 @@
     display: flex;
 
 }
+
 .about-wrapper {
     width: 80vw;
     /* padding: 50px; */
     /* margin: 20px; */
-    display:flex;
+    display: flex;
     flex-direction: column;
 }
 
@@ -36,17 +37,18 @@
     display: flex;
     flex-direction: column;
 }
+
 .about-biography button {
     width: 100px;
     align-self: flex-end;
 }
 
 
-.about-showcase  {
+.about-showcase {
     min-height: 200px;
     max-height: 600px;
     overflow: hidden;
-    display:flex;
+    display: flex;
     flex-direction: column;
 
 }
@@ -61,7 +63,7 @@
     flex-direction: row;
 }
 
-.showcase-item-wrapper{
+.showcase-item-wrapper {
     width: 150px;
     height: 150px;
     overflow: hidden;
@@ -80,6 +82,7 @@
     display: flex;
     flex-direction: column;
 }
+
 .about-details button {
     width: 100px;
     align-self: flex-end;
@@ -98,7 +101,7 @@
 .detail-item {
     padding-bottom: 30px;
     width: 15vw;
-    display:flex;
+    display: flex;
     flex-direction: row;
     justify-content: space-between;
     justify-items: left;
@@ -107,4 +110,14 @@
 
 .detail-label {
     color: grey;
+}
+
+.details-form-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.profile-form-label {
+    display: flex;
+    flex-direction: row;
 }

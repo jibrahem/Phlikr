@@ -7,6 +7,11 @@
     height: 300px;
 }
 
+.profile-photo-wrapper img:hover {
+    filter: brightness(30%);
+    transition: .5s;
+}
+
 #profile-navigation {
     height: 50px;
     background-color: white;
@@ -17,7 +22,7 @@
     padding-right: 18vw;
     justify-content: flex-start;
     align-items: center;
-    font-family: Proxima Nova;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .profile-photo-wrapper li {
@@ -51,8 +56,8 @@
 
 .profile-name {
     color: white;
-    font-size: 30px;
-    font-weight: bold;
+    font-size: 33px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 #profile-banner-div {

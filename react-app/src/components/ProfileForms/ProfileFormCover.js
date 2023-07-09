@@ -24,6 +24,7 @@ function ProfileFormCover() {
     const data = await dispatch(
       updateUserInfoThunk(newCover, user.id, formType)
     );
+    closeModal()
   };
 
   return (
@@ -40,7 +41,7 @@ function ProfileFormCover() {
           defaultValue={user.cover_photo}
         />
         <div className="banner-button">
-          <button type="submit" onClick={closeModal} className="cover-form-submit">
+          <button type="submit" className="cover-form-submit">
             Save
           </button>
         </div>
