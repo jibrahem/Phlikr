@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, render_template
+from flask import Blueprint, jsonify, render_template, request
 from flask_login import login_required, current_user, logout_user
 from app.models import User, Image
 from ..models import db
@@ -42,6 +42,7 @@ def user(id):
 @user_routes.route('/<int:user_id>/details')
 def edit_user_details(user_id):
     form  = UserDetailsForm()
+    
     return render_template("user_details_form.html", form=form)
 
 #get user showcase
@@ -49,6 +50,25 @@ def edit_user_details(user_id):
 def get_user_showcase(userId):
     showcase_images = Image.query.filter(Image.user_id == userId).filter(Image.showcase == True)
     return {'showcase_images': [image.to_dict() for image in showcase_images]}
+
+#set showcase helper
+def set_showcase(imageId, val):
+    print(imageId)
+    image = Image.query.get(imageId)
+    if current_user.id == image.user_id:
+        image.showcase = val
+        db.session.commit()
+        return 'showcase toggled'
+    return 'not your image'
+
+#update showcase form
+@user_routes.route('/update/showcase', methods=["POST"])
+def update_showcase_form():
+    showcase_update = request.get_json()
+    print('showcase requestjson', showcase_update)
+    for img in showcase_update:
+        set_showcase(img, showcase_update[img])
+    return get_user_showcase(current_user.id )
 
 #user detail edit route
 @user_routes.route('/<int:user_id>/details/<form_type>', methods=["POST"])
@@ -75,4 +95,4 @@ def user_details(user_id,form_type):
         update_user.pinterest = form.data['pinterest']
         update_user.tumblr = form.data['tumblr']
     db.session.commit()
-    return 'user details updated'
+    return update_user.to_dict()

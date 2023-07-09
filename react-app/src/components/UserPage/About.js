@@ -71,18 +71,18 @@ export default function AboutPage({ userImagesProp, userInfoProp }) {
     <div className="about-container">
       <div className="about-wrapper">
         <div className="about-biography">
+          <button onClick={bioClick}>Edit Bio</button>
           {!showBioForm ? (
-            <>
+            <div className="">
               {userInfo.biography ? (
                 userInfo.biography
               ) : (
                 <>Write a little about yourself</>
               )}
-            </>
+            </div>
           ) : (
             <></>
           )}
-          <button onClick={bioClick}>Edit Bio</button>
           {showBioForm ? <ProfileFormBio userInfo={userInfoProp} /> : <></>}
         </div>
         <div className="about-showcase">
@@ -113,6 +113,7 @@ export default function AboutPage({ userImagesProp, userInfoProp }) {
         {showShowcaseTitleForm ? <p>showcase title form</p> : <></>} */}
         </div>
         <div className="about-details">
+          <button onClick={detailClick}>Edit user details</button>
           {showDetailForm ? (
             <ProfileFormDetails />
           ) : (
@@ -199,8 +200,6 @@ export default function AboutPage({ userImagesProp, userInfoProp }) {
               )}
             </div>
           )}
-
-          <button onClick={detailClick}>Edit user details</button>
         </div>
         <button onClick={deleteUserClick}>DELETE user</button>
       </div>

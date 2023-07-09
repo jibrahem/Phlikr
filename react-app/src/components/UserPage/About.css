@@ -6,24 +6,22 @@
     font-family: Proxima Nova
 }
 
-.about-container > div {
+.about-wrapper {
     border: solid rgb(215, 212, 212);
     border-width: 1px;
     background-color: white;
 }
 
-.about-container > div > div {
-    /* border: solid; */
+.about-wrapper > div {
     border-top: 2px solid rgb(215, 212, 212);
     border-width: 1px;
     padding-top: 30px;
     padding-left: 8vw;
-    padding-bottom: 30px;
+    /* padding-bottom: 30px; */
     padding-right: 2vw;
-    /* margin: 20px; */
     background-color: white;
     display: flex;
-    justify-content: space-between;
+
 }
 .about-wrapper {
     width: 80vw;
@@ -35,7 +33,14 @@
 
 .about-biography {
     height: 150px;
+    display: flex;
+    flex-direction: column;
 }
+.about-biography button {
+    width: 100px;
+    align-self: flex-end;
+}
+
 
 .about-showcase  {
     min-height: 200px;
@@ -72,14 +77,23 @@
 .about-details {
     min-height: 200px;
     max-height: 350px;
+    display: flex;
+    flex-direction: column;
+}
+.about-details button {
+    width: 100px;
+    align-self: flex-end;
 }
 
 .profile-details {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    column-gap: 18vw;
+    column-gap: 5vw;
+    min-height: 200px;
+    max-height: 350px;
 }
+
 
 .detail-item {
     padding-bottom: 30px;

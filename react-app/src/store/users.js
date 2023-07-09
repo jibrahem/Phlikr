@@ -22,9 +22,9 @@ const updateUserInfoAction = (userInfo) => ({
   userInfo,
 });
 
-const updateUserShowcaseAction = (showcaseUpdate) => ({
+const updateUserShowcaseAction = (userShowcase) => ({
   type: UPDATE_USER_SHOWCASE,
-  showcaseUpdate,
+  userShowcase,
 });
 
 const getUserShowcaseAction = (userShowcase) => ({
@@ -41,11 +41,16 @@ export const updateUserShowcaseThunk =
   (userId, showcaseInputs) => async (dispatch) => {
     console.log("in update showcase thunk");
     try {
-      const res = await fetch(`/api/images/update/showcase/${userId}`, {
+      const res = await fetch(`/api/users/update/showcase`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(showcaseInputs),
       });
+      // console.log("update user showcase thunk midpoint");
+      if (res.ok) {
+        const userShowcase = await res.json();
+        dispatch(updateUserShowcaseAction(userShowcase));
+      }
     } catch (err) {
       return err;
     }
@@ -76,7 +81,9 @@ export const updateUserInfoThunk =
       });
 
       if (res.ok) {
-        dispatch(updateUserInfoAction(userInfo));
+        let newUserInfo = await res.json();
+        console.log("res.json", newUserInfo);
+        dispatch(updateUserInfoAction(newUserInfo));
       }
     } catch (err) {
       return err;
@@ -140,6 +147,18 @@ const userReducer = (state = initialState, action) => {
         userShowcase: {},
       };
       newState = newState;
+      return newState;
+    }
+    case UPDATE_USER_SHOWCASE: {
+      console.log(
+        "in update user showcase reducer usershowcase",
+        action.userShowcase
+      );
+      const newState = {
+        ...state,
+        userShowcase: { ...state.userShowcase },
+      };
+      newState.userShowcase = action.userShowcase;
       return newState;
     }
     default:
