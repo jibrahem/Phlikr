@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { getSingleImageThunk, getUserFavImgThunk, getAllFavImguserThunk, deleteUserFavImgThunk, addUserFavThunk } from '../store/image'
+import { getAllImageThunk, getSingleImageThunk, getUserFavImgThunk, getAllFavImguserThunk, deleteUserFavImgThunk, addUserFavThunk } from '../store/image'
 import './Home/UserHome.css'
 import { useEffect } from "react";
 
@@ -30,12 +30,15 @@ export default function Favorites({ imageId }) {
          dispatch(deleteUserFavImgThunk(sessionUser.id, imageId))
          .then(dispatch(getUserFavImgThunk(sessionUser.id)))
          .then(dispatch(getAllFavImguserThunk(imageId)))
-         .then(dispatch(getSingleImageThunk(imageId)))
+        //  .then(dispatch(getSingleImageThunk(imageId)))
+         .then(dispatch(getAllImageThunk()))
         } else {
           dispatch(addUserFavThunk(payload))
           .then(dispatch(getUserFavImgThunk(sessionUser.id)))
           .then(dispatch(getAllFavImguserThunk(imageId)))
-          .then(dispatch(getSingleImageThunk(imageId)))
+          // .then(dispatch(getSingleImageThunk(imageId)))
+          .then(dispatch(getAllImageThunk()))
+
         }
     };
     
@@ -49,21 +52,35 @@ export default function Favorites({ imageId }) {
         <>
         <button
             onClick={() => userFavorite(imageId)}
-            id={(() => {
+            id='favorite-button'
+            // id={(() => {
+            // const res = [];
+            // for (let favImg of userFavImgArr) {
+            //     res.push(favImg.id)
+            // }
+            // //  console.log("res in the for loop: ", res);
+            // if (res.includes(imageId)) {
+            // return 'user-fav'
+            // } else {
+            // return 'not-user-fav'
+            // }
+            // })()}
+        > 
+
+          {(() => {
             const res = [];
             for (let favImg of userFavImgArr) {
                 res.push(favImg.id)
             }
             //  console.log("res in the for loop: ", res);
             if (res.includes(imageId)) {
-            return 'user-fav'
+            return <i class="fa-solid fa-star"></i>
             } else {
-            return 'not-user-fav'
+            return <i className="fa-regular fa-star"></i>
             }
             })()}
-            >
-            <i className="fa-solid fa-star"></i>
-        </button>
+          </button>
+       
         </>
     )
 };

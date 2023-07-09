@@ -131,8 +131,17 @@ export default function SingleImage() {
                     <div id='single-image-info-right'>
                         <div id='views-faves-comment'>
                             <p>{singleImage.view_count} views</p>
-                            <p>faves</p>
-                            <p>comment counts</p>
+                            <p>{singleImage.image_favorites_count} faves</p>
+                            {(() => {
+                              if(singleImage.image_comment_count === 1) {
+                                return <p>{singleImage.image_comment_count} comment</p>
+                              } else if(singleImage.image_comment_count === 0) {
+                                return <p>Be the first to leave a comment!</p>
+                              } else {
+                                return <p>{singleImage.image_comment_count} comments</p>
+                              }
+                            })()}
+                            
                             <p>Uploaded on {singleImage.uploaded_on}</p>
                             <i className="fa-regular fa-copyright"></i>
                             <p>All rights reserved</p>
