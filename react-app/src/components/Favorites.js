@@ -8,7 +8,7 @@ export default function Favorites({ imageId }) {
     const sessionUser = useSelector((state) => state.session.user);
     const userFavImagesStore = useSelector((state) => state.images.userFavImg);
     const userFavImgArr = Object.values(userFavImagesStore);
-    console.log("userFavImagArr in Favorites component: ", userFavImgArr)
+    // console.log("userFavImagArr in Favorites component: ", userFavImgArr)
 
     const dispatch = useDispatch();
 
@@ -39,11 +39,11 @@ export default function Favorites({ imageId }) {
         }
     };
     
-    useEffect(() => {
-        dispatch(getUserFavImgThunk(sessionUser.id));
-        dispatch(getAllFavImguserThunk(imageId))
-        dispatch(getSingleImageThunk(imageId));
-    }, [dispatch, sessionUser.id, imageId])
+    // useEffect(() => {
+    //     dispatch(getUserFavImgThunk(sessionUser.id));
+    //     dispatch(getAllFavImguserThunk(imageId))
+    //     dispatch(getSingleImageThunk(imageId));
+    // }, [dispatch, sessionUser.id, imageId])
 
     return (
         <>
