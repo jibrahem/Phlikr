@@ -181,7 +181,7 @@ def get_user_favorite(userId):
         print("favotrites in the route: ", favorites)
 
         result= [image.to_dict() for image in  favorites]
-        print("result in the route: ", result)
+        print("result in the  route: ", result)
 
         return  result
     
@@ -192,8 +192,8 @@ def get_user_favorite(userId):
 @image_routes.route('/delete/<int:userId>/user_favorite/<int:imageId>', methods=['GET'])
 def delete_user_favorite(userId, imageId):
     try: 
-        print("userId in the delete user fav route: ", userId)
-        print("imageId in the delete user fav route: ", imageId)
+        # print("userId in the delete user fav route: ", userId)
+        # print("imageId in the delete user fav route: ", imageId)
         user = User.query.get(userId)
         image = Image.query.get(imageId)
 
@@ -203,6 +203,24 @@ def delete_user_favorite(userId, imageId):
         user.favorites.remove(image)
         db.session.commit()
         return 'image succefully deleted'
+    
+    except Exception as e: 
+        return {"error" : str(e)}, 500
+    
+
+#get all images from user_fav table
+@image_routes.route('/favorites/<int:imageId>/all')
+
+def get_all_fav_img(imageId):
+    # print("in the get all fav image route~~~~")
+    try: 
+        fav_img = Image.query.get(imageId)
+        # print("fav_img in the route: ", fav_img.favorites)
+
+        result = [image.to_dict() for image in fav_img.favorites]
+        # print("result in get all images from user_fav table: ", result)
+
+        return result
     
     except Exception as e: 
         return {"error" : str(e)}, 500

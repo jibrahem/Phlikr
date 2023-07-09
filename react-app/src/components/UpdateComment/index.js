@@ -8,7 +8,7 @@ import { updateCommentThunk } from "../../store/comment";
 
 
 function UpdateComment(image, comment) {
-    
+
     const dispatch = useDispatch();
     const [showMenu, setShowMenu] = useState(true);
     const [errors, setErrors] = useState([]);
@@ -70,9 +70,12 @@ function UpdateComment(image, comment) {
                         <textarea
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
+                            required
+                            minLength={1}
+                            maxLength={300}
                         />
                     <div className="comment-button">
-                        <button type="submit" onClick={closeMenu} onSubmit={handleSubmit} >Done</button>
+                        <button type="submit" onClick={closeMenu}>Done</button>
                     </div>
                 </form>
                     </ul>

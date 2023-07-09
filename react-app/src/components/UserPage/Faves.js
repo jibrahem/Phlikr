@@ -5,6 +5,7 @@ import { getUserImagesThunk } from "../../store/image";
 import { getUserFavImgThunk } from "../../store/image";
 import './UserPage.css';
 import Comments from "../Image/comments";
+import Favorites from "../Favorites";
 
 export default function FavesPage() {
   const [showComment, setShowComment] = useState(false);
@@ -71,7 +72,8 @@ export default function FavesPage() {
               </div>
               <div id='fav-comment'>
                 <div id='fav-star'>
-                  <i className="fa-solid fa-star"></i>
+                  {/* <i className="fa-solid fa-star"></i> */}
+                  <Favorites imageId={image.id} />
                   <p>{image.image_favorites_count}</p>
                 </div>
                 <div id='fav-comment-button'>

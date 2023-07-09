@@ -38,10 +38,11 @@
 }
 
 .user-home-wrapper {
-    margin-top: 6rem;
+/*     margin-top: 6rem;
     margin-left: 1rem;
     margin-right: 1rem;
-    font-family: Proxima Nova,helvetica neue,helvetica,arial,sans-serif;
+    font-family: Proxima Nova,helvetica neue,helvetica,arial,sans-serif; */
+    padding: 10% 10%;
 }
 
 .image-list-div a {
@@ -91,9 +92,9 @@
     color: rgb(172, 169, 169);
 }
 
-.image-card h4 {
-    margin-left: 1rem;
-    margin-top: 1rem;
+.image-card  {
+    padding: 15px;
+    border-radius: 4px;
 }
 
 .profile-photo img {
@@ -142,39 +143,38 @@
 
 #user-fav {
     border: none;
+    background-color: transparent;
 }
 
 #user-fav i {
     color: yellow;
     font-size: 20px;
-    background-color: #FFFFFF;
+    background-color: transparent;
 }
 
 #not-user-fav {
     border: none;
+    background-color: transparent;
 }
 
 #not-user-fav i {
     color: #F5F5F5;
     font-size: 20px;
-    background-color: #FFFFFF;
+    background-color: transparent;
 }
 
-
-.home-question-mark {
-    border: 2px solid;
-    border-radius: 100%;
-    width: 20px;
+#userhome-user-info {
     display: flex;
-    justify-content: center;
-    border-color: #006dac;
+    padding: 5px;
+    gap: 15px;
 }
 
-.triangle {
-    width: 10px;
-      height: 10px;
-      border-left: 2.5px solid transparent;
-      border-right: 2.5px solid transparent;
-      border-bottom: 10px solid #898989;
-      transform: rotate(180deg);
+#userhome-user-info img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+#day {
+   color: #666666;
 }

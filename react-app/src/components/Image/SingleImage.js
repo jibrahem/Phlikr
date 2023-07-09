@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import { getSingleImageThunk, deleteImageThunk } from "../../store/image";
+import { getSingleImageThunk, deleteImageThunk, getAllFavImguserThunk, getUserFavImgThunk } from "../../store/image";
 import { useParams } from "react-router-dom";
 import { Link, useHistory } from "react-router-dom";
 import camera from "./resource/camera.png";
@@ -11,10 +11,14 @@ import iso from "./resource/iso.png";
 import scale from "./resource/scale.png";
 import info from "./resource/info.png";
 import EXIF from "./exif";
-import SingelImageFooter from "./SingleImageFooter";
 import Footer from "../Footer/Footer";
-import Comments from "./comments";
+
+// import Comments from "./comments";
 import './SingleImage.css'
+
+import CommentShow from "./CommentShow";
+import Favorites from "../Favorites";
+
 
 console.log("Before userParams");
 
@@ -22,6 +26,9 @@ export default function SingleImage() {
   // console.log("SingleImage in SingelImage component: ");
   const { imageId } = useParams();
   const singleImage = useSelector((state) => state.images.singleImage);
+  const favImagesStore = useSelector((state) => state.images.allFavImgUser);
+  const favImgUserArr = Object.values(favImagesStore)
+  console.log("favImages Users Array in the single image component: ", favImgUserArr);
   // console.log("singleImage Store: ", singleImage);
   const sessionUser = useSelector((state) => state.session.user);
   const [showEXIF, setShowEXIF] = useState(false);
@@ -38,22 +45,28 @@ export default function SingleImage() {
 
   const editImg = () => {
     setShowEdit(!showEdit)
-  }
+  };
+
+  const notEditImg = () => {
+    setShowEdit(false);
+  };
 
   const deleteImg = () => {
     dispatch(deleteImageThunk(singleImage.id));
     history.push(`/${sessionUser.id}/photos`);
-  }
+  };
 
 
   useEffect(() => {
     dispatch(getSingleImageThunk(imageId));
     // dispatch(getAllImageThunk());
-  }, [dispatch, imageId]);
+    // dispatch(getUserFavImgThunk(sessionUser.id));
+    // dispatch(getAllFavImguserThunk(imageId));
+  }, [dispatch, imageId, sessionUser.id]);
 
     if (!singleImage.User) return null;
 
-   
+
 
     return (
         <>
@@ -61,18 +74,14 @@ export default function SingleImage() {
                 <div id='image-container'>
                     <img src={singleImage.img} />
                     <div className="iconss">
-                        <i className="fa-regular fa-star"></i>
-                        {/* <i className="fa-solid fa-folder-plus"></i> */}
-                        {/* <i className="fa-regular fa-comment"></i> */}
-                        {/* <i className="fa-light fa-album-circle-plus"></i> */}
-                        {/* <i className="fa-solid fa-share"></i> */}
-                        {singleImage.User.id === sessionUser.id ? 
+                        {/* <i className="fa-regular fa-star"></i> */}
+                        <Favorites imageId={singleImage.id} />
+                        {singleImage.User.id === sessionUser.id ?
                         <div onClick={editImg}>
                           <i className="fa-solid fa-pen-to-square"></i></div> : null}
                         </div>
-                        {showEdit ? 
-                        <div id='delete-img-div'><p onClick={deleteImg}>Delete Image</p></div> : null}
-                    {/* <img src={singleImage.img} /> */}
+                        {showEdit ?
+                        <div id='delete-img-div' onMouseLeave={notEditImg}><p onClick={deleteImg}>Delete Image</p></div> : null}
                 </div>
                 <div id='single-image-info-div'>
                     <div id='single-image-info-left'>
@@ -89,23 +98,41 @@ export default function SingleImage() {
                             {/* <div className="temp-spot-for-update">
                               <Link to={`${imageId}/update`}>Update Photo</Link>
                             </div> */}
-                            {singleImage.User.id === sessionUser.id ? 
+                            {singleImage.User.id === sessionUser.id ?
                             <div>
                               <Link to={`/${singleImage.id}/update`}><i className="fa-solid fa-pen-to-square"></i></Link></div> : null}
-                        </div>
-                        <div id='single-image-pro-fav-div'>
-                            <div className="appreciate">
-                                <i className="fa-solid fa-gift"></i>
-                                <p>Show your appreciation with the gift of Snapr Pro</p>
                             </div>
+                            
+                              <div id='single-image-pro-fav-div'> 
+                                <div className="appreciate">
+                                    <i className="fa-solid fa-gift"></i>
+                                    <p>Show your appreciation with the gift of Snapr Pro</p>
+                                </div> 
                             <div className="fav">
                                 <i className="fa-regular fa-star"></i>
-                                <p>Rough lyn, Buana sari and 7 more people faved this</p>
+                                {(() => {
+                                  const userNames = [];
+                                  for (let user of favImgUserArr) {
+                                    userNames.push([user.first_name, user.last_name, user.id])
+                                  }
+
+                                  if (userNames.length > 2) {
+                                    return <p id='fav-users'><Link to={`/${userNames[0][2]}/people`}>{`${userNames[0][0]} ${userNames[0][1]}`}</Link>, <Link to={`/${userNames[1][2]}/people`}>{`${userNames[1][0]} ${userNames[1][1]}`}</Link> and {`${userNames.length - 2}`} more people faved this!</p>
+                                  } else if (userNames.length === 1) {
+                                    return <p id='fav-users'><Link to={`/${userNames[0][2]}/people`}>{`${userNames[0][0]} ${userNames[0][1]}`}</Link> faved this!</p>
+                                  } else if (userNames.length === 2) {
+                                    return <p id='fav-users'><Link to={`/${userNames[0][2]}/people`}>{`${userNames[0][0]} ${userNames[0][1]}`}</Link>, and <Link to={`/${userNames[1][2]}/people`}>{`${userNames[1][0]} ${userNames[1][1]}`}</Link> faved this!</p>
+                                  } else {
+                                    return <p>Be the first to fav this!</p>
+                                  }
+
+                                })()}
+
                             </div>
                         </div>
                     </div>
-                    <Comments
-                        image={singleImage} />
+                    {/* <CommentShow
+                        image={singleImage} /> */}
                     <div id='single-image-info-right'>
                         <div id='views-faves-comment'>
                             <div id='views-container'>

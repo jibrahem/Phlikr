@@ -1,11 +1,10 @@
 import { useSelector, useDispatch, } from "react-redux";
 import { useEffect, useRef, useState } from "react";
 import { getAllImageThunk } from "../../store/image";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./UserHome.css";
-import CommentModal from "../CommentModal";
-import OpenModalButton from '../OpenModalButton';
-import { getUserFavImgThunk, deleteUserFavImgThunk, addUserFavThunk} from "../../store/image";
+import { getUserFavImgThunk } from "../../store/image";
+import Favorites from "../Favorites";
 
 
 
@@ -25,30 +24,6 @@ export default function UserHome() {
   //   console.log("current in UserHome: ", currDate)
 
   const dispatch = useDispatch();
-
-  const userFavorite = async (imageId) => {
-
-    const payload = {
-      user_id: sessionUser.id,
-      image_id: imageId,
-
-    }
-    const res = [];
-
-    for (let favImg of userFavImgArr) {
-      // console.log("favimg in userFavorite function: ", favImg)
-      res.push(favImg.id)
-   }
-    //  console.log("res in the for loop: ", res);
-    if (res.includes(imageId)) {
-     dispatch(deleteUserFavImgThunk(sessionUser.id, imageId))
-
-    
-    } else {
-      dispatch(addUserFavThunk(payload))
-      .then(dispatch(getUserFavImgThunk(sessionUser.id)))
-    }
-  };
 
   const setFavButton = () => {
     setFav(true)
@@ -81,11 +56,12 @@ export default function UserHome() {
     <>
       <div className='user-home-wrapper'>
         <div className='user-home-banner'>
-          <div className="act">
-            <p style={{color: "#898989"}}>All Activity</p>
-            <div class="triangle"></div>
-            <div style={{color: "#006dac", display: "flex", fontWeight: "600"}} ><div className="home-question-mark">?</div>What's new?</div>
-          </div>
+
+          {/* <div className="act">
+            <p>All Activity</p>
+            <p>What's new?</p>
+          </div> */}
+
           {/* <div className="layout">
             <p>layout 1</p>
             <p>layout 2</p>
@@ -98,15 +74,20 @@ export default function UserHome() {
 
             {imagesArr.map((image) => (
               <li key={image.id} className='image-card'>
-                <p>{image.User.first_name} {image.User.last_name}</p>
-                {(() => {
-                  const uploadedOn = new Date(image.uploaded_on);
-                  const timeDiff = Math.round((currDate - uploadedOn) / (1000 * 60 * 60 * 24));
-                  if (timeDiff > 1) {
-                    return <p>{timeDiff}ds ago</p>
-                  }
-                  return <p>{timeDiff}d ago</p>
-                })()}
+                <div id='userhome-user-info'>
+                  <img src={image.User.profile_photo} alt='' />
+                  <div id="name-day">
+                    <p>{image.User.first_name} {image.User.last_name}</p>
+                    {(() => {
+                      const uploadedOn = new Date(image.uploaded_on);
+                      const timeDiff = Math.round((currDate - uploadedOn) / (1000 * 60 * 60 * 24));
+                      if (timeDiff > 1) {
+                        return <p id='day'>{timeDiff}ds ago</p>
+                      }
+                      return <p id='day'>{timeDiff}d ago</p>
+                    })()}
+                  </div>
+                </div>
                 <Link key={image.id} to={`/photos/${image.id}`}>
 
                   <div className="photo">
@@ -122,23 +103,8 @@ export default function UserHome() {
                   </div>
 
                   <div className="icon">
-                    <button
-                      onClick={() => userFavorite(image.id)}
-                      id={(() => {
-                        const res = [];
-                        for (let favImg of userFavImgArr) {
-                          res.push(favImg.id)
-                       }
-                      //  console.log("res in the for loop: ", res);
-                       if (res.includes(image.id)) {
-                        return 'user-fav'
-                       } else {
-                        return 'not-user-fav'
-                       }
-                      })()}
-                      >
-                      <i className="fa-solid fa-star"></i>
-                    </button>
+
+                    <Favorites imageId={image.id} />
 
                     {/* <AddUserFav image={image} /> */}
 
