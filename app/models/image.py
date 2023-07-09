@@ -23,7 +23,7 @@ class Image(db.Model):
     favorites = db.relationship("User", secondary = "user_favorites", back_populates="favorites")
 
     def to_dict(self):
-        print("favorite in the model file: ", len(self.favorites))
+        # print("favorite in the model file: ", len(self.favorites))
         return {
 
             'id': self.id,
