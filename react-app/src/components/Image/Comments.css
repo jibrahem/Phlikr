@@ -5,8 +5,9 @@
 .comment {
     display: flex;
     flex-direction: row;
-    margin-left: 4rem;
+    margin-left: 3rem;
     width: 420px;
+    gap:1rem
 }
 
 .profile-pic .iconic {
@@ -31,7 +32,7 @@
 
 .prof-com{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     width: 380px;
     justify-content: space-between;
 }
@@ -125,6 +126,7 @@
 .form-image {
     display: flex;
     flex-direction: row;
+    margin-top: 1rem;
 }
 
 .profile-pic {
@@ -157,3 +159,5 @@
 #delete-img-div p:hover {
     background-color: #ECF1F4;
 }
+
+
