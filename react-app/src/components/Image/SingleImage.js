@@ -113,7 +113,7 @@ export default function SingleImage() {
                               <span style={{fontSize: "14px", color: "#898989", fontWeight: "400"}}>views</span>
                             </div>
                             <div id='favs-container'>
-                              <span style={{fontSize: "20px"}}>10</span>
+                              <span style={{fontSize: "20px"}}>100</span>
                               <p style={{fontSize: "14px", color: "#898989", fontWeight: "400"}}>faves</p>
                             </div>
                             <div id='comments-count-container'>
@@ -171,35 +171,35 @@ export default function SingleImage() {
                             </div>
                             <hr style={{marginTop: "20px"}}></hr>
                             <div id='additional-info'>
-                              <h5 style={{fontWeight: "normal", marginTop: "10px"}}>Additional Info</h5>
+                              <h5 style={{fontSize: "15px", fontWeight: "normal", marginTop: "15px"}}>Additional Info</h5>
                                 <div className="ai-container">
                                   <i style={{color: "#898989"}} className="fa-solid fa-lock-open"></i>
                                   <div className="add-info-sub-container">
-                                    <p>Viewing privacy</p>
-                                    <p style={{marginLeft: "180px", color: "black", fontSize: "13px"}}>Public</p>
+                                    <p style={{marginLeft: "10px"}}>Viewing privacy</p>
+                                    <p style={{marginLeft: "252px", color: "black", fontSize: "13px"}}>Public</p>
                                   </div>
                                 </div>
                                 <div className="ai-container">
                                   <i style={{color: "#898989"}} className="fa-solid fa-circle-check"></i>
                                   <div className="add-info-sub-container">
-                                    <p>Safety level</p>
-                                    <p style={{marginLeft: "180px", color: "black", fontSize: "13px"}}>Safe</p>
+                                    <p style={{marginLeft: "10px"}}>Safety level</p>
+                                    <p style={{marginLeft: "286px", color: "black", fontSize: "13px"}}>Safe</p>
                                   </div>
                                 </div>
                                 <div className="ai-container">
                                   <i style={{color: "#898989"}} className="fa-regular fa-image"></i>
                                   <div className="add-info-sub-container">
-                                    <p>Content type</p>
-                                    <p style={{marginLeft: "180px", color: "black", fontSize: "13px"}}>Photo</p>
+                                    <p style={{marginLeft: "10px"}}>Content type</p>
+                                    <p style={{marginLeft: "269px", color: "black", fontSize: "13px"}}>Photo</p>
                                   </div>
                                 </div>
                                 <div className="ai-container">
                                 <i style={{color: "#898989"}} className="fa-solid fa-circle-info"></i>
-                                  <p style={{color: "#006dac", fontSize: "12px"}}>License History</p>
+                                  <p style={{color: "#006dac", fontSize: "12px", marginLeft: "10px"}}>License History</p>
                                 </div>
                                 <div className="ai-container">
                                   <i style={{color: "#898989"}} className="fa-regular fa-flag"></i>
-                                  <p style={{color: "#006dac", fontSize: "12px"}}>Flag Photo</p>
+                                  <p style={{color: "#006dac", fontSize: "12px", marginLeft: "10px"}}>Flag Photo</p>
                                 </div>
                             </div>
                         </div>
