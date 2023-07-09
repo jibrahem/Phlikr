@@ -40,6 +40,10 @@ function ShowcaseModal({ userImageArr }) {
   //   values[imageId].val = e.target.value;
   // };
 
+  const imageClick = () => {
+    console.log("ImageClick");
+  };
+
   const handleChange = (imageId, event) => {
     console.log("handle change", imageId, "hefdfdf   ", event.target.checked);
     let nextPayload = { ...showcaseInputs };
@@ -68,18 +72,33 @@ function ShowcaseModal({ userImageArr }) {
     <>
       <div className="showcase-modal">
         <form onSubmit={handleSubmit}>
-          {userImageArr.map((image) => (
-            <>
-              <input
+          <div className="image-selector">
+            {userImageArr.map((image) => (
+              <div className="image-checkbox-wrapper">
+                <label className="image-checkbox">
+                  {/* <input
                 type="checkbox"
                 key={image.id}
                 id={"input" + image.id}
                 checked={showcaseInputs[image.id]}
                 onChange={(event) => handleChange(image.id, event)}
               />
-              <img className="showcase-preview" src={image.img} />
-            </>
-          ))}
+              <img
+                className="showcase-preview"
+                src={image.img}
+                onClick={imageClick}
+                style={{ "pointer-events": "all" }}
+              /> */}
+                  <input
+                    type="checkbox"
+                    onChange={(event) => handleChange(image.id, event)}
+                  />
+                  <span></span>
+                  <img class="img" src={image.img} />
+                </label>
+              </div>
+            ))}
+          </div>
           <div className="showcase-submit">
             <button type="submit">Save</button>
           </div>

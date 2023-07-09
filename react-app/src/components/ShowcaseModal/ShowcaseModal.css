@@ -1,20 +1,110 @@
-.showcase-modal input {
+/* .showcase-modal input {
     display: flex;
     flex-direction: row;
     justify-content: center;
     width: 300px;
 
-}
+} */
 
 .showcase-modal img {
-    margin-top: 20%;
-    height: 100px;
+    width: 200px;
 
 }
 
-.showcase-modal {
-    margin-top: 40%;
-    height: 400px;
-    width: 300px;
+/* .showcase-modal {
+
+    height: 50vh;
+    width: 50vw;
     display: flex;
+
+    flex-direction: row;
+} */
+
+#modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #modal-background {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+
+  #modal-content {
+    position: fixed;
+    min-width: 55vw;
+    padding-top: 100px;
+    padding-bottom: 20px;
+    /* padding-left: 50px; */
+    display:flex;
+    justify-content: center;
+    align-content: center;
+    background-color:white;
+  }
+
+.image-checkbox-wrapper {
+    border-color: #4c9ee1;
+    margin: 5px;
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 5px;
+    display: flex;
+    /* flex-direction: row; */
+    /* flex-wrap: wrap; */
+    justify-content: center;
 }
+
+.image-checkbox input {
+    display: none;
+  }
+
+.image-checkbox label {
+    height:150px;
+    width: 150px;
+}
+
+.image-selector {
+    overflow-y: scroll;
+    display: flex;
+    /* padding: 20px; */
+    width: 50vw;
+}
+
+.image-checkbox span {
+    border: 2px solid #4c9ee1;
+    /* float: right; - you don't need that. Use float: left; */
+    position: absolute;
+    /* left: 160px; */
+    /* right: 0px; */
+    /* right: 6px; */
+    height: 20px;
+    width: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+  .image-checkbox:hover span,
+  .image-checkbox input:checked+span {
+    border: 3px solid #4c9ee1;
+    fill: #4c9ee1;
+  }
+
+  .image-checkbox input:checked+span:before {
+    content: "✔";
+  }
