@@ -12,7 +12,7 @@ import scale from "./resource/scale.png";
 import info from "./resource/info.png";
 import EXIF from "./exif";
 import Footer from "../Footer/Footer";
-import Comments from "./comments";
+import CommentShow from "./CommentShow";
 import Favorites from "../Favorites";
 
 console.log("Before userParams");
@@ -65,7 +65,7 @@ export default function SingleImage() {
                     <img src={singleImage.img} />
                     <div className="iconss">
                         {/* <i className="fa-regular fa-star"></i> */}
-                        <Favorites imageId={singleImage.id} />
+                        {/* <Favorites imageId={singleImage.id} /> */}
                         {singleImage.User.id === sessionUser.id ?
                         <div onClick={editImg}>
                           <i className="fa-solid fa-pen-to-square"></i></div> : null}
