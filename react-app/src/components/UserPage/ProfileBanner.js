@@ -5,6 +5,7 @@ import { NavLink, useParams } from "react-router-dom/cjs/react-router-dom.min";
 import "./ProfileBanner.css";
 import ProfileFormBio from "../ProfileForms/ProfileFormBio";
 import ProfileFormCover from "../ProfileForms/ProfileFormCover";
+import OpenModalMenuItem from '../OpenModalButton';
 
 export default function ProfileBanner({ userInfo, photoCount }) {
   const sessionUser = useSelector((state) => state.session.user);
@@ -31,9 +32,15 @@ export default function ProfileBanner({ userInfo, photoCount }) {
                 {userInfo.first_name} {userInfo.last_name}
               </div>
             </div>
-            <button onClick={coverPhotoButtonClick}> ... </button>
+            {/* <button onClick={coverPhotoButtonClick}> ... </button>
             {showCoverForm ? <ProfileFormCover /> : ""}
-            <></>
+            <></> */}
+            <OpenModalMenuItem
+              buttonText="..."
+              // onItemClick={closeMenu}
+              modalComponent={<ProfileFormCover
+              />}
+            />
           </div>
         </div>
       </div>
