@@ -5,7 +5,7 @@
 
 #cover-photo {
     width: 100%;
-    margin-top: 
+    /* margin-top:  */
 }
 
 #cover-photo img {
@@ -126,5 +126,13 @@
 #fav-comment-div {
     width: 400px;
     position: absolute;
-    top: 
+    /* top:  */
+}
+
+/*  */
+.profile-navigation {
+    background-color: white;
+    display: flex;
+    justify-content: space-around;
+    font-family: Proxima Nova,helvetica neue,helvetica,arial,sans-serif;
 }

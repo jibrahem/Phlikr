@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 import { getUserImagesThunk } from "../../store/image";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import './Photostream.css'
+
 
 export default function PhotostreamPage({ userImagesArr }) {
   const sessionUser = useSelector((state) => state.session.user);
@@ -16,15 +18,17 @@ export default function PhotostreamPage({ userImagesArr }) {
 
   return (
     <>
-      <>Photostream</>
-      <ul>
+      {/* <div className="photo-stream-title">Photostream</div> */}
+      <ul className="photo-stream-container">
         {userImagesArr[0].map((image) => (
           <div key={image.id}>
             {/* {console.log("image in user images page", image[0])} */}
-            <h4>
+            <div className="photo-stream-user-date-container">
+            <h4 className="photo-stream-user-name">
               {image.User.first_name} {image.User.last_name}
             </h4>
             {/* <p>{currDate - image.uploadedAt}d ago</p> */}
+            <div className="photo-stream-date">
             {(() => {
                 const uploadedOn = new Date(image.uploaded_on);
                 const timeDiff = Math.round((currDate - uploadedOn) / (1000 * 60 * 60 * 24));
@@ -33,11 +37,13 @@ export default function PhotostreamPage({ userImagesArr }) {
                 }
                 return <p>{timeDiff}d ago</p>
             })()}
+            </div>
+            </div>
             <Link key={image.id} to={`/photos/${image.id}`}>
-              <img src={image.img} alt={image.title} />
-              <p>{image.title}</p>
+              <img className="photo-stream-image" src={image.img} alt={image.title} />
+              <p className="photo-stream-image-title">{image.title}</p>
             </Link>
-            <p>{image.description}</p>
+              <p className="photo-stream-image-description">{image.description}</p>
             <div>
               <div>
                 {image.view_count > 1000
@@ -45,11 +51,11 @@ export default function PhotostreamPage({ userImagesArr }) {
                   : image.view_count}{" "}
                 views
               </div>
-              <div>
+              <div className="photo-stream-icons">
                 <i className="fa-regular fa-star"></i>
-                <i className="fa-regular fa-comment"></i>
+                <Link to={`/photos/${image.id}`}><i className="fa-regular fa-comment"></i></Link>
                 <i className="fa-light fa-album-circle-plus"></i>
-                <i className="fa-solid fa-tree"></i>
+                {/* <i className="fa-solid fa-tree"></i> */}
               </div>
             </div>
           </div>
