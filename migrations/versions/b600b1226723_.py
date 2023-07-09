@@ -1,7 +1,7 @@
 """empty message
 
 Revision ID: b600b1226723
-Revises: 
+Revises:
 Create Date: 2023-07-08 21:47:26.784366
 
 """
@@ -75,6 +75,9 @@ def upgrade():
     sa.PrimaryKeyConstraint('user_id', 'image_id')
     )
     # ### end Alembic commands ###
+
+    if environment == "production":
+        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
 
 
 def downgrade():
