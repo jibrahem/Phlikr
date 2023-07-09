@@ -1,4 +1,4 @@
-.whole-update-form {
+.whole-upload-form {
     background-color: white;
     position: absolute;
     top: 0;
@@ -7,7 +7,7 @@
     width: 100%;
 }
 
-.update-background {
+.upload-background {
     position: fixed;
     top: 0;
     left: 0;
@@ -17,14 +17,14 @@
 }
 
 
-.update-title {
+.upload-title {
     font-size: 26px;
     color: white;
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
     text-decoration-thickness: 0.1em;
 }
 
-.update-image-form {
+.upload-image-form {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -40,7 +40,7 @@
     box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.3); */
 }
 
-.update-image-title {
+.upload-image-title {
     width: 350px;
     height: 50px;
     border-radius: 4px;
@@ -49,7 +49,7 @@
     margin-top: 3px;
 }
 
-.update-image-url {
+.upload-image-url {
     width: 350px;
     height: 50px;
     border-radius: 4px;
@@ -58,7 +58,7 @@
     margin-top: 3px;
 }
 
-.update-image-description {
+.upload-image-description {
     width: 350px;
     height: 50px;
     border-radius: 4px;
@@ -67,7 +67,7 @@
     margin-top: 3px;
 }
 
-.update-image-btn {
+.upload-image-btn {
     width: 110px;
     height: 40px;
     margin-top: 30px;
@@ -78,13 +78,41 @@
     border-radius: 3px;
 }
 
-.update-image-btn:hover {
+.upload-image-btn:hover {
     cursor: pointer;
 }
 
-.update-label {
+.upload-label {
     font-family: Nova,helvetica neue,helvetica,arial,sans-serif;
     color: white;
     margin-top: 30px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
+
+
+/* .upload{
+    margin-top: 15rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.upload h1{
+    color: white;
+    background-color: black;
+} */
+
+/* .upload-title {
+    font-size: 26px;
+    color: 006400;
+} */
+
+/* .whole-upload-form {
+    background-color: grey;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+  } */

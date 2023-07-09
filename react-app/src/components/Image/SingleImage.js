@@ -12,7 +12,7 @@ import scale from "./resource/scale.png";
 import info from "./resource/info.png";
 import EXIF from "./exif";
 import Footer from "../Footer/Footer";
-import Comments from "./comments";
+import CommentShow from "./CommentShow";
 import Favorites from "../Favorites";
 
 console.log("Before userParams");
@@ -56,7 +56,7 @@ export default function SingleImage() {
 
     if (!singleImage.User) return null;
 
-   
+
 
     return (
         <>
@@ -65,12 +65,12 @@ export default function SingleImage() {
                     <img src={singleImage.img} />
                     <div className="iconss">
                         {/* <i className="fa-regular fa-star"></i> */}
-                        <Favorites imageId={singleImage.id} />
-                        {singleImage.User.id === sessionUser.id ? 
+                        {/* <Favorites imageId={singleImage.id} /> */}
+                        {singleImage.User.id === sessionUser.id ?
                         <div onClick={editImg}>
                           <i className="fa-solid fa-pen-to-square"></i></div> : null}
                         </div>
-                        {showEdit ? 
+                        {showEdit ?
                         <div id='delete-img-div'><p onClick={deleteImg}>Delete Image</p></div> : null}
                 </div>
                 <div id='single-image-info-div'>
@@ -88,7 +88,7 @@ export default function SingleImage() {
                             {/* <div className="temp-spot-for-update">
                               <Link to={`${imageId}/update`}>Update Photo</Link>
                             </div> */}
-                            {singleImage.User.id === sessionUser.id ? 
+                            {singleImage.User.id === sessionUser.id ?
                             <div>
                               <Link to={`/${singleImage.id}/update`}><i className="fa-solid fa-pen-to-square"></i></Link></div> : null}
                         </div>
@@ -114,13 +114,13 @@ export default function SingleImage() {
                                   } else {
                                     return <p>Be the first to fav this!</p>
                                   }
-                                  
+
                                 })()}
-                                
+
                             </div>
                         </div>
                     </div>
-                    <Comments
+                    <CommentShow
                         image={singleImage} />
                     <div id='single-image-info-right'>
                         <div id='views-faves-comment'>

@@ -44,7 +44,6 @@ export const deleteCommentThunk = (comment) => async (dispatch) => {
 
 
 export const updateCommentThunk = (comment, id) => async (dispatch) => {
-    console.log('COMMENT IN THE THUNK', comment)
     // try {
         const res = await fetch(`/api/comments/update/${id}`, {
             method: "POST",
@@ -54,9 +53,7 @@ export const updateCommentThunk = (comment, id) => async (dispatch) => {
 
         console.log('responde in update', res)
         if (res.ok) {
-            console.log('res inside res.ok', res)
             const updatedComment = await res.json();
-            console.log('updated comment in the thunk',updatedComment)
             dispatch(updateComment(updatedComment));
             return updatedComment;
         }
