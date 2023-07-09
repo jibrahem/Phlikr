@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import { getSingleImageThunk, deleteImageThunk, getAllFavImguserThunk } from "../../store/image";
+import { getSingleImageThunk, deleteImageThunk, getAllFavImguserThunk, getUserFavImgThunk } from "../../store/image";
 import { useParams } from "react-router-dom";
 import { Link, useHistory } from "react-router-dom";
 import camera from "./resource/camera.png";
@@ -51,8 +51,9 @@ export default function SingleImage() {
   useEffect(() => {
     dispatch(getSingleImageThunk(imageId));
     // dispatch(getAllImageThunk());
-    dispatch(getAllFavImguserThunk(imageId));
-  }, [dispatch, imageId]);
+    // dispatch(getUserFavImgThunk(sessionUser.id));
+    // dispatch(getAllFavImguserThunk(imageId));
+  }, [dispatch, imageId, sessionUser.id]);
 
     if (!singleImage.User) return null;
 
@@ -65,7 +66,7 @@ export default function SingleImage() {
                     <img src={singleImage.img} />
                     <div className="iconss">
                         {/* <i className="fa-regular fa-star"></i> */}
-                        <Favorites imageId={singleImage.id} />
+                        {/* <Favorites imageId={singleImage.id} /> */}
                         {singleImage.User.id === sessionUser.id ? 
                         <div onClick={editImg}>
                           <i className="fa-solid fa-pen-to-square"></i></div> : null}

@@ -39,11 +39,11 @@ export default function Favorites({ imageId }) {
         }
     };
     
-    useEffect(() => {
-        dispatch(getUserFavImgThunk(sessionUser.id));
-        dispatch(getAllFavImguserThunk(imageId))
-        dispatch(getSingleImageThunk(imageId));
-    }, [dispatch, sessionUser.id, imageId])
+    // useEffect(() => {
+    //     dispatch(getUserFavImgThunk(sessionUser.id));
+    //     dispatch(getAllFavImguserThunk(imageId))
+    //     dispatch(getSingleImageThunk(imageId));
+    // }, [dispatch, sessionUser.id, imageId])
 
     return (
         <>
