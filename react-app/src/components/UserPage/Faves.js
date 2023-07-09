@@ -73,7 +73,7 @@ export default function FavesPage() {
               <div id='fav-comment'>
                 <div id='fav-star'>
                   {/* <i className="fa-solid fa-star"></i> */}
-                  {/* <Favorites imageId={image.id} /> */}
+                  <Favorites imageId={image.id} />
                   <p>{image.image_favorites_count}</p>
                 </div>
                 <div id='fav-comment-button'>

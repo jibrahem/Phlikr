@@ -40,12 +40,16 @@ export default function SingleImage() {
 
   const editImg = () => {
     setShowEdit(!showEdit)
-  }
+  };
+
+  const notEditImg = () => {
+    setShowEdit(false);
+  };
 
   const deleteImg = () => {
     dispatch(deleteImageThunk(singleImage.id));
     history.push(`/${sessionUser.id}/photos`);
-  }
+  };
 
 
   useEffect(() => {
@@ -66,13 +70,13 @@ export default function SingleImage() {
                     <img src={singleImage.img} />
                     <div className="iconss">
                         {/* <i className="fa-regular fa-star"></i> */}
-                        {/* <Favorites imageId={singleImage.id} /> */}
+                        <Favorites imageId={singleImage.id} />
                         {singleImage.User.id === sessionUser.id ?
                         <div onClick={editImg}>
                           <i className="fa-solid fa-pen-to-square"></i></div> : null}
                         </div>
                         {showEdit ?
-                        <div id='delete-img-div'><p onClick={deleteImg}>Delete Image</p></div> : null}
+                        <div id='delete-img-div' onMouseLeave={notEditImg}><p onClick={deleteImg}>Delete Image</p></div> : null}
                 </div>
                 <div id='single-image-info-div'>
                     <div id='single-image-info-left'>
@@ -92,12 +96,13 @@ export default function SingleImage() {
                             {singleImage.User.id === sessionUser.id ?
                             <div>
                               <Link to={`/${singleImage.id}/update`}><i className="fa-solid fa-pen-to-square"></i></Link></div> : null}
-                        </div>
-                        <div id='single-image-pro-fav-div'>
-                            <div className="appreciate">
-                                <i className="fa-solid fa-gift"></i>
-                                <p>Show your appreciation with the gift of Snapr Pro</p>
                             </div>
+                            
+                              <div id='single-image-pro-fav-div'> 
+                                <div className="appreciate">
+                                    <i className="fa-solid fa-gift"></i>
+                                    <p>Show your appreciation with the gift of Snapr Pro</p>
+                                </div> 
                             <div className="fav">
                                 <i className="fa-regular fa-star"></i>
                                 {(() => {
@@ -121,8 +126,8 @@ export default function SingleImage() {
                             </div>
                         </div>
                     </div>
-                    <CommentShow
-                        image={singleImage} />
+                    {/* <CommentShow
+                        image={singleImage} /> */}
                     <div id='single-image-info-right'>
                         <div id='views-faves-comment'>
                             <p>{singleImage.view_count} views</p>
