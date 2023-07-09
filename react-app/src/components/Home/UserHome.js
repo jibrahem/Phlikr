@@ -125,23 +125,8 @@ export default function UserHome() {
                   </div>
 
                   <div className="icon">
-                    <button
-                      onClick={() => userFavorite(image.id)}
-                      id={(() => {
-                        const res = [];
-                        for (let favImg of userFavImgArr) {
-                          res.push(favImg.id)
-                       }
-                      //  console.log("res in the for loop: ", res);
-                       if (res.includes(image.id)) {
-                        return 'user-fav'
-                       } else {
-                        return 'not-user-fav'
-                       }
-                      })()}
-                      >
-                      <i className="fa-solid fa-star"></i>
-                    </button>
+
+                    <Favorites imageId={image.id} />
 
                     {/* <AddUserFav image={image} /> */}
 
