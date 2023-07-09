@@ -56,12 +56,13 @@ export default function UserHome() {
 
   return (
     <>
-      <div className="user-home-wrapper">
-        <div className="user-home-banner">
-          <div className="act">
+      <div className='user-home-wrapper'>
+        <div className='user-home-banner'>
+
+          {/* <div className="act">
             <p>All Activity</p>
             <p>What's new?</p>
-          </div>
+          </div> */}
           {/* <div className="layout">
             <p>layout 1</p>
             <p>layout 2</p>

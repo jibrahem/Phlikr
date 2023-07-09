@@ -7,6 +7,7 @@ import './Photostream.css'
 import Favorites from "../Favorites";
 
 
+
 export default function PhotostreamPage({ userImagesArr }) {
   const sessionUser = useSelector((state) => state.session.user);
 
@@ -26,7 +27,7 @@ export default function PhotostreamPage({ userImagesArr }) {
             {/* {console.log("image in user images page", image[0])} */}
             <div className="photo-stream-user-container">
             <h4 className="photo-stream-user-name">
-              {image.User.first_name} {image.User.last_name}'s post #{i + 1}
+              {image.User.first_name} {image.User.last_name}'s Post #{i + 1}
             </h4>
             {/* <p>{currDate - image.uploadedAt}d ago</p> */}
             </div>
@@ -57,7 +58,7 @@ export default function PhotostreamPage({ userImagesArr }) {
               </div>
               </div>
               <div className="photo-stream-icons">
-                {/* <i style={{color: "grey", fontSize: "20px"}}className="fa-regular fa-star"></i> */}
+                <i style={{color: "grey", fontSize: "20px"}}className="fa-regular fa-star"></i>
                 <Favorites imageId={image.id} />
                 <NavLink style={{color: "grey", fontSize: "20px"}} to={`/photos/${image.id}`}><i className="fa-regular fa-comment"></i></NavLink>
                 <i className="fa-light fa-album-circle-plus"></i>

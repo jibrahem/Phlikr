@@ -1,0 +1,87 @@
+#single-image-info-right {
+    display: flex;
+    justify-content: end;
+    flex-direction: column;
+    width: 400px;
+    margin-left: 700px;
+    margin-top: -150px;
+    padding-bottom: 100px;
+    font-family: Proxima Nova,helvetica neue,helvetica,arial,sans-serif;
+}
+
+#equipment-info {
+    width: 400px;
+}
+
+#views-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#favs-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: auto;
+}
+
+#views-faves-comment {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-bottom: 10px;
+
+}
+
+.camera-info {
+    display: flex;
+    flex-direction: column;
+    margin-left: 120px;
+}
+
+#camera {
+    display: flex;
+    flex-direction: row; 
+    margin-top: 20px; 
+}
+
+#camera-details {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 120px;
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.camera-details-sec1 img {
+    width: 25px;
+    
+}
+
+.camera-details-sec2 img {
+    width: 25px;
+    margin-left: 75px;
+}
+
+.cds1-container {
+    display: flex;
+    align-items: center;
+}
+
+.cds2-container {
+    display: flex;
+    align-items: center;
+}
+
+.add-info-sub-container {
+    display: flex;
+    font-size: 12px;
+}
+
+.ai-container {
+    display: flex;
+    padding-top: 10px;
+    color: #898989;
+}

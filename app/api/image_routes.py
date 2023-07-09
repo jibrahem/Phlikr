@@ -2,8 +2,7 @@ from flask import Blueprint, jsonify, redirect, render_template, request
 from flask_login import login_required, current_user
 from ..models import Image, User, db, Comment
 from app.forms import ImageForm
-
-
+from datetime import datetime
 
 image_routes = Blueprint("images", __name__)
 
@@ -59,7 +58,7 @@ def update_image_form(id):
 @image_routes.route('/<int:id>/update', methods=['POST'])
 # @login_required
 def update_image(id):
-    print("in the edit image route!!!!!")
+    # print("in the edit image route!!!!!")
     if current_user.is_authenticated :
         form = ImageForm()
         print("From data in the update img route: ", form.data)
@@ -70,7 +69,7 @@ def update_image(id):
         # form data {'title': None, 'description': None, 'img': None, 'submit': False, 'csrf_token': None}
         #evaluating to false so form.validate() is not running
         if image_to_update.user.id == current_user.id:
-            print("current user is editing the image in the route!!!!!!")
+            # print("current user is editing the image in the route!!!!!!")
 
             # if form.validate_on_submit():
                 # image_to_update = Image.query.get(id)
