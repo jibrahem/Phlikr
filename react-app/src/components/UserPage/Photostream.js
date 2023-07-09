@@ -20,19 +20,20 @@ export default function PhotostreamPage({ userImagesArr }) {
     <>
       {/* <div className="photo-stream-title">Photostream</div> */}
       <ul className="photo-stream-container">
-        {userImagesArr[0].map((image) => (
+        {userImagesArr[0].map((image, i) => (
           <div key={image.id}>
             {/* {console.log("image in user images page", image[0])} */}
             <div className="photo-stream-user-container">
             <h4 className="photo-stream-user-name">
-              {image.User.first_name} {image.User.last_name}
+              {image.User.first_name} {image.User.last_name}'s post #{i + 1}
             </h4>
             {/* <p>{currDate - image.uploadedAt}d ago</p> */}
-            
             </div>
             <NavLink style={{textDecoration: "none"}} key={image.id} to={`/photos/${image.id}`}>
+            <p className="photo-stream-image-title">{image.title}</p>
+            </NavLink>
+            <NavLink style={{textDecoration: "none"}} key={image.id} to={`/photos/${image.id}`}>
               <img className="photo-stream-image" src={image.img} alt={image.title} />
-              <p className="photo-stream-image-title">{image.title}</p>
             </NavLink>
               <p className="photo-stream-image-description">{image.description}</p>
             <div>
@@ -55,8 +56,8 @@ export default function PhotostreamPage({ userImagesArr }) {
               </div>
               </div>
               <div className="photo-stream-icons">
-                <i className="fa-regular fa-star"></i>
-                <NavLink style={{color: "black"}} to={`/photos/${image.id}`}><i className="fa-regular fa-comment"></i></NavLink>
+                <i style={{color: "white", fontSize: "20px"}}className="fa-regular fa-star"></i>
+                <NavLink style={{color: "white", fontSize: "20px"}} to={`/photos/${image.id}`}><i className="fa-regular fa-comment"></i></NavLink>
                 <i className="fa-light fa-album-circle-plus"></i>
                 {/* <i className="fa-solid fa-tree"></i> */}
               </div>

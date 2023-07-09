@@ -1,15 +1,17 @@
-.photo-stream-title {
+/* .photo-stream-title {
     display: flex;
     justify-content: center;
     font-family: Proxima Nova,helvetica neue,helvetica,arial,sans-serif;
     font-size: 22px;
-}
+} */
 
 .photo-stream-container {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
     font-family: Proxima Nova,helvetica neue,helvetica,arial,sans-serif;
     margin-top: 2%;
+
 }
 
 .photo-stream-user-container {
@@ -36,18 +38,25 @@
 .photo-stream-image-title {
     color: black;
     font-weight: bold;
+    padding-bottom: 2%;
 }
 
 .photo-stream-image-description {
-    overflow-wrap: break-word; 
+    overflow-wrap: break-word;
+
 }
 
 .photo-stream-view-date {
     display: flex;
     justify-content: space-between;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    color: rgb(149, 149, 149);
 }
 
 .photo-stream-icons {
     display: flex;
     justify-content: start;
+    margin-top: -20%;
 }
+
