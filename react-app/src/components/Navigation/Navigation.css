@@ -3,12 +3,13 @@
 }
 
 .profile-dropdown {
-  margin-top: .5rem;
-  border: 1px solid black;
+  margin-top: -3.2rem;
+  /* border: 1px solid black; */
   position: absolute;
-  background-color: whitesmoke;
+  background-color: transparent;
   top: 60px;
   right: 10px;
+  
 }
 
 .modals {
@@ -228,6 +229,8 @@ nav {
   background-color: #202123;
   position: fixed;
   width: 100%;
+}
+
   display: flex;
   justify-content: space-between;
 }

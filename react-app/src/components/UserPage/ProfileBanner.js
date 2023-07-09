@@ -19,7 +19,7 @@ export default function ProfileBanner({ userInfo, photoCount }) {
           <div id='profile-photo'>
             <img src={userInfo.profile_photo} />
             <div>
-              <p className="profile-photo-name">{userInfo.first_name} {userInfo.last_name}</p>
+              <p style={{fontSize: "24px"}} className="profile-photo-name">{userInfo.first_name} {userInfo.last_name}</p>
             </div>
           </div> 
         </div>

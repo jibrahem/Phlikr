@@ -6,7 +6,7 @@ import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import { useHistory, useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
-
+import './ProfileButton.css'
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -89,7 +89,7 @@ function ProfileButton({ user }) {
       ) : (
         <div className="modals">
           <div className="login-nav">
-            <button onClick={() => history.push(`/login`)}>
+            <button style={{backgroundColor: "transparent"}} onClick={() => history.push(`/login`)}>
               Log In
             </button>
           </div>
@@ -98,6 +98,7 @@ function ProfileButton({ user }) {
               Sign Up
             </button>
           </div>
+         
         </div>
       )}
       </ul>
