@@ -80,6 +80,7 @@
 #fav-comment p {
     color: #FFFFFF;
     background-color: transparent;
+    font-size: 16px;
 }
 
 #fav-comment-button {
