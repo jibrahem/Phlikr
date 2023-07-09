@@ -132,6 +132,7 @@
 /*  */
 .profile-navigation {
     background-color: white;
+    color: black;
     display: flex;
     justify-content: space-around;
     font-family: Proxima Nova,helvetica neue,helvetica,arial,sans-serif;

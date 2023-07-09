@@ -25,9 +25,9 @@ export default function ProfileBanner({ userInfo, photoCount }) {
         </div>
       </div>
       <div className="profile-navigation">
-        <NavLink to={`/${userInfo.id}/people`}>About</NavLink>
-        <NavLink to={`/${userInfo.id}/photos`}>Photostream</NavLink>
-        <NavLink to={`/${userInfo.id}/favorites`}>Faves</NavLink>
+        <NavLink style={{ color: "black", fontSize: "18px" }} to={`/${userInfo.id}/people`}>About</NavLink>
+        <NavLink style={{ color: "black", fontSize: "18px" }} to={`/${userInfo.id}/photos`}>Photostream</NavLink>
+        <NavLink style={{ color: "black", fontSize: "18px" }} to={`/${userInfo.id}/favorites`}>Faves</NavLink>
       </div>
     </>
   );

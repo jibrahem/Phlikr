@@ -31,15 +31,15 @@
 .photo-stream-image {
     width: 100%;
     height: 50%;
-    
 }
 
-/* .photo-stream-image-title {
-    
-} */
+.photo-stream-image-title {
+    color: black;
+    font-weight: bold;
+}
 
 .photo-stream-image-description {
-    overflow: hidden;
+    overflow-wrap: break-word; 
 }
 
 .photo-stream-view-date {

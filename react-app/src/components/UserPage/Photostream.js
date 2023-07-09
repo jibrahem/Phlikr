@@ -67,3 +67,5 @@ export default function PhotostreamPage({ userImagesArr }) {
     </>
   );
 }
+// max of 34 characters for description anything more will alter the css layout and ultimately break the page.
+// easier to use a validator instead of trying to make css modifications for now 
