@@ -1,3 +1,5 @@
+
+
 .image-list-div li {
     display: flex;
     flex-direction: column;
@@ -36,6 +38,10 @@
 }
 
 .user-home-wrapper {
+/*     margin-top: 6rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    font-family: Proxima Nova,helvetica neue,helvetica,arial,sans-serif; */
     padding: 10% 10%;
     display: flex;
     flex-direction: column;
@@ -49,7 +55,8 @@
 .act {
     display: flex;
     flex-direction: row;
-    gap: 1rem
+    gap: 1rem;
+    margin-bottom: 10px;
 }
 
 .layout {

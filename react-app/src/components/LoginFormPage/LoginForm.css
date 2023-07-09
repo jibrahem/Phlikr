@@ -27,20 +27,31 @@
     border-radius: 5px;
     padding-bottom: 50px;
     padding-top: 20px;
+    /* height: 400px; */
 }
 
 .login {
     font-family: Proxima Nova,helvetica neue,helvetica,arial,sans-serif;
 }
 
-.demo button{
-    border: none;
+.login-demo button{
+    /* border: none; */
     cursor: pointer;
     background-color: white;
+    font-family: Proxima Nova,helvetica neue,helvetica,arial,sans-serif;
+    margin-top: 1rem;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    background-color: rgb(0, 166, 255);
+    width: 300px;
+    height: 35px;
 }
-.demo{
-    margin-top: 2rem;
-    position: absolute;
-    top: 430px;
-    left: 540px
+.login-demo{
+    margin-top: -5.3rem;
+    margin-left: 81px;
+    /* margin-right: 4rem; */
+    /* position: absolute; */
+    /* top: 430px;
+    left: 489px; */
 }

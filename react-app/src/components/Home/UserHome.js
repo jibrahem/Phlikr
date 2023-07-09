@@ -1,9 +1,11 @@
-import { useSelector, useDispatch, } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useRef, useState } from "react";
 import { getAllImageThunk } from "../../store/image";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import "./UserHome.css";
-import { getUserFavImgThunk } from "../../store/image";
+import CommentModal from "../CommentModal";
+import OpenModalButton from '../OpenModalButton';
+import { getUserFavImgThunk, deleteUserFavImgThunk, addUserFavThunk} from "../../store/image";
 import Favorites from "../Favorites";
 
 
@@ -38,6 +40,9 @@ export default function UserHome() {
       [imageId]: false,
     }));
   }
+  const setFavButton = () => {
+    setFav(true);
+  };
 
   useEffect(() => {
     if (!showMenu) return;
@@ -48,7 +53,7 @@ export default function UserHome() {
       }
     };
 
-    document.addEventListener('click', closeMenu);
+    document.addEventListener("click", closeMenu);
 
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu]);
@@ -67,6 +72,7 @@ export default function UserHome() {
     <>
       <div className='user-home-wrapper'>
         <div className='user-home-banner'>
+
           {/* <div className="act">
             <p>All Activity</p>
             <p>What's new?</p>
@@ -77,10 +83,8 @@ export default function UserHome() {
             <p>layout 3</p>
           </div> */}
         </div>
-        <div className='image-list-div'>
-
+        <div className="image-list-div">
           <ul>
-
             {imagesArr.map((image) => (
               <li key={image.id} className='image-card' onMouseOver={() => showInfo(image.id)} onMouseLeave={() => notShowInfo(image.id)}>
                 <div id='userhome-user-info'>
@@ -135,5 +139,4 @@ export default function UserHome() {
       </div>
     </>
   );
-
 }

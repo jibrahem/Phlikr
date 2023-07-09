@@ -57,18 +57,18 @@ const getUserFavImg = (images) => ({
 
 const addUserFavImg = (image) => ({
   type: ADD_USER_FAV_IMG,
-  image
+  image,
 });
 
 const deleteUserFavImg = (image_id) => ({
   type: DELETE_USER_FAV_IMG,
-  image_id
-})
+  image_id,
+});
 
 const getAllFavImg = (images) => ({
   type: GET_ALL_FAV_IMG,
-  images
-})
+  images,
+});
 
 //thunk
 export const getAllImageThunk = () => async (dispatch) => {
@@ -96,7 +96,7 @@ export const createImageThunk = (image, user) => async (dispatch) => {
       body: JSON.stringify(image),
     });
 
-    console.log("res in the CREATIMGAEJ:JDK:JSDKJ;", res)
+    console.log("res in the CREATIMGAEJ:JDK:JSDKJ;", res);
 
     if (res.ok) {
       const newImage = await res.json();
@@ -110,7 +110,7 @@ export const createImageThunk = (image, user) => async (dispatch) => {
 };
 
 export const updateImageThunk = (image, imageId) => async (dispatch) => {
-  console.log(" in the update image thunk!!!!!")
+  console.log(" in the update image thunk!!!!!");
   try {
     const res = await fetch(`/api/images/${imageId}/update`, {
       method: "POST",
@@ -121,11 +121,11 @@ export const updateImageThunk = (image, imageId) => async (dispatch) => {
     console.log("Res in the updateimagethunk::", res);
 
     if (res.ok) {
-      console.log("update image in the upated thunk~~~~")
-      const updatedImage = await res.json(); 
-      console.log("updateImage in the res.ok: ", updatedImage)
+      console.log("update image in the upated thunk~~~~");
+      const updatedImage = await res.json();
+      console.log("updateImage in the res.ok: ", updatedImage);
       dispatch(updateImage(updatedImage));
-     
+
       return updatedImage;
     }
   } catch (err) {
@@ -210,7 +210,7 @@ export const getUserFavImgThunk = (userId) => async (dispatch) => {
       // console.log("userFavImgs in res.ok: ", userFavImgs)
       dispatch(getUserFavImg(userFavImgs));
       return userFavImgs;
-    } 
+    }
   } catch (err) {
     const errors = await err.json();
     return errors;
@@ -241,43 +241,53 @@ export const addUserFavThunk = (image) => async (dispatch) => {
   }
 };
 
-export const deleteUserFavImgThunk = (userId, imageId) => async(dispatch) => {
+export const deleteUserFavImgThunk = (userId, imageId) => async (dispatch) => {
   // console.log("in deleteUserFavImgThunk~~~~")
   try {
-    const res = await fetch(`/api/images/delete/${userId}/user_favorite/${imageId}`, {
-      method: "GET",
-    });
+    const res = await fetch(
+      `/api/images/delete/${userId}/user_favorite/${imageId}`,
+      {
+        method: "GET",
+      }
+    );
 
     if (res.ok) {
       dispatch(deleteUserFavImg(imageId));
       return;
-    } 
-  }catch (err) {
-      const errors = await err.json();
-      return errors;
-  } 
-};
-
-export const getAllFavImguserThunk = (imageId) => async (dispatch) => {
-  console.log("in the getallfavimguserthunk~~~~")
-  try {
-    const res = await fetch(`/api/images/favorites/${imageId}/all`);
-    
-    if (res.ok) {
-      console.log("res in teh getallfavimguserthunk: ", res)
-      const allFavImgs = await res.json();
-      console.log("allfavimgs in the res.ok : ", allFavImgs)
-      dispatch(getAllFavImg(allFavImgs));
-      return allFavImgs;
     }
-  } catch(err) {
+  } catch (err) {
     const errors = await err.json();
     return errors;
   }
-}
+};
+
+export const getAllFavImguserThunk = (imageId) => async (dispatch) => {
+  console.log("in the getallfavimguserthunk~~~~");
+  try {
+    const res = await fetch(`/api/images/favorites/${imageId}/all`);
+
+    if (res.ok) {
+      console.log("res in teh getallfavimguserthunk: ", res);
+      const allFavImgs = await res.json();
+      console.log("allfavimgs in the res.ok : ", allFavImgs);
+      dispatch(getAllFavImg(allFavImgs));
+      return allFavImgs;
+    }
+  } catch (err) {
+    const errors = await err.json();
+    return errors;
+  }
+};
 //reducer function
 
-const initialState = { allImages: {}, userImages: {}, singleImage: {}, imageComments: {}, userFavImg: {}, allFavImgUser: {} };
+const initialState = {
+  allImages: {},
+  userImages: {},
+  singleImage: {},
+  imageComments: {},
+  userFavImg: {},
+  allFavImgUser: {},
+};
 
 const imageReducer = (state = initialState, action) => {
   let newState = {};
@@ -299,8 +309,8 @@ const imageReducer = (state = initialState, action) => {
     case UPDATE_IMAGE: {
       // newState = { ...state, singleImage: { ...state.singleImage } };
       // newState = { ...state, singleImage: {} };
-      console.log("Update image in the reducer function~~~~~")
-      newState = {...state, allImages: {...state.allImages}};
+      console.log("Update image in the reducer function~~~~~");
+      newState = { ...state, allImages: { ...state.allImages } };
       newState.allImages[action.image.id] = action.image;
       return newState;
     }
@@ -327,28 +337,28 @@ const imageReducer = (state = initialState, action) => {
       return newState;
     }
     case GET_USER_FAV_IMG: {
-      newState = {...state, userFavImg: {}};
-        action.images.forEach((image) => {
-          newState.userFavImg[image.id] = image;
-        });
-        return newState;
+      newState = { ...state, userFavImg: {} };
+      action.images.forEach((image) => {
+        newState.userFavImg[image.id] = image;
+      });
+      return newState;
     }
     case ADD_USER_FAV_IMG: {
-        const newState = { ...state, userFavImg: {...state.userFavImg} };
-        newState.userFavImg[action.image.id] = action.image;
-        return newState;
+      const newState = { ...state, userFavImg: { ...state.userFavImg } };
+      newState.userFavImg[action.image.id] = action.image;
+      return newState;
     }
     case DELETE_USER_FAV_IMG: {
-      const newState = {...state, userFavImg: {...state.userFavImg}};
+      const newState = { ...state, userFavImg: { ...state.userFavImg } };
       delete newState.userFavImg[action.image_id];
-      return newState
-    }    
+      return newState;
+    }
     case GET_ALL_FAV_IMG: {
-      const newState = {...state, allFavImgUser: {}}
+      const newState = { ...state, allFavImgUser: {} };
       // console.log("action images in the reducer function: ", action.images)
       action.images.forEach((image) => {
         newState.allFavImgUser[image.id] = image;
-      })
+      });
       return newState;
     }
     default:

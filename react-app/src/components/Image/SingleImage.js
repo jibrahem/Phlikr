@@ -12,8 +12,13 @@ import scale from "./resource/scale.png";
 import info from "./resource/info.png";
 import EXIF from "./exif";
 import Footer from "../Footer/Footer";
+
+// import Comments from "./comments";
+import './SingleImage.css'
+
 import CommentShow from "./CommentShow";
 import Favorites from "../Favorites";
+
 
 console.log("Before userParams");
 
@@ -143,53 +148,112 @@ export default function SingleImage() {
                             })()}
                             
                             <p>Uploaded on {singleImage.uploaded_on}</p>
+                            <div id='views-container'>
+                              <p style={{fontSize: "20px"}}>{singleImage.view_count}</p>
+                              <span style={{fontSize: "14px", color: "#898989", fontWeight: "400"}}>views</span>
+                            </div>
+                            <div id='favs-container'>
+                              <span style={{fontSize: "20px"}}>100</span>
+                              <p style={{fontSize: "14px", color: "#898989", fontWeight: "400"}}>faves</p>
+                            </div>
+                            <div id='comments-count-container'>
+                              <span style={{fontSize: "20px"}}>0</span>
+                              <p style={{fontSize: "14px", color: "#898989", fontWeight: "400"}}>comments</p>
+                            </div>
+                            {/* <p>Uploaded on {singleImage.uploaded_on}</p>
                             <i className="fa-regular fa-copyright"></i>
-                            <p>All rights reserved</p>
+                            <p>All rights reserved</p> */}
                         </div>
+                        <hr></hr>
                         <div id='equipment-info'>
                             <div id='camera'>
                                 <img src={camera} />
-                                <p>Sony ILCE-7RM3</p>
-                                <p>Voitlander</p>
-                                <p>NOKTON 21mm</p>
-                                <p>F1.4 Aspherical</p>
+                                <div className="camera-info">
+                                  <p style={{color: "#006dac", marginTop: "6px", fontSize: "14px"}}>Sony ILCE-7RM3</p>
+                                  <p style={{marginTop: "6px", fontSize: "14px"}}>Voitlander</p>
+                                  <p style={{marginTop: "6px", fontSize: "14px"}}>NOKTON 21mm</p>
+                                  <p style={{marginTop: "6px", fontSize: "14px"}}>F1.4 Aspherical</p>
+                                </div>
                             </div>
                             <div id='camera-details'>
-                                <img src={aperture} />
-                                <p>f/8.0</p>
-                                <img src={scale} />
-                                <p>1/500</p>
-                                <img src={flash} />
-                                <p>Flash (off, did not fire)</p>
-                                <img src={angle} />
-                                <p>21.0 mm</p>
-                                <img src={iso} />
-                                <p>800</p>
-                                <img src={info} />
-                                <p
-                                    onClick={showEXIFFunction}
-                                >Show EXIF</p>
-                                {showEXIF ? <EXIF /> : ""}
+                                <div className="camera-details-sec1">
+                                  <div className="cds1-container">
+                                    <img src={aperture} />
+                                    <p style={{marginLeft: "10px"}}>f/8.0</p>
+                                  </div>
+                                  <div className="cds1-container">
+                                    <img src={scale} />
+                                    <p style={{marginLeft: "10px"}}>1/500</p>
+                                  </div>
+                                  <div style={{width: "190px"}} className="cds1-container">
+                                    <img src={flash} />
+                                    <p style={{marginLeft: "10px"}}>Flash (off, did not fire)</p>
+                                  </div>
+                                </div>
+                                <div className="camera-details-sec2">
+                                  <div div style={{width: "190px"}} className="cds2-container">
+                                    <img src={angle} />
+                                    <p style={{marginLeft: "10px"}}>21.0 mm</p>
+                                  </div>
+                                  <div className="cds2-container">
+                                    <img src={iso} />
+                                    <p style={{marginLeft: "10px"}}>800</p>
+                                  </div>
+                                  <div className="cds2-container">
+                                    <img src={info} />
+                                    <p
+                                        onClick={showEXIFFunction}
+                                        style={{color: "#006dac", marginLeft: "10px"}}
+                                    >Show EXIF</p>
+                                    {showEXIF ? <EXIF /> : ""}
+                                  </div>
+                                </div>
                             </div>
+                            <hr style={{marginTop: "20px"}}></hr>
                             <div id='additional-info'>
-                                <i className="fa-solid fa-lock-open"></i>
-                                <p>Viewing privacy</p>
-                                <p>Public</p>
-                                <i className="fa-solid fa-circle-check"></i>
-                                <p>Safety level</p>
-                                <p>Safe</p>
-                                <i className="fa-regular fa-image"></i>
-                                <p>Content type</p>
-                                <p>Photo</p>
-                                <i className="fa-solid fa-circle-info"></i>
-                                <p>License History</p>
-                                <i className="fa-regular fa-flag"></i>
-                                <p>Flag Photo</p>
+                              <h5 style={{fontSize: "15px", fontWeight: "normal", marginTop: "15px"}}>Additional Info</h5>
+                                <div className="ai-container">
+                                  <i style={{color: "#898989"}} className="fa-solid fa-lock-open"></i>
+                                  <div className="add-info-sub-container">
+                                    <p style={{marginLeft: "10px"}}>Viewing privacy</p>
+                                    <p style={{marginLeft: "252px", color: "black", fontSize: "13px"}}>Public</p>
+                                  </div>
+                                </div>
+                                <div className="ai-container">
+                                  <i style={{color: "#898989"}} className="fa-solid fa-circle-check"></i>
+                                  <div className="add-info-sub-container">
+                                    <p style={{marginLeft: "10px"}}>Safety level</p>
+                                    <p style={{marginLeft: "286px", color: "black", fontSize: "13px"}}>Safe</p>
+                                  </div>
+                                </div>
+                                <div className="ai-container">
+                                  <i style={{color: "#898989"}} className="fa-regular fa-image"></i>
+                                  <div className="add-info-sub-container">
+                                    <p style={{marginLeft: "10px"}}>Content type</p>
+                                    <p style={{marginLeft: "269px", color: "black", fontSize: "13px"}}>Photo</p>
+                                  </div>
+                                </div>
+                                <div className="ai-container">
+                                <i style={{color: "#898989"}} className="fa-solid fa-circle-info"></i>
+                                  <p style={{color: "#006dac", fontSize: "12px", marginLeft: "10px"}}>License History</p>
+                                </div>
+                                <div className="ai-container">
+                                  <i style={{color: "#898989"}} className="fa-regular fa-flag"></i>
+                                  <p style={{color: "#006dac", fontSize: "12px", marginLeft: "10px"}}>Flag Photo</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                {/* <div id='single-image-footer'>
+            <div>
+              <Footer />
+            </div>
+          </div>
+    </>
+  );
+}
+
+           {/* <div id='single-image-footer'>
   return (
     <>
       <div id="single-image-div">
@@ -280,10 +344,3 @@ export default function SingleImage() {
         {/* <div id='single-image-footer'>
                 <SingelImageFooter />
             </div> */}
-            <div>
-              <Footer />
-            </div>
-          </div>
-    </>
-  );
-}
