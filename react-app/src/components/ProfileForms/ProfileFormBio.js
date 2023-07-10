@@ -29,6 +29,7 @@ function ProfileFormBio() {
           classname="form-form-input"
           type="textarea"
           value={biography}
+          maxLength={500}
           onChange={(e) => setBiography(e.target.value)}
           defaultValue={user.biography}
         />

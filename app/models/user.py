@@ -11,6 +11,7 @@ user_favorite = db.Table(
 
 if environment == "production":
     user_favorite.schema = SCHEMA
+
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
 
