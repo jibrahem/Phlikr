@@ -5,7 +5,7 @@ import { NavLink, useParams } from "react-router-dom/cjs/react-router-dom.min";
 import "./ProfileBanner.css";
 import ProfileFormBio from "../ProfileForms/ProfileFormBio";
 import ProfileFormCover from "../ProfileForms/ProfileFormCover";
-import OpenModalMenuItem from '../OpenModalButton';
+import OpenModalMenuItem from "../OpenModalButton";
 import ProfilePhoto from "./ProfilePhoto";
 
 export default function ProfileBanner({ userInfo, photoCount }) {
@@ -26,6 +26,8 @@ export default function ProfileBanner({ userInfo, photoCount }) {
           <div id="cover-photo">
             <img src={userInfo.cover_photo} />
           </div>
+
+
           <div className="profile-photo-wrapper">
             {userInfo.id === sessionUser.id &&
               <OpenModalMenuItem
@@ -35,7 +37,7 @@ export default function ProfileBanner({ userInfo, photoCount }) {
               />
             }
             {userInfo.id !== sessionUser.id &&
-            <img src={userInfo.profile_photo} />
+              <img src={userInfo.profile_photo} />
             }
             <div>
               <div className="profile-name">
