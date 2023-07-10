@@ -12,8 +12,6 @@ import scale from "./resource/scale.png";
 import info from "./resource/info.png";
 import EXIF from "./exif";
 import Footer from "../Footer/Footer";
-
-// import Comments from "./comments";
 import './SingleImage.css'
 
 import CommentShow from "./CommentShow";
@@ -90,19 +88,11 @@ export default function SingleImage() {
                 <div id='single-image-info-div'>
                     <div id='single-image-info-left'>
                         <div id='single-image-comment-div'>
-                            {/* {(() => {
-                                if (sessionUser) return <img src={sessionUser.profile_photo} />
-                                else return <img src='https://i.etsystatic.com/41306100/r/il/848c24/4758546931/il_1140xN.4758546931_o7nt.jpg' />
-                            })()} */}
                             {singleImage.User.profile_photo ? <img src={singleImage.User.profile_photo} alt="" /> : <img src='https://i.etsystatic.com/41306100/r/il/848c24/4758546931/il_1140xN.4758546931_o7nt.jpg' />}
                             <div id='author-info'>
-                                <h3>{singleImage.User.first_name} {singleImage.User.last_name}</h3>
+                                <Link to={`/${singleImage.User.id}/people`}><h3>{singleImage.User.first_name} {singleImage.User.last_name}</h3></Link>
                                 <h4>{singleImage.title}</h4>
                             </div>
-                            {/* started working on updatePhoto */}
-                            {/* <div className="temp-spot-for-update">
-                              <Link to={`${imageId}/update`}>Update Photo</Link>
-                            </div> */}
                             {singleImage.User.id === sessionUser.id ?
                             <div>
                               <Link to={`/${singleImage.id}/update`}><i className="fa-solid fa-pen-to-square"></i></Link></div> : null}
@@ -177,7 +167,7 @@ export default function SingleImage() {
                             <div id='camera'>
                                 <img src={camera} />
                                 <div className="camera-info">
-                                  <p style={{color: "#006dac", marginTop: "6px", fontSize: "14px"}}>Sony ILCE-7RM3</p>
+                                <a href='https://electronics.sony.com/imaging/interchangeable-lens-cameras/all-interchangeable-lens-cameras/p/ilce7rm3-b' target='_blank'><p style={{color: "#006dac", marginTop: "6px", fontSize: "14px"}}>Sony ILCE-7RM3</p></a>
                                   <p style={{marginTop: "6px", fontSize: "14px"}}>Voitlander</p>
                                   <p style={{marginTop: "6px", fontSize: "14px"}}>NOKTON 21mm</p>
                                   <p style={{marginTop: "6px", fontSize: "14px"}}>F1.4 Aspherical</p>
