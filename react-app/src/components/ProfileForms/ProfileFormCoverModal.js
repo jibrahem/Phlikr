@@ -16,7 +16,7 @@ function ProfileFormCoverModal({ userImageArr }) {
     payload[userImageArr[i].id] = false;
   }
   const [showcaseInputs, setShowcaseInputs] = useState(payload);
-
+  const [errors, setErrors] = useState([]);
   // useEffect(() => {
   //   dispatch(getUserImagesThunk);
   // });
