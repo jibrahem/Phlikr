@@ -72,6 +72,7 @@
 
 .cds2-container {
     display: flex;
+    /* flex-direction: column; */
     align-items: center;
 }
 
@@ -84,4 +85,23 @@
     display: flex;
     padding-top: 10px;
     color: #898989;
+}
+
+#appreciation:hover {
+    border-bottom: 1px solid black;
+}
+
+#info-exif {
+    display: flex;
+    align-items: center;
+}
+
+#info-exif-div {
+    display: flex;
+    flex-direction: column;
+}
+
+#author-info a, 
+#fav-users a {
+    color: black;
 }

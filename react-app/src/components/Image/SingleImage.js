@@ -12,8 +12,6 @@ import scale from "./resource/scale.png";
 import info from "./resource/info.png";
 import EXIF from "./exif";
 import Footer from "../Footer/Footer";
-
-// import Comments from "./comments";
 import './SingleImage.css'
 
 import CommentShow from "./CommentShow";
@@ -28,7 +26,7 @@ export default function SingleImage() {
   const singleImage = useSelector((state) => state.images.singleImage);
   const favImagesStore = useSelector((state) => state.images.allFavImgUser);
   const favImgUserArr = Object.values(favImagesStore)
-  console.log("favImages Users Array in the single image component: ", favImgUserArr);
+  // console.log("favImages Users Array in the single image component: ", favImgUserArr);
   // console.log("singleImage Store: ", singleImage);
   const sessionUser = useSelector((state) => state.session.user);
   const [showEXIF, setShowEXIF] = useState(false);
@@ -56,12 +54,16 @@ export default function SingleImage() {
     history.push(`/${sessionUser.id}/photos`);
   };
 
+  const appreciate = () => {
+    return window.alert("Feature coming soon!")
+  }
+
 
   useEffect(() => {
     dispatch(getSingleImageThunk(imageId));
     // dispatch(getAllImageThunk());
-    // dispatch(getUserFavImgThunk(sessionUser.id));
-    // dispatch(getAllFavImguserThunk(imageId));
+    dispatch(getUserFavImgThunk(sessionUser.id));
+    dispatch(getAllFavImguserThunk(imageId));
   }, [dispatch, imageId, sessionUser.id]);
 
     if (!singleImage.User) return null;
@@ -86,18 +88,11 @@ export default function SingleImage() {
                 <div id='single-image-info-div'>
                     <div id='single-image-info-left'>
                         <div id='single-image-comment-div'>
-                            {(() => {
-                                if (sessionUser) return <img src={sessionUser.profile_photo} />
-                                else return <img src='https://i.etsystatic.com/41306100/r/il/848c24/4758546931/il_1140xN.4758546931_o7nt.jpg' />
-                            })()}
+                            {singleImage.User.profile_photo ? <img src={singleImage.User.profile_photo} alt="" /> : <img src='https://i.etsystatic.com/41306100/r/il/848c24/4758546931/il_1140xN.4758546931_o7nt.jpg' />}
                             <div id='author-info'>
-                                <h3>{singleImage.User.first_name} {singleImage.User.last_name}</h3>
+                                <Link to={`/${singleImage.User.id}/people`}><h3>{singleImage.User.first_name} {singleImage.User.last_name}</h3></Link>
                                 <h4>{singleImage.title}</h4>
                             </div>
-                            {/* started working on updatePhoto */}
-                            {/* <div className="temp-spot-for-update">
-                              <Link to={`${imageId}/update`}>Update Photo</Link>
-                            </div> */}
                             {singleImage.User.id === sessionUser.id ?
                             <div>
                               <Link to={`/${singleImage.id}/update`}><i className="fa-solid fa-pen-to-square"></i></Link></div> : null}
@@ -106,7 +101,7 @@ export default function SingleImage() {
                               <div id='single-image-pro-fav-div'> 
                                 <div className="appreciate">
                                     <i className="fa-solid fa-gift"></i>
-                                    <p>Show your appreciation with the gift of Snapr Pro</p>
+                                    <p id='appreciation' onClick={appreciate}>Show your appreciation with the gift of Snapr Pro</p>
                                 </div> 
                             <div className="fav">
                                 <i className="fa-regular fa-star"></i>
@@ -116,13 +111,16 @@ export default function SingleImage() {
                                     userNames.push([user.first_name, user.last_name, user.id])
                                   }
 
+                                  // console.log('userNames in the singleImage: ', userNames)
+
                                   if (userNames.length > 2) {
                                     return <p id='fav-users'><Link to={`/${userNames[0][2]}/people`}>{`${userNames[0][0]} ${userNames[0][1]}`}</Link>, <Link to={`/${userNames[1][2]}/people`}>{`${userNames[1][0]} ${userNames[1][1]}`}</Link> and {`${userNames.length - 2}`} more people faved this!</p>
                                   } else if (userNames.length === 1) {
                                     return <p id='fav-users'><Link to={`/${userNames[0][2]}/people`}>{`${userNames[0][0]} ${userNames[0][1]}`}</Link> faved this!</p>
                                   } else if (userNames.length === 2) {
                                     return <p id='fav-users'><Link to={`/${userNames[0][2]}/people`}>{`${userNames[0][0]} ${userNames[0][1]}`}</Link>, and <Link to={`/${userNames[1][2]}/people`}>{`${userNames[1][0]} ${userNames[1][1]}`}</Link> faved this!</p>
-                                  } else {
+                                  } 
+                                  else {
                                     return <p>Be the first to fav this!</p>
                                   }
 
@@ -131,20 +129,33 @@ export default function SingleImage() {
                             </div>
                         </div>
                     </div>
-                    {/* <CommentShow
-                        image={singleImage} /> */}
+                    <CommentShow
+                        image={singleImage} />
                     <div id='single-image-info-right'>
                         <div id='views-faves-comment'>
+                            {/* <p>{singleImage.view_count} views</p>
+                            <p>{singleImage.image_favorites_count} faves</p>
+                            {(() => {
+                              if(singleImage.image_comment_count === 1) {
+                                return <p>{singleImage.image_comment_count} comment</p>
+                              } else if(singleImage.image_comment_count === 0) {
+                                return <p>Be the first to leave a comment!</p>
+                              } else {
+                                return <p>{singleImage.image_comment_count} comments</p>
+                              }
+                            })()} */}
+                            
+                            {/* <p>Uploaded on {singleImage.uploaded_on}</p> */}
                             <div id='views-container'>
                               <p style={{fontSize: "20px"}}>{singleImage.view_count}</p>
                               <span style={{fontSize: "14px", color: "#898989", fontWeight: "400"}}>views</span>
                             </div>
                             <div id='favs-container'>
-                              <span style={{fontSize: "20px"}}>100</span>
+                              <span style={{fontSize: "20px"}}>{singleImage.image_favorites_count}</span>
                               <p style={{fontSize: "14px", color: "#898989", fontWeight: "400"}}>faves</p>
                             </div>
                             <div id='comments-count-container'>
-                              <span style={{fontSize: "20px"}}>0</span>
+                              <span style={{fontSize: "20px"}}>{singleImage.image_comment_count}</span>
                               <p style={{fontSize: "14px", color: "#898989", fontWeight: "400"}}>comments</p>
                             </div>
                             {/* <p>Uploaded on {singleImage.uploaded_on}</p>
@@ -156,7 +167,7 @@ export default function SingleImage() {
                             <div id='camera'>
                                 <img src={camera} />
                                 <div className="camera-info">
-                                  <p style={{color: "#006dac", marginTop: "6px", fontSize: "14px"}}>Sony ILCE-7RM3</p>
+                                <a href='https://electronics.sony.com/imaging/interchangeable-lens-cameras/all-interchangeable-lens-cameras/p/ilce7rm3-b' target='_blank'><p style={{color: "#006dac", marginTop: "6px", fontSize: "14px"}}>Sony ILCE-7RM3</p></a>
                                   <p style={{marginTop: "6px", fontSize: "14px"}}>Voitlander</p>
                                   <p style={{marginTop: "6px", fontSize: "14px"}}>NOKTON 21mm</p>
                                   <p style={{marginTop: "6px", fontSize: "14px"}}>F1.4 Aspherical</p>
@@ -187,12 +198,18 @@ export default function SingleImage() {
                                     <p style={{marginLeft: "10px"}}>800</p>
                                   </div>
                                   <div className="cds2-container">
-                                    <img src={info} />
-                                    <p
-                                        onClick={showEXIFFunction}
-                                        style={{color: "#006dac", marginLeft: "10px"}}
-                                    >Show EXIF</p>
-                                    {showEXIF ? <EXIF /> : ""}
+                                    <div id='info-exif-div'>
+                                      <div id='info-exif'>
+                                        <img src={info} />
+                                        <p
+                                            onClick={showEXIFFunction}
+                                            style={{color: "#006dac", marginLeft: "10px"}}
+                                        >Show EXIF</p>
+                                      </div>
+                                      <div id="exif">
+                                        {showEXIF ? <EXIF /> : ""}
+                                      </div>
+                                    </div>
                                   </div>
                                 </div>
                             </div>

@@ -17,7 +17,7 @@ export default function UserHome() {
   const ulRef = useRef();
   const [showMenu, setShowMenu] = useState(false);
   const currDate = new Date();
-  const [fav, setFav] = useState(false);
+  const [info, setInfo] = useState(false);
   const userFavImagesStore = useSelector((state) => state.images.userFavImg);
   // console.log("user favorite images in UserHome: ", userFavImagesStore);
   const userFavImgArr = Object.values(userFavImagesStore);
@@ -27,9 +27,22 @@ export default function UserHome() {
 
   const dispatch = useDispatch();
 
-  const setFavButton = () => {
-    setFav(true);
-  };
+  const showInfo = (imageId) => {
+    setInfo((prevInfo) => ({
+      ...prevInfo,
+      [imageId]: true,
+    }));
+  }
+
+  const notShowInfo = (imageId) => {
+    setInfo((prevInfo) => ({
+      ...prevInfo,
+      [imageId]: false,
+    }));
+  }
+  // const setFavButton = () => {
+  //   setFav(true);
+  // };
 
   useEffect(() => {
     if (!showMenu) return;
@@ -49,11 +62,12 @@ export default function UserHome() {
 
   useEffect(() => {
     dispatch(getAllImageThunk());
-    dispatch(getUserFavImgThunk(sessionUser.id));
-  }, []);
+    // dispatch(getUserFavImgThunk(sessionUser.id));
+  }, [dispatch]);
 
   if (imagesArr.length < 1) return null;
 
+  //onMouseOver={showInfo(image.id)} onMouseLeave={notShowInfo(image.id)}
   return (
     <>
       <div className='user-home-wrapper'>
@@ -72,50 +86,51 @@ export default function UserHome() {
         <div className="image-list-div">
           <ul>
             {imagesArr.map((image) => (
-              <li key={image.id} className="image-card">
-                <p>
-                  {image.User.first_name} {image.User.last_name}
-                </p>
-                {(() => {
-                  const uploadedOn = new Date(image.uploaded_on);
-                  const timeDiff = Math.round(
-                    (currDate - uploadedOn) / (1000 * 60 * 60 * 24)
-                  );
-                  if (timeDiff > 1) {
-                    return <p>{timeDiff}ds ago</p>;
-                  }
-                  return <p>{timeDiff}d ago</p>;
-                })()}
-                <Link key={image.id} to={`/photos/${image.id}`}>
-                  <div className="photo">
-                    <img src={image.img} alt={image.title} />
-                  </div>
-                </Link>
-                <Link key={image.id} to={`/photos/${image.id}`}>
-                  <p>{image.title}</p>
-                </Link>
-                <p>{image.description}</p>
-                <div>
-                  <div>
-                    {image.view_count > 1000
-                      ? parseFloat(image.view_count) / 1000 + "K"
-                      : image.view_count}{" "}
-                    views
-                  </div>
-
-                  <div className="icon">
-
-                    <Favorites imageId={image.id} />
-
-                    {/* <AddUserFav image={image} /> */}
-
-                    <Link to={`/photos/${image.id}`}>
-                      <i className="fa-regular fa-comment"></i>
-                    </Link>
-                    <i className="fa-light fa-album-circle-plus"></i>
-                    {/* <i className="fa-solid fa-tree"></i> we don't need the tree icon*/}
+              <li key={image.id} className='image-card' onMouseOver={() => showInfo(image.id)} onMouseLeave={() => notShowInfo(image.id)}>
+                <div id='userhome-user-info'>
+                  <img src={image.User.profile_photo} alt=''/>
+                  <div id="name-day">
+                    <p>{image.User.first_name} {image.User.last_name}</p>
+                    {(() => {
+                      const uploadedOn = new Date(image.uploaded_on);
+                      const timeDiff = Math.round((currDate - uploadedOn) / (1000 * 60 * 60 * 24));
+                      if (timeDiff > 1) {
+                        return <p id='day'>{timeDiff}ds ago</p>
+                      }
+                      return <p id='day'>{timeDiff}d ago</p>
+                    })()}
                   </div>
                 </div>
+            
+                
+                  <div className="photo" >
+                    <Link key={image.id} to={`/photos/${image.id}`}>
+                      <img src={image.img} alt={image.title} />
+                    </Link>
+                    {/* {console.log("info in the component: ", info)} */}
+                    {info[image.id] ?  
+                    // <div id={`photo-info ${info[image.id]}`}>
+                    <div id={info[image.id] ? 'photo-info' : ""}>
+                      <div id='title-description'>
+                        <Link key={image.id} to={`/photos/${image.id}`}>
+                          <p id='image-title'>{image.title}</p>
+                        </Link>
+                        <p id='image-description'>{image.description}</p>
+                      </div>
+                      <div id='count-fav-comment'>
+                        <p id='image-views'>{image.view_count > 1000 ? parseFloat(image.view_count) / 1000 + "K" : image.view_count} views</p>
+                        <div id='fav-comment'>
+                          <Favorites imageId={image.id} />
+                          <p>{image.image_favorites_count}</p>
+                          {/* <AddUserFav image={image} /> */}
+                          <Link to={`/photos/${image.id}`}>
+                            <i className="fa-regular fa-comment"></i>
+                          </Link> 
+                          <p>{image.image_comment_count}</p>
+                        </div>
+                      </div>
+                    </div> : null}
+                </div> 
                 {/* </Link> */}
               </li>
             ))}

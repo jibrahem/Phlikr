@@ -80,9 +80,9 @@ export default function DefaultHome() {
     <span className='splash-span'>Terms</span>
     <span className='splash-span'>Cookies</span>
     <span className='splash-span'>English</span>
-    <a href="#" class="icon-link"><i class="fab fa-facebook-f"></i></a>
-    <a href="#" class="icon-link"><i class="fab fa-twitter"></i></a>
-    <a href="#" class="icon-link"><i class="fab fa-instagram"></i></a>
+    <a href="#" className="icon-link"><i className="fab fa-facebook-f"></i></a>
+    <a href="#" className="icon-link"><i className="fab fa-twitter"></i></a>
+    <a href="#" className="icon-link"><i className="fab fa-instagram"></i></a>
   </footer>
 </>
     )   

@@ -1,7 +1,7 @@
 .about-container {
     padding-top: 2vh;
-    width:100vw;
-    display:flex;
+    width: 100vw;
+    display: flex;
     justify-content: center;
     font-family: Proxima Nova
 }
@@ -12,7 +12,7 @@
     background-color: white;
 }
 
-.about-wrapper > div {
+.about-wrapper>div {
     border-top: 2px solid rgb(215, 212, 212);
     border-width: 1px;
     padding-top: 30px;
@@ -23,11 +23,12 @@
     display: flex;
 
 }
+
 .about-wrapper {
     width: 80vw;
     /* padding: 50px; */
     /* margin: 20px; */
-    display:flex;
+    display: flex;
     flex-direction: column;
 }
 
@@ -36,19 +37,72 @@
     display: flex;
     flex-direction: column;
 }
+
+
 .about-biography button {
+    align-self: flex-end;
+    width: 6rem;
+    height: 2rem;
+    color: white;
+    font-size: 20px;
+    outline: none;
+    border: none;
+    background-color: rgb(0, 166, 255);
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.bio-form {
+    display: flex;
+    gap: 2rem;
+    margin-right: 2rem;
+}
+
+.bio-form textarea {
+    height: 4rem;
+    width: 100%
+}
+
+.pencil-button {
+    display: flex;
+    flex-direction: column;
+}
+
+.pencil-button button {
     width: 100px;
     align-self: flex-end;
+    width: 2rem;
+    color: rgb(154, 151, 151);
+    font-size: 20px;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
 }
 
 
-.about-showcase  {
+.about-showcase {
     min-height: 200px;
     max-height: 600px;
     overflow: hidden;
-    display:flex;
+    display: flex;
     flex-direction: column;
+}
 
+.about-showcase li {
+    list-style: none;
+}
+
+.about-showcase button {
+    width: 100px;
+    align-self: flex-end;
+    width: 2rem;
+    color: rgb(154, 151, 151);
+    font-size: 30px;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
 }
 
 .about-showcase .showcase-header {
@@ -61,7 +115,7 @@
     flex-direction: row;
 }
 
-.showcase-item-wrapper{
+.showcase-item-wrapper {
     width: 150px;
     height: 150px;
     overflow: hidden;
@@ -80,9 +134,21 @@
     display: flex;
     flex-direction: column;
 }
-.about-details button {
-    width: 100px;
+
+.open-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.open-details button {
     align-self: flex-end;
+    width: 2rem;
+    color: rgb(154, 151, 151);
+    font-size: 22px;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
 }
 
 .profile-details {
@@ -98,7 +164,7 @@
 .detail-item {
     padding-bottom: 30px;
     width: 15vw;
-    display:flex;
+    display: flex;
     flex-direction: row;
     justify-content: space-between;
     justify-items: left;
@@ -107,4 +173,55 @@
 
 .detail-label {
     color: grey;
+}
+
+.details-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.profile-form-label {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 1rem;
+    color: gray;
+    gap: 1rem
+}
+
+.delete-user {
+    display: flex;
+    justify-content: center;
+}
+
+.delete-user button {
+    width: 9rem;
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    margin-bottom: 1rem;
+    color: red;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.delete-user button:hover {
+    background-color: red;
+    color: white
+}
+
+/* .profile-form-submit button {
+    align-self: flex-end;
+    width: 2rem;
+    color: rgb(0, 166, 255);
+    font-size: 22px;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+} */
+
+.delete-user li{
+    list-style: none;
 }
