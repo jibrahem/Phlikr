@@ -127,10 +127,11 @@ function ProfileFormDetails() {
             onChange={(e) => setTumblr(e.target.value)}
           />
         </label>
-
-        <button type="submit" className="profile-form-submit">
-          Done
-        </button>
+        <div className="profile-submit">
+          <button type="submit" className="profile-form-submit">
+            Done
+          </button>
+        </div>
       </form>
     </div>
   );
