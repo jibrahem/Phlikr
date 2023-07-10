@@ -76,6 +76,7 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    object-fit: cover;
 }
 
 .icon {
@@ -89,6 +90,7 @@
     flex-direction: column;
     justify-content: center;
     position: relative;
+    overflow: hidden;
 }
 
 .views {
@@ -199,4 +201,3 @@
     background-color: transparent;
     font-size: 16px;
 }
-

@@ -5,6 +5,7 @@ import { getUserImagesThunk } from "../../store/image.js";
 import { updateUserShowcaseThunk } from "../../store/users";
 import { useModal } from "../../context/Modal";
 import "./ShowcaseModal.css";
+import { NavLink, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 function ShowcaseModal({ userImageArr }) {
   const dispatch = useDispatch();
@@ -18,7 +19,7 @@ function ShowcaseModal({ userImageArr }) {
     payload[userImageArr[i].id] = false;
   }
   const [showcaseInputs, setShowcaseInputs] = useState(payload);
-
+  const history = useHistory();
   useEffect(() => {
     dispatch(getUserImagesThunk);
   }, dispatch);
@@ -49,6 +50,10 @@ function ShowcaseModal({ userImageArr }) {
     // console.log('payload', nextp);
   };
 
+  const redirectClick = () => {
+    closeModal();
+    history.push("/photos/upload");
+  };
   const handleChange = (imageId, event) => {
     console.log("handle change", imageId, "hefdfdf   ");
     let nextPayload = { ...showcaseInputs };
@@ -65,7 +70,12 @@ function ShowcaseModal({ userImageArr }) {
   //   setShowcaseInputs(nextPayload);
   // };
 
-  if (userImageArr.length < 1) return null;
+  if (userImageArr.length < 1)
+    return (
+      <button onClick={redirectClick} className="no-uploads">
+        Upload some photos to get started!
+      </button>
+    );
 
   //   const input_list = [];
   //   for (let i = 0; i < userImgArr.length; i++) {
