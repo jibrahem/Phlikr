@@ -90,10 +90,11 @@ export default function SingleImage() {
                 <div id='single-image-info-div'>
                     <div id='single-image-info-left'>
                         <div id='single-image-comment-div'>
-                            {(() => {
+                            {/* {(() => {
                                 if (sessionUser) return <img src={sessionUser.profile_photo} />
                                 else return <img src='https://i.etsystatic.com/41306100/r/il/848c24/4758546931/il_1140xN.4758546931_o7nt.jpg' />
-                            })()}
+                            })()} */}
+                            {singleImage.User.profile_photo ? <img src={singleImage.User.profile_photo} alt="" /> : <img src='https://i.etsystatic.com/41306100/r/il/848c24/4758546931/il_1140xN.4758546931_o7nt.jpg' />}
                             <div id='author-info'>
                                 <h3>{singleImage.User.first_name} {singleImage.User.last_name}</h3>
                                 <h4>{singleImage.title}</h4>
