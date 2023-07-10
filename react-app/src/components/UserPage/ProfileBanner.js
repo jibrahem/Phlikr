@@ -5,7 +5,7 @@ import { NavLink, useParams } from "react-router-dom/cjs/react-router-dom.min";
 import "./ProfileBanner.css";
 import ProfileFormBio from "../ProfileForms/ProfileFormBio";
 import ProfileFormCover from "../ProfileForms/ProfileFormCover";
-import OpenModalMenuItem from '../OpenModalButton';
+import OpenModalMenuItem from "../OpenModalButton";
 import ProfilePhoto from "./ProfilePhoto";
 
 export default function ProfileBanner({ userInfo, photoCount }) {
@@ -28,9 +28,8 @@ export default function ProfileBanner({ userInfo, photoCount }) {
           </div>
           <div className="profile-photo-wrapper">
             <OpenModalMenuItem
-              itemText=<img src={userInfo.profile_photo}/>
-              modalComponent={<ProfilePhoto
-              />}
+              itemText={<img src={userInfo.profile_photo} />}
+              modalComponent={<ProfilePhoto />}
             />
             <div>
               <div className="profile-name">
@@ -43,8 +42,7 @@ export default function ProfileBanner({ userInfo, photoCount }) {
             <OpenModalMenuItem
               buttonText="..."
               // onItemClick={closeMenu}
-              modalComponent={<ProfileFormCover
-              />}
+              modalComponent={<ProfileFormCover />}
             />
           </div>
         </div>
