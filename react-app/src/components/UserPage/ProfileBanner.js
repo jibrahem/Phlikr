@@ -28,8 +28,9 @@ export default function ProfileBanner({ userInfo, photoCount }) {
           </div>
           <div className="profile-photo-wrapper">
             <OpenModalMenuItem
-              itemText={<img src={userInfo.profile_photo} />}
-              modalComponent={<ProfilePhoto />}
+              itemText={<img src={userInfo.profile_photo}/>}
+              modalComponent={<ProfilePhoto
+              />}
             />
             <div>
               <div className="profile-name">
@@ -42,7 +43,8 @@ export default function ProfileBanner({ userInfo, photoCount }) {
             <OpenModalMenuItem
               buttonText="..."
               // onItemClick={closeMenu}
-              modalComponent={<ProfileFormCover />}
+              modalComponent={<ProfileFormCover
+              />}
             />
           </div>
         </div>

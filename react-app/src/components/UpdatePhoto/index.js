@@ -42,7 +42,9 @@ export default function UpdatePhoto() {
     
     return (
         <div className='whole-update-form'>
-          <img className='update-background' src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSz8OSqoAMqjlVNKYv8LqYMBHaNNkk6JVXk2g&usqp=CAU"} alt="BGI" />
+          <img className='update-background' src={"https://free4kwallpapers.com/uploads/wallpaper/4k-overwatch--+-mobile-versons-wallpaper-1024x768-wallpaper.jpg"} alt="BGI" />
+          
+          {/* <img className='update-background' src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSz8OSqoAMqjlVNKYv8LqYMBHaNNkk6JVXk2g&usqp=CAU"} alt="BGI" /> */}
             {/* <span>""</span> */}
            <form className="update-image-form" onSubmit={handleSubmit}>
             <h3 className='update-title'>Update Photo</h3>
