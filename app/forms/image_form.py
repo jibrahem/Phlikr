@@ -9,7 +9,7 @@ def img_ext(form, field):
         raise ValidationError('url must end in .png, .jpg, .jpeg, or .gif')
 
 class ImageForm(FlaskForm):
-    title = StringField('Title', validators=[DataRequired(), Length(max=100)])
+    title = StringField('Title', validators=[DataRequired(), Length(max=250)])
     description = StringField('Description', validators=[DataRequired(), Length(max=255)])
     img = StringField('Image Url', validators=[DataRequired(),Length(max=255)])
     submit = SubmitField('submit')

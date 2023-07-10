@@ -12,7 +12,7 @@ function UploadPhoto() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [img, setImg] = useState("");
-  const [errors, setErrors] = useState([]);
+  const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
   // console.log("state", state)
 
@@ -23,21 +23,17 @@ function UploadPhoto() {
       description,
       img,
     };
-    if (title.length > 50) {
-      setErrors("Title must be less than 50 Characters");
-    }
-    if (description.length > 50) {
-      setErrors("desc must be less than 50 Characters");
-    }
-    if (
-      !img.includes(".jpg") &&
-      !img.includes(".jpeg") &&
-      !img.includes(".png")
-    ) {
-      setErrors("url must end in .jpg, .jpeg, .png");
-    }
+    const errors = {};
 
-    if (errors.length < 1) {
+    if (
+      img &&
+      !(img.endsWith(".png") || img.endsWith(".jpg") || img.endsWith(".jpeg"))
+    ) {
+      errors.img = "Image URL must end with .png, .jpg, or .jpeg";
+    }
+    if (Object.values(errors).length > 0) {
+      setErrors(errors);
+    } else {
       const data = await dispatch(createImageThunk(imageDetails, sessionUser));
       history.push("/");
     }
@@ -55,7 +51,6 @@ function UploadPhoto() {
       {/* <span>""</span> */}
       <form className="upload-image-form" onSubmit={handleSubmit}>
         <h3 className="upload-title">Upload Photo</h3>
-        {errors}
         {/* <ul>
             {errors.map((error, idx) => (
               <li key={idx}>{error}</li>
@@ -78,6 +73,7 @@ function UploadPhoto() {
               fontSize: "14px",
             }}
           />
+          <div className="errors">{errors.img}</div>
         </label>
         <label className="upload-label">
           Image Url
@@ -87,7 +83,7 @@ function UploadPhoto() {
             //  placeholder="Image Url"
             className="upload-image-url"
             value={img}
-            maxLength={250}
+            maxLength={100}
             onChange={(e) => setImg(e.target.value)}
             required
             style={{
@@ -107,7 +103,7 @@ function UploadPhoto() {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             minLength={1}
-            maxLength={500}
+            maxLength={200}
             required
             style={{
               fontFamily:
