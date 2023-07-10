@@ -73,9 +73,11 @@ export default function AboutPage({ userImagesProp, userInfoProp }) {
       <div className="about-wrapper">
         <div className="about-biography">
           <div className="pencil-button">
-            <button onClick={bioClick}>
-              <i class="fa-solid fa-pen"></i>
-            </button>
+            {sessionUser.id === userInfo.id &&
+              <button onClick={bioClick}>
+                <i class="fa-solid fa-pen"></i>
+              </button>
+            }
           </div>
           {!showBioForm ? (
             <div className="">
@@ -93,12 +95,13 @@ export default function AboutPage({ userImagesProp, userInfoProp }) {
         <div className="about-showcase">
           <div className="showcase-header">
             <p>{userInfo.first_name}'s Showcase</p>
-            <OpenModalButton
-              buttonText="+"
-              modalComponent={<ShowcaseModal userImageArr={userImageArr} />}
-            />
+            {sessionUser.id === userInfo.id &&
+              <OpenModalButton
+                buttonText="+"
+                modalComponent={<ShowcaseModal userImageArr={userImageArr} />}
+              />
+            }
           </div>
-
           {userShowcaseArr ? (
             <div className="showcase-gallery-wrapper">
               {userShowcaseArr.map((image) => {
@@ -119,9 +122,11 @@ export default function AboutPage({ userImagesProp, userInfoProp }) {
         </div>
         <div className="about-details">
           <div className="open-details">
-            <button onClick={detailClick}>
-              <i class="fa-solid fa-pen"></i>
-            </button>
+            {sessionUser.id === userInfo.id &&
+              <button onClick={detailClick}>
+                <i class="fa-solid fa-pen"></i>
+              </button>
+            }
           </div>
           {showDetailForm ? (
             <ProfileFormDetails />
@@ -210,12 +215,15 @@ export default function AboutPage({ userImagesProp, userInfoProp }) {
             </div>
           )}
         </div>
-        <div className="delete-user">
-          <OpenModalButton
-            buttonText="DELETE USER"
-            modalComponent={<DeleteUserModal />}
-          />
-        </div>
+
+        {sessionUser.id === userInfo.id &&
+          <div className="delete-user">
+            <OpenModalButton
+              buttonText="DELETE USER"
+              modalComponent={<DeleteUserModal />}
+            />
+          </div>
+        }
       </div>
     </div>
   );
