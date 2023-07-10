@@ -5,8 +5,6 @@ import { getUserImagesThunk } from "../../store/image";
 // import './Photostream.css'
 import Favorites from "../Favorites";
 
-
-
 export default function PhotostreamPage() {
   const sessionUser = useSelector((state) => state.session.user);
   const userImageStore = useSelector((state) => state.images.userImages);
@@ -34,6 +32,7 @@ export default function PhotostreamPage() {
       [imageId]: false,
     }));
   }
+
 
   useEffect(() => {
     dispatch(getUserImagesThunk(sessionUser.id))
@@ -88,3 +87,4 @@ export default function PhotostreamPage() {
     </>
   );
 }
+

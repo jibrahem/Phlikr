@@ -42,7 +42,6 @@ export default function FavesPage() {
 
  if (userFavImgArr.length < 1) return null;
 
- 
   return (
     <>
     <div id='user-fav-container'>
