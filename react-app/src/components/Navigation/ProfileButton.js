@@ -67,7 +67,7 @@ function ProfileButton({ user }) {
   return (
     <>
       <ul className={ulClassName} ref={ulRef}>
-        
+
       {user ? (
         <>
           <div className="top-nav">
@@ -108,4 +108,3 @@ function ProfileButton({ user }) {
 
 
 export default ProfileButton;
-

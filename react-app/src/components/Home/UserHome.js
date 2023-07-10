@@ -1,9 +1,11 @@
-import { useSelector, useDispatch, } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useRef, useState } from "react";
 import { getAllImageThunk } from "../../store/image";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import "./UserHome.css";
-import { getUserFavImgThunk } from "../../store/image";
+import CommentModal from "../CommentModal";
+import OpenModalButton from '../OpenModalButton';
+import { getUserFavImgThunk, deleteUserFavImgThunk, addUserFavThunk} from "../../store/image";
 import Favorites from "../Favorites";
 
 
@@ -26,8 +28,8 @@ export default function UserHome() {
   const dispatch = useDispatch();
 
   const setFavButton = () => {
-    setFav(true)
-  }
+    setFav(true);
+  };
 
   useEffect(() => {
     if (!showMenu) return;
@@ -38,7 +40,7 @@ export default function UserHome() {
       }
     };
 
-    document.addEventListener('click', closeMenu);
+    document.addEventListener("click", closeMenu);
 
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu]);
@@ -61,35 +63,30 @@ export default function UserHome() {
             <p>All Activity</p>
             <p>What's new?</p>
           </div> */}
-
           {/* <div className="layout">
             <p>layout 1</p>
             <p>layout 2</p>
             <p>layout 3</p>
           </div> */}
         </div>
-        <div className='image-list-div'>
-
+        <div className="image-list-div">
           <ul>
-
             {imagesArr.map((image) => (
-              <li key={image.id} className='image-card'>
-                <div id='userhome-user-info'>
-                  <img src={image.User.profile_photo} alt='' />
-                  <div id="name-day">
-                    <p>{image.User.first_name} {image.User.last_name}</p>
-                    {(() => {
-                      const uploadedOn = new Date(image.uploaded_on);
-                      const timeDiff = Math.round((currDate - uploadedOn) / (1000 * 60 * 60 * 24));
-                      if (timeDiff > 1) {
-                        return <p id='day'>{timeDiff}ds ago</p>
-                      }
-                      return <p id='day'>{timeDiff}d ago</p>
-                    })()}
-                  </div>
-                </div>
+              <li key={image.id} className="image-card">
+                <p>
+                  {image.User.first_name} {image.User.last_name}
+                </p>
+                {(() => {
+                  const uploadedOn = new Date(image.uploaded_on);
+                  const timeDiff = Math.round(
+                    (currDate - uploadedOn) / (1000 * 60 * 60 * 24)
+                  );
+                  if (timeDiff > 1) {
+                    return <p>{timeDiff}ds ago</p>;
+                  }
+                  return <p>{timeDiff}d ago</p>;
+                })()}
                 <Link key={image.id} to={`/photos/${image.id}`}>
-
                   <div className="photo">
                     <img src={image.img} alt={image.title} />
                   </div>
@@ -99,7 +96,11 @@ export default function UserHome() {
                 </Link>
                 <p>{image.description}</p>
                 <div>
-                  <div>{image.view_count > 1000 ? parseFloat(image.view_count) / 1000 + "K" : image.view_count} views
+                  <div>
+                    {image.view_count > 1000
+                      ? parseFloat(image.view_count) / 1000 + "K"
+                      : image.view_count}{" "}
+                    views
                   </div>
 
                   <div className="icon">
@@ -109,12 +110,11 @@ export default function UserHome() {
                     {/* <AddUserFav image={image} /> */}
 
                     <Link to={`/photos/${image.id}`}>
-                  <i className="fa-regular fa-comment"></i>
-                  </Link>
+                      <i className="fa-regular fa-comment"></i>
+                    </Link>
                     <i className="fa-light fa-album-circle-plus"></i>
                     {/* <i className="fa-solid fa-tree"></i> we don't need the tree icon*/}
                   </div>
-
                 </div>
                 {/* </Link> */}
               </li>
@@ -124,5 +124,4 @@ export default function UserHome() {
       </div>
     </>
   );
-
 }
