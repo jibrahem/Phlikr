@@ -8,14 +8,14 @@ function UploadPhoto() {
     const dispatch = useDispatch();
     const history = useHistory();
     const sessionUser = useSelector((state) => state.session.user)
-    
+
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [img, setImg] = useState("");
     const [errors, setErrors] = useState([]);
     const [submitted, setSubmitted] = useState(false);
     // console.log("state", state)
-     
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -27,7 +27,7 @@ function UploadPhoto() {
         const data = await dispatch(createImageThunk(imageDetails, sessionUser))
         history.push('/');
     }
-  
+
     return (
         <div className='whole-upload-form'>
           <img className='upload-background' src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSz8OSqoAMqjlVNKYv8LqYMBHaNNkk6JVXk2g&usqp=CAU"} alt="BGI" />
@@ -47,26 +47,28 @@ function UploadPhoto() {
               // placeholder="Title"
               className='upload-image-title'
               value={title}
+              maxLength={250}
               onChange={(e) => setTitle(e.target.value)}
               required
-              style={{ fontFamily: 'Proxima Nova, Helvetica Neue, Helvetica, Arial, sans-serif', 
+              style={{ fontFamily: 'Proxima Nova, Helvetica Neue, Helvetica, Arial, sans-serif',
                        fontSize: "14px"
-              }}  
+              }}
             />
           </label>
           <label className='upload-label'>
           Image Url
           <br></br>
-            <input 
-               type="text" 
+            <input
+               type="text"
               //  placeholder="Image Url"
                className='upload-image-url'
                value={img}
+               maxLength={250}
                onChange={(e) => setImg(e.target.value)}
                required
-               style={{ fontFamily: 'Proxima Nova, Helvetica Neue, Helvetica, Arial, sans-serif', 
+               style={{ fontFamily: 'Proxima Nova, Helvetica Neue, Helvetica, Arial, sans-serif',
                         fontSize: "14px"
-               }}  
+               }}
             />
           </label>
           <label className='upload-label'>
@@ -78,10 +80,12 @@ function UploadPhoto() {
               className='upload-image-description'
               value={description}
               onChange={(e) => setDescription(e.target.value)}
+              minLength={1}
+              maxLength={500}
               required
-              style={{ fontFamily: 'Proxima Nova, Helvetica Neue, Helvetica, Arial, sans-serif', 
+              style={{ fontFamily: 'Proxima Nova, Helvetica Neue, Helvetica, Arial, sans-serif',
                        fontSize: "14px"
-              }}  
+              }}
 
             ></textarea>
           </label>
