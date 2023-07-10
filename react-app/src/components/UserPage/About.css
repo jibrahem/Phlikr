@@ -41,6 +41,13 @@
 .about-biography button {
     width: 100px;
     align-self: flex-end;
+    width: 2rem;
+    color: rgb(154, 151, 151);
+    font-size: 20px;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
 }
 
 
@@ -50,7 +57,22 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
+}
 
+.about-showcase li {
+    list-style: none;
+}
+
+.about-showcase button {
+    width: 100px;
+    align-self: flex-end;
+    width: 2rem;
+    color: rgb(154, 151, 151);
+    font-size: 30px;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
 }
 
 .about-showcase .showcase-header {
@@ -84,8 +106,14 @@
 }
 
 .about-details button {
-    width: 100px;
     align-self: flex-end;
+    width: 2rem;
+    color: rgb(154, 151, 151);
+    font-size: 22px;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
 }
 
 .profile-details {
@@ -112,7 +140,7 @@
     color: grey;
 }
 
-.details-form-wrapper {
+.details-form {
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
@@ -120,4 +148,32 @@
 .profile-form-label {
     display: flex;
     flex-direction: row;
+    margin-bottom: 1rem;
+    color: gray;
+    gap: 1rem
+}
+.delete-user{
+    display: flex;
+    justify-content: center;
+}
+
+.delete-user button{
+    width: 9rem;
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border:none;
+    margin-bottom: 1rem;
+    color: red;
+    font-weight: bold;
+    cursor: pointer;
+}
+.delete-user button:hover{
+    background-color: red;
+    color: white
+}
+
+.profile-submit-form button{
+color: white
 }

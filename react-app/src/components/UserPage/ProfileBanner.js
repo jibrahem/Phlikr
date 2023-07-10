@@ -6,6 +6,7 @@ import "./ProfileBanner.css";
 import ProfileFormBio from "../ProfileForms/ProfileFormBio";
 import ProfileFormCover from "../ProfileForms/ProfileFormCover";
 import OpenModalMenuItem from '../OpenModalButton';
+import ProfilePhoto from "./ProfilePhoto";
 
 export default function ProfileBanner({ userInfo, photoCount }) {
   const sessionUser = useSelector((state) => state.session.user);
@@ -26,7 +27,11 @@ export default function ProfileBanner({ userInfo, photoCount }) {
             <img src={userInfo.cover_photo} />
           </div>
           <div className="profile-photo-wrapper">
-            <img src={userInfo.profile_photo} />
+            <OpenModalMenuItem
+              itemText=<img src={userInfo.profile_photo}/>
+              modalComponent={<ProfilePhoto
+              />}
+            />
             <div>
               <div className="profile-name">
                 {userInfo.first_name} {userInfo.last_name}
