@@ -38,7 +38,37 @@
     flex-direction: column;
 }
 
+
 .about-biography button {
+    align-self: flex-end;
+    width: 6rem;
+    height: 2rem;
+    color: white;
+    font-size: 20px;
+    outline: none;
+    border: none;
+    background-color: rgb(0, 166, 255);
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.bio-form {
+    display: flex;
+    gap: 2rem;
+    margin-right: 2rem;
+}
+
+.bio-form textarea {
+    height: 4rem;
+    width: 100%
+}
+
+.pencil-button {
+    display: flex;
+    flex-direction: column;
+}
+
+.pencil-button button {
     width: 100px;
     align-self: flex-end;
     width: 2rem;
@@ -105,7 +135,12 @@
     flex-direction: column;
 }
 
-.about-details button {
+.open-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.open-details button {
     align-self: flex-end;
     width: 2rem;
     color: rgb(154, 151, 151);
@@ -152,28 +187,41 @@
     color: gray;
     gap: 1rem
 }
-.delete-user{
+
+.delete-user {
     display: flex;
     justify-content: center;
 }
 
-.delete-user button{
+.delete-user button {
     width: 9rem;
     height: 3rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    border:none;
+    border: none;
     margin-bottom: 1rem;
     color: red;
     font-weight: bold;
     cursor: pointer;
 }
-.delete-user button:hover{
+
+.delete-user button:hover {
     background-color: red;
     color: white
 }
 
-.profile-submit-form button{
-color: white
+/* .profile-form-submit button {
+    align-self: flex-end;
+    width: 2rem;
+    color: rgb(0, 166, 255);
+    font-size: 22px;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+} */
+
+.delete-user li{
+    list-style: none;
 }

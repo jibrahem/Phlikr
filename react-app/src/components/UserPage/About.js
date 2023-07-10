@@ -17,6 +17,7 @@ import ProfileFormDetails from "../ProfileForms/ProfileFormDetails";
 import ShowcaseModal from "../ShowcaseModal";
 import OpenModalButton from "../OpenModalButton";
 import "./About.css";
+import DeleteUserModal from "./DeleteUserModal";
 
 export default function AboutPage({ userImagesProp, userInfoProp }) {
   const sessionUser = useSelector((state) => state.session.user);
@@ -71,9 +72,11 @@ export default function AboutPage({ userImagesProp, userInfoProp }) {
     <div className="about-container">
       <div className="about-wrapper">
         <div className="about-biography">
+          <div className="pencil-button">
           <button onClick={bioClick}>
             <i class="fa-solid fa-pen"></i>
           </button>
+          </div>
           {!showBioForm ? (
             <div className="">
               {userInfo.biography ? (
@@ -115,9 +118,11 @@ export default function AboutPage({ userImagesProp, userInfoProp }) {
         {showShowcaseTitleForm ? <p>showcase title form</p> : <></>} */}
         </div>
         <div className="about-details">
+          <div className="open-details">
           <button onClick={detailClick}>
             <i class="fa-solid fa-pen"></i>
           </button>
+          </div>
           {showDetailForm ? (
             <ProfileFormDetails />
           ) : (
@@ -206,7 +211,10 @@ export default function AboutPage({ userImagesProp, userInfoProp }) {
           )}
         </div>
         <div className="delete-user">
-          <button onClick={deleteUserClick}>DELETE user</button>
+          <OpenModalButton
+            buttonText="DELETE USER"
+            modalComponent={<DeleteUserModal />}
+          />
         </div>
       </div>
     </div>
