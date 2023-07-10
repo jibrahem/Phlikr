@@ -121,12 +121,13 @@ def update_showcase_form(userId):
     print('showcase requestjson', showcase_update)
     for img in showcase_update:
         set_showcase(img, showcase_update[img])
-    return 'nice'
+    return get_user_showcase(userId)
 
 #POST AN IMAGE
 @image_routes.route('/<int:userId>/images', methods=['POST'])
 # @login_required
 def post_image(userId):
+    print('post image route hit')
     if current_user.is_authenticated :
         form = ImageForm()
         print("form", form.data)
@@ -134,12 +135,12 @@ def post_image(userId):
         title = form.data['title']
         description = form.data['description']
         img = form.data['img']
-        new_image = Image(title=title, description=description, img=img, view_count=0, user_id=userId, uploaded_on=date.today())
+        new_image = Image(title=form.data['title'], description=form.data['description'], img=form.data['img'], view_count=0, user_id=userId, uploaded_on=date.today())
         db.session.add(new_image)
         db.session.commit()
-        print(form.data['title'])
-        print(form.data['description'])
-        print(form.data['img'])
+        # print(form.data['title'])
+        # print(form.data['description'])
+        # print(form.data['img'])
         return new_image.to_dict()
         # return 'bad data'
 

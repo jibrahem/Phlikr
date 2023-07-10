@@ -9,7 +9,8 @@ user_favorite = db.Table(
     db.Column("image_id", db.Integer, db.ForeignKey(add_prefix_for_prod("images.id")), primary_key=True),
 )
 
-
+if environment == "production":
+    user_favorite.schema = SCHEMA
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
 

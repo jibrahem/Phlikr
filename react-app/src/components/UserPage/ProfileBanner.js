@@ -5,7 +5,7 @@ import { NavLink, useParams } from "react-router-dom/cjs/react-router-dom.min";
 import "./ProfileBanner.css";
 import ProfileFormBio from "../ProfileForms/ProfileFormBio";
 import ProfileFormCover from "../ProfileForms/ProfileFormCover";
-import OpenModalMenuItem from '../OpenModalButton';
+import OpenModalMenuItem from "../OpenModalButton";
 import ProfilePhoto from "./ProfilePhoto";
 
 export default function ProfileBanner({ userInfo, photoCount }) {
@@ -27,29 +27,25 @@ export default function ProfileBanner({ userInfo, photoCount }) {
             <img src={userInfo.cover_photo} />
           </div>
           <div className="profile-photo-wrapper">
-            {userInfo.id === sessionUser.id &&
-              <OpenModalMenuItem
-                itemText={<img src={userInfo.profile_photo} />}
-                modalComponent={<ProfilePhoto
-                />}
-              />
-            }
-            {userInfo.id !== sessionUser.id &&
-            <img src={userInfo.profile_photo} />
-            }
+            <OpenModalMenuItem
+              itemText={<img src={userInfo.profile_photo}/>}
+              modalComponent={<ProfilePhoto
+              />}
+            />
             <div>
               <div className="profile-name">
                 {userInfo.first_name} {userInfo.last_name}
               </div>
             </div>
-            {userInfo.id === sessionUser.id &&
-              <OpenModalMenuItem
-                buttonText="..."
-                // onItemClick={closeMenu}
-                modalComponent={<ProfileFormCover
-                />}
-              />
-            }
+            {/* <button onClick={coverPhotoButtonClick}> ... </button>
+            {showCoverForm ? <ProfileFormCover /> : ""}
+            <></> */}
+            <OpenModalMenuItem
+              buttonText="..."
+              // onItemClick={closeMenu}
+              modalComponent={<ProfileFormCover
+              />}
+            />
           </div>
         </div>
       </div>
