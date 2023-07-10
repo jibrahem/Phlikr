@@ -9,7 +9,7 @@
   background-color: transparent;
   top: 60px;
   right: 10px;
-  
+
 }
 
 .modals {
@@ -84,7 +84,7 @@ nav {
   margin: .5rem;
   margin-right: 1.5rem;
   border: none;
-  background-color:#00000040;
+  background-color:transparent;
   cursor: pointer;
 }
 
@@ -143,6 +143,7 @@ nav {
   height: 50px;
   width: 50px;
   border-radius: 50%;
+  cursor: pointer;
 }
 
 .profile button{
