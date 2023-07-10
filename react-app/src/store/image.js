@@ -152,7 +152,7 @@ export const deleteImageThunk = (image_id) => async (dispatch) => {
 
 export const getUserImagesThunk = (user_id) => async (dispatch) => {
   try {
-    // console.log("userimages user Id", user_id);
+    console.log("userimages user Id", user_id);
 
     const res = await fetch(`/api/images/user/${user_id}`);
 
