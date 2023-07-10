@@ -62,6 +62,7 @@ export default function UpdatePhoto() {
               className='update-image-title'
               value={editTitle}
               onChange={(e) => setTitle(e.target.value)}
+              maxLength={255}
               required
               style={{ fontFamily: 'Proxima Nova, Helvetica Neue, Helvetica, Arial, sans-serif',
                        fontSize: "14px"
@@ -76,6 +77,7 @@ export default function UpdatePhoto() {
                placeholder={editImg.img}
                className='update-image-url'
                value={editImgUrl}
+               maxLength={255}
                onChange={(e) => setImg(e.target.value)}
               //  required
                style={{ fontFamily: 'Proxima Nova, Helvetica Neue, Helvetica, Arial, sans-serif',
@@ -91,6 +93,7 @@ export default function UpdatePhoto() {
               placeholder={editImg.description}
               className='update-image-description'
               value={editDescription}
+              maxLength={512}
               onChange={(e) => setDescription(e.target.value)}
               required
               style={{ fontFamily: 'Proxima Nova, Helvetica Neue, Helvetica, Arial, sans-serif',
