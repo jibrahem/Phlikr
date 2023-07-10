@@ -24,8 +24,8 @@ export default function SingleImage() {
   // console.log("SingleImage in SingelImage component: ");
   const { imageId } = useParams();
   const singleImage = useSelector((state) => state.images.singleImage);
-  const favImagesStore = useSelector((state) => state.images.allFavImgUser);
-  const favImgUserArr = Object.values(favImagesStore)
+  const favImaUserStore = useSelector((state) => state.images.allFavImgUser);
+  const favImgUserArr = Object.values(favImaUserStore)
   // console.log("favImages Users Array in the single image component: ", favImgUserArr);
   // console.log("singleImage Store: ", singleImage);
   const sessionUser = useSelector((state) => state.session.user);

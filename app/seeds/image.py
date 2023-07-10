@@ -31,8 +31,8 @@ def seed_images():
         view_count = 0,
     )
     img4 = Image(
-        title = "dog standing between wooden fence under dark cloudy sky",
-        description = "A walk by the lake",
+        title = "A walk by the lake",
+        description = "dog standing between wooden fence under dark cloudy sky",
         img = "https://images.unsplash.com/photo-1527764397528-0e8cd19bc8f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80",
         taken_on = date.today(),
         uploaded_on = date.today(),
@@ -40,8 +40,8 @@ def seed_images():
         view_count = 0,
     )
     img5 = Image(
-        title = "green and brown mountains under blue sky and white clouds during daytime",
-        description = "4K Drone shot in High Quality as wallpaper or desktop image with a blue sky and green hillsides with snow-capped peaks.",
+        title = "Paridise",
+        description = "green and brown mountains under blue sky and white clouds during daytime",
         img = "https://images.unsplash.com/photo-1619994948937-ef1e758d46ca?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1633&q=80",
         taken_on = date.today(),
         uploaded_on = date.today(),
@@ -49,8 +49,8 @@ def seed_images():
         view_count = 0,
     )
     img6 = Image(
-        title = "A woman standing near a painting in a modern art gallery",
-        description = "woman viewing abstract art",
+        title = "woman viewing abstract art",
+        description = "A woman standing near a painting in a modern art gallery",
         img = "https://images.unsplash.com/photo-1502078889459-923ef351c722?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1376&q=80",
         taken_on = date.today(),
         uploaded_on = date.today(),
@@ -58,8 +58,8 @@ def seed_images():
         view_count = 0,
     )
     img7 = Image(
-        title = "a tray of sliced oranges sitting on a table",
-        description = "Download this free HD photo of christmas, fruit, festive and holiday by Priscilla Du Preez",
+        title = "Holiday season",
+        description = "a tray of sliced oranges sitting on a table",
         img = "https://images.unsplash.com/photo-1637541615205-8654ee01a032?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80",
         taken_on = date.today(),
         uploaded_on = date.today(),
@@ -76,8 +76,8 @@ def seed_images():
         view_count = 0,
     )
     img9 = Image(
-        title = "hanging grayscale photos",
-        description = "Download this free HD photo of film photography, analogue photography, display and show by Brigitta Schneiter",
+        title = "The old time",
+        description = "hanging grayscale photos",
         img = "https://images.unsplash.com/photo-1523698120758-030a38a90d16?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1472&q=80",
         taken_on = date.today(),
         uploaded_on = date.today(),
