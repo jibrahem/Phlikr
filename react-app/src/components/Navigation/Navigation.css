@@ -84,7 +84,8 @@ nav {
   margin: .5rem;
   margin-right: 1.5rem;
   border: none;
-  background-color:transparent;
+  /* background-color:#00000040; */
+  background-color: transparent;
   cursor: pointer;
 }
 

@@ -100,3 +100,8 @@
     display: flex;
     flex-direction: column;
 }
+
+#author-info a, 
+#fav-users a {
+    color: black;
+}

@@ -13,10 +13,21 @@ def seed_users():
     bobbie = User(
         username='bobbie', email='bobbie@aa.io', password='password', occupation='ice cream taster',
         first_name = "Bobbie", last_name="Handsome", profile_photo='https://as2.ftcdn.net/v2/jpg/02/02/15/43/1000_F_202154347_jMRcgoxz7PuoWxe2IviHY3YFXVZUltIK.jpg', cover_photo='https://as2.ftcdn.net/v2/jpg/02/02/15/43/1000_F_202154347_jMRcgoxz7PuoWxe2IviHY3YFXVZUltIK.jpg', age=5)
+    sophie = User(
+        username='Sophie', email='st@aa.io', password='password', occupation='kindergarten teacher',
+        first_name = "Sophie", last_name="Thomson", profile_photo='https://images.unsplash.com/photo-1540331547168-8b63109225b7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=719&q=80', cover_photo='https://images.unsplash.com/photo-1629067816434-55465e4f061f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80', age=28)
+    benjamin = User(
+        username='Benjamin', email='br@aa.io', password='password', occupation='SWE',
+        first_name = "Benjamin", last_name="Reynolds", profile_photo='https://images.unsplash.com/photo-1517423738875-5ce310acd3da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2570&q=80', cover_photo='https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80', age=28)
+
+   
+
 
     db.session.add(demo)
     db.session.add(marnie)
     db.session.add(bobbie)
+    db.session.add(sophie)
+    db.session.add(benjamin)
     db.session.commit()
 
 

@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { getUserImagesThunk } from "../../store/image";
 import { getUserFavImgThunk } from "../../store/image";
 import './UserPage.css';
-import Comments from "../Image/comments";
 import Favorites from "../Favorites";
 
 export default function FavesPage() {
