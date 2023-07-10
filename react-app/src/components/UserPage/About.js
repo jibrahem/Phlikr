@@ -73,9 +73,9 @@ export default function AboutPage({ userImagesProp, userInfoProp }) {
       <div className="about-wrapper">
         <div className="about-biography">
           <div className="pencil-button">
-          <button onClick={bioClick}>
-            <i class="fa-solid fa-pen"></i>
-          </button>
+            <button onClick={bioClick}>
+              <i class="fa-solid fa-pen"></i>
+            </button>
           </div>
           {!showBioForm ? (
             <div className="">
@@ -119,9 +119,9 @@ export default function AboutPage({ userImagesProp, userInfoProp }) {
         </div>
         <div className="about-details">
           <div className="open-details">
-          <button onClick={detailClick}>
-            <i class="fa-solid fa-pen"></i>
-          </button>
+            <button onClick={detailClick}>
+              <i class="fa-solid fa-pen"></i>
+            </button>
           </div>
           {showDetailForm ? (
             <ProfileFormDetails />
