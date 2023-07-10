@@ -62,6 +62,10 @@ export default function AboutPage({ userImagesProp, userInfoProp }) {
     history.push("/");
   };
 
+  const imageClick = (imgId) => {
+    history.push("/photos/1");
+  };
+
   let userInfoArr = Object.values(userInfo);
   console.log("userInfoArr in about", userInfoArr);
   if (userInfoArr.length < 1) return null;
@@ -99,7 +103,12 @@ export default function AboutPage({ userImagesProp, userInfoProp }) {
               {userShowcaseArr.map((image) => {
                 return (
                   <div className="showcase-item-wrapper">
-                    <img src={image.img} />
+                    <img
+                      src={image.img}
+                      onClick={() => {
+                        imageClick(image.id);
+                      }}
+                    />
                   </div>
                 );
               })}
