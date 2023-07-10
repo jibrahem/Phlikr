@@ -31,7 +31,7 @@ export default function UpdatePhoto() {
           description : editDescription,
           img : editImgUrl,
         }
-        
+
       console.log("before dispatch updatedImageThunk~~~~~~~~~");
       // const data = await dispatch(updateImageThunk(imageDetails))
       dispatch(updateImageThunk(imageDetails, editImg.id ))
@@ -39,12 +39,12 @@ export default function UpdatePhoto() {
 
       history.push('/');
     }
-    
+
     return (
         <div className='whole-update-form'>
-          <img className='update-background' src={"https://free4kwallpapers.com/uploads/wallpaper/4k-overwatch--+-mobile-versons-wallpaper-1024x768-wallpaper.jpg"} alt="BGI" />
-          
-          {/* <img className='update-background' src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSz8OSqoAMqjlVNKYv8LqYMBHaNNkk6JVXk2g&usqp=CAU"} alt="BGI" /> */}
+          {/* <img className='update-background' src={"https://free4kwallpapers.com/uploads/wallpaper/4k-overwatch--+-mobile-versons-wallpaper-1024x768-wallpaper.jpg"} alt="BGI" /> */}
+
+          <img className='update-background' src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSz8OSqoAMqjlVNKYv8LqYMBHaNNkk6JVXk2g&usqp=CAU"} alt="BGI" />
             {/* <span>""</span> */}
            <form className="update-image-form" onSubmit={handleSubmit}>
             <h3 className='update-title'>Update Photo</h3>
@@ -63,24 +63,24 @@ export default function UpdatePhoto() {
               value={editTitle}
               onChange={(e) => setTitle(e.target.value)}
               required
-              style={{ fontFamily: 'Proxima Nova, Helvetica Neue, Helvetica, Arial, sans-serif', 
+              style={{ fontFamily: 'Proxima Nova, Helvetica Neue, Helvetica, Arial, sans-serif',
                        fontSize: "14px"
-              }}  
+              }}
             />
           </label>
           <label className='update-label'>
           Image Url
           <br></br>
-            <input 
-               type="text" 
+            <input
+               type="text"
                placeholder={editImg.img}
                className='update-image-url'
                value={editImgUrl}
                onChange={(e) => setImg(e.target.value)}
               //  required
-               style={{ fontFamily: 'Proxima Nova, Helvetica Neue, Helvetica, Arial, sans-serif', 
+               style={{ fontFamily: 'Proxima Nova, Helvetica Neue, Helvetica, Arial, sans-serif',
                         fontSize: "14px"
-               }}  
+               }}
             />
           </label>
           <label className='upload-label'>
@@ -93,9 +93,9 @@ export default function UpdatePhoto() {
               value={editDescription}
               onChange={(e) => setDescription(e.target.value)}
               required
-              style={{ fontFamily: 'Proxima Nova, Helvetica Neue, Helvetica, Arial, sans-serif', 
+              style={{ fontFamily: 'Proxima Nova, Helvetica Neue, Helvetica, Arial, sans-serif',
                        fontSize: "14px"
-              }}  
+              }}
 
             ></textarea>
           </label>
