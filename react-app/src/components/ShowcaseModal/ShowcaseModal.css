@@ -7,7 +7,7 @@
 } */
 
 .showcase-modal img {
-    width: 200px;
+    width: 250px;
 
 }
 
@@ -41,8 +41,8 @@
   }
 
   #modal-content {
-    position: fixed;
-    min-width: 55vw;
+    /* position: fixed; */
+    min-width: 80vw;
     padding-top: 100px;
     padding-bottom: 20px;
     /* padding-left: 50px; */
@@ -52,8 +52,16 @@
     background-color:white;
   }
 
+  .image-selector {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    overflow: hidden;
+  }
+
 .image-checkbox-wrapper {
     border-color: #4c9ee1;
+    position: relative;
     margin: 5px;
     width: 150px;
     height: 150px;
@@ -62,13 +70,16 @@
     border-width: 2px;
     border-radius: 5px;
     display: flex;
+    flex-wrap: wrap;
     /* flex-direction: row; */
     /* flex-wrap: wrap; */
     justify-content: center;
 }
 
-.image-checkbox input {
-    display: none;
+.image-checkbox-wrapper input {
+    position:absolute;
+    transform: scale(1.5);
+    right: 0px;
   }
 
 .image-checkbox label {
@@ -80,31 +91,6 @@
     overflow-y: scroll;
     display: flex;
     /* padding: 20px; */
-    width: 50vw;
+    width: 80vw;
+    height: 50vh;
 }
-
-.image-checkbox span {
-    border: 2px solid #4c9ee1;
-    /* float: right; - you don't need that. Use float: left; */
-    position: absolute;
-    /* left: 160px; */
-    /* right: 0px; */
-    /* right: 6px; */
-    height: 20px;
-    width: 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-  .image-checkbox:hover span,
-  .image-checkbox input:checked+span {
-    border: 3px solid #4c9ee1;
-    fill: #4c9ee1;
-  }
-
-  .image-checkbox input:checked+span:before {
-    content: "✔";
-  }

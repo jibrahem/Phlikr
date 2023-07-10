@@ -88,8 +88,8 @@ export const getAllImageThunk = () => async (dispatch) => {
 
 export const createImageThunk = (image, user) => async (dispatch) => {
   try {
-    // console.log("userId", user.id)
-    // console.log(image)
+    console.log("userId in create image", user.id);
+    console.log("image  in create image", image);
     const res = await fetch(`/api/images/${user.id}/images`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },

@@ -9,17 +9,19 @@ import "./ShowcaseModal.css";
 function ShowcaseModal({ userImageArr }) {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
+  // const userImages = useSelector((state) => state.session.user);
+  // let userImageArr = Object.values(userImages)[0];
   const { closeModal } = useModal();
   console.log("userImgArr in showcase modal", userImageArr);
   const payload = {};
   for (let i = 0; i < userImageArr.length; i++) {
-    payload[userImageArr[i].id] = userImageArr[i].showcase;
+    payload[userImageArr[i].id] = false;
   }
   const [showcaseInputs, setShowcaseInputs] = useState(payload);
 
-  // useEffect(() => {
-  //   dispatch(getUserImagesThunk);
-  // });
+  useEffect(() => {
+    dispatch(getUserImagesThunk);
+  }, dispatch);
 
   //build starting state for showcaseInputs
   // setShowcaseInputs(payload);
@@ -40,12 +42,15 @@ function ShowcaseModal({ userImageArr }) {
   //   values[imageId].val = e.target.value;
   // };
 
-  const imageClick = () => {
+  const imageClick = (imageId) => {
     console.log("ImageClick");
+    // let nextPayload = { ...showcaseInputs };
+    // nextPayload[imageId] = bool;
+    // console.log('payload', nextp);
   };
 
   const handleChange = (imageId, event) => {
-    console.log("handle change", imageId, "hefdfdf   ", event.target.checked);
+    console.log("handle change", imageId, "hefdfdf   ");
     let nextPayload = { ...showcaseInputs };
     nextPayload[imageId] = event.target.checked;
     setShowcaseInputs(nextPayload);
@@ -53,6 +58,12 @@ function ShowcaseModal({ userImageArr }) {
     // data[index][event.target.name] = event.target.value;
     // setShowcaseInputs(data);
   };
+
+  // const updateStore = (imageId, bool) => {
+  //   let nextPayload = { ...showcaseInputs };
+  //   nextPayload[imageId] = event.target.checked;
+  //   setShowcaseInputs(nextPayload);
+  // };
 
   if (userImageArr.length < 1) return null;
 
@@ -68,34 +79,35 @@ function ShowcaseModal({ userImageArr }) {
   // );
   //   }
   //   console.log("input list ids", input_list);
+  if (userImageArr.length < 1) return null;
   return (
     <>
       <div className="showcase-modal">
         <form onSubmit={handleSubmit}>
           <div className="image-selector">
             {userImageArr.map((image) => (
-              <div className="image-checkbox-wrapper">
-                <label className="image-checkbox">
-                  {/* <input
-                type="checkbox"
-                key={image.id}
-                id={"input" + image.id}
-                checked={showcaseInputs[image.id]}
-                onChange={(event) => handleChange(image.id, event)}
-              />
-              <img
-                className="showcase-preview"
-                src={image.img}
-                onClick={imageClick}
-                style={{ "pointer-events": "all" }}
-              /> */}
+              <div className="image-checkbox-container">
+                <div className="image-checkbox-wrapper">
                   <input
+                    type="checkbox"
+                    key={image.id}
+                    id={"input" + image.id}
+                    checked={showcaseInputs[image.id]}
+                    onChange={(event) => handleChange(image.id, event)}
+                  />
+                  <img
+                    className="showcase-preview"
+                    src={image.img}
+                    // onClick={imageClick(image.id)}
+                    // style={{ "pointer-events": "all" }}
+                  />
+                  {/* <input
                     type="checkbox"
                     onChange={(event) => handleChange(image.id, event)}
                   />
                   <span></span>
-                  <img class="img" src={image.img} />
-                </label>
+                  <img class="img" src={image.img} /> */}
+                </div>
               </div>
             ))}
           </div>

@@ -42,7 +42,7 @@ def user(id):
 @user_routes.route('/<int:user_id>/details')
 def edit_user_details(user_id):
     form  = UserDetailsForm()
-    
+
     return render_template("user_details_form.html", form=form)
 
 #get user showcase
@@ -68,7 +68,7 @@ def update_showcase_form():
     print('showcase requestjson', showcase_update)
     for img in showcase_update:
         set_showcase(img, showcase_update[img])
-    return get_user_showcase(current_user.id )
+    return get_user_showcase(current_user.id)
 
 #user detail edit route
 @user_routes.route('/<int:user_id>/details/<form_type>', methods=["POST"])
