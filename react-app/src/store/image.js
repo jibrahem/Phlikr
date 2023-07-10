@@ -96,7 +96,7 @@ export const createImageThunk = (image, user) => async (dispatch) => {
       body: JSON.stringify(image),
     });
 
-    console.log("res in the CREATIMGAEJ:JDK:JSDKJ;", res);
+    // console.log("res in the CREATIMGAEJ:JDK:JSDKJ;", res);
 
     if (res.ok) {
       const newImage = await res.json();
@@ -118,12 +118,12 @@ export const updateImageThunk = (image, imageId) => async (dispatch) => {
       body: JSON.stringify(image),
     });
 
-    console.log("Res in the updateimagethunk::", res);
+    // console.log("Res in the updateimagethunk::", res);
 
     if (res.ok) {
-      console.log("update image in the upated thunk~~~~");
+      // console.log("update image in the upated thunk~~~~");
       const updatedImage = await res.json();
-      console.log("updateImage in the res.ok: ", updatedImage);
+      // console.log("updateImage in the res.ok: ", updatedImage);
       dispatch(updateImage(updatedImage));
 
       return updatedImage;
