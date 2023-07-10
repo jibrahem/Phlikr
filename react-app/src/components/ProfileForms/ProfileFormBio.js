@@ -1,10 +1,12 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { updateUserInfoThunk } from "../../store/users";
+
 
 function ProfileFormBio() {
   const user = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
+
 
   const [biography, setBiography] = useState(
     user.biography ? user.biography : ""
