@@ -1,72 +1,90 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { getUserImagesThunk } from "../../store/image";
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-import './Photostream.css'
+// import './Photostream.css'
+import Favorites from "../Favorites";
 
-
-export default function PhotostreamPage({ userImagesArr }) {
+export default function PhotostreamPage() {
   const sessionUser = useSelector((state) => state.session.user);
-
+  const userImageStore = useSelector((state) => state.images.userImages);
+  const userImagesArray = Object.values(userImageStore);
+  const [showComment, setShowComment] = useState(false);
+  const [imgDetail, setImgDetail] = useState(false);
+  const dispatch = useDispatch();
   const currDate = new Date();
   // console.log("currDate in photostream: ", currDate)
 
-  if (userImagesArr.length < 1) return null;
+  const favComment = () => {
+    setShowComment(!showComment);
+  };
+
+  const showImgDetail = (imageId) => {
+    setImgDetail((prevImgDetail) => ({
+      ...prevImgDetail,
+      [imageId]: true,
+    }));
+  };
+
+  const hideImgDetail = (imageId) => {
+    setImgDetail((prevImgDetail) => ({
+      ...prevImgDetail,
+      [imageId]: false,
+    }));
+  }
 
 
+  useEffect(() => {
+    dispatch(getUserImagesThunk(sessionUser.id))
+  }, [dispatch, sessionUser.id]);
+
+  if (userImagesArray.length < 1) return null;
 
   return (
     <>
-      {/* <div className="photo-stream-title">Photostream</div> */}
-      <ul className="photo-stream-container">
-        {userImagesArr[0].map((image, i) => (
-          <div key={image.id}>
-            {/* {console.log("image in user images page", image[0])} */}
-            <div className="photo-stream-user-container">
-            <h4 className="photo-stream-user-name">
-              {image.User.first_name} {image.User.last_name}'s post #{i + 1}
-            </h4>
-            {/* <p>{currDate - image.uploadedAt}d ago</p> */}
+    <div id='user-fav-container'>
+      <ul>
+        {userImagesArray[0].map((image) => (
+          <div className='user-fav-div' key={image.id}>
+            <div  className="fav-img" >
+              <Link key={image.id} to={`/photos/${image.id}`}>
+                <img src={image.img} alt={image.title} onMouseOver={() => showImgDetail(image.id)} onMouseLeave={() => hideImgDetail(image.id)} />
+              </Link>
             </div>
-            <NavLink style={{textDecoration: "none"}} key={image.id} to={`/photos/${image.id}`}>
-            <p className="photo-stream-image-title">{image.title}</p>
-            </NavLink>
-            <NavLink style={{textDecoration: "none"}} key={image.id} to={`/photos/${image.id}`}>
-              <img className="photo-stream-image" src={image.img} alt={image.title} />
-            </NavLink>
-              <p className="photo-stream-image-description">{ image.description.length < 30 ? image.description : image.description.substring(0,30) + "..."}</p>
-            <div>
-              <div className="photo-stream-view-date">
-              <div>
-                {image.view_count > 1000
-                  ? parseFloat(image.view_count) / 1000 + "K"
-                  : image.view_count}{" "}
-                views
+             {/* {console.log("image Detail in the loop: ", imgDetail[image.id])} */}
+            
+            <div id={imgDetail[image.id] ? 'title-name-fav-comment-div' : 'no-detail'}
+            onMouseOver={() => showImgDetail(image.id)} onMouseLeave={() => hideImgDetail(image.id)}
+            
+            >
+              <div id='title-name'>
+                <Link to={`/photos/${image.id}`}>
+                  <p id='title'>{image.title}</p>
+                </Link>
+                <Link to={`/`}>
+                  <p id='name'>by {image.User.first_name} {image.User.last_name}</p>
+                </Link>
               </div>
-              <div className="photo-stream-date">
-                {(() => {
-                    const uploadedOn = new Date(image.uploaded_on);
-                    const timeDiff = Math.round((currDate - uploadedOn) / (1000 * 60 * 60 * 24));
-                    if (timeDiff > 1) {
-                        return <p>{timeDiff} days ago</p>
-                    }
-                    return <p>{timeDiff} day ago</p>
-                })()}
-              </div>
-              </div>
-              <div className="photo-stream-icons">
-                <i style={{color: "grey", fontSize: "20px"}}className="fa-regular fa-star"></i>
-                <NavLink style={{color: "grey", fontSize: "20px"}} to={`/photos/${image.id}`}><i className="fa-regular fa-comment"></i></NavLink>
-                <i className="fa-light fa-album-circle-plus"></i>
-                {/* <i className="fa-solid fa-tree"></i> */}
+              <div id='fav-comment'>
+                <div id='fav-star'>
+                  {/* <i className="fa-solid fa-star"></i> */}
+                  <Favorites imageId={image.id} />
+                  <p>{image.image_favorites_count}</p>
+                </div>
+                <div id='fav-comment-button'>
+                  <button onClick={favComment}>
+                    <Link to={`/photos/${image.id}`}><i className="fa-regular fa-comment"></i></Link>
+                  </button>
+                  <p>{image.image_comment_count}</p>
+                </div>
+                {/* <i className="fa-light fa-album-circle-plus"></i> */}
               </div>
             </div>
           </div>
         ))}
       </ul>
+    </div>
     </>
   );
 }
-// max of 34 characters for description anything more will alter the css layout and ultimately break the page.
-// easier to use a validator instead of trying to make css modifications for now 
+

@@ -9,8 +9,8 @@ export default function DefaultHome() {
     const [currentBGI, setCurrentBGI] = useState(0)
 
     const backGroundInfo = [
-        {
-            url: "https://wallpaperaccess.com/full/17520.jpg",
+        { 
+            url: "https://free4kwallpapers.com/uploads/originals/2019/07/14/ultra-hd-ocean-s-wallpaper.jpg",
             title:"Picture1",
             author:"author1"
         },
@@ -80,9 +80,9 @@ export default function DefaultHome() {
     <span className='splash-span'>Terms</span>
     <span className='splash-span'>Cookies</span>
     <span className='splash-span'>English</span>
-    <a href="#" class="icon-link"><i class="fab fa-facebook-f"></i></a>
-    <a href="#" class="icon-link"><i class="fab fa-twitter"></i></a>
-    <a href="#" class="icon-link"><i class="fab fa-instagram"></i></a>
+    <a href="#" className="icon-link"><i className="fab fa-facebook-f"></i></a>
+    <a href="#" className="icon-link"><i className="fab fa-twitter"></i></a>
+    <a href="#" className="icon-link"><i className="fab fa-instagram"></i></a>
   </footer>
 </>
     )   

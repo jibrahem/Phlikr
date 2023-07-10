@@ -9,7 +9,8 @@ user_favorite = db.Table(
     db.Column("image_id", db.Integer, db.ForeignKey(add_prefix_for_prod("images.id")), primary_key=True),
 )
 
-
+if environment == "production":
+    user_favorite.schema = SCHEMA
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
 
@@ -38,10 +39,10 @@ class User(db.Model, UserMixin):
     tumblr = db.Column(db.String(50))
 
 
-    images = db.relationship("Image", back_populates="user")
-    comments = db.relationship("Comment", back_populates='user')
+    images = db.relationship("Image", back_populates="user", cascade="delete, merge, save-update")
+    comments = db.relationship("Comment", back_populates='user', cascade="delete, merge, save-update")
 
-    favorites = db.relationship("Image", secondary = "user_favorites", back_populates="favorites")
+    favorites = db.relationship("Image", secondary = "user_favorites", cascade="delete, merge, save-update", back_populates="favorites")
 
     @property
     def password(self):

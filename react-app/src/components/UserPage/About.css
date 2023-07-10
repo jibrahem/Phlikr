@@ -1,0 +1,231 @@
+.about-container {
+    padding-top: 2vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    font-family: Proxima Nova
+}
+
+.about-wrapper {
+    border: solid rgb(215, 212, 212);
+    border-width: 1px;
+    background-color: white;
+}
+
+.about-wrapper>div {
+    border-top: 2px solid rgb(215, 212, 212);
+    border-width: 1px;
+    padding-top: 30px;
+    padding-left: 8vw;
+    /* padding-bottom: 30px; */
+    padding-right: 2vw;
+    background-color: white;
+    display: flex;
+
+}
+
+.about-wrapper {
+    width: 80vw;
+    /* padding: 50px; */
+    /* margin: 20px; */
+    display: flex;
+    flex-direction: column;
+}
+
+.about-biography {
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.about-biography button {
+    align-self: flex-end;
+    width: 6rem;
+    height: 2rem;
+    color: white;
+    font-size: 20px;
+    outline: none;
+    border: none;
+    background-color: rgb(0, 166, 255);
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.bio-form {
+    display: flex;
+    gap: 2rem;
+    margin-right: 2rem;
+}
+
+.bio-form textarea {
+    height: 4rem;
+    width: 100%
+}
+
+.pencil-button {
+    display: flex;
+    flex-direction: column;
+}
+
+.pencil-button button {
+    width: 100px;
+    align-self: flex-end;
+    width: 2rem;
+    color: rgb(154, 151, 151);
+    font-size: 20px;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+
+.about-showcase {
+    min-height: 200px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.about-showcase li {
+    list-style: none;
+}
+
+.about-showcase button {
+    width: 100px;
+    align-self: flex-end;
+    width: 2rem;
+    color: rgb(154, 151, 151);
+    font-size: 30px;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.about-showcase .showcase-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.showcase-gallery-wrapper {
+    margin-top: 5px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+.showcase-item-wrapper{
+    width: 300px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    height: 250px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+}
+
+.showcase-item-wrapper img {
+    width: 300px;
+    object-fit: cover;
+}
+
+.about-details {
+    min-height: 200px;
+    max-height: 350px;
+    display: flex;
+    flex-direction: column;
+}
+
+.open-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.open-details button {
+    align-self: flex-end;
+    width: 2rem;
+    color: rgb(154, 151, 151);
+    font-size: 22px;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.profile-details {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    column-gap: 5vw;
+    min-height: 200px;
+    max-height: 350px;
+}
+
+
+.detail-item {
+    padding-bottom: 30px;
+    width: 15vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    justify-items: left;
+    align-items: flex-start;
+}
+
+.detail-label {
+    color: grey;
+}
+
+.details-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.profile-form-label {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 1rem;
+    color: gray;
+    gap: 1rem
+}
+
+.delete-user {
+    display: flex;
+    justify-content: center;
+}
+
+.delete-user button {
+    width: 9rem;
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    margin-bottom: 1rem;
+    color: red;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.delete-user button:hover {
+    background-color: red;
+    color: white
+}
+
+/* .profile-form-submit button {
+    align-self: flex-end;
+    width: 2rem;
+    color: rgb(0, 166, 255);
+    font-size: 22px;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+} */
+
+.delete-user li{
+    list-style: none;
+}

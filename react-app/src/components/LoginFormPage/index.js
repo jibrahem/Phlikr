@@ -69,9 +69,9 @@ function LoginFormPage() {
           <div className="login2">Not a Snapr member? <Link to='/signup'>
             Sign up here.
           </Link>
-          </div>
+          </div>  
         </form>
-           <div className="demo">
+           <div className="login-demo">
             <button type='submit' onClick={demoUser}>Demo User</button>
           </div>
         </div>

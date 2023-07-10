@@ -34,6 +34,19 @@
     cursor: pointer;
 }
 
+.red button{
+    width: 85px;
+        height: 30px;
+        margin-left: 1rem;
+        color: white;
+        border: none;
+        border-radius: 3px;
+        background-color: red;
+        cursor: pointer;
+        margin-right: 1rem;
+
+}
+
 .delete-comment{
     margin-top: 1rem;
     margin-bottom: 1rem;
