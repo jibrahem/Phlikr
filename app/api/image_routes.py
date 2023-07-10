@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify, redirect, render_template, request
 from flask_login import login_required, current_user
 from ..models import Image, User, db, Comment
 from app.forms import ImageForm
-from datetime import datetime
+from datetime import date
 
 image_routes = Blueprint("images", __name__)
 
@@ -134,7 +134,7 @@ def post_image(userId):
         title = form.data['title']
         description = form.data['description']
         img = form.data['img']
-        new_image = Image(title=title, description=description, img=img, view_count=0, user_id=userId)
+        new_image = Image(title=title, description=description, img=img, view_count=0, user_id=userId, uploaded_on=date.today())
         db.session.add(new_image)
         db.session.commit()
         print(form.data['title'])
