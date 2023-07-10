@@ -153,6 +153,10 @@ nav {
   cursor: pointer;
 }
 
+.log-out{
+  cursor: pointer;
+}
+
 #nav-snapr-div {
   display: flex;
   justify-content: center;

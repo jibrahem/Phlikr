@@ -27,25 +27,26 @@ export default function ProfileBanner({ userInfo, photoCount }) {
             <img src={userInfo.cover_photo} />
           </div>
           <div className="profile-photo-wrapper">
+
             <OpenModalMenuItem
-              itemText=<img src={userInfo.profile_photo}/>
+              itemText={<img src={userInfo.profile_photo}/>}
               modalComponent={<ProfilePhoto
               />}
             />
+
             <div>
               <div className="profile-name">
                 {userInfo.first_name} {userInfo.last_name}
               </div>
             </div>
-            {/* <button onClick={coverPhotoButtonClick}> ... </button>
-            {showCoverForm ? <ProfileFormCover /> : ""}
-            <></> */}
+          {userInfo.id === sessionUser.id &&
             <OpenModalMenuItem
               buttonText="..."
               // onItemClick={closeMenu}
               modalComponent={<ProfileFormCover
               />}
             />
+            }
           </div>
         </div>
       </div>
