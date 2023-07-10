@@ -23,6 +23,7 @@ def seed_users():
         username='alexandria', email='alexandria@aa.io', password='password', occupation='SWE',
         first_name = "Alexandria", last_name="Stopper", profile_photo='https://images.unsplash.com/photo-1682687220198-88e9bdea9931?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwyMDZ8fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=800&q=60', cover_photo='https://images.unsplash.com/photo-1688550378756-866114814fee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1528&q=80', age=22)
     bobbie = User(
+        username='bobbie', email='bobbie@aa.io', password='password', occupation='SWE',
         first_name = "Bobbie", last_name="Handsome", profile_photo='https://as2.ftcdn.net/v2/jpg/02/02/15/43/1000_F_202154347_jMRcgoxz7PuoWxe2IviHY3YFXVZUltIK.jpg', cover_photo='https://as2.ftcdn.net/v2/jpg/02/02/15/43/1000_F_202154347_jMRcgoxz7PuoWxe2IviHY3YFXVZUltIK.jpg', age=5)
     sophie = User(
         username='Sophie', email='st@aa.io', password='password', occupation='kindergarten teacher',
