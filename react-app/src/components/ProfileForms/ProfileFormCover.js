@@ -12,6 +12,7 @@ function ProfileFormCover() {
   const [coverPhoto, setCoverPhoto] = useState(
     user.cover_photo ? user.cover_photo : ""
   );
+  const [errors, setErrors] = useState([]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

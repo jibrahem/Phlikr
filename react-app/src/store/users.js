@@ -73,20 +73,23 @@ export const getUserShowcaseThunk = (userId) => async (dispatch) => {
 
 export const updateUserInfoThunk =
   (userInfo, userId, formType) => async (dispatch) => {
-    try {
-      const res = await fetch(`/api/users/${userId}/details/${formType}`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(userInfo),
-      });
+    const res = await fetch(`/api/users/${userId}/details/${formType}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(userInfo),
+    });
 
-      if (res.ok) {
-        let newUserInfo = await res.json();
-        console.log("res.json", newUserInfo);
-        dispatch(updateUserInfoAction(newUserInfo));
+    if (res.ok) {
+      let newUserInfo = await res.json();
+      console.log("res.json", newUserInfo);
+      dispatch(updateUserInfoAction(newUserInfo));
+    } else if (res.status < 500) {
+      const data = await res.json();
+      if (data.errors) {
+        return data.errors;
       }
-    } catch (err) {
-      return err;
+    } else {
+      return ["An error occurred. Please try again."];
     }
   };
 

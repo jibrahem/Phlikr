@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField, SubmitField
-from wtforms.validators import DataRequired, Email, ValidationError
+from wtforms.validators import DataRequired, Email, ValidationError, Length
 from app.models import User
 
 
@@ -27,10 +27,10 @@ def minumum_age(form, field):
 
 class SignUpForm(FlaskForm):
     username = StringField(
-        'username', validators=[DataRequired(), username_exists])
-    email = StringField('email', validators=[DataRequired(), user_exists])
-    password = StringField('password', validators=[DataRequired()])
+        'username', validators=[DataRequired(), username_exists, Length(max=40)])
+    email = StringField('email', validators=[DataRequired(), user_exists,Length(max=50)])
+    password = StringField('password', validators=[DataRequired(), Length(max=40)])
     age = IntegerField('age', validators=[DataRequired(), minumum_age])
-    first_name = StringField('first_name', validators=[DataRequired()])
-    last_name = StringField('last_name', validators=[DataRequired()])
+    first_name = StringField('first_name', validators=[DataRequired(),Length(max=50)])
+    last_name = StringField('last_name', validators=[DataRequired(),Length(max=50)])
     submit = SubmitField('submit')
