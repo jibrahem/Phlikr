@@ -8,7 +8,6 @@ export default function Favorites({ imageId }) {
     const sessionUser = useSelector((state) => state.session.user);
     const userFavImagesStore = useSelector((state) => state.images.userFavImg);
     const userFavImgArr = Object.values(userFavImagesStore);
-    // console.log("userFavImagArr in Favorites component: ", userFavImgArr)
 
     const dispatch = useDispatch();
 

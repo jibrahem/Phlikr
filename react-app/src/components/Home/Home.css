@@ -1,6 +1,7 @@
 .container {
     position: relative;
     overflow: hidden;
+    min-height: 100vh;
 }
 
 .splash-page-images {
@@ -33,7 +34,7 @@
     line-height: 56px;
     font-family: Proxima Nova,helvetica neue,helvetica,arial,sans-serif;
     white-space: nowrap;
-    margin-top: 410px;
+    margin-top: 31%;
     position: fixed;
 }
 
@@ -45,7 +46,7 @@
     font-size: 25px;
     z-index: 1;
     font-weight: 400;
-    margin-top: 490px;
+    margin-top: 38%;
     position: fixed;
 }
 
@@ -57,15 +58,16 @@
     font-size: 25px;
     z-index: 1;
     font-weight: 400;
-    margin-top: 560px;
+    /* margin-top: 560px; */
+    margin-top: 45%;
     position: fixed;
 }
 
 .start-for-free-btn {
     /* position: absolute; */
-    font-size: 24px;
+    /* font-size: 24px; */
     font-weight: 800;
-    height: 64px;
+    height: 4rem;
     width: 200px;
     line-height: 64px;
     z-index: 1;
@@ -86,26 +88,25 @@
 }
 
 .btn-text {
-    font-size: 20px;
+    font-size: 1.3rem;
     font-family: Proxima Nova,helvetica neue,helvetica,arial,sans-serif;
 }
 
 .splash-page-BGI {
-    /* position: absolute; */
+    position: absolute;
+    bottom: 8rem;
+    left: 50%;
+    transform: translateX(-50%); /* Center the element horizontally */
     font-family: Proxima Nova,helvetica neue,helvetica,arial,sans-serif;
+    text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
     color: #fff;
-    font-size: 14px;
+    font-size: 1rem;
+    font-weight: 400;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.splash-page-BGI1 {
-    /* margin-top: 790px; */
-    margin-top: 0;
-}
-
-.splash-page-BGI2 {
-    /* margin-top: 10px; */
-    margin-top: 1px;
-}
 
 .splash-page-footer {
     position: fixed;
@@ -143,88 +144,4 @@
     cursor: not-allowed;
 }
 
-/* .upside-down-caret {
-    font-size: 16px;
-} */
 
-
-
-
-
-
-
-/* .splash-page-header {
-    margin-top: 500px;
-    margin-left: 500px;
-    font-size: 56px;
-    font-weight: normal;
-    line-height: 56px;
-    font-family: Proxima Nova,helvetica neue,helvetica,arial,sans-serif;
-    color: white;
-    /* z-index: 1; */
-    /* transform: translate(-50%, -50%);
-    white-space: nowrap;
-} */
-
-
-
-/* use whats inside this to place element over the picture */
-/* .content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1;
-    color: #fff;
-    text-align: center;
-
-} */
-
-
-/* .splash-page-prefooter {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 80px;
-    background-color: #979ea2;
-    color: white;
-    font-family: Proxima_Nova_Regular;
-    text-align: center;
-    padding: 10px 0;
-    margin-bottom: 38px;
-    box-sizing: border-box
-} */
-
-/* .splash-page-prefooter-container {
-    font-size: 14px;
-    font-family: Proxima Nova,helvetica neue,helvetica,arial,sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-top: 10px;
-} */
-
-/* .prefooter-text1 {
-   
-}  */
-
-/* .prefooter-btn {
-    background-color: none;
-    font-family: Proxima Nova,helvetica neue,helvetica,arial,sans-serif;
-    color: white;
-    background-color: #979ea2;
-    border-radius: 2px;
-    border: 1px solid white;
-    width: 80px;
-    height: 30px;
-    /* margin-right: 10px; */
- 
-
-
-/* .prefooter-btn:hover {
-    cursor: not-allowed;
-} */
-
-/* .prefooter-text2 {
-} */
