@@ -4,11 +4,13 @@ import { getAllImageThunk } from "../../store/image";
 import { Link, useHistory } from "react-router-dom";
 import "./UserHome.css";
 import CommentModal from "../CommentModal";
-import OpenModalButton from '../OpenModalButton';
-import { getUserFavImgThunk, deleteUserFavImgThunk, addUserFavThunk} from "../../store/image";
+import OpenModalButton from "../OpenModalButton";
+import {
+  getUserFavImgThunk,
+  deleteUserFavImgThunk,
+  addUserFavThunk,
+} from "../../store/image";
 import Favorites from "../Favorites";
-
-
 
 export default function UserHome() {
   const sessionUser = useSelector((state) => state.session.user);
@@ -32,14 +34,14 @@ export default function UserHome() {
       ...prevInfo,
       [imageId]: true,
     }));
-  }
+  };
 
   const notShowInfo = (imageId) => {
     setInfo((prevInfo) => ({
       ...prevInfo,
       [imageId]: false,
     }));
-  }
+  };
   // const setFavButton = () => {
   //   setFav(true);
   // };
@@ -70,9 +72,8 @@ export default function UserHome() {
   //onMouseOver={showInfo(image.id)} onMouseLeave={notShowInfo(image.id)}
   return (
     <>
-      <div className='user-home-wrapper'>
-        <div className='user-home-banner'>
-
+      <div className="user-home-wrapper">
+        <div className="user-home-banner">
           {/* <div className="act">
             <p>All Activity</p>
             <p>What's new?</p>
@@ -85,52 +86,66 @@ export default function UserHome() {
         </div>
         <div className="image-list-div">
           <ul>
-            {imagesArr.map((image) => (
-              <li key={image.id} className='image-card' onMouseOver={() => showInfo(image.id)} onMouseLeave={() => notShowInfo(image.id)}>
-                <div id='userhome-user-info'>
-                  <img src={image.User.profile_photo} alt=''/>
+            {imagesArr.toReversed().map((image) => (
+              <li
+                key={image.id}
+                className="image-card"
+                onMouseOver={() => showInfo(image.id)}
+                onMouseLeave={() => notShowInfo(image.id)}
+              >
+                <div id="userhome-user-info">
+                  <img src={image.User.profile_photo} alt="" />
                   <div id="name-day">
-                    <p>{image.User.first_name} {image.User.last_name}</p>
+                    <p>
+                      {image.User.first_name} {image.User.last_name}
+                    </p>
                     {(() => {
                       const uploadedOn = new Date(image.uploaded_on);
-                      const timeDiff = Math.round((currDate - uploadedOn) / (1000 * 60 * 60 * 24));
+                      const timeDiff = Math.round(
+                        (currDate - uploadedOn) / (1000 * 60 * 60 * 24)
+                      );
                       if (timeDiff > 1) {
-                        return <p id='day'>{timeDiff}ds ago</p>
+                        return <p id="day">{timeDiff}ds ago</p>;
                       }
-                      return <p id='day'>{timeDiff}d ago</p>
+                      return <p id="day">{timeDiff}d ago</p>;
                     })()}
                   </div>
                 </div>
-            
-                
-                  <div className="photo" >
-                    <Link key={image.id} to={`/photos/${image.id}`}>
-                      <img src={image.img} alt={image.title} />
-                    </Link>
-                    {/* {console.log("info in the component: ", info)} */}
-                    {info[image.id] ?  
+
+                <div className="photo">
+                  <Link key={image.id} to={`/photos/${image.id}`}>
+                    <img src={image.img} alt={image.title} />
+                  </Link>
+                  {/* {console.log("info in the component: ", info)} */}
+                  {info[image.id] ? (
                     // <div id={`photo-info ${info[image.id]}`}>
-                    <div id={info[image.id] ? 'photo-info' : ""}>
-                      <div id='title-description'>
+                    <div id={info[image.id] ? "photo-info" : ""}>
+                      <div id="title-description">
                         <Link key={image.id} to={`/photos/${image.id}`}>
-                          <p id='image-title'>{image.title}</p>
+                          <p id="image-title">{image.title}</p>
                         </Link>
-                        <p id='image-description'>{image.description}</p>
+                        <p id="image-description">{image.description}</p>
                       </div>
-                      <div id='count-fav-comment'>
-                        <p id='image-views'>{image.view_count > 1000 ? parseFloat(image.view_count) / 1000 + "K" : image.view_count} views</p>
-                        <div id='fav-comment'>
+                      <div id="count-fav-comment">
+                        <p id="image-views">
+                          {image.view_count > 1000
+                            ? parseFloat(image.view_count) / 1000 + "K"
+                            : image.view_count}{" "}
+                          views
+                        </p>
+                        <div id="fav-comment">
                           <Favorites imageId={image.id} />
                           <p>{image.image_favorites_count}</p>
                           {/* <AddUserFav image={image} /> */}
                           <Link to={`/photos/${image.id}`}>
                             <i className="fa-regular fa-comment"></i>
-                          </Link> 
+                          </Link>
                           <p>{image.image_comment_count}</p>
                         </div>
                       </div>
-                    </div> : null}
-                </div> 
+                    </div>
+                  ) : null}
+                </div>
                 {/* </Link> */}
               </li>
             ))}

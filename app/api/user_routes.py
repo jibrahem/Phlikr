@@ -6,6 +6,18 @@ from app.forms import UserDetailsForm
 
 user_routes = Blueprint('users', __name__)
 
+def validation_errors_to_error_messages(validation_errors):
+    """
+    Simple function that turns the WTForms validation errors into a simple list
+    """
+    errorMessages = []
+    for field in validation_errors:
+        print("fields", field)
+        print("validation", validation_errors)
+
+        for error in validation_errors[field]:
+            errorMessages.append(f'{field} : {error}')
+    return errorMessages
 
 @user_routes.route('/')
 @login_required
@@ -42,7 +54,7 @@ def user(id):
 @user_routes.route('/<int:user_id>/details')
 def edit_user_details(user_id):
     form  = UserDetailsForm()
-    
+
     return render_template("user_details_form.html", form=form)
 
 #get user showcase
@@ -68,31 +80,35 @@ def update_showcase_form():
     print('showcase requestjson', showcase_update)
     for img in showcase_update:
         set_showcase(img, showcase_update[img])
-    return get_user_showcase(current_user.id )
+    return get_user_showcase(current_user.id)
 
 #user detail edit route
 @user_routes.route('/<int:user_id>/details/<form_type>', methods=["POST"])
 def user_details(user_id,form_type):
     update_user = User.query.get(user_id)
     form = UserDetailsForm(user=update_user)
+    form['csrf_token'].data = request.cookies['csrf_token']
     print('form data in backend before submission',form.data['occupation'])
     print(form.data)
-    if (form_type == 'bio'):
-        update_user.biography = form.data['biography']
-    if (form_type == 'profile_photo'):
-        update_user.profile_photo = form.data['profile_photo']
-    if (form_type == 'cover_photo'):
-        update_user.cover_photo = form.data['cover_photo']
-    if (form_type == 'details'):
-        update_user.occupation = form.data['occupation']
-        update_user.hometown = form.data['hometown']
-        update_user.city = form.data['city']
-        update_user.country = form.data['country']
-        update_user.website = form.data['website']
-        update_user.facebook = form.data['facebook']
-        update_user.twitter = form.data['twitter']
-        update_user.instagram = form.data['instagram']
-        update_user.pinterest = form.data['pinterest']
-        update_user.tumblr = form.data['tumblr']
-    db.session.commit()
-    return update_user.to_dict()
+    if form.validate_on_submit():
+        if (form_type == 'bio'):
+            update_user.biography = form.data['biography']
+        if (form_type == 'profile_photo'):
+            update_user.profile_photo = form.data['profile_photo']
+        if (form_type == 'cover_photo'):
+            update_user.cover_photo = form.data['cover_photo']
+        if (form_type == 'details'):
+            update_user.occupation = form.data['occupation']
+            update_user.hometown = form.data['hometown']
+            update_user.city = form.data['city']
+            update_user.country = form.data['country']
+            update_user.website = form.data['website']
+            update_user.facebook = form.data['facebook']
+            update_user.twitter = form.data['twitter']
+            update_user.instagram = form.data['instagram']
+            update_user.pinterest = form.data['pinterest']
+            update_user.tumblr = form.data['tumblr']
+        db.session.commit()
+        print("details updated")
+        return update_user.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401

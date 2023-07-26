@@ -83,7 +83,6 @@
 
 .about-showcase {
     min-height: 200px;
-    max-height: 600px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -111,20 +110,25 @@
 }
 
 .showcase-gallery-wrapper {
+    margin-top: 5px;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
 }
 
-.showcase-item-wrapper {
-    width: 150px;
-    height: 150px;
+.showcase-item-wrapper{
+    width: 300px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    height: 250px;
     overflow: hidden;
     display: flex;
     justify-content: center;
 }
 
 .showcase-item-wrapper img {
-    width: 150px;
+    width: 300px;
     object-fit: cover;
 }
 
