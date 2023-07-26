@@ -36,8 +36,8 @@ export default function UpdatePhoto() {
       errors.description = "Description must be 100 characters or less"
     }
 
-    if (editTitle.length > 80) {
-      errors.title = "Title must be 80 characters or less"
+    if (editTitle.length > 60) {
+      errors.title = "Title must be 60 characters or less"
     }
 
     if (
