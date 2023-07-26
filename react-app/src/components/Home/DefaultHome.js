@@ -60,11 +60,12 @@ export default function DefaultHome() {
       <button className='start-for-free-btn'>
       <Link to="/signup" style={{ textDecoration: 'none' }}><span className='btn-text' style={{ color: 'black' }}>Start for free</span></Link>
       </button>
-    </div>
-    <div className='splash-page-BGI'>
+      <div style={{}} className='splash-page-BGI'>
         <p className='splash-page-BGI1'>{backGroundInfo[currentBGI].title}</p>
         <p className='splash-page-BGI2'>{backGroundInfo[currentBGI].author}</p>
+      </div>
     </div>
+    
   </div>
   <footer className='splash-page-footer'>
     <Link to="">Github Link 1</Link>
