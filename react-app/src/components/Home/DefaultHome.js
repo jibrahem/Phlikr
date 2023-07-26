@@ -11,18 +11,18 @@ export default function DefaultHome() {
     const backGroundInfo = [
         { 
             url: "https://free4kwallpapers.com/uploads/originals/2019/07/14/ultra-hd-ocean-s-wallpaper.jpg",
-            title:"Picture1",
-            author:"author1"
+            title:"Cowabunga!",
+            author:"Peter Clark"
         },
         {
             url: "https://wallpaperaccess.com/full/32822.jpg",
-            title:"Picture2",
-            author:"author2"
+            title:"There's nothing like home.",
+            author:"Michael Anderson"
         },
         {
             url: "https://wallpaperaccess.com/full/222577.jpg",
-            title:"Picture3",
-            author:"author3"
+            title:"Release your inner self.",
+            author:"Sean Nguyen"
         }
       //   {
       //     url: "https://i.natgeofe.com/n/cfa19a0d-eff0-4628-8fdd-2ad8d66845dd/mountain-range-appenzell-switzerland.jpg",
@@ -42,9 +42,7 @@ export default function DefaultHome() {
     ]
 
     useEffect(() => {
-        console.log("interval starts here")
         const intervalId = setInterval(() => {
-            console.log("Inside the interval function")
             if (currentBGI < 3) setCurrentBGI((prev) => (prev  + 1) % 3)
         }, 5000);
         return () => clearInterval(intervalId);
@@ -62,27 +60,21 @@ export default function DefaultHome() {
       <button className='start-for-free-btn'>
       <Link to="/signup" style={{ textDecoration: 'none' }}><span className='btn-text' style={{ color: 'black' }}>Start for free</span></Link>
       </button>
-      <div className='splash-page-BGI'>
+    </div>
+    <div className='splash-page-BGI'>
         <p className='splash-page-BGI1'>{backGroundInfo[currentBGI].title}</p>
         <p className='splash-page-BGI2'>{backGroundInfo[currentBGI].author}</p>
-      </div>
     </div>
   </div>
   <footer className='splash-page-footer'>
-    <span className='splash-span'>About</span>
-    <span className='splash-span'>Jobs</span>
-    <span className='splash-span'>Blog</span>
-    <span className='splash-span'>Developers</span>
-    <span className='splash-span'>Guidelines</span>
-    <span className='splash-span'>Help</span>
-    <span className='splash-span'>Help forum</span>
-    <span className='splash-span'>Privacy</span>
-    <span className='splash-span'>Terms</span>
-    <span className='splash-span'>Cookies</span>
-    <span className='splash-span'>English</span>
-    <a href="#" className="icon-link"><i className="fab fa-facebook-f"></i></a>
-    <a href="#" className="icon-link"><i className="fab fa-twitter"></i></a>
-    <a href="#" className="icon-link"><i className="fab fa-instagram"></i></a>
+    <Link to="">Github Link 1</Link>
+    <Link to="">Github Link 2</Link>
+    <Link to="">Github Link 3</Link>
+    <Link to="">Github Link 4</Link>
+    <Link to="">LinkdIn Link 1</Link>
+    <Link to="">LinkdIn Link 2</Link>
+    <Link to="">LinkdIn Link 3</Link>
+    <Link to="">LinkdIn Link 4</Link>
   </footer>
 </>
     )   

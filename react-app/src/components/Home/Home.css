@@ -33,7 +33,7 @@
     line-height: 56px;
     font-family: Proxima Nova,helvetica neue,helvetica,arial,sans-serif;
     white-space: nowrap;
-    margin-top: 410px;
+    margin-top: 31%;
     position: fixed;
 }
 
@@ -45,7 +45,7 @@
     font-size: 25px;
     z-index: 1;
     font-weight: 400;
-    margin-top: 490px;
+    margin-top: 38%;
     position: fixed;
 }
 
@@ -57,15 +57,16 @@
     font-size: 25px;
     z-index: 1;
     font-weight: 400;
-    margin-top: 560px;
+    /* margin-top: 560px; */
+    margin-top: 45%;
     position: fixed;
 }
 
 .start-for-free-btn {
     /* position: absolute; */
-    font-size: 24px;
+    /* font-size: 24px; */
     font-weight: 800;
-    height: 64px;
+    height: 4rem;
     width: 200px;
     line-height: 64px;
     z-index: 1;
@@ -86,25 +87,18 @@
 }
 
 .btn-text {
-    font-size: 20px;
+    font-size: 1.3rem;
     font-family: Proxima Nova,helvetica neue,helvetica,arial,sans-serif;
 }
 
 .splash-page-BGI {
-    /* position: absolute; */
+    position: relative;
     font-family: Proxima Nova,helvetica neue,helvetica,arial,sans-serif;
     color: #fff;
-    font-size: 14px;
-}
-
-.splash-page-BGI1 {
-    /* margin-top: 790px; */
-    margin-top: 0;
-}
-
-.splash-page-BGI2 {
-    /* margin-top: 10px; */
-    margin-top: 1px;
+    font-size: 1rem;
+    margin-right: -40%;
+    
+    
 }
 
 .splash-page-footer {
