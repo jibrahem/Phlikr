@@ -12,21 +12,34 @@ function UploadPhoto() {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [img, setImg] = useState("");
-    const [errors, setErrors] = useState([]);
+    const [errors, setErrors] = useState({});
     const [submitted, setSubmitted] = useState(false);
     // console.log("state", state)
 
 
+
+
     const handleSubmit = async (e) => {
-        e.preventDefault();
-        const imageDetails = {
-            title,
-            description,
-            img
-        }
+      e.preventDefault();
+      const imageDetails = {
+        title,
+        description,
+        img
+      }
+      const errors = {}
+
+      if (img && !(img.endsWith('.png') || img.endsWith('.jpg') || img.endsWith('.jpeg'))) {
+        errors.img = 'Image URL must end with .png, .jpg, or .jpeg'
+      }
+      if (Object.values(errors).length > 0) {
+        setErrors(errors);
+      } else {
         const data = await dispatch(createImageThunk(imageDetails, sessionUser))
         history.push('/');
+
     }
+
+  }
 
     return (
         <div className='whole-upload-form'>
@@ -54,6 +67,7 @@ function UploadPhoto() {
                        fontSize: "14px"
               }}
             />
+            <div className='errors'>{errors.img}</div>
           </label>
           <label className='upload-label'>
           Image Url
