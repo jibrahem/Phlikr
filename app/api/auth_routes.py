@@ -79,7 +79,9 @@ def sign_up():
             password=form.data['password'],
             first_name = form.data['first_name'],
             last_name = form.data['last_name'],
-            age = form.data['age']
+            age = form.data['age'],
+            profile_photo = "https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg",
+            cover_photo ='https://atiinc.org/wp-content/uploads/2017/01/cover-default.jpg'
         )
         db.session.add(user)
         db.session.commit()
