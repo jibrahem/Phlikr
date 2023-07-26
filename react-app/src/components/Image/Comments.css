@@ -47,6 +47,7 @@
 }
 
 #single-image-comment-div {
+    width: 80%;
     margin-left: 1rem;
     display: flex;
     flex-direction: row;
@@ -159,5 +160,3 @@
 #delete-img-div p:hover {
     background-color: #ECF1F4;
 }
-
-

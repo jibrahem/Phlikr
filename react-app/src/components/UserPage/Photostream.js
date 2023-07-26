@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { getUserImagesThunk } from "../../store/image";
-// import './Photostream.css'
+import './Photostream.css'
 import Favorites from "../Favorites";
 
 export default function PhotostreamPage() {
@@ -52,10 +52,10 @@ export default function PhotostreamPage() {
               </Link>
             </div>
              {/* {console.log("image Detail in the loop: ", imgDetail[image.id])} */}
-            
+
             <div id={imgDetail[image.id] ? 'title-name-fav-comment-div' : 'no-detail'}
             onMouseOver={() => showImgDetail(image.id)} onMouseLeave={() => hideImgDetail(image.id)}
-            
+
             >
               <div id='title-name'>
                 <Link to={`/photos/${image.id}`}>
@@ -87,4 +87,3 @@ export default function PhotostreamPage() {
     </>
   );
 }
-
