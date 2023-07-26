@@ -25,6 +25,14 @@ function UploadPhoto() {
     };
     const errors = {};
 
+    if(description.length > 100){
+      errors.description = "Description must be 100 characters or less"
+    }
+
+    if(title.length > 80){
+      errors.title = "Title must be 80 characters or less"
+    }
+
     if (
       img &&
       !(img.endsWith(".png") || img.endsWith(".jpg") || img.endsWith(".jpeg"))
@@ -56,6 +64,7 @@ function UploadPhoto() {
               <li key={idx}>{error}</li>
             ))}
           </ul> */}
+
         <label className="upload-label">
           Title
           <br></br>
@@ -73,6 +82,7 @@ function UploadPhoto() {
               fontSize: "14px",
             }}
           />
+          <div className="errors">{errors.title}</div>
           <div className="errors">{errors.img}</div>
         </label>
         <label className="upload-label">
@@ -93,6 +103,7 @@ function UploadPhoto() {
             }}
           />
         </label>
+        <div className="errors">{errors.description}</div>
         <label className="upload-label">
           Description
           <br></br>
