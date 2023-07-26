@@ -5,11 +5,11 @@ from sqlalchemy.sql import text
 # Adds a demo user, you can add other users here if you want
 def seed_users():
     demetrius = User(
-        username='Demetrius', email='demo@aa.io', password='password', occupation='SWE',
-        first_name = "Demetrius", last_name="Lander", profile_photo="https://images.unsplash.com/photo-1676532223498-0164d21f1b71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1472&q=80", cover_photo="https://free4kwallpapers.com/uploads/wallpaper/werewolf--wallpaper-1024x768-wallpaper.jpg", age=20)
+        username='demouser', email='demo@aa.io', password='password', occupation='SWE',
+        first_name = "Demo", last_name="User", profile_photo="https://jaggerbathroom.com/wp-content/uploads/2017/08/demo-user.png", cover_photo="https://images.pexels.com/photos/255379/pexels-photo-255379.jpeg", age=20)
     mary = User(
         username='mary', email='mary@aa.io', password='password', occupation='Electrician',
-        first_name = "Mary", last_name="Loder", profile_photo='https://as1.ftcdn.net/v2/jpg/01/62/80/28/1000_F_162802836_bnhUGn0BxR14SjzByrCn2i2cdvxaPi6r.jpg', cover_photo='https://images.unsplash.com/photo-1688746515540-61243f2012b9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80', age=32)
+        first_name = "Mary", last_name="Loder", profile_photo='https://images.pexels.com/photos/762020/pexels-photo-762020.jpeg', cover_photo='https://images.pexels.com/photos/5011647/pexels-photo-5011647.jpeg', age=32)
     jimmy = User(
         username='jimmy', email='jimmy@aa.io', password='password', occupation='HVAC',
         first_name = "Jimmy", last_name="Cain", profile_photo='https://images.unsplash.com/photo-1629318986794-e7e9c9890016?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxMjl8fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=800&q=60', cover_photo='https://free4kwallpapers.com/uploads/wallpaper/a-collection-of-colorful-splatoon--wallpaper-1024x768-wallpaper.jpg', age=27)

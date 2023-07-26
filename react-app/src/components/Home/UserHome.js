@@ -94,7 +94,13 @@ export default function UserHome() {
                 onMouseLeave={() => notShowInfo(image.id)}
               >
                 <div id="userhome-user-info">
-                  <img src={image.User.profile_photo} alt="" />
+                  <div id="userhome-user-photo-wrapper">
+                    <img
+                      id="userhome-user-photo"
+                      src={image.User.profile_photo}
+                      alt=""
+                    />
+                  </div>
                   <div id="name-day">
                     <p>
                       {image.User.first_name} {image.User.last_name}

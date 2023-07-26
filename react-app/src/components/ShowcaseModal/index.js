@@ -35,6 +35,7 @@ function ShowcaseModal({ userImageArr }) {
     e.preventDefault();
     console.log("payload on submit", showcaseInputs);
     dispatch(updateUserShowcaseThunk(sessionUser.id, showcaseInputs));
+    dispatch(getUserImagesThunk(sessionUser.id));
     closeModal();
   };
 
@@ -46,6 +47,10 @@ function ShowcaseModal({ userImageArr }) {
 
   const imageClick = (imageId) => {
     console.log("ImageClick");
+    let nextPayload = { ...showcaseInputs };
+    nextPayload[imageId] = !nextPayload[imageId];
+    console.log("event.target.checked", nextPayload[imageId]);
+    setShowcaseInputs(nextPayload);
     // let nextPayload = { ...showcaseInputs };
     // nextPayload[imageId] = bool;
     // console.log('payload', nextp);
@@ -59,6 +64,7 @@ function ShowcaseModal({ userImageArr }) {
     console.log("handle change", imageId, "hefdfdf   ");
     let nextPayload = { ...showcaseInputs };
     nextPayload[imageId] = event.target.checked;
+    console.log("event.target.checked", event.target.checked);
     setShowcaseInputs(nextPayload);
     // let data = [...showcaseInputs];
     // data[index][event.target.name] = event.target.value;
@@ -88,7 +94,7 @@ function ShowcaseModal({ userImageArr }) {
   // input_list.push(
   //   <img key={userImgArr[i].id + "imgurl"} src={userImgArr[i].img} />
   // );
-  //   }
+  //   }fmap
   //   console.log("input list ids", input_list);
   if (userImageArr.length < 1) return null;
 
@@ -98,9 +104,17 @@ function ShowcaseModal({ userImageArr }) {
       <div className="showcase-modal">
         <form onSubmit={handleSubmit}>
           <div className="image-selector">
-            {userImageArr.map((image) => (
+            {userImageArr.map((image) => ( 
               <div className="image-checkbox-container">
                 <div className="image-checkbox-wrapper">
+                  {/* {console.log("image in showcase", showcaseInputs[image.id])} */}
+                  <div
+                    className={
+                      "displaycheck" +
+                      (!showcaseInputs[image.id] ? " hidden" : "")
+                    }
+                    onClick={() => imageClick(image.id)}
+                  ></div>
                   <input
                     type="checkbox"
                     key={image.id}
@@ -111,7 +125,7 @@ function ShowcaseModal({ userImageArr }) {
                   <img
                     className="showcase-preview"
                     src={image.img}
-                    // onClick={imageClick(image.id)}
+                    onClick={() => imageClick(image.id)}
                     // style={{ "pointer-events": "all" }}
                   />
                   {/* <input

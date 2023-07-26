@@ -2,7 +2,121 @@ from ..models import db, Image, environment, SCHEMA
 from sqlalchemy.sql import text
 from datetime import date
 
+
+
 def seed_images():
+
+    imgArr = [
+        Image(
+        title = "Signs to Nowhere",
+        description = "Discover the enigma of signs leading nowhere, a captivating scene.",
+        img = "https://images.pexels.com/photos/2009968/pexels-photo-2009968.jpeg",
+        taken_on = date.today(),
+        uploaded_on = date.today(),
+        user_id = 1,
+        view_count = 0,
+        ),
+        Image(
+        title = "In the sky",
+        description = "Serene and boundless, the beauty of the sky unfolds.",
+        img = "https://images.pexels.com/photos/382177/pexels-photo-382177.jpeg",
+        taken_on = date.today(),
+        uploaded_on = date.today(),
+        user_id = 1,
+        view_count = 5,
+        ),
+        Image(
+        title = "Meadow",
+        description = "",
+        img = "https://images.pexels.com/photos/2829336/pexels-photo-2829336.jpeg",
+        taken_on = date.today(),
+        uploaded_on = date.today(),
+        user_id = 1,
+        view_count = 0,
+        ),
+        Image(
+        title = "Blue Refractions",
+        description = "",
+        img = "https://images.pexels.com/photos/373543/pexels-photo-373543.jpeg",
+        taken_on = date.today(),
+        uploaded_on = date.today(),
+        user_id = 5,
+        view_count = 0,
+        ),
+        Image(
+        title = "White",
+        description = "White Dome Building Interior",
+        img = "https://images.pexels.com/photos/911758/pexels-photo-911758.jpeg",
+        taken_on = date.today(),
+        uploaded_on = date.today(),
+        user_id = 5,
+        view_count = 0,
+        ),
+        Image(
+        title = "紅 心",
+        description = "Woman in Red Dress Standing under Taipei Performing Arts Center in Taiwan",
+        img = "https://images.pexels.com/photos/17253381/pexels-photo-17253381/free-photo-of-woman-in-red-dress-standing-under-taipei-performing-arts-center-in-taiwan.jpeg",
+        taken_on = date.today(),
+        uploaded_on = date.today(),
+        user_id = 5,
+        view_count = 0,
+        ),
+        Image(
+        title = "Pool",
+        description = "Trees Near Body of Water Painting",
+        img = "https://images.pexels.com/photos/9063025/pexels-photo-9063025.jpeg",
+        taken_on = date.today(),
+        uploaded_on = date.today(),
+        user_id = 2,
+        view_count = 0,
+        ),
+        Image(
+        title = "Paintbrushes",
+        description = "Shallow Focus Photo of Paint Brushes",
+        img = "https://images.pexels.com/photos/1646953/pexels-photo-1646953.jpeg",
+        taken_on = date.today(),
+        uploaded_on = date.today(),
+        user_id = 2,
+        view_count = 0,
+        ),
+        Image(
+        title = "Woman at Artwork Gallery",
+        description = "Woman at Artwork Gallery",
+        img = "https://images.pexels.com/photos/2372982/pexels-photo-2372982.jpeg",
+        taken_on = date.today(),
+        uploaded_on = date.today(),
+        user_id = 2,
+        view_count = 0,
+        ),
+        Image(
+        title = "",
+        description = "",
+        img = "",
+        taken_on = date.today(),
+        uploaded_on = date.today(),
+        user_id = 2,
+        view_count = 0,
+        ),
+        Image(
+        title = "",
+        description = "",
+        img = "",
+        taken_on = date.today(),
+        uploaded_on = date.today(),
+        user_id = 2,
+        view_count = 0,
+        ),
+        Image(
+        title = "",
+        description = "",
+        img = "",
+        taken_on = date.today(),
+        uploaded_on = date.today(),
+        user_id = 2,
+        view_count = 0,
+        ),
+    ]
+
     img1 = Image(
         title = "Love Birds <3",
         description = "sweet cuple",
@@ -128,7 +242,7 @@ def seed_images():
         uploaded_on = date.today(),
         user_id = 5,
         view_count = 0,
-    )    
+    )
     image10 = Image(
         title = "12:22AM",
         description = "Captivating landscape.",
@@ -204,6 +318,10 @@ def seed_images():
     db.session.add(image13)
     db.session.add(image14)
     db.session.add(image15)
+
+    for img in imgArr :
+        db.session.add(img)
+
     db.session.commit()
     print("Images seeded to db")
 
