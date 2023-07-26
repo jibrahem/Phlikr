@@ -6,6 +6,20 @@ from datetime import date
 
 image_routes = Blueprint("images", __name__)
 
+
+def validation_errors_to_error_messages(validation_errors):
+    """
+    Simple function that turns the WTForms validation errors into a simple list
+    """
+    errorMessages = []
+    for field in validation_errors:
+        print("fields", field)
+        print("validation", validation_errors)
+
+        for error in validation_errors[field]:
+            errorMessages.append(f'{field} : {error}')
+    return errorMessages
+
 #Get all comments by image id
 @image_routes.route('/<int:image_id>/comments')
 def get_comment_by_image_id(image_id):
@@ -131,18 +145,18 @@ def post_image(userId):
     if current_user.is_authenticated :
         form = ImageForm()
         print("form", form.data)
-        # if form.validate_on_submit():
-        title = form.data['title']
-        description = form.data['description']
-        img = form.data['img']
-        new_image = Image(title=form.data['title'], description=form.data['description'], img=form.data['img'], view_count=0, user_id=userId, uploaded_on=date.today())
-        db.session.add(new_image)
-        db.session.commit()
-        # print(form.data['title'])
-        # print(form.data['description'])
-        # print(form.data['img'])
-        return new_image.to_dict()
-        # return 'bad data'
+        form['csrf_token'].data = request.cookies['csrf_token']
+        if form.validate_on_submit():
+
+            new_image = Image(title=form.data['title'], description=form.data['description'], img=form.data['img'], view_count=0, user_id=userId, uploaded_on=date.today())
+            db.session.add(new_image)
+            db.session.commit()
+            # print(form.data['title'])
+            # print(form.data['description'])
+            # print(form.data['img'])
+            return new_image.to_dict()
+    print("error side of post image")
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
 
