@@ -15,8 +15,9 @@ function ShowcaseModal({ userImageArr }) {
   const { closeModal } = useModal();
   console.log("userImgArr in showcase modal", userImageArr);
   const payload = {};
+  console.log("userimagearr", userImageArr);
   for (let i = 0; i < userImageArr.length; i++) {
-    payload[userImageArr[i].id] = false;
+    payload[userImageArr[i].id] = userImageArr[i].showcase;
   }
   const [showcaseInputs, setShowcaseInputs] = useState(payload);
   const history = useHistory();
@@ -90,6 +91,8 @@ function ShowcaseModal({ userImageArr }) {
   //   }
   //   console.log("input list ids", input_list);
   if (userImageArr.length < 1) return null;
+
+  console.log("showcaseInputs", showcaseInputs);
   return (
     <>
       <div className="showcase-modal">
@@ -122,7 +125,9 @@ function ShowcaseModal({ userImageArr }) {
             ))}
           </div>
           <div className="showcase-submit">
-            <button type="submit">Save</button>
+            <button type="submit" className="showcase-form-submit">
+              Save Selected Photos
+            </button>
           </div>
         </form>
       </div>
