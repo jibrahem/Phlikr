@@ -91,16 +91,18 @@ export const createImageThunk = (image, user) => async (dispatch) => {
   console.log("image  in create image", image);
   const res = await fetch(`/api/images/${user.id}/images`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(image),
+    // headers: { "Content-Type": "application/json" },
+    // body: JSON.stringify(image),
+    body: image,
   });
 
   // console.log("res in the CREATIMGAEJ:JDK:JSDKJ;", res);
 
   if (res.ok) {
-    const newImage = await res.json();
-    dispatch(createImage(newImage));
-    return newImage;
+    // const newImage = await res.json();
+    const { resImage } = await res.json();
+    dispatch(createImage(resImage));
+    return resImage;
   } else if (res.status < 500) {
     console.log("image route error");
     const data = await res.json();

@@ -1,42 +1,60 @@
 import { useState, useEffect } from "react";
 import { createImageThunk } from "../../store/image";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
+import { getSingleImageThunk } from "../../store/image";
 import "./UploadPhoto.css";
 
 function UploadPhoto() {
   const dispatch = useDispatch();
   const history = useHistory();
   const sessionUser = useSelector((state) => state.session.user);
+  const { imageId } = useParams()
+  
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [img, setImg] = useState("");
+  const [img, setImg] = useState(null);
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
   // console.log("state", state)
+  const [imageLoading, setImageLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const imageDetails = {
-      title,
-      description,
-      img,
-    };
-    const errors = {};
+    // const imageDetails = {
+    //   title,
+    //   description,
+    //   img,
+    // };
+    // const errors = {};
 
-    if (
-      img &&
-      !(img.endsWith(".png") || img.endsWith(".jpg") || img.endsWith(".jpeg"))
-    ) {
-      errors.img = "Image URL must end with .png, .jpg, or .jpeg";
-    }
-    if (Object.values(errors).length > 0) {
-      setErrors(errors);
-    } else {
-      const data = await dispatch(createImageThunk(imageDetails, sessionUser));
-      history.push("/");
-    }
+    // if (
+    //   img &&
+    //   !(img.endsWith(".png") || img.endsWith(".jpg") || img.endsWith(".jpeg"))
+    // ) {
+    //   errors.img = "Image URL must end with .png, .jpg, or .jpeg";
+    // }
+    // if (Object.values(errors).length > 0) {
+    //   setErrors(errors);
+    // } 
+    // else {
+    //   const data = await dispatch(createImageThunk(imageDetails, sessionUser));
+    //   history.push("/");
+    // }
+
+    const formData = new FormData();
+        formData.append("image", img);
+        formData.append("title", title);
+        formData.append("description", description);
+        // aws uploads can be a bit slow—displaying
+        // some sort of loading message is a good idea
+        setImageLoading(true);
+        // const newImage = await dispatch(createImageThunk(formData, sessionUser));
+        // console.log("new image in single image: ", newImage)
+        await dispatch(createImageThunk(formData, sessionUser));
+        // await dispatch(getSingleImageThunk(imageId))
+        history.push("/");
   };
 
   return (
@@ -49,7 +67,11 @@ function UploadPhoto() {
         alt="BGI"
       />
       {/* <span>""</span> */}
-      <form className="upload-image-form" onSubmit={handleSubmit}>
+      <form 
+        className="upload-image-form" 
+        onSubmit={handleSubmit}
+        encType="multipart/form-data"
+      >
         <h3 className="upload-title">Upload Photo</h3>
         {/* <ul>
             {errors.map((error, idx) => (
@@ -76,15 +98,17 @@ function UploadPhoto() {
           <div className="errors">{errors.img}</div>
         </label>
         <label className="upload-label">
-          Image Url
+          Image File
           <br></br>
           <input
-            type="text"
+            // type="text"
+            type='file'
+            accept="image/*"
             //  placeholder="Image Url"
             className="upload-image-url"
-            value={img}
-            maxLength={100}
-            onChange={(e) => setImg(e.target.value)}
+            // value={img}
+            // maxLength={100}
+            onChange={(e) => setImg(e.target.files[0])}
             required
             style={{
               fontFamily:
@@ -116,6 +140,7 @@ function UploadPhoto() {
           <button className="upload-image-btn" onSubmit={handleSubmit}>
             Upload
           </button>
+          {(imageLoading)&& <p>Loading...</p>}
         </label>
       </form>
     </div>
