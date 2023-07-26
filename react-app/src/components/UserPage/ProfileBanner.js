@@ -7,10 +7,13 @@ import ProfileFormBio from "../ProfileForms/ProfileFormBio";
 import ProfileFormCover from "../ProfileForms/ProfileFormCover";
 import OpenModalMenuItem from "../OpenModalButton";
 import ProfilePhoto from "./ProfilePhoto";
+import ProfileFormCoverModal from "../ProfileForms/ProfileFormCoverModal";
 
 export default function ProfileBanner({ userInfo, photoCount }) {
   const sessionUser = useSelector((state) => state.session.user);
   const { userId } = useParams();
+  const userImages = useSelector((state) => state.images.userImages);
+  let userImageArr = Object.values(userImages)[0];
 
   const [showCoverForm, setShowCoverForm] = useState(false);
   const dispatch = useDispatch();
@@ -27,31 +30,31 @@ export default function ProfileBanner({ userInfo, photoCount }) {
             <img src={userInfo.cover_photo} />
           </div>
 
-
           <div className="profile-photo-wrapper">
-            {userInfo.id === sessionUser.id &&
+            {userInfo.id === sessionUser.id && (
               <OpenModalMenuItem
                 itemText={<img src={userInfo.profile_photo} />}
-                modalComponent={<ProfilePhoto
-                />}
+                modalComponent={<ProfilePhoto />}
               />
-            }
-            {userInfo.id !== sessionUser.id &&
+            )}
+            {userInfo.id !== sessionUser.id && (
               <img src={userInfo.profile_photo} />
-            }
+            )}
             <div>
               <div className="profile-name">
                 {userInfo.first_name} {userInfo.last_name}
               </div>
             </div>
-            {userInfo.id === sessionUser.id &&
+            {userInfo.id === sessionUser.id && (
               <OpenModalMenuItem
                 buttonText="..."
                 // onItemClick={closeMenu}
-                modalComponent={<ProfileFormCover
-                />}
+                modalComponent={
+                  // <ProfileFormCoverModal userImageArr={userImageArr} />
+                  <ProfileFormCover />
+                }
               />
-            }
+            )}
           </div>
         </div>
       </div>
