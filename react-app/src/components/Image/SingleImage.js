@@ -18,12 +18,14 @@ import CommentShow from "./CommentShow";
 import Favorites from "../Favorites";
 
 
-console.log("Before userParams");
+
 
 export default function SingleImage() {
   // console.log("SingleImage in SingelImage component: ");
+  console.log("Before userParams");
   const { imageId } = useParams();
   const singleImage = useSelector((state) => state.images.singleImage);
+  console.log("singeImage in singleImage component: ", singleImage);
   const favImagesStore = useSelector((state) => state.images.allFavImgUser);
   const favImgUserArr = Object.values(favImagesStore)
   // console.log("favImages Users Array in the single image component: ", favImgUserArr);
@@ -66,7 +68,7 @@ export default function SingleImage() {
     dispatch(getAllFavImguserThunk(imageId));
   }, [dispatch, imageId, sessionUser.id]);
 
-    if (!singleImage.User) return null;
+    if (singleImage === undefined || !singleImage.id) return null;
 
 
 
@@ -78,6 +80,7 @@ export default function SingleImage() {
                     <div className="iconss">
                         {/* <i className="fa-regular fa-star"></i> */}
                         <Favorites imageId={singleImage.id} />
+                        {/* <Favorites imageId={imageId} /> */}
                         {singleImage.User.id === sessionUser.id ?
                         <div onClick={editImg}>
                           <i className="fa-solid fa-pen-to-square"></i></div> : null}

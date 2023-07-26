@@ -3,6 +3,8 @@ from flask_login import login_required, current_user
 from ..models import Image, User, db, Comment
 from app.forms import ImageForm
 from datetime import date
+from app.api.aws_helpers import (
+    upload_file_to_s3, get_unique_filename)
 
 image_routes = Blueprint("images", __name__)
 
@@ -144,11 +146,28 @@ def post_image(userId):
     print('post image route hit')
     if current_user.is_authenticated :
         form = ImageForm()
-        print("form", form.data)
+        # print("form", form.data)
         form['csrf_token'].data = request.cookies['csrf_token']
         if form.validate_on_submit():
 
-            new_image = Image(title=form.data['title'], description=form.data['description'], img=form.data['img'], view_count=0, user_id=userId, uploaded_on=date.today())
+            # new_image = Image(title=form.data['title'], description=form.data['description'], img=form.data['img'], view_count=0, user_id=userId, uploaded_on=date.today())
+            image = form.data["image"]
+            image.filename = get_unique_filename(image.filename)
+            upload = upload_file_to_s3(image)
+            print(upload)
+
+            if "url" not in upload:
+            # if the dictionary doesn't have a url key
+            # it means that there was an error when you tried to upload
+            # so you send back that error message (and you printed it above)
+                return render_template("simple_form.html", form=form, errors=[upload])
+
+            url = upload["url"]
+            # new_image = Image(img= url)
+            # new_image = Image(title= form.data['title'])
+            new_image = Image(title=form.data['title'], description=form.data['description'], img=url, view_count=0, user_id=userId, uploaded_on=date.today())
+
+
             db.session.add(new_image)
             db.session.commit()
             # print(form.data['title'])
