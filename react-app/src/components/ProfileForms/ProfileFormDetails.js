@@ -3,25 +3,25 @@ import { useSelector, useDispatch } from "react-redux";
 import { updateUserInfoThunk } from "../../store/users";
 
 function ProfileFormDetails() {
-  const user = useSelector((state) => state.session.user);
+  const sessionUser = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
 
   const [occupation, setOccupation] = useState(
-    user.occupation ? user.occupation : ""
+    sessionUser.occupation ? sessionUser.occupation : ""
   );
-  const [hometown, setHometown] = useState(user.hometown ? user.hometown : "");
-  const [city, setCity] = useState(user.city ? user.city : "");
-  const [country, setCountry] = useState(user.country ? user.country : "");
-  const [website, setWebsite] = useState(user.website ? user.website : "");
-  const [facebook, setFacebook] = useState(user.facebook ? user.facebook : "");
-  const [twitter, setTwitter] = useState(user.twitter ? user.twitter : "");
+  const [hometown, setHometown] = useState(sessionUser.hometown ? sessionUser.hometown : "");
+  const [city, setCity] = useState(sessionUser.city ? sessionUser.city : "");
+  const [country, setCountry] = useState(sessionUser.country ? sessionUser.country : "");
+  const [website, setWebsite] = useState(sessionUser.website ? sessionUser.website : "");
+  const [facebook, setFacebook] = useState(sessionUser.facebook ? sessionUser.facebook : "");
+  const [twitter, setTwitter] = useState(sessionUser.twitter ? sessionUser.twitter : "");
   const [instagram, setInstagram] = useState(
-    user.instagram ? user.instagram : ""
+    sessionUser.instagram ? sessionUser.instagram : ""
   );
   const [pinterest, setPinterest] = useState(
-    user.pinterest ? user.pinterest : ""
+    sessionUser.pinterest ? sessionUser.pinterest : ""
   );
-  const [tumblr, setTumblr] = useState(user.tumblr ? user.tumblr : "");
+  const [tumblr, setTumblr] = useState(sessionUser.tumblr ? sessionUser.tumblr : "");
   const [errors, setErrors] = useState([]);
 
   const handleSubmit = async (e) => {
@@ -41,9 +41,9 @@ function ProfileFormDetails() {
       pinterest: pinterest,
       tumblr: tumblr,
     };
-    console.log("userInfoProp", user.id);
+    console.log("sessionUserInfoProp", sessionUser.id);
     const data = await dispatch(
-      updateUserInfoThunk(newBio, user.id, "details")
+      updateUserInfoThunk(newBio, sessionUser.id, "details")
     );
     if (data) {
       setErrors(data);
