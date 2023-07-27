@@ -54,11 +54,12 @@ def user(id):
 
 
 #user profile photo edit route
-@user_routes.route('/profile_photo', methods=["POST"])
-def user_profile_photo(user_id = 1):
+@user_routes.route('/<int:user_id>/profile_photo', methods=["POST"])
+def user_profile_photo(user_id):
+    
     update_user = User.query.get(user_id)
     
-    print("in the edit user profile photo route~~~~~~~~~~~~~~~~~~")
+    # print("in the edit user profile photo route~~~~~~~~~~~~~~~~~~")
     form = UserDetailsForm(user=update_user)
     form['csrf_token'].data = request.cookies['csrf_token']
     # print('form data in backend before submission',form.data[''])
@@ -159,24 +160,31 @@ def user_details(user_id,form_type):
 
 #user cover photo edit route
 @user_routes.route('/<int:user_id>/cover_photo', methods=["POST"])
-def user_cover_photo(user_id,form_type):
+def user_cover_photo(user_id):
     update_user = User.query.get(user_id)
     
+    # print("in the edit user profile photo route~~~~~~~~~~~~~~~~~~")
     form = UserDetailsForm(user=update_user)
     form['csrf_token'].data = request.cookies['csrf_token']
-    # print('form data in backend before submission',form.data['occupation'])
-    print(form.data)
+    # print('form data in backend before submission',form.data[''])
+    print("form data in profile route: ", form.data)
+
+    # old_profile_photo = update_user.profile_photo
+    # old_cover_photo = update_user.cover_photo
     
     new_cover_photo = form.data['cover_photo']
+    print("new cover photo in edit user cover photo route: ", new_cover_photo)
     new_cover_photo.filename = get_unique_filename(new_cover_photo.filename)
     upload_cover_photo = upload_file_to_s3(new_cover_photo)
     cover_photo_url = upload_cover_photo['url']
+    print("profile_photo_url: ", cover_photo_url)
 
     if form.validate_on_submit():
+        update_user.cover_photo = cover_photo_url
+
+        new_image = Image(title="cover photo title", description='cover photo description', img=cover_photo_url, view_count=0, user_id=user_id, uploaded_on=date.today())
         
-        if (form_type == 'cover_photo'):
-            update_user.cover_photo = cover_photo_url
+        db.session.add(new_image)
         db.session.commit()
         print("details updated")
-        return update_user.to_dict()
-    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+        return new_image.to_dict()

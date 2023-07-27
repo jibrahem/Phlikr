@@ -19,7 +19,7 @@ function ProfilePhoto() {
  
     const formData = new FormData();
     formData.append('profile_photo', profilePhoto);
-    console.log("formData in profile photo component: ", formData);
+    // console.log("formData in profile photo component: ", formData);
 
     await dispatch(editUserProfilePhotoThunk(formData, user.id));
     await dispatch(userInfoThunk(user.id));

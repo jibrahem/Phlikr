@@ -136,49 +136,50 @@ export const userDeleteThunk = (userId) => async (dispatch) => {
 
 export const editUserProfilePhotoThunk = (photo, userId) => async ( dispatch ) => {
 
-  console.log("in the edituser profile photo thunk~~~~~~~~~~")
-  console.log("userid in the edit user profilephotothunk: ", userId)
-  console.log("photo in edit user profile thunk: ", photo)
-  // try {
-    console.log("in the try block of the edituser profilephotothunk!!!!!!!!!!!!!!!")
-    const res = await fetch(`/api/users/profile_photo`, {
+  // console.log("in the edituser profile photo thunk~~~~~~~~~~")
+  // console.log("userid in the edit user profilephotothunk: ", userId)
+  // console.log("photo in edit user profile thunk: ", photo)
+  try {
+    // console.log("in the try block of the edituser profilephotothunk!!!!!!!!!!!!!!!")
+    const res = await fetch(`/api/users/${userId}/profile_photo`, {
       method : "POST",
       body: photo,
     })
 
-    console.log("result befor the if res.ok statement: ", res)
+    // console.log("result befor the if res.ok statement: ", res)
 
     if(res.ok) {
-      console.log("res in the if statement: ", res)
+      // console.log("res in the if statement: ", res)
       const newPhoto = await res.json();
       dispatch(editUserProfilePhoto(newPhoto));
       return newPhoto;
     }
-  // } 
-  // catch(err) {
-  //   const errors = await err.json();
-  //   return errors;
-  // }
+  } 
+  catch(err) {
+    const errors = await err.json();
+    return errors;
+  }
 };
 
 
-// export const editUserCoverPhotoThunk = (userId, photo, formType) => async ( dispatch ) => {
-//   try {
-//     const res = await fetch(`/api/users/${userId}/cover_photo/${formType}`, {
-//       methods : "POST",
-//       body: photo,
-//     })
+export const editUserCoverPhotoThunk = (photo, userId) => async ( dispatch ) => {
+  try {
+    const res = await fetch(`/api/users/${userId}/cover_photo`, {
+      method : "POST",
+      body: photo,
+    })
 
-//     if(res.ok) {
-//       const newPhoto = await res.json();
-//       dispatch(editUserCoverPhoto(newPhoto));
-//       return newPhoto;
-//     }
-//   } catch(err) {
-//     const errors = await err.json();
-//     return errors;
-//   }
-// };
+    if(res.ok) {
+      console.log("res in the if statement: ", res)
+      const newPhoto = await res.json();
+      dispatch(editUserCoverPhoto(newPhoto));
+      return newPhoto;
+    }
+  } catch(err) {
+    const errors = await err.json();
+    return errors;
+  }
+};
 
 //reducer function
 const initialState = { userFav: {}, userInfo: {}, userShowcase: {}, userProfilePhoto: {}, userCoverPhoto: {} };

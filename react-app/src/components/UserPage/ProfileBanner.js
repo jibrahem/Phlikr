@@ -40,7 +40,7 @@ export default function ProfileBanner() {
           <div className="profile-photo-wrapper">
             {userInfo.id === sessionUser.id && (
               <OpenModalMenuItem
-                itemText={<img src={userInfo.profile_photo ? userInfo.profile_photo : "https://images.pexels.com/photos/1983037/pexels-photo-1983037.jpeg"} />}
+                itemText={<img src={userInfo.profile_photo} />}
                 modalComponent={<ProfilePhoto />}
               />
             )}
