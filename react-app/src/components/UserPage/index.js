@@ -16,8 +16,8 @@ export default function UserPage() {
   const userInfo = useSelector((state) => state.users.userInfo);
   const userImagesArr = Object.values(userImages);
   const dispatch = useDispatch();
-  console.log("page", page);
-  console.log("userId", userId);
+  // console.log("page", page);
+  // console.log("userId", userId);
   //   console.log("userImage arr", userImagesArr);
   const currDate = Date();
 
