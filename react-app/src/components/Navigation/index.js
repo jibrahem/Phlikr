@@ -8,6 +8,7 @@ import { logout } from "../../store/session";
 
 function Navigation({ isLoaded }) {
 	const sessionUser = useSelector(state => state.session.user);
+	const userInfo = useSelector((state) => state.users.userInfo);
 	const [show, setShow] = useState(false);
 	const [profile, setProfile] = useState(false);
 	const dispatch = useDispatch();
@@ -78,7 +79,7 @@ function Navigation({ isLoaded }) {
 							<i className="fa-solid fa-cloud-arrow-up"></i>
 						</Link>
 					 	<div className="profile" onClick={showProfile}>
-							<img src={sessionUser.profile_photo} alt={sessionUser.user_name}></img>
+							<img src={userInfo.profile_photo ? userInfo.profile_photo : "https://images.pexels.com/photos/1983037/pexels-photo-1983037.jpeg"} alt={userInfo.user_name}></img>
 						</div>
 					</div>
 					{profile ? <div id='nav-user-info' onMouseLeave={notShowProfile}>
