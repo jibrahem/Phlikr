@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { updateUserInfoThunk } from "../../store/users";
-import { editUserProfilePhotoThunk} from "../../store/users";
+import { editUserProfilePhotoThunk, userInfoThunk} from "../../store/users";
+import { getUserImagesThunk } from "../../store/image";
 import { useModal } from "../../context/Modal";
-import { NavLink, useParams } from "react-router-dom/cjs/react-router-dom.min";
 
 function ProfilePhoto() {
   const user = useSelector((state) => state.session.user);
@@ -22,18 +21,11 @@ function ProfilePhoto() {
     formData.append('profile_photo', profilePhoto);
     console.log("formData in profile photo component: ", formData);
 
-
-
     await dispatch(editUserProfilePhotoThunk(formData, user.id));
+    await dispatch(userInfoThunk(user.id));
+    await dispatch(getUserImagesThunk(user.id));
     
     closeModal();
-    // console.log("userInfoProp", user.id);
-    // if (newErrors.length == 0) {
-    //   const data = await dispatch(updateUserInfoThunk(formData, user.id, formType));
-      // closeModal();
-    // } else {
-      // setErrors(newErrors);
-    // }
   };
 
   return (

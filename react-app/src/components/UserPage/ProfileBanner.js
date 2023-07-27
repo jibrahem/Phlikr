@@ -8,11 +8,12 @@ import ProfileFormCover from "../ProfileForms/ProfileFormCover";
 import OpenModalMenuItem from "../OpenModalButton";
 import ProfilePhoto from "./ProfilePhoto";
 import ProfileFormCoverModal from "../ProfileForms/ProfileFormCoverModal";
+import { userInfoThunk } from "../../store/users";
 
 
-export default function ProfileBanner({ userInfo, photoCount }) {
+export default function ProfileBanner() {
   const sessionUser = useSelector((state) => state.session.user);
-  const userProfilePhoto = useSelector((state) => state.session.userProfilePhoto)
+  const userInfo = useSelector((state) => state.users.userInfo);
   const { userId } = useParams();
   const userImages = useSelector((state) => state.images.userImages);
   let userImageArr = Object.values(userImages)[0];
@@ -23,6 +24,10 @@ export default function ProfileBanner({ userInfo, photoCount }) {
   const coverPhotoButtonClick = (e) => {
     setShowCoverForm(!showCoverForm);
   };
+
+  useEffect(() => {
+    dispatch(userInfoThunk(sessionUser.id));
+  }, [dispatch]);
 
   return (
     <div className="profile-banner-container">
@@ -35,7 +40,7 @@ export default function ProfileBanner({ userInfo, photoCount }) {
           <div className="profile-photo-wrapper">
             {userInfo.id === sessionUser.id && (
               <OpenModalMenuItem
-                itemText={<img src={userInfo.profile_photo} />}
+                itemText={<img src={userInfo.profile_photo ? userInfo.profile_photo : "https://images.pexels.com/photos/1983037/pexels-photo-1983037.jpeg"} />}
                 modalComponent={<ProfilePhoto />}
               />
             )}

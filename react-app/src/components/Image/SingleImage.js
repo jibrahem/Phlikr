@@ -16,6 +16,7 @@ import './SingleImage.css'
 
 import CommentShow from "./CommentShow";
 import Favorites from "../Favorites";
+import { userInfoThunk } from "../../store/users";
 
 
 
@@ -51,8 +52,10 @@ export default function SingleImage() {
     setShowEdit(false);
   };
 
-  const deleteImg = () => {
-    dispatch(deleteImageThunk(singleImage.id));
+  const deleteImg = async () => {
+    await dispatch(deleteImageThunk(singleImage.id));
+    await dispatch(userInfoThunk(sessionUser.id));
+
     history.push(`/${sessionUser.id}/photos`);
   };
 
