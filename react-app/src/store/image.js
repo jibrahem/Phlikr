@@ -96,7 +96,7 @@ export const createImageThunk = (image, user) => async (dispatch) => {
     body: image,
   });
 
-  // console.log("res in the CREATIMGAEJ:JDK:JSDKJ;", res);
+  console.log("res in the CREATIMGAEJ:JDK:JSDKJ;", res);
 
   if (res.ok) {
     // const newImage = await res.json();

@@ -2,12 +2,14 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired, Email, ValidationError, Length
 from app.models import User
+from flask_wtf.file import FileField, FileAllowed, FileRequired
+from app.api.aws_helpers import ALLOWED_EXTENSIONS
 
 
 class UserDetailsForm(FlaskForm):
     biography = StringField('biography', validators=[Length(max=100)])
-    profile_photo = StringField('profile_photo',validators=[Length(max=255)])
-    cover_photo = StringField('cover_photo', validators=[Length(max=255)])
+    profile_photo = FileField('profile_photo',validators=[FileAllowed(list(ALLOWED_EXTENSIONS))])
+    cover_photo = FileField('cover_photo', validators=[FileAllowed(list(ALLOWED_EXTENSIONS))])
     occupation = StringField('occupation', validators=[Length(max=50)])
     hometown = StringField('hometown', validators=[Length(max=50)])
     city = StringField('city', validators=[Length(max=50)])

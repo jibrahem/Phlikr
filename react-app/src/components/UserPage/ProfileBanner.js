@@ -9,8 +9,10 @@ import OpenModalMenuItem from "../OpenModalButton";
 import ProfilePhoto from "./ProfilePhoto";
 import ProfileFormCoverModal from "../ProfileForms/ProfileFormCoverModal";
 
+
 export default function ProfileBanner({ userInfo, photoCount }) {
   const sessionUser = useSelector((state) => state.session.user);
+  const userProfilePhoto = useSelector((state) => state.session.userProfilePhoto)
   const { userId } = useParams();
   const userImages = useSelector((state) => state.images.userImages);
   let userImageArr = Object.values(userImages)[0];
