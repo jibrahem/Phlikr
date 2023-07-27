@@ -30,7 +30,7 @@ function ProfileFormBio() {
       {errors}
       <form onSubmit={handleSubmit} className="bio-form">
         <textarea
-          classname="form-form-input"
+          className="form-form-input"
           type="textarea"
           value={biography}
           maxLength={500}
