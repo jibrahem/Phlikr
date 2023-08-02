@@ -4,9 +4,11 @@ import { Link } from "react-router-dom";
 import { getUserFavImgThunk } from "../../store/image";
 import './UserPage.css';
 import Favorites from "../Favorites";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 
 export default function FavesPage() {
   const [showComment, setShowComment] = useState(false);
+  const {userId} = useParams();
   const [imgDetail, setImgDetail] = useState(false);
   const userFavImages = useSelector((state) => state.images.userFavImg);
   // console.log("user fav images store in Fav component: ", userFavImages);
@@ -14,7 +16,7 @@ export default function FavesPage() {
   // console.log("user fav image array in Fav: ", userFavImgArr);
   const sessionUser = useSelector((state) => state.session.user);
   // console.log("user in faves component: ", sessionUser)
-  
+
   const dispatch = useDispatch();
 
   // const currDate = Date();
@@ -37,7 +39,7 @@ export default function FavesPage() {
   }
 
   useEffect(() => {
-    dispatch(getUserFavImgThunk(sessionUser.id))
+    dispatch(getUserFavImgThunk(userId))
   }, [dispatch]);
 
  if (userFavImgArr.length < 1) return null;
@@ -54,10 +56,10 @@ export default function FavesPage() {
               </Link>
             </div>
              {/* {console.log("image Detail in the loop: ", imgDetail[image.id])} */}
-            
+
             <div id={imgDetail[image.id] ? 'title-name-fav-comment-div' : 'no-detail'}
             onMouseOver={() => showImgDetail(image.id)} onMouseLeave={() => hideImgDetail(image.id)}
-            
+
             >
               <div id='title-name'>
                 <Link to={`/photos/${image.id}`}>

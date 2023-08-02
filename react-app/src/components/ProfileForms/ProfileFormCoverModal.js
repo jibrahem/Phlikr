@@ -26,7 +26,7 @@ function ProfileFormCoverModal({ userImageArr }) {
   const [showcaseInputs, setShowcaseInputs] = useState(payload);
   const history = useHistory();
   useEffect(() => {
-    dispatch(getUserImagesThunk);
+    // dispatch(getUserImagesThunk);
   }, dispatch);
 
   //build starting state for showcaseInputs

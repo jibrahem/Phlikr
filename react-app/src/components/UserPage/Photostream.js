@@ -4,8 +4,10 @@ import { Link } from "react-router-dom";
 import { getUserImagesThunk } from "../../store/image";
 // import './Photostream.css'
 import Favorites from "../Favorites";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 
 export default function PhotostreamPage() {
+  const { userId } = useParams();
   const sessionUser = useSelector((state) => state.session.user);
   const userImageStore = useSelector((state) => state.images.userImages);
   const userImagesArray = Object.values(userImageStore);
@@ -31,60 +33,72 @@ export default function PhotostreamPage() {
       ...prevImgDetail,
       [imageId]: false,
     }));
-  }
-
+  };
 
   useEffect(() => {
-    dispatch(getUserImagesThunk(sessionUser.id))
-  }, [dispatch, sessionUser.id]);
+    dispatch(getUserImagesThunk(userId));
+  }, [dispatch, userId]);
 
   if (userImagesArray.length < 1) return null;
 
   return (
     <>
-    <div id='user-fav-container'>
-      <ul>
-        {userImagesArray[0].map((image) => (
-          <div className='user-fav-div' key={image.id}>
-            <div  className="fav-img" >
-              <Link key={image.id} to={`/photos/${image.id}`}>
-                <img src={image.img} alt={image.title} onMouseOver={() => showImgDetail(image.id)} onMouseLeave={() => hideImgDetail(image.id)} />
-              </Link>
-            </div>
-             {/* {console.log("image Detail in the loop: ", imgDetail[image.id])} */}
-            
-            <div id={imgDetail[image.id] ? 'title-name-fav-comment-div' : 'no-detail'}
-            onMouseOver={() => showImgDetail(image.id)} onMouseLeave={() => hideImgDetail(image.id)}
-            
-            >
-              <div id='title-name'>
-                <Link to={`/photos/${image.id}`}>
-                  <p id='title'>{image.title}</p>
-                </Link>
-                <Link to={`/`}>
-                  <p id='name'>by {image.User.first_name} {image.User.last_name}</p>
+      <div id="user-fav-container">
+        <ul>
+          {userImagesArray[0].map((image) => (
+            <div className="user-fav-div" key={image.id}>
+              <div className="fav-img">
+                <Link key={image.id} to={`/photos/${image.id}`}>
+                  <img
+                    src={image.img}
+                    alt={image.title}
+                    onMouseOver={() => showImgDetail(image.id)}
+                    onMouseLeave={() => hideImgDetail(image.id)}
+                  />
                 </Link>
               </div>
-              <div id='fav-comment'>
-                <div id='fav-star'>
-                  {/* <i className="fa-solid fa-star"></i> */}
-                  <Favorites imageId={image.id} />
-                  <p>{image.image_favorites_count}</p>
+              {/* {console.log("image Detail in the loop: ", imgDetail[image.id])} */}
+
+              <div
+                id={
+                  imgDetail[image.id]
+                    ? "title-name-fav-comment-div"
+                    : "no-detail"
+                }
+                onMouseOver={() => showImgDetail(image.id)}
+                onMouseLeave={() => hideImgDetail(image.id)}
+              >
+                <div id="title-name">
+                  <Link to={`/photos/${image.id}`}>
+                    <p id="title">{image.title}</p>
+                  </Link>
+                  <Link to={`/`}>
+                    <p id="name">
+                      by {image.User.first_name} {image.User.last_name}
+                    </p>
+                  </Link>
                 </div>
-                <div id='fav-comment-button'>
-                  <button onClick={favComment}>
-                    <Link to={`/photos/${image.id}`}><i className="fa-regular fa-comment"></i></Link>
-                  </button>
-                  <p>{image.image_comment_count}</p>
+                <div id="fav-comment">
+                  <div id="fav-star">
+                    {/* <i className="fa-solid fa-star"></i> */}
+                    <Favorites imageId={image.id} />
+                    <p>{image.image_favorites_count}</p>
+                  </div>
+                  <div id="fav-comment-button">
+                    <button onClick={favComment}>
+                      <Link to={`/photos/${image.id}`}>
+                        <i className="fa-regular fa-comment"></i>
+                      </Link>
+                    </button>
+                    <p>{image.image_comment_count}</p>
+                  </div>
+                  {/* <i className="fa-light fa-album-circle-plus"></i> */}
                 </div>
-                {/* <i className="fa-light fa-album-circle-plus"></i> */}
               </div>
             </div>
-          </div>
-        ))}
-      </ul>
-    </div>
+          ))}
+        </ul>
+      </div>
     </>
   );
 }
-

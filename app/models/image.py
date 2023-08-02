@@ -16,7 +16,7 @@ class Image(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
     view_count = db.Column(db.Integer)
     showcase = db.Column(db.Boolean(), default=False)
-    type = db.Column(db.String(50)) #normal , profile, cover
+    # type = db.Column(db.String(50)) //
     user = db.relationship("User", back_populates="images")
     comments = db.relationship("Comment", cascade="delete, merge, save-update", back_populates="image")
 
