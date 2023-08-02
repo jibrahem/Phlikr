@@ -78,7 +78,7 @@ def upgrade():
     sa.PrimaryKeyConstraint('user_id', 'image_id')
     )
 
-     if environment == "production":
+    if environment == "production":
         op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
         op.execute(f"ALTER TABLE images SET SCHEMA {SCHEMA};")
         op.execute(f"ALTER TABLE comments SET SCHEMA {SCHEMA};")
