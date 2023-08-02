@@ -42,14 +42,15 @@
 
   #modal-content {
     /* position: fixed; */
-    min-width: 80vw;
-    padding-top: 100px;
-    padding-bottom: 20px;
+    min-width: 20vw;
+
+    padding: 20px;
     /* padding-left: 50px; */
     display:flex;
     justify-content: center;
     align-content: center;
     background-color:white;
+    border-radius: 5px;
   }
 
   .image-selector {
@@ -93,4 +94,25 @@
     /* padding: 20px; */
     width: 80vw;
     height: 50vh;
+}
+
+.showcase-submit{
+  display: flex;
+  justify-content: flex-end;
+  /* margin-bottom: 2rem; */
+  margin-top: 1rem;
+}
+
+
+.profile-form-submit {
+  align-self: center;
+  width: 5rem;
+  height: 2rem;
+  color: white;
+  font-size: 20px;
+  outline: none;
+  border: none;
+  background-color: rgb(0, 166, 255);
+  cursor: pointer;
+  border-radius: 5px;
 }

@@ -3,6 +3,8 @@ from flask_login import login_required, current_user, logout_user
 from app.models import User, Image
 from ..models import db
 from app.forms import UserDetailsForm
+from app.api.aws_helpers import upload_file_to_s3, get_unique_filename, remove_file_from_s3
+from datetime import date
 
 user_routes = Blueprint('users', __name__)
 
@@ -50,6 +52,42 @@ def user(id):
     user = User.query.get(id)
     return user.to_dict()
 
+
+#user profile photo edit route
+@user_routes.route('/<int:user_id>/profile_photo', methods=["POST"])
+def user_profile_photo(user_id):
+    
+    update_user = User.query.get(user_id)
+    
+    # print("in the edit user profile photo route~~~~~~~~~~~~~~~~~~")
+    form = UserDetailsForm(user=update_user)
+    form['csrf_token'].data = request.cookies['csrf_token']
+    # print('form data in backend before submission',form.data[''])
+    print("form data in profile route: ", form.data)
+
+    # old_profile_photo = update_user.profile_photo
+    # old_cover_photo = update_user.cover_photo
+    
+    new_profile_photo = form.data['profile_photo']
+    print("new profile photo in edit user profile photo route: ", new_profile_photo)
+    new_profile_photo.filename = get_unique_filename(new_profile_photo.filename)
+    upload_profile_photo = upload_file_to_s3(new_profile_photo)
+    profile_photo_url = upload_profile_photo['url']
+    print("profile_photo_url: ", profile_photo_url)
+
+    if form.validate_on_submit():
+        update_user.profile_photo = profile_photo_url
+
+        new_image = Image(title="profile photo title", description='profile photo description', img=profile_photo_url, view_count=0, user_id=user_id, uploaded_on=date.today())
+        
+        db.session.add(new_image)
+        db.session.commit()
+        print("details updated")
+        return new_image.to_dict()
+    # return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+
+
 #user detail test edit route
 @user_routes.route('/<int:user_id>/details')
 def edit_user_details(user_id):
@@ -82,33 +120,71 @@ def update_showcase_form():
         set_showcase(img, showcase_update[img])
     return get_user_showcase(current_user.id)
 
-#user detail edit route
+
+
+#user info detail edit route
 @user_routes.route('/<int:user_id>/details/<form_type>', methods=["POST"])
 def user_details(user_id,form_type):
     update_user = User.query.get(user_id)
+    
     form = UserDetailsForm(user=update_user)
     form['csrf_token'].data = request.cookies['csrf_token']
     print('form data in backend before submission',form.data['occupation'])
     print(form.data)
+
     if form.validate_on_submit():
-        if (form_type == 'bio'):
-            update_user.biography = form.data['biography']
-        if (form_type == 'profile_photo'):
-            update_user.profile_photo = form.data['profile_photo']
-        if (form_type == 'cover_photo'):
-            update_user.cover_photo = form.data['cover_photo']
-        if (form_type == 'details'):
-            update_user.occupation = form.data['occupation']
-            update_user.hometown = form.data['hometown']
-            update_user.city = form.data['city']
-            update_user.country = form.data['country']
-            update_user.website = form.data['website']
-            update_user.facebook = form.data['facebook']
-            update_user.twitter = form.data['twitter']
-            update_user.instagram = form.data['instagram']
-            update_user.pinterest = form.data['pinterest']
-            update_user.tumblr = form.data['tumblr']
+        # if (form_type == 'bio'):
+        update_user.biography = form.data['biography']
+        # if (form_type == 'profile_photo'):
+        #     update_user.profile_photo = profile_photo_url
+        # if (form_type == 'cover_photo'):
+        #     update_user.cover_photo = cover_photo_url
+        # if (form_type == 'details'):
+        update_user.occupation = form.data['occupation']
+        update_user.hometown = form.data['hometown']
+        update_user.city = form.data['city']
+        update_user.country = form.data['country']
+        update_user.website = form.data['website']
+        update_user.facebook = form.data['facebook']
+        update_user.twitter = form.data['twitter']
+        update_user.instagram = form.data['instagram']
+        update_user.pinterest = form.data['pinterest']
+        update_user.tumblr = form.data['tumblr']
         db.session.commit()
         print("details updated")
         return update_user.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+
+
+
+#user cover photo edit route
+@user_routes.route('/<int:user_id>/cover_photo', methods=["POST"])
+def user_cover_photo(user_id):
+    update_user = User.query.get(user_id)
+    
+    # print("in the edit user profile photo route~~~~~~~~~~~~~~~~~~")
+    form = UserDetailsForm(user=update_user)
+    form['csrf_token'].data = request.cookies['csrf_token']
+    # print('form data in backend before submission',form.data[''])
+    print("form data in profile route: ", form.data)
+
+    # old_profile_photo = update_user.profile_photo
+    # old_cover_photo = update_user.cover_photo
+    
+    new_cover_photo = form.data['cover_photo']
+    print("new cover photo in edit user cover photo route: ", new_cover_photo)
+    new_cover_photo.filename = get_unique_filename(new_cover_photo.filename)
+    upload_cover_photo = upload_file_to_s3(new_cover_photo)
+    cover_photo_url = upload_cover_photo['url']
+    print("profile_photo_url: ", cover_photo_url)
+
+    if form.validate_on_submit():
+        update_user.cover_photo = cover_photo_url
+
+        new_image = Image(title="cover photo title", description='cover photo description', img=cover_photo_url, view_count=0, user_id=user_id, uploaded_on=date.today())
+        
+        db.session.add(new_image)
+        db.session.commit()
+        print("details updated")
+        return new_image.to_dict()

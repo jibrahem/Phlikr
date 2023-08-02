@@ -28,7 +28,8 @@
 }
 
 .form-container-signup {
-    margin-top: -150px;
+    margin-top: -8rem;
+    height: 60%;
 }
 
 .login-form {

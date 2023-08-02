@@ -1,57 +1,61 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { updateUserInfoThunk } from "../../store/users";
-import { useModal } from '../../context/Modal'
-import { NavLink, useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { editUserProfilePhotoThunk, userInfoThunk} from "../../store/users";
+import { getUserImagesThunk } from "../../store/image";
+import { useModal } from "../../context/Modal";
 
+function ProfilePhoto() {
+  const user = useSelector((state) => state.session.user);
+  const dispatch = useDispatch();
+  const { closeModal } = useModal();
+  const [errors, setErrors] = useState([]);
 
-function ProfilePhoto(){
-    const user = useSelector((state) => state.session.user);
-    const dispatch = useDispatch();
-    const { closeModal } = useModal();
+  const [profilePhoto, setProfilePhoto] = useState(
+    user.profile_photo ? user.profile_photo : ""
+  );
 
-    const [profilePhoto, setProfilePhoto] = useState(
-        user.profile_photo ? user.profile_photo : ""
-    );
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+ 
+    const formData = new FormData();
+    formData.append('profile_photo', profilePhoto);
+    // console.log("formData in profile photo component: ", formData);
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        let newCover = {
-            profile_photo: profilePhoto,
-        };
-        //temp
-        let formType = "profile_photo";
-        console.log("userInfoProp", user.id);
-        const data = await dispatch(
-            updateUserInfoThunk(newCover, user.id, formType)
-        );
-        closeModal()
-    };
+    await dispatch(editUserProfilePhotoThunk(formData, user.id));
+    await dispatch(userInfoThunk(user.id));
+    await dispatch(getUserImagesThunk(user.id));
+    
+    closeModal();
+  };
 
-
-    return (
-        <>
-            <div className="banner-update">
-                <form onSubmit={handleSubmit} className="cover-form">
-                    <div className="update-comment">
-                        Update Profile Photo
-                    </div>
-                    <textarea
-                        classname="form-form-input"
-                        type="textarea"
-                        value={profilePhoto}
-                        onChange={(e) => setProfilePhoto(e.target.value)}
-                        defaultValue={user.cover_photo}
-                    />
-                    <div className="banner-button">
-                        <button type="submit" className="cover-form-submit">
-                            Save
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </>
-    )
+  return (
+    <>
+      <div className="banner-update">
+        <form 
+          onSubmit={handleSubmit} 
+          className="cover-form"
+          encType="multipart/form-data"
+        >
+          <div className="update-comment">Update Profile Photo</div>
+          {errors.map((error) => (
+            <div className="err-msg">{error}</div>
+          ))}
+          <input
+            classname="form-form-input"
+            type="file"
+            // value={profilePhoto}
+            onChange={(e) => setProfilePhoto(e.target.files[0])}
+            // defaultValue={user.cover_photo}
+          />
+          <div className="banner-button">
+            <button type="submit" className="cover-form-submit">
+              Save
+            </button>
+          </div>
+        </form>
+      </div>
+    </>
+  );
 }
 
-export default ProfilePhoto
+export default ProfilePhoto;

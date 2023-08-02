@@ -4,22 +4,30 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUserImagesThunk } from "../../store/image.js";
 import { updateUserShowcaseThunk } from "../../store/users";
 import { useModal } from "../../context/Modal";
-import "./ShowcaseModal.css";
+import "../ShowcaseModal/ShowcaseModal.css";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 function ProfileFormCoverModal({ userImageArr }) {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
+  const [coverPhoto, setCoverPhoto] = useState(
+    sessionUser.cover_photo ? sessionUser.cover_photo : ""
+  );
+  console.log("coverphotoid", coverPhoto);
+  // const userImages = useSelector((state) => state.session.user);
+  // let userImageArr = Object.values(userImages)[0];
   const { closeModal } = useModal();
-  console.log("userImgArr in profile modal", userImageArr);
+  console.log("userImgArr in showcase modal", userImageArr);
   const payload = {};
+  console.log("userimagearr", userImageArr);
   for (let i = 0; i < userImageArr.length; i++) {
     payload[userImageArr[i].id] = false;
   }
   const [showcaseInputs, setShowcaseInputs] = useState(payload);
-  const [errors, setErrors] = useState([]);
-  // useEffect(() => {
-  //   dispatch(getUserImagesThunk);
-  // });
+  const history = useHistory();
+  useEffect(() => {
+    dispatch(getUserImagesThunk);
+  }, dispatch);
 
   //build starting state for showcaseInputs
   // setShowcaseInputs(payload);
@@ -34,12 +42,25 @@ function ProfileFormCoverModal({ userImageArr }) {
     closeModal();
   };
 
-  const imageClick = () => {
+  // const handleChange = (imageId, e) => {
+  //   console.log("input changed");
+  //   const values = [...payload];
+  //   values[imageId].val = e.target.value;
+  // };
+
+  const imageClick = (imageId) => {
     console.log("ImageClick");
+    // let nextPayload = { ...showcaseInputs };
+    // nextPayload[imageId] = bool;
+    // console.log('payload', nextp);
   };
 
+  const redirectClick = () => {
+    closeModal();
+    history.push("/photos/upload");
+  };
   const handleChange = (imageId, event) => {
-    console.log("handle change", imageId, "hefdfdf   ", event.target.checked);
+    console.log("handle change", imageId, "hefdfdf   ");
     let nextPayload = { ...showcaseInputs };
     nextPayload[imageId] = event.target.checked;
     setShowcaseInputs(nextPayload);
@@ -48,7 +69,18 @@ function ProfileFormCoverModal({ userImageArr }) {
     // setShowcaseInputs(data);
   };
 
-  if (userImageArr.length < 1) return null;
+  // const updateStore = (imageId, bool) => {
+  //   let nextPayload = { ...showcaseInputs };
+  //   nextPayload[imageId] = event.target.checked;
+  //   setShowcaseInputs(nextPayload);
+  // };
+
+  if (userImageArr.length < 1)
+    return (
+      <button onClick={redirectClick} className="no-uploads">
+        Upload some photos to get started!
+      </button>
+    );
 
   //   const input_list = [];
   //   for (let i = 0; i < userImgArr.length; i++) {
@@ -62,39 +94,44 @@ function ProfileFormCoverModal({ userImageArr }) {
   // );
   //   }
   //   console.log("input list ids", input_list);
+  if (userImageArr.length < 1) return null;
+
+  console.log("showcaseInputs", showcaseInputs);
   return (
     <>
       <div className="showcase-modal">
         <form onSubmit={handleSubmit}>
           <div className="image-selector">
             {userImageArr.map((image) => (
-              <div className="image-checkbox-wrapper">
-                <label className="image-checkbox">
-                  {/* <input
-                type="checkbox"
-                key={image.id}
-                id={"input" + image.id}
-                checked={showcaseInputs[image.id]}
-                onChange={(event) => handleChange(image.id, event)}
-              />
-              <img
-                className="showcase-preview"
-                src={image.img}
-                onClick={imageClick}
-                style={{ "pointer-events": "all" }}
-              /> */}
+              <div className="image-checkbox-container">
+                <div className="image-checkbox-wrapper">
                   <input
+                    type="checkbox"
+                    key={image.id}
+                    id={"input" + image.id}
+                    checked={showcaseInputs[image.id]}
+                    onChange={(event) => handleChange(image.id, event)}
+                  />
+                  <img
+                    className="showcase-preview"
+                    src={image.img}
+                    // onClick={imageClick(image.id)}
+                    // style={{ "pointer-events": "all" }}
+                  />
+                  {/* <input
                     type="checkbox"
                     onChange={(event) => handleChange(image.id, event)}
                   />
                   <span></span>
-                  <img class="img" src={image.img} />
-                </label>
+                  <img class="img" src={image.img} /> */}
+                </div>
               </div>
             ))}
           </div>
           <div className="showcase-submit">
-            <button type="submit">Save</button>
+            <button type="submit" className="showcase-form-submit">
+              Save Selected Photos
+            </button>
           </div>
         </form>
       </div>

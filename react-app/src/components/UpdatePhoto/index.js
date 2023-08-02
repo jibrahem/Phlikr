@@ -32,6 +32,14 @@ export default function UpdatePhoto() {
 
     const errors = {};
 
+    if (editDescription.length > 100) {
+      errors.description = "Description must be 100 characters or less"
+    }
+
+    if (editTitle.length > 60) {
+      errors.title = "Title must be 60 characters or less"
+    }
+
     if (
       editImgUrl &&
       !(
@@ -86,6 +94,7 @@ export default function UpdatePhoto() {
             }}
           />
         </label>
+        <div className="errors">{errors.title}</div>
         <div className="errors">{errors.img}</div>
         <label className="update-label">
           Image Url
@@ -104,6 +113,7 @@ export default function UpdatePhoto() {
             }}
           />
         </label>
+        <div className="errors">{errors.description}</div>
         <label className="upload-label">
           Description
           <br></br>
