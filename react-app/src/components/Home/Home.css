@@ -46,7 +46,7 @@
     font-size: 25px;
     z-index: 1;
     font-weight: 400;
-    margin-top: 38%;
+    margin-top: 85rem;
     position: fixed;
 }
 
@@ -59,7 +59,7 @@
     z-index: 1;
     font-weight: 400;
     /* margin-top: 560px; */
-    margin-top: 45%;
+    margin-top: 90rem;
     position: fixed;
 }
 
@@ -76,7 +76,7 @@
     cursor: pointer;
     display: inline-block;
     box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.1);
-    margin-top: 770px;
+    margin-top: 100rem;
     position: fixed;
 }
 
