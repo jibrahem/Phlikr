@@ -26,7 +26,7 @@ export default function ProfileBanner() {
   };
 
   useEffect(() => {
-    dispatch(userInfoThunk(sessionUser.id));
+    dispatch(userInfoThunk(userId));
   }, [dispatch]);
 
   return (
