@@ -133,23 +133,23 @@ def user_details(user_id,form_type):
     print(form.data)
 
     if form.validate_on_submit():
-        # if (form_type == 'bio'):
-        update_user.biography = form.data['biography']
+        if (form_type == 'bio'):
+            update_user.biography = form.data['biography']
         # if (form_type == 'profile_photo'):
         #     update_user.profile_photo = profile_photo_url
         # if (form_type == 'cover_photo'):
         #     update_user.cover_photo = cover_photo_url
-        # if (form_type == 'details'):
-        update_user.occupation = form.data['occupation']
-        update_user.hometown = form.data['hometown']
-        update_user.city = form.data['city']
-        update_user.country = form.data['country']
-        update_user.website = form.data['website']
-        update_user.facebook = form.data['facebook']
-        update_user.twitter = form.data['twitter']
-        update_user.instagram = form.data['instagram']
-        update_user.pinterest = form.data['pinterest']
-        update_user.tumblr = form.data['tumblr']
+        if (form_type == 'details'):
+            update_user.occupation = form.data['occupation']
+            update_user.hometown = form.data['hometown']
+            update_user.city = form.data['city']
+            update_user.country = form.data['country']
+            update_user.website = form.data['website']
+            update_user.facebook = form.data['facebook']
+            update_user.twitter = form.data['twitter']
+            update_user.instagram = form.data['instagram']
+            update_user.pinterest = form.data['pinterest']
+            update_user.tumblr = form.data['tumblr']
         db.session.commit()
         print("details updated")
         return update_user.to_dict()
