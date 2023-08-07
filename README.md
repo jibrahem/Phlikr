@@ -13,7 +13,27 @@
 * HTML
 * AWS
 
-<img width="1505" alt="Screenshot 2023-08-02 at 4 36 43 PM" src="https://github.com/jibrahem/Snapr/assets/118121002/d31789fd-5330-4b93-8848-f2cdfa774fc3">
+## Screen Shots: 
+### Landing page: 
+![image](https://github.com/jibrahem/Snapr/assets/108157183/647d03cf-95c2-45bc-bfd2-6661eef134b1)
+
+### Log in/Sign up page:
+![image](https://github.com/jibrahem/Snapr/assets/108157183/0f356a39-5571-4aba-a16a-c1d29d843e25)
+
+### User profile page: 
+![image](https://github.com/jibrahem/Snapr/assets/108157183/3220280c-621d-4f4d-b12f-06b2e226c5af)
+
+### Single image page: 
+![image](https://github.com/jibrahem/Snapr/assets/108157183/4acd691a-dfd2-487a-9fe5-3a6b42419cc3)
+
+### User's about page: 
+![image](https://github.com/jibrahem/Snapr/assets/108157183/d6a1de2f-20d4-48df-9f75-852503a39050)
+
+
+
+
+
+
 
 ## AWS code snippet
 ```
