@@ -9,6 +9,7 @@ export default function PhotostreamPage() {
   const sessionUser = useSelector((state) => state.session.user);
   const userImageStore = useSelector((state) => state.images.userImages);
   const userImagesArray = Object.values(userImageStore);
+  const {userId} = useParams() 
   const [showComment, setShowComment] = useState(false);
   const [imgDetail, setImgDetail] = useState(false);
   const dispatch = useDispatch();
@@ -35,8 +36,8 @@ export default function PhotostreamPage() {
 
 
   useEffect(() => {
-    dispatch(getUserImagesThunk(sessionUser.id))
-  }, [dispatch, sessionUser.id]);
+    dispatch(getUserImagesThunk(userId))
+  }, [dispatch, userId]);
 
   if (userImagesArray.length < 1) return null;
 
