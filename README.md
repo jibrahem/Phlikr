@@ -4,7 +4,10 @@
 
 ### Live Link: [snapr](https://snapr.onrender.com/)
 
+
 ### Technologies used:
+![image](https://github.com/jibrahem/Snapr/assets/6230804/4dfcb44e-7fb1-4901-90c1-17151bc6cb84)
+
 * Python
 * Flask
 * React
