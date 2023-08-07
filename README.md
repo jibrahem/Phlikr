@@ -2,7 +2,7 @@
 
 ### Snapr is our clone of the image posting site Flickr!
 
-### Live link: https://snapr.onrender.com/ 
+### Live Link: [snapr](https://snapr.onrender.com/)
 
 ### Technologies used:
 * Python
