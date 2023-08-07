@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { getUserImagesThunk } from "../../store/image";
 import './Photostream.css'
 import Favorites from "../Favorites";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 
 export default function PhotostreamPage() {
   const sessionUser = useSelector((state) => state.session.user);
