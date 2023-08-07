@@ -7,14 +7,16 @@
 
 ### Technologies used:
 ![image](https://github.com/jibrahem/Snapr/assets/6230804/4dfcb44e-7fb1-4901-90c1-17151bc6cb84)
+![image](https://github.com/jibrahem/Snapr/assets/6230804/48158bb3-15fc-4824-8964-c781f6fed5f7)
+![image](https://github.com/jibrahem/Snapr/assets/6230804/138b1b40-c209-46ab-8c3c-25cc5759bdad)
+![image](https://github.com/jibrahem/Snapr/assets/6230804/3fad113d-be43-49d9-940e-ec7f27acfe77)
+![image](https://github.com/jibrahem/Snapr/assets/6230804/b609f32a-efeb-472f-8755-ac8a920e5ec1)
+![image](https://github.com/jibrahem/Snapr/assets/6230804/5e508d97-f758-43fc-b903-c1d9cf2aebda)
+![image](https://github.com/jibrahem/Snapr/assets/6230804/d3cbb227-bf49-4408-a208-2eb65777c5d7)
+![image](https://github.com/jibrahem/Snapr/assets/6230804/c85ddbd2-d468-46cc-9a94-0706dc901751)
 
-* Python
-* Flask
-* React
-* Redux
-* CSS
-* HTML
-* AWS
+
+Python, JavaScript, Flask, React, Redux, CSS, HTML, AWS
 
 ## Screen Shots: 
 ### Landing page: 
