@@ -98,7 +98,7 @@ function ProfileButton({ user }) {
               Sign Up
             </button>
           </div>
-         
+
         </div>
       )}
       </ul>

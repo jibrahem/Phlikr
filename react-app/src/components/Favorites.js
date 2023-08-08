@@ -29,14 +29,16 @@ export default function Favorites({ imageId }) {
          dispatch(deleteUserFavImgThunk(sessionUser.id, imageId))
          .then(dispatch(getUserFavImgThunk(sessionUser.id)))
          .then(dispatch(getAllFavImguserThunk(imageId)))
-        //  .then(dispatch(getSingleImageThunk(imageId)))
-         .then(dispatch(getAllImageThunk()))
+         
+         .then(dispatch(getSingleImageThunk(imageId)))
+        //  .then(dispatch(getAllImageThunk()))
         } else {
           dispatch(addUserFavThunk(payload))
-          .then(dispatch(getUserFavImgThunk(sessionUser.id)))
           .then(dispatch(getAllFavImguserThunk(imageId)))
-          // .then(dispatch(getSingleImageThunk(imageId)))
-          .then(dispatch(getAllImageThunk()))
+          .then(dispatch(getUserFavImgThunk(sessionUser.id)))
+          
+          .then(dispatch(getSingleImageThunk(imageId)))
+          // .then(dispatch(getAllImageThunk()))
 
         }
     };
