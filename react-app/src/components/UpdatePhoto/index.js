@@ -12,9 +12,9 @@ export default function UpdatePhoto() {
   console.log("editImg in update image component: ", editImg);
   const [errors, setErrors] = useState({});
   // const [title, setTitle] = useState(sessionUser.title);
-  const [editTitle, setTitle] = useState("");
+  const [editTitle, setTitle] = useState(editImg.title);
   // const [description, setDescription] = useState(sessionUser.description);
-  const [editDescription, setDescription] = useState("");
+  const [editDescription, setDescription] = useState(editImg.description);
   // const [img, setImg] = useState(sessionUser.img);
   const [editImgUrl, setImg] = useState(editImg.img);
 
