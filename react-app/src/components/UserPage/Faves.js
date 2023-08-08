@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { getUserFavImgThunk } from "../../store/image";
 import './UserPage.css';
 import Favorites from "../Favorites";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 
 export default function FavesPage() {
   const [showComment, setShowComment] = useState(false);
@@ -14,6 +15,7 @@ export default function FavesPage() {
   // console.log("user fav image array in Fav: ", userFavImgArr);
   const sessionUser = useSelector((state) => state.session.user);
   // console.log("user in faves component: ", sessionUser)
+  const {userId} = useParams()
   
   const dispatch = useDispatch();
 
@@ -37,12 +39,11 @@ export default function FavesPage() {
   }
 
   useEffect(() => {
-    dispatch(getUserFavImgThunk(sessionUser.id))
+    dispatch(getUserFavImgThunk(userId))
   }, [dispatch]);
 
  if (userFavImgArr.length < 1) return null;
 
- 
   return (
     <>
     <div id='user-fav-container'>

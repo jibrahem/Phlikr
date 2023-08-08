@@ -87,25 +87,30 @@ export const getAllImageThunk = () => async (dispatch) => {
 };
 
 export const createImageThunk = (image, user) => async (dispatch) => {
-  try {
-    // console.log("userId", user.id)
-    // console.log(image)
-    const res = await fetch(`/api/images/${user.id}/images`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(image),
-    });
+  console.log("userId in create image", user.id);
+  console.log("image  in create image", image);
+  const res = await fetch(`/api/images/${user.id}/images`, {
+    method: "POST",
+    // headers: { "Content-Type": "application/json" },
+    // body: JSON.stringify(image),
+    body: image,
+  });
 
-    // console.log("res in the CREATIMGAEJ:JDK:JSDKJ;", res);
+  console.log("res in the CREATIMGAEJ:JDK:JSDKJ;", res);
 
-    if (res.ok) {
-      const newImage = await res.json();
-      dispatch(createImage(newImage));
-      return newImage;
+  if (res.ok) {
+    // const newImage = await res.json();
+    const { resImage } = await res.json();
+    dispatch(createImage(resImage));
+    return resImage;
+  } else if (res.status < 500) {
+    console.log("image route error");
+    const data = await res.json();
+    if (data.errors) {
+      return data.errors;
     }
-  } catch (err) {
-    const errors = await err.json();
-    return errors;
+  } else {
+    return ["An error occurred. Please try again."];
   }
 };
 

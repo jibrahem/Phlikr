@@ -8,6 +8,7 @@ import { logout } from "../../store/session";
 
 function Navigation({ isLoaded }) {
 	const sessionUser = useSelector(state => state.session.user);
+	const userInfo = useSelector((state) => state.users.userInfo);
 	const [show, setShow] = useState(false);
 	const [profile, setProfile] = useState(false);
 	const dispatch = useDispatch();
@@ -29,14 +30,14 @@ function Navigation({ isLoaded }) {
 	const notShowProfile = () => {
 		setProfile(false);
 	}
-	
+
 	const handleLogout = (e) => {
 		e.preventDefault();
 		dispatch(logout());
 		// closeMenu()
 		history.push('/')
 	  };
-	
+
 
 
 	return (
@@ -59,7 +60,7 @@ function Navigation({ isLoaded }) {
 								<span><Link to={`/${sessionUser?.id}/photos`}>Photostream</Link></span>
 								<span><Link to={`/${sessionUser?.id}/favorites`}>Faves</Link></span>
 							</div>
-						</div>	
+						</div>
 					</div>
 					<div id='nav-explore-div'>
 							{(() => {
@@ -78,16 +79,16 @@ function Navigation({ isLoaded }) {
 							<i className="fa-solid fa-cloud-arrow-up"></i>
 						</Link>
 					 	<div className="profile" onClick={showProfile}>
-							<img src={sessionUser.profile_photo} alt={sessionUser.user_name}></img>
-						</div> 
+							<img src={userInfo.profile_photo} alt={userInfo.user_name}></img>
+						</div>
 					</div>
 					{profile ? <div id='nav-user-info' onMouseLeave={notShowProfile}>
 						<p>Ciao, {sessionUser.username}!</p>
 						<p>{sessionUser.email}</p>
-						<p onClick={handleLogout}>Log out</p>
+						<div className='log-out' onClick={handleLogout}>Log out</div>
 					</div> : ""}
 				</div>
-					
+
 				</>
 				) : (
 				<div className="modals">
@@ -103,7 +104,7 @@ function Navigation({ isLoaded }) {
 					</div>
 				</div>
 				)}
-			
+
 				{/* {isLoaded && (
 					<li>
 						<ProfileButton user={sessionUser} />

@@ -2,15 +2,15 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { getUserImagesThunk } from "../../store/image";
-// import './Photostream.css'
+import './Photostream.css'
 import Favorites from "../Favorites";
-
-
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 
 export default function PhotostreamPage() {
   const sessionUser = useSelector((state) => state.session.user);
   const userImageStore = useSelector((state) => state.images.userImages);
   const userImagesArray = Object.values(userImageStore);
+  const {userId} = useParams() 
   const [showComment, setShowComment] = useState(false);
   const [imgDetail, setImgDetail] = useState(false);
   const dispatch = useDispatch();
@@ -35,9 +35,10 @@ export default function PhotostreamPage() {
     }));
   }
 
+
   useEffect(() => {
-    dispatch(getUserImagesThunk(sessionUser.id))
-  }, [dispatch, sessionUser.id]);
+    dispatch(getUserImagesThunk(userId))
+  }, [dispatch, userId]);
 
   if (userImagesArray.length < 1) return null;
 
@@ -53,10 +54,10 @@ export default function PhotostreamPage() {
               </Link>
             </div>
              {/* {console.log("image Detail in the loop: ", imgDetail[image.id])} */}
-            
+
             <div id={imgDetail[image.id] ? 'title-name-fav-comment-div' : 'no-detail'}
             onMouseOver={() => showImgDetail(image.id)} onMouseLeave={() => hideImgDetail(image.id)}
-            
+
             >
               <div id='title-name'>
                 <Link to={`/photos/${image.id}`}>

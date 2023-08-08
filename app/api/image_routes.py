@@ -3,8 +3,24 @@ from flask_login import login_required, current_user
 from ..models import Image, User, db, Comment
 from app.forms import ImageForm
 from datetime import date
+from app.api.aws_helpers import (
+    upload_file_to_s3, get_unique_filename, remove_file_from_s3)
 
 image_routes = Blueprint("images", __name__)
+
+
+def validation_errors_to_error_messages(validation_errors):
+    """
+    Simple function that turns the WTForms validation errors into a simple list
+    """
+    errorMessages = []
+    for field in validation_errors:
+        print("fields", field)
+        print("validation", validation_errors)
+
+        for error in validation_errors[field]:
+            errorMessages.append(f'{field} : {error}')
+    return errorMessages
 
 #Get all comments by image id
 @image_routes.route('/<int:image_id>/comments')
@@ -39,6 +55,7 @@ def delete_image(id):
     if current_user.is_authenticated :
         image_to_delete = Image.query.get(id)
         if image_to_delete.user.id == current_user.id:
+            remove_file_from_s3(image_to_delete.img)
             db.session.delete(image_to_delete)
             db.session.commit()
         return {'image': 'your image has been deleted'}
@@ -121,27 +138,47 @@ def update_showcase_form(userId):
     print('showcase requestjson', showcase_update)
     for img in showcase_update:
         set_showcase(img, showcase_update[img])
-    return 'nice'
+    return get_user_showcase(userId)
 
 #POST AN IMAGE
 @image_routes.route('/<int:userId>/images', methods=['POST'])
 # @login_required
 def post_image(userId):
+    print('post image route hit')
     if current_user.is_authenticated :
         form = ImageForm()
-        print("form", form.data)
-        # if form.validate_on_submit():
-        title = form.data['title']
-        description = form.data['description']
-        img = form.data['img']
-        new_image = Image(title=title, description=description, img=img, view_count=0, user_id=userId, uploaded_on=date.today())
-        db.session.add(new_image)
-        db.session.commit()
-        print(form.data['title'])
-        print(form.data['description'])
-        print(form.data['img'])
-        return new_image.to_dict()
-        # return 'bad data'
+        # print("form", form.data)
+        form['csrf_token'].data = request.cookies['csrf_token']
+        if form.validate_on_submit():
+
+            # new_image = Image(title=form.data['title'], description=form.data['description'], img=form.data['img'], view_count=0, user_id=userId, uploaded_on=date.today())
+            print("form date in create image: ", form.data)
+            print("form image in create image route: ", form.data["image"])
+            image = form.data["image"]
+            image.filename = get_unique_filename(image.filename)
+            upload = upload_file_to_s3(image)
+            print("upload in create image route: ", upload)
+
+            if "url" not in upload:
+            # if the dictionary doesn't have a url key
+            # it means that there was an error when you tried to upload
+            # so you send back that error message (and you printed it above)
+                return render_template("simple_form.html", form=form, errors=[upload])
+
+            url = upload["url"]
+            # new_image = Image(img= url)
+            # new_image = Image(title= form.data['title'])
+            new_image = Image(title=form.data['title'], description=form.data['description'], img=url, view_count=0, user_id=userId, uploaded_on=date.today())
+
+
+            db.session.add(new_image)
+            db.session.commit()
+            # print(form.data['title'])
+            # print(form.data['description'])
+            # print(form.data['img'])
+            return new_image.to_dict()
+    print("error side of post image")
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
 

@@ -5,12 +5,18 @@ import { NavLink, useParams } from "react-router-dom/cjs/react-router-dom.min";
 import "./ProfileBanner.css";
 import ProfileFormBio from "../ProfileForms/ProfileFormBio";
 import ProfileFormCover from "../ProfileForms/ProfileFormCover";
-import OpenModalMenuItem from '../OpenModalButton';
+import OpenModalMenuItem from "../OpenModalButton";
 import ProfilePhoto from "./ProfilePhoto";
+import ProfileFormCoverModal from "../ProfileForms/ProfileFormCoverModal";
+import { userInfoThunk } from "../../store/users";
 
-export default function ProfileBanner({ userInfo, photoCount }) {
+
+export default function ProfileBanner() {
   const sessionUser = useSelector((state) => state.session.user);
+  const userInfo = useSelector((state) => state.users.userInfo);
   const { userId } = useParams();
+  const userImages = useSelector((state) => state.images.userImages);
+  let userImageArr = Object.values(userImages)[0];
 
   const [showCoverForm, setShowCoverForm] = useState(false);
   const dispatch = useDispatch();
@@ -19,6 +25,10 @@ export default function ProfileBanner({ userInfo, photoCount }) {
     setShowCoverForm(!showCoverForm);
   };
 
+  useEffect(() => {
+    dispatch(userInfoThunk(userId));
+  }, [dispatch]);
+
   return (
     <div className="profile-banner-container">
       <div id="profile-banner>">
@@ -26,26 +36,32 @@ export default function ProfileBanner({ userInfo, photoCount }) {
           <div id="cover-photo">
             <img src={userInfo.cover_photo} />
           </div>
+
           <div className="profile-photo-wrapper">
-            <OpenModalMenuItem
-              itemText=<img src={userInfo.profile_photo}/>
-              modalComponent={<ProfilePhoto
-              />}
-            />
+            {userInfo.id === sessionUser.id && (
+              <OpenModalMenuItem
+                itemText={<img src={userInfo.profile_photo} />}
+                modalComponent={<ProfilePhoto />}
+              />
+            )}
+            {userInfo.id !== sessionUser.id && (
+              <img src={userInfo.profile_photo} />
+            )}
             <div>
               <div className="profile-name">
                 {userInfo.first_name} {userInfo.last_name}
               </div>
             </div>
-            {/* <button onClick={coverPhotoButtonClick}> ... </button>
-            {showCoverForm ? <ProfileFormCover /> : ""}
-            <></> */}
-            <OpenModalMenuItem
-              buttonText="..."
-              // onItemClick={closeMenu}
-              modalComponent={<ProfileFormCover
-              />}
-            />
+            {userInfo.id === sessionUser.id && (
+              <OpenModalMenuItem
+                buttonText="..."
+                // onItemClick={closeMenu}
+                modalComponent={
+                  // <ProfileFormCoverModal userImageArr={userImageArr} />
+                  <ProfileFormCover />
+                }
+              />
+            )}
           </div>
         </div>
       </div>

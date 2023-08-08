@@ -17,11 +17,13 @@
 
 .fav-img {
     height: 311px;
+    overflow: hidden;
 }
 
 .user-fav-div img {
     width: 100%;
     height: 100%;
+    object-fit: cover;
 }
 
 #fav-star {
@@ -88,6 +90,8 @@
     gap: 8px;
     align-items: center;
 }
+
+
 
 #fav-comment-div {
     width: 400px;

@@ -13,6 +13,7 @@
     cursor: pointer;
 }
 
+
 #profile-navigation {
     height: 50px;
     background-color: white;
@@ -28,7 +29,14 @@
 
 .profile-photo-wrapper li {
     list-style: none;
+    overflow: hidden;
 }
+
+.profile-photo-wrapper img {
+    object-fit: cover;
+}
+
+
 
 .profile-nav-item {
     padding: 40px;
@@ -47,6 +55,17 @@
     text-align: center;
     cursor: pointer;
     padding-bottom: 1rem;
+    border-radius: 5px;
+}
+
+.profile-photo-wrapper button:hover {
+    transition: .3s;
+    cursor: pointer;
+    color: white;
+    border: 2px solid white;
+    border-radius: 5px;
+    background-color: white;
+    color: darkgray;
 }
 
 .profile-photo-wrapper img {
@@ -69,11 +88,12 @@
     width: 100%;
     height: 260px;
     overflow: hidden;
+    display: flex;
 }
 
 #cover-photo img {
     width: 100%;
-    height: 400px;
+    object-fit: cover;
 
 }
 
