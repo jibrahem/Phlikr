@@ -97,7 +97,9 @@ export default function UserHome() {
                   <img src={image.User.profile_photo} alt="" />
                   <div id="name-day">
                     <p>
+                      <Link to={`${image.User.id}/people`}>
                       {image.User.first_name} {image.User.last_name}
+                      </Link>
                     </p>
                     {(() => {
                       const uploadedOn = new Date(image.uploaded_on);
