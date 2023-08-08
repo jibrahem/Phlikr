@@ -69,11 +69,11 @@ def user_profile_photo(user_id):
     # old_cover_photo = update_user.cover_photo
     
     new_profile_photo = form.data['profile_photo']
-    print("new profile photo in edit user profile photo route: ", new_profile_photo)
+    # print("new profile photo in edit user profile photo route: ", new_profile_photo)
     new_profile_photo.filename = get_unique_filename(new_profile_photo.filename)
     upload_profile_photo = upload_file_to_s3(new_profile_photo)
     profile_photo_url = upload_profile_photo['url']
-    print("profile_photo_url: ", profile_photo_url)
+    # print("profile_photo_url: ", profile_photo_url)
 
     if form.validate_on_submit():
         update_user.profile_photo = profile_photo_url
@@ -103,7 +103,7 @@ def get_user_showcase(userId):
 
 #set showcase helper
 def set_showcase(imageId, val):
-    print(imageId)
+    # print(imageId)
     image = Image.query.get(imageId)
     if current_user.id == image.user_id:
         image.showcase = val
@@ -115,7 +115,7 @@ def set_showcase(imageId, val):
 @user_routes.route('/update/showcase', methods=["POST"])
 def update_showcase_form():
     showcase_update = request.get_json()
-    print('showcase requestjson', showcase_update)
+    # print('showcase requestjson', showcase_update)
     for img in showcase_update:
         set_showcase(img, showcase_update[img])
     return get_user_showcase(current_user.id)
@@ -129,8 +129,8 @@ def user_details(user_id,form_type):
     
     form = UserDetailsForm(user=update_user)
     form['csrf_token'].data = request.cookies['csrf_token']
-    print('form data in backend before submission',form.data['occupation'])
-    print(form.data)
+    # print('form data in backend before submission',form.data['occupation'])
+    # print(form.data)
 
     if form.validate_on_submit():
         if (form_type == 'bio'):
