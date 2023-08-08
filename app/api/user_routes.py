@@ -78,12 +78,12 @@ def user_profile_photo(user_id):
     if form.validate_on_submit():
         update_user.profile_photo = profile_photo_url
 
-        new_image = Image(title="profile photo title", description='profile photo description', img=profile_photo_url, view_count=0, user_id=user_id, uploaded_on=date.today())
+        # new_image = Image(title="profile photo title", description='profile photo description', img=profile_photo_url, view_count=0, user_id=user_id, uploaded_on=date.today())
         
-        db.session.add(new_image)
+        # db.session.add(new_image)
         db.session.commit()
         print("details updated")
-        return new_image.to_dict()
+        return update_user.to_dict()
     # return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
@@ -182,9 +182,9 @@ def user_cover_photo(user_id):
     if form.validate_on_submit():
         update_user.cover_photo = cover_photo_url
 
-        new_image = Image(title="cover photo title", description='cover photo description', img=cover_photo_url, view_count=0, user_id=user_id, uploaded_on=date.today())
+        # new_image = Image(title="cover photo title", description='cover photo description', img=cover_photo_url, view_count=0, user_id=user_id, uploaded_on=date.today())
         
-        db.session.add(new_image)
+        # db.session.add(new_image)
         db.session.commit()
         print("details updated")
-        return new_image.to_dict()
+        return update_user.to_dict()
