@@ -37,7 +37,7 @@ export default function UpdatePhoto() {
     }
 
     dispatch(updateImageThunk(imageDetails, editImg.id));
-    history.push("/");
+    history.push(`/photos/${imageId}`);
 
   };
 
