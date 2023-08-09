@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NavLink, Link, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
 import { useState } from 'react';
 import { logout } from "../../store/session";
+import { userInfoThunk } from '../../store/users';
 
 function Navigation({ isLoaded }) {
 	const sessionUser = useSelector(state => state.session.user);
@@ -37,7 +38,6 @@ function Navigation({ isLoaded }) {
 		// closeMenu()
 		history.push('/')
 	  };
-
 
 
 	return (
@@ -79,7 +79,7 @@ function Navigation({ isLoaded }) {
 							<i className="fa-solid fa-cloud-arrow-up"></i>
 						</Link>
 					 	<div className="profile" onClick={showProfile}>
-							<img src={userInfo.profile_photo} alt={userInfo.user_name}></img>
+							<img src={userInfo.profile_photo ? userInfo.profile_photo : sessionUser.profile_photo} alt={userInfo.user_name}></img>
 						</div>
 					</div>
 					{profile ? <div id='nav-user-info' onMouseLeave={notShowProfile}>
