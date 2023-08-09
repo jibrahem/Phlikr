@@ -79,7 +79,7 @@ function Navigation({ isLoaded }) {
 							<i className="fa-solid fa-cloud-arrow-up"></i>
 						</Link>
 					 	<div className="profile" onClick={showProfile}>
-							<img src={userInfo.profile_photo ? userInfo.profile_photo : sessionUser.profile_photo} alt={userInfo.user_name}></img>
+							<img src={userInfo.id == sessionUser.id ? userInfo.profile_photo : sessionUser.profile_photo} alt={userInfo.user_name}></img>
 						</div>
 					</div>
 					{profile ? <div id='nav-user-info' onMouseLeave={notShowProfile}>
