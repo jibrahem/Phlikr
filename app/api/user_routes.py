@@ -74,6 +74,8 @@ def user_profile_photo(user_id):
     upload_profile_photo = upload_file_to_s3(new_profile_photo)
     profile_photo_url = upload_profile_photo['url']
     # print("profile_photo_url: ", profile_photo_url)
+    if update_user.id == current_user.id:
+        remove_file_from_s3(update_user.profile_photo)
 
     if form.validate_on_submit():
         update_user.profile_photo = profile_photo_url
@@ -178,6 +180,9 @@ def user_cover_photo(user_id):
     upload_cover_photo = upload_file_to_s3(new_cover_photo)
     cover_photo_url = upload_cover_photo['url']
     print("profile_photo_url: ", cover_photo_url)
+
+    if update_user.id == current_user.id:
+        remove_file_from_s3(update_user.cover_photo)
 
     if form.validate_on_submit():
         update_user.cover_photo = cover_photo_url
