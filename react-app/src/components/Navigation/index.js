@@ -10,6 +10,7 @@ import { userInfoThunk } from '../../store/users';
 function Navigation({ isLoaded }) {
 	const sessionUser = useSelector(state => state.session.user);
 	const userInfo = useSelector((state) => state.users.userInfo);
+	const profilePhoto = useSelector((state) => state.users.userProfilePhoto)
 	const [show, setShow] = useState(false);
 	const [profile, setProfile] = useState(false);
 	const dispatch = useDispatch();
@@ -79,7 +80,8 @@ function Navigation({ isLoaded }) {
 							<i className="fa-solid fa-cloud-arrow-up"></i>
 						</Link>
 					 	<div className="profile" onClick={showProfile}>
-							<img src={userInfo.id == sessionUser.id ? userInfo.profile_photo : sessionUser.profile_photo} alt={userInfo.user_name}></img>
+							{/* <img src={userInfo.id == sessionUser.id ? userInfo.profile_photo : sessionUser.profile_photo} alt={userInfo.user_name}></img> */}
+							<img src={profilePhoto ? profilePhoto.profile_photo : sessionUser.profile_photo} alt={sessionUser.user_name}></img>
 						</div>
 					</div>
 					{profile ? <div id='nav-user-info' onMouseLeave={notShowProfile}>
