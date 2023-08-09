@@ -182,7 +182,7 @@ export const editUserCoverPhotoThunk = (photo, userId) => async ( dispatch ) => 
 };
 
 //reducer function
-const initialState = { userFav: {}, userInfo: {}, userShowcase: {}, userProfilePhoto: {}, userCoverPhoto: {} };
+const initialState = { userFav: {}, userInfo: {}, userShowcase: {}, userProfilePhoto: false, userCoverPhoto: {} };
 
 const userReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -227,6 +227,7 @@ const userReducer = (state = initialState, action) => {
     case EDIT_USER_PROFILE_PHOTO: {
       const newState = { ...state, userProfilePhoto: {...state.userProfilePhoto}};
       newState.userProfilePhoto = action.photo;
+      // newState.userInfo = action.photo;
       return newState;
     };
     case EDIT_USER_COVER_PHOTO: {

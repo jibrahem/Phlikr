@@ -26,7 +26,7 @@ export default function UserPage() {
     // console.log("userId before dispatch in userpage", userId);
     dispatch(getUserImagesThunk(parseInt(userId)));
     dispatch(userInfoThunk(parseInt(userId)));
-  }, []);
+  }, [dispatch, userId]);
 
   // console.log("userinfo", userInfo);
   if (userImagesArr.length < 1) {
