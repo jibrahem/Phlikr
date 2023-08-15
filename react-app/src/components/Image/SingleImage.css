@@ -106,3 +106,7 @@
     color: black;
 }
 
+#add-user-fav-p:hover {
+    color: blue;
+    text-decoration: underline;
+}

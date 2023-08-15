@@ -26,29 +26,23 @@ export default function Favorites({ imageId }) {
        }
         //  console.log("res in the for loop: ", res);
         if (res.includes(imageId)) {
-         dispatch(deleteUserFavImgThunk(sessionUser.id, imageId))
-         .then(dispatch(getUserFavImgThunk(sessionUser.id)))
-         .then(dispatch(getAllFavImguserThunk(imageId)))
-         
-         .then(dispatch(getSingleImageThunk(imageId)))
-        //  .then(dispatch(getAllImageThunk()))
+         await dispatch(deleteUserFavImgThunk(sessionUser.id, imageId));
+        //  await dispatch(getUserFavImgThunk(sessionUser.id));
+        //  await dispatch(getAllFavImguserThunk(imageId));
+        //  await dispatch(getSingleImageThunk(imageId));
         } else {
-          dispatch(addUserFavThunk(payload))
-          .then(dispatch(getAllFavImguserThunk(imageId)))
-          .then(dispatch(getUserFavImgThunk(sessionUser.id)))
-          
-          .then(dispatch(getSingleImageThunk(imageId)))
-          // .then(dispatch(getAllImageThunk()))
-
+          await dispatch(addUserFavThunk(payload));
+          // await dispatch(getAllFavImguserThunk(imageId));
+          // await dispatch(getUserFavImgThunk(sessionUser.id));
+          // await dispatch(getSingleImageThunk(imageId));
         }
+
+        await dispatch(getUserFavImgThunk(sessionUser.id));
+        await dispatch(getAllFavImguserThunk(imageId));
+        await dispatch(getSingleImageThunk(imageId));
     };
     
-    // useEffect(() => {
-    //     dispatch(getUserFavImgThunk(sessionUser.id));
-    //     dispatch(getAllFavImguserThunk(imageId))
-    //     dispatch(getSingleImageThunk(imageId));
-    // }, [dispatch, sessionUser.id, imageId])
-
+    
     return (
         <>
         <button
