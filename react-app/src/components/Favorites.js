@@ -40,6 +40,7 @@ export default function Favorites({ imageId }) {
         await dispatch(getUserFavImgThunk(sessionUser.id));
         await dispatch(getAllFavImguserThunk(imageId));
         await dispatch(getSingleImageThunk(imageId));
+        await dispatch(getAllImageThunk());
     };
     
     
