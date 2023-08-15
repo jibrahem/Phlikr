@@ -11,12 +11,12 @@ import iso from "./resource/iso.png";
 import scale from "./resource/scale.png";
 import info from "./resource/info.png";
 import EXIF from "./exif";
-import Footer from "../Footer/Footer";
 import './SingleImage.css'
 
 import CommentShow from "./CommentShow";
 import Favorites from "../Favorites";
 import { userInfoThunk } from "../../store/users";
+import { addUserFavThunk } from "../../store/image";
 
 
 
@@ -62,6 +62,23 @@ export default function SingleImage() {
     return window.alert("Feature coming soon!")
   }
 
+  const addUserFavorite = async () => {
+
+    console.log("in addUserFavorite function in single image")
+
+    const payload = {
+      user_id: sessionUser.id,
+      image_id: singleImage.id,
+
+    }
+
+    await dispatch(addUserFavThunk(payload));
+    await dispatch(getUserFavImgThunk(sessionUser.id));
+
+    await dispatch(getAllFavImguserThunk(imageId));
+    await dispatch(getSingleImageThunk(singleImage.id));
+ };
+
 
   useEffect(() => {
     dispatch(getSingleImageThunk(imageId));
@@ -71,8 +88,6 @@ export default function SingleImage() {
   }, [dispatch, imageId, sessionUser.id]);
 
     if (singleImage === undefined || !singleImage.id) return null;
-
-
 
     return (
         <>
@@ -126,7 +141,7 @@ export default function SingleImage() {
                                     return <p id='fav-users'><Link to={`/${userNames[0][2]}/people`}>{`${userNames[0][0]} ${userNames[0][1]}`}</Link>, and <Link to={`/${userNames[1][2]}/people`}>{`${userNames[1][0]} ${userNames[1][1]}`}</Link> faved this!</p>
                                   } 
                                   else {
-                                    return <p>Be the first to fav this!</p>
+                                    return <p id='add-user-fav-p' onClick={addUserFavorite}>Be the first to fav this!</p>
                                   }
 
                                 })()}
