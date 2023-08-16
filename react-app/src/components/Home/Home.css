@@ -38,27 +38,31 @@
     line-height: 150%;
 }
 
-
+.signup-link {
+    padding: 50px;
+}
 
 .start-for-free-btn {
     /* position: absolute; */
     /* font-size: 24px; */
-    font-weight: 800;
+    font-weight: 600;
     height: 4rem;
     width: 200px;
     /* line-height: 64px; */
     /* z-index: 1; */
+    font-size: 24px;
     border: none;
-    border-radius: 3px;
+    border-radius: 2px;
     cursor: pointer;
     /* display: inline-block; */
     box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.1);
     /* margin-top: 770px; */
     /* position: fixed; */
+    font-family: Proxima Nova, helvetica neue, helvetica, arial, sans-serif;
 }
 
 .start-for-free-btn:hover {
-    background-color: #fff;
+    /* background-color: #fff; */
     color: rgba(0, 0, 0, .5);
     transition: color .15s;
     text-decoration: none;
@@ -70,9 +74,8 @@
 }
 
 .splash-page-BGI {
-    /* position: absolute; */
-    padding: 25vh;
-
+    position: absolute;
+    bottom: 100px;
     /* Center the element horizontally */
     font-family: Proxima Nova, helvetica neue, helvetica, arial, sans-serif;
     text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);

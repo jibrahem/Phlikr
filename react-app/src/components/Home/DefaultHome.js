@@ -57,8 +57,8 @@ export default function DefaultHome() {
       <h1 className='splash-page-header'>Find your inspiration.</h1>
       <h3 className='splash-page-subheaderp1'>Join the Snapr community, home to tens of billions of photos and 2 million groups.</h3>
 
-      hi
-      <Link to="/signup" style={{ textDecoration: 'none' }}><button className='start-for-free-btn'><span className='btn-text' style={{ color: 'black' }}>Start for free</span></button></Link>
+
+      <Link className='signup-link' to="/signup" style={{ textDecoration: 'none' }}><button className='start-for-free-btn'>Start for free</button></Link>
 
       <div style={{}} className='splash-page-BGI'>
         <p className='splash-page-BGI1'>{backGroundInfo[currentBGI].title}</p>
