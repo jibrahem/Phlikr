@@ -124,7 +124,7 @@ export default function SingleImage() {
                                     <p id='appreciation' onClick={appreciate}>Show your appreciation with the gift of Snapr Pro</p>
                                 </div>
                             <div className="fav">
-                                <i className="fa-regular fa-star"></i>
+                                <i className="fa-regular fa-star" onClick={addUserFavorite}></i>
                                 {(() => {
                                   const userNames = [];
                                   for (let user of favImgUserArr) {
