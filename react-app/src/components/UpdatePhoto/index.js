@@ -17,7 +17,7 @@ export default function UpdatePhoto() {
 
 
   const handleSubmit = async (e) => {
-   
+
     e.preventDefault();
     const imageDetails = {
       // user_id : sessionUser.id,
@@ -75,7 +75,7 @@ export default function UpdatePhoto() {
         </label>
         <div className="errors">{errors.title}</div>
         <div className="errors">{errors.img}</div>
-  
+
           <label className='upload-label'>
             Description
             <br></br>
@@ -85,9 +85,9 @@ export default function UpdatePhoto() {
               value={editDescription}
               onChange={(e) => setDescription(e.target.value)}
               required
-              style={{ fontFamily: 'Proxima Nova, Helvetica Neue, Helvetica, Arial, sans-serif', 
+              style={{ fontFamily: 'Proxima Nova, Helvetica Neue, Helvetica, Arial, sans-serif',
                        fontSize: "14px"
-              }}  
+              }}
 
             ></textarea>
           </label>
