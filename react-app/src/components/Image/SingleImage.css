@@ -6,7 +6,24 @@
     /* margin-left: 700px; */
     /* margin-top: -150px; */
     /* padding-bottom: 100px; */
-    font-family: Proxima Nova,helvetica neue,helvetica,arial,sans-serif;
+    font-family: Proxima Nova, helvetica neue, helvetica, arial, sans-serif;
+}
+
+#single-image-info-div {
+    /* margin-left: 2rem; */
+    padding-top: 20px;
+    display: flex;
+    flex-direction: row;
+    /* align-items: center; */
+    justify-content: center;
+    gap: 50px;
+}
+
+@media (max-width: 950px) {
+    #single-image-info-div {
+        flex-direction: column;
+        align-items: center;
+    }
 }
 
 #equipment-info {
@@ -115,7 +132,7 @@
 
 #comment-info {
     display: flex;
-    width: 100%;
-    padding: 2rem 10%;
+    /* width: 100%; */
+    /* padding: 2rem 10%; */
 
 }

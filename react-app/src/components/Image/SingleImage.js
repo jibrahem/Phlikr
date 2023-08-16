@@ -117,12 +117,12 @@ export default function SingleImage() {
                             <div>
                               <Link to={`/${singleImage.id}/update`}><i className="fa-solid fa-pen-to-square"></i></Link></div> : null}
                             </div>
-                            
-                              <div id='single-image-pro-fav-div'> 
+
+                              <div id='single-image-pro-fav-div'>
                                 <div className="appreciate">
                                     <i className="fa-solid fa-gift"></i>
                                     <p id='appreciation' onClick={appreciate}>Show your appreciation with the gift of Snapr Pro</p>
-                                </div> 
+                                </div>
                             <div className="fav">
                                 <i className="fa-regular fa-star"></i>
                                 {(() => {
@@ -139,7 +139,7 @@ export default function SingleImage() {
                                     return <p id='fav-users'><Link to={`/${userNames[0][2]}/people`}>{`${userNames[0][0]} ${userNames[0][1]}`}</Link> faved this!</p>
                                   } else if (userNames.length === 2) {
                                     return <p id='fav-users'><Link to={`/${userNames[0][2]}/people`}>{`${userNames[0][0]} ${userNames[0][1]}`}</Link>, and <Link to={`/${userNames[1][2]}/people`}>{`${userNames[1][0]} ${userNames[1][1]}`}</Link> faved this!</p>
-                                  } 
+                                  }
                                   else {
                                     return <p id='add-user-fav-p' onClick={addUserFavorite}>Be the first to fav this!</p>
                                   }
@@ -148,10 +148,11 @@ export default function SingleImage() {
 
                             </div>
                         </div>
+                        <CommentShow
+                        image={singleImage} />
                     </div>
                     <div id='comment-info'>
-                    <CommentShow
-                        image={singleImage} />
+
                     <div id='single-image-info-right'>
                         <div id='views-faves-comment'>
                             {/* <p>{singleImage.view_count} views</p>
@@ -165,7 +166,7 @@ export default function SingleImage() {
                                 return <p>{singleImage.image_comment_count} comments</p>
                               }
                             })()} */}
-                            
+
                             {/* <p>Uploaded on {singleImage.uploaded_on}</p> */}
                             <div id='views-container'>
                               <p style={{fontSize: "20px"}}>{singleImage.view_count}</p>
