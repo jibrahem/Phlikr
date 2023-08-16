@@ -1,5 +1,5 @@
 .container {
-    position: relative;
+    /* position: relative; */
     overflow: hidden;
     min-height: 100vh;
 }
@@ -11,10 +11,11 @@
     width: 100vw;
     height: 100vh;
     object-fit: cover;
-    /* z-index: -1; */
+    z-index: -1;
 }
 
 .content {
+    padding-top: 30vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -22,86 +23,65 @@
 }
 
 .splash-page-header {
-    /* position: absolute; */
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1;
-    color: #fff;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    text-align: center;
-    font-size: 56px;
+    font-size: 40pt;
     font-weight: 500;
-    line-height: 56px;
-    font-family: Proxima Nova,helvetica neue,helvetica,arial,sans-serif;
-    white-space: nowrap;
-    margin-top: 31%;
-    position: fixed;
+    color: white;
+    padding-bottom: 4vh;
 }
 
 .splash-page-subheaderp1 {
-    /* position: absolute; */
-    font-family: Proxima Nova,helvetica neue,helvetica,arial,sans-serif;
-    color: #fff;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    font-size: 25px;
-    z-index: 1;
-    font-weight: 400;
-    margin-top: 38%;
-    position: fixed;
+    font-size: 20pt;
+    font-weight: 100;
+    color: white;
+    max-width: 750px;
+    text-align: center;
+    line-height: 150%;
 }
 
-.splash-page-subheaderp2 {
-    /* position: absolute; */
-    font-family: Proxima Nova,helvetica neue,helvetica,arial,sans-serif;
-    color: #fff;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    font-size: 25px;
-    z-index: 1;
-    font-weight: 400;
-    /* margin-top: 560px; */
-    margin-top: 45%;
-    position: fixed;
+.signup-link {
+    padding: 50px;
 }
 
 .start-for-free-btn {
     /* position: absolute; */
     /* font-size: 24px; */
-    font-weight: 800;
+    font-weight: 600;
     height: 4rem;
     width: 200px;
-    line-height: 64px;
-    z-index: 1;
+    /* line-height: 64px; */
+    /* z-index: 1; */
+    font-size: 24px;
     border: none;
-    border-radius: 3px;
+    border-radius: 2px;
     cursor: pointer;
-    display: inline-block;
+    /* display: inline-block; */
     box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.1);
-    margin-top: 770px;
-    position: fixed;
+    /* margin-top: 770px; */
+    /* position: fixed; */
+    font-family: Proxima Nova, helvetica neue, helvetica, arial, sans-serif;
 }
 
 .start-for-free-btn:hover {
-    background-color: #fff;
-    color: rgba(0,0,0,.5);
+    /* background-color: #fff; */
+    color: rgba(0, 0, 0, .5);
     transition: color .15s;
     text-decoration: none;
 }
 
 .btn-text {
     font-size: 1.3rem;
-    font-family: Proxima Nova,helvetica neue,helvetica,arial,sans-serif;
+    font-family: Proxima Nova, helvetica neue, helvetica, arial, sans-serif;
 }
 
 .splash-page-BGI {
     position: absolute;
-    bottom: 8rem;
-    left: 50%;
-    transform: translateX(-50%); /* Center the element horizontally */
-    font-family: Proxima Nova,helvetica neue,helvetica,arial,sans-serif;
+    bottom: 100px;
+    /* Center the element horizontally */
+    font-family: Proxima Nova, helvetica neue, helvetica, arial, sans-serif;
     text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
     color: #fff;
-    font-size: 1rem;
-    font-weight: 400;
+    font-size: 12pt;
+    font-weight: 500;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -121,13 +101,13 @@
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    
+
 }
 
 .splash-span {
     /* margin-top: 10px; */
     font-size: 13px;
-    font-family:  Proxima Nova,helvetica neue,helvetica,arial,sans-serif;
+    font-family: Proxima Nova, helvetica neue, helvetica, arial, sans-serif;
 }
 
 .splash-span:hover {
@@ -143,5 +123,3 @@
 .fab:hover {
     cursor: not-allowed;
 }
-
-

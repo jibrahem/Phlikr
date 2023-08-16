@@ -79,7 +79,7 @@ def update_image(id):
     if current_user.is_authenticated :
         form = ImageForm()
         image_to_update = Image.query.get(id)
- 
+
         if image_to_update.user.id == current_user.id:
 
             # if form.validate_on_submit():
@@ -189,7 +189,7 @@ def user_favorite_toggle():
         # Retrieve the User and image objects
         user = User.query.get(user_id)
         image = Image.query.get(image_id)
-
+        image.view_count -= 1
         if not user or not image:
             return 'User or image not found!', 404
 
@@ -240,7 +240,7 @@ def delete_user_favorite(userId, imageId):
         # print("imageId in the delete user fav route: ", imageId)
         user = User.query.get(userId)
         image = Image.query.get(imageId)
-
+        image.view_count -= 1
         if not user:
             return 'user not found', 404
 

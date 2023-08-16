@@ -10,7 +10,7 @@ function UploadPhoto() {
   const history = useHistory();
   const sessionUser = useSelector((state) => state.session.user);
   const { imageId } = useParams()
-  
+
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -39,7 +39,7 @@ function UploadPhoto() {
 
     if (Object.values(errors).length > 0) {
       setErrors(errors);
-    } 
+    }
     // if (
     //   img &&
     //   !(img.endsWith(".png") || img.endsWith(".jpg") || img.endsWith(".jpeg"))
@@ -48,7 +48,7 @@ function UploadPhoto() {
     // }
     // if (Object.values(errors).length > 0) {
     //   setErrors(errors);
-    // } 
+    // }
     // else {
     //   const data = await dispatch(createImageThunk(imageDetails, sessionUser));
     //   history.push("/");
@@ -78,8 +78,8 @@ function UploadPhoto() {
         alt="BGI"
       />
       {/* <span>""</span> */}
-      <form 
-        className="upload-image-form" 
+      <form
+        className="upload-image-form"
         onSubmit={handleSubmit}
         encType="multipart/form-data"
       >
