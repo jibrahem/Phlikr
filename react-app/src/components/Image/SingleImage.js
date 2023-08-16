@@ -149,6 +149,7 @@ export default function SingleImage() {
                             </div>
                         </div>
                     </div>
+                    <div id='comment-info'>
                     <CommentShow
                         image={singleImage} />
                     <div id='single-image-info-right'>
@@ -182,7 +183,7 @@ export default function SingleImage() {
                             <i className="fa-regular fa-copyright"></i>
                             <p>All rights reserved</p> */}
                         </div>
-                        <hr></hr>
+                        {/* <hr></hr> */}
                         <div id='equipment-info'>
                             <div id='camera'>
                                 <img src={camera} />
@@ -267,7 +268,7 @@ export default function SingleImage() {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div></div>
                 </div>
             <div>
               {/* // <Footer /> */}
