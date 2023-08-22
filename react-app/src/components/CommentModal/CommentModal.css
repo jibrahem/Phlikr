@@ -1,6 +1,6 @@
 .comments-form textarea {
     margin: 1rem;
-    width: 500px;
+    width: 350px;
     height: 110px;
     border-color: #128ec0;
 }
@@ -10,6 +10,7 @@
     justify-content: flex-end;
     margin-right: 1rem;
     margin-bottom: 1rem;
+    width: 70%;
 }
 
 .comment-button button{
