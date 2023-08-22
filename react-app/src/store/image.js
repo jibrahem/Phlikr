@@ -87,8 +87,8 @@ export const getAllImageThunk = () => async (dispatch) => {
 };
 
 export const createImageThunk = (image, user) => async (dispatch) => {
-  console.log("userId in create image", user.id);
-  console.log("image  in create image", image);
+  // console.log("userId in create image", user.id);
+  // console.log("image  in create image", image);
   const res = await fetch(`/api/images/${user.id}/images`, {
     method: "POST",
     // headers: { "Content-Type": "application/json" },
@@ -96,7 +96,7 @@ export const createImageThunk = (image, user) => async (dispatch) => {
     body: image,
   });
 
-  console.log("res in the CREATIMGAEJ:JDK:JSDKJ;", res);
+  // console.log("res in the CREATIMGAEJ:JDK:JSDKJ;", res);
 
   if (res.ok) {
     // const newImage = await res.json();
@@ -104,7 +104,7 @@ export const createImageThunk = (image, user) => async (dispatch) => {
     dispatch(createImage(resImage));
     return resImage;
   } else if (res.status < 500) {
-    console.log("image route error");
+    // console.log("image route error");
     const data = await res.json();
     if (data.errors) {
       return data.errors;
@@ -115,7 +115,7 @@ export const createImageThunk = (image, user) => async (dispatch) => {
 };
 
 export const updateImageThunk = (image, imageId) => async (dispatch) => {
-  console.log(" in the update image thunk!!!!!");
+  // console.log(" in the update image thunk!!!!!");
   try {
     const res = await fetch(`/api/images/${imageId}/update`, {
       method: "POST",
@@ -157,7 +157,7 @@ export const deleteImageThunk = (image_id) => async (dispatch) => {
 
 export const getUserImagesThunk = (user_id) => async (dispatch) => {
   try {
-    console.log("userimages user Id", user_id);
+    // console.log("userimages user Id", user_id);
 
     const res = await fetch(`/api/images/user/${user_id}`);
 
@@ -267,14 +267,14 @@ export const deleteUserFavImgThunk = (userId, imageId) => async (dispatch) => {
 };
 
 export const getAllFavImguserThunk = (imageId) => async (dispatch) => {
-  console.log("in the getallfavimguserthunk~~~~");
+  // console.log("in the getallfavimguserthunk~~~~");
   try {
     const res = await fetch(`/api/images/favorites/${imageId}/all`);
 
     if (res.ok) {
-      console.log("res in teh getallfavimguserthunk: ", res);
+      // console.log("res in teh getallfavimguserthunk: ", res);
       const allFavImgs = await res.json();
-      console.log("allfavimgs in the res.ok : ", allFavImgs);
+      // console.log("allfavimgs in the res.ok : ", allFavImgs);
       dispatch(getAllFavImg(allFavImgs));
       return allFavImgs;
     }
@@ -314,7 +314,7 @@ const imageReducer = (state = initialState, action) => {
     case UPDATE_IMAGE: {
       // newState = { ...state, singleImage: { ...state.singleImage } };
       // newState = { ...state, singleImage: {} };
-      console.log("Update image in the reducer function~~~~~");
+      // console.log("Update image in the reducer function~~~~~");
       newState = { ...state, allImages: { ...state.allImages } };
       newState.allImages[action.image.id] = action.image;
       return newState;

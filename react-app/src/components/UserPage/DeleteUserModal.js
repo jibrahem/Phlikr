@@ -13,7 +13,7 @@ function DeleteUserModal() {
     const { closeModal } = useModal();
 
     const deleteUserClick = (e) => {
-        console.log("usere delete clicked", sessionUser.id);
+        // console.log("usere delete clicked", sessionUser.id);
         dispatch(userDeleteThunk(sessionUser.id));
         dispatch(logout());
         history.push("/");

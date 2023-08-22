@@ -30,7 +30,7 @@ export const authenticate = () => async (dispatch) => {
 };
 
 export const login = (email, password) => async (dispatch) => {
-console.log(email, password)
+// console.log(email, password)
 	const response = await fetch("/api/auth/login", {
 		method: "POST",
 		headers: {
@@ -83,7 +83,7 @@ export const signUp = (username, email, password, first_name, last_name, age) =>
 			age
 		}),
 	});
-	console.log("res", response)
+	// console.log("res", response)
 	if (response.ok) {
 		const data = await response.json();
 		dispatch(setUser(data));

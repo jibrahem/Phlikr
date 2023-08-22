@@ -7,7 +7,7 @@ import "./updatePhoto.css";
 export default function UpdatePhoto() {
   const dispatch = useDispatch();
   const { imageId } = useParams();
-  console.log("imageId in edit image component: ", imageId)
+  // console.log("imageId in edit image component: ", imageId)
   const history = useHistory();
   const sessionUser = useSelector((state) => state.session.user);
   const editImg = useSelector((state) => state.images.singleImage);

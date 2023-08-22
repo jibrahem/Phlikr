@@ -32,7 +32,7 @@ function CommentModal(image) {
             created_at: new Date().toUTCString()
         }
 
-        console.log(comment)
+        // console.log(comment)
         const data = await dispatch(createCommentThunk(imageId, user.id, comment))
         .then(dispatch(getImageCommentsThunk(imageId)))
     };

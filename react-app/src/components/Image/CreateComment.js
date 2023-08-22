@@ -12,7 +12,7 @@ import './Comments.css'
 
 function CreateComment(image) {
 
-    console.log('image', image)
+    // console.log('image', image);
 
     const dispatch = useDispatch();
     const [errors, setErrors] = useState([]);

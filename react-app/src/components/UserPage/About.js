@@ -68,7 +68,7 @@ export default function AboutPage({ userImagesProp, userInfoProp }) {
   const submitDetails = async (e) => {
     e.preventDefault();
 
-    console.log("occupation here", occupation);
+    // console.log("occupation here", occupation);
     let newBio = {
       occupation: occupation,
       hometown: hometown,
@@ -82,13 +82,13 @@ export default function AboutPage({ userImagesProp, userInfoProp }) {
       pinterest: pinterest,
       tumblr: tumblr,
     };
-    console.log("sessionUserInfoProp", sessionUser.id);
+    // console.log("sessionUserInfoProp", sessionUser.id);
     const data = await dispatch(
       updateUserInfoThunk(newBio, sessionUser.id, "details")
     );
     if (data) {
       setErrors(data);
-      console.log("errors set");
+      // console.log("errors set");
     } else {
       setShowDetailForm(false);
     }
@@ -100,13 +100,13 @@ export default function AboutPage({ userImagesProp, userInfoProp }) {
       biography: biography,
     };
     let formType = "bio";
-    console.log("userInfoProp", sessionUser.id);
+    // console.log("userInfoProp", sessionUser.id);
     const data = await dispatch(
       updateUserInfoThunk(newBio, sessionUser.id, formType)
     );
     if (data) {
       setErrors(data);
-      console.log("errors set");
+      // console.log("errors set");
     } else {
       setShowBioForm(false);
     }
@@ -129,7 +129,7 @@ export default function AboutPage({ userImagesProp, userInfoProp }) {
   if (userInfoProp.length < 1) return null;
 
   const bioClick = (e) => {
-    console.log("bioform", showBioForm);
+    // console.log("bioform", showBioForm);
     setShowBioForm(!showBioForm);
   };
 
@@ -138,7 +138,7 @@ export default function AboutPage({ userImagesProp, userInfoProp }) {
   };
 
   const deleteUserClick = (e) => {
-    console.log("usere delete clicked", sessionUser.id);
+    // console.log("usere delete clicked", sessionUser.id);
     dispatch(userDeleteThunk(sessionUser.id));
     dispatch(logout());
     history.push("/");
@@ -149,10 +149,10 @@ export default function AboutPage({ userImagesProp, userInfoProp }) {
   };
 
   let userInfoArr = Object.values(userInfo);
-  console.log("userInfoArr in about", userInfoArr);
+  // console.log("userInfoArr in about", userInfoArr);
   if (userInfoArr.length < 1) return null;
-  console.log("userInfo in about page", userInfoProp);
-  console.log("User showcase arr info ", userShowcaseArr);
+  // console.log("userInfo in about page", userInfoProp);
+  // console.log("User showcase arr info ", userShowcaseArr);
 
   return (
     <div className="about-container">

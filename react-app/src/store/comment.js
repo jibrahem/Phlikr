@@ -51,7 +51,7 @@ export const updateCommentThunk = (comment, id) => async (dispatch) => {
             body: JSON.stringify(comment),
         });
 
-        console.log('responde in update', res)
+        // console.log('responde in update', res)
         if (res.ok) {
             const updatedComment = await res.json();
             dispatch(updateComment(updatedComment));
@@ -93,7 +93,7 @@ export const getSingleCommentThunk = (commentId) => async (dispatch) => {
             return singleComment;
         }
     } catch (err) {
-        console.log(err)
+        // console.log(err)
         const errors = err.json();
         return errors;
     }

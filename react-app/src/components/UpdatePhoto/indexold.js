@@ -10,7 +10,7 @@ export default function UpdatePhoto() {
     const history = useHistory();
     const sessionUser = useSelector((state) => state.session.user);
     const editImg = useSelector((state) => state.images.singleImage)
-    console.log("editImg in update image component: ", editImg)
+    // console.log("editImg in update image component: ", editImg)
 
     // const [title, setTitle] = useState(sessionUser.title);
     const [editTitle, setTitle] = useState('');
@@ -20,10 +20,10 @@ export default function UpdatePhoto() {
     const [editImgUrl, setImg] = useState(editImg.img);
 
 
-    console.log("hello")
+    // console.log("hello")
 
     const handleSubmit = (e) => {
-      console.log("handleSubmit function is running~~~~")
+      // console.log("handleSubmit function is running~~~~")
         e.preventDefault();
         const imageDetails = {
           // user_id : sessionUser.id,
@@ -32,10 +32,10 @@ export default function UpdatePhoto() {
           img : editImgUrl,
         }
 
-      console.log("before dispatch updatedImageThunk~~~~~~~~~");
+      // console.log("before dispatch updatedImageThunk~~~~~~~~~");
       // const data = await dispatch(updateImageThunk(imageDetails))
       dispatch(updateImageThunk(imageDetails, editImg.id ))
-      console.log("after dispatch updatedImageThunk~~~~~~~~~");
+      // console.log("after dispatch updatedImageThunk~~~~~~~~~");
 
       history.push('/');
     }
