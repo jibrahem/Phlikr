@@ -16,11 +16,11 @@ function ProfileFormBio() {
       biography: biography,
     };
     let formType = "bio";
-    console.log("userInfoProp", user.id);
+    // console.log("userInfoProp", user.id);
     const data = await dispatch(updateUserInfoThunk(newBio, user.id, formType));
     if (data) {
       setErrors(data);
-      console.log("errors set");
+      // console.log("errors set");
     }
     
   };

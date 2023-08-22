@@ -25,7 +25,7 @@ function SignupFormPage() {
     const data = await dispatch(
       signUp(username, email, password, first_name, last_name, age)
     );
-    console.log("data", data);
+    // console.log("data", data);
     if (data) {
       setErrors(data);
     }
@@ -50,7 +50,7 @@ function SignupFormPage() {
               <div>🔵🔴</div>
               <div className="form-text">Sign up for Snapr</div>
               <ul>
-                {console.log("errors", errors)}
+                {/* {console.log("errors", errors)} */}
                 {errors.map((error, idx) => (
                   <li key={idx}>{Object.values(error)}</li>
                 ))}

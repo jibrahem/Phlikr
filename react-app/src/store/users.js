@@ -52,7 +52,7 @@ const editUserCoverPhoto = (photo) => ({
 //thunk creator
 export const updateUserShowcaseThunk =
   (userId, showcaseInputs) => async (dispatch) => {
-    console.log("in update showcase thunk");
+    // console.log("in update showcase thunk");
     try {
       const res = await fetch(`/api/users/update/showcase`, {
         method: "POST",
@@ -75,7 +75,7 @@ export const getUserShowcaseThunk = (userId) => async (dispatch) => {
 
     if (res.ok) {
       const userShowcase = await res.json();
-      console.log("user Showcase in thunk", userShowcase);
+      // console.log("user Showcase in thunk", userShowcase);
       dispatch(getUserShowcaseAction(userShowcase));
       return userId;
     }
@@ -94,7 +94,7 @@ export const updateUserInfoThunk =
 
     if (res.ok) {
       let newUserInfo = await res.json();
-      console.log("res.json", newUserInfo);
+      // console.log("res.json", newUserInfo);
       dispatch(updateUserInfoAction(newUserInfo));
     } else if (res.status < 500) {
       const data = await res.json();
@@ -123,7 +123,7 @@ export const userInfoThunk = (userId) => async (dispatch) => {
 };
 
 export const userDeleteThunk = (userId) => async (dispatch) => {
-  console.log("in delete thunk");
+  // console.log("in delete thunk");
   try {
     const res = await fetch(`/api/users/deleteuser/${userId}`);
     if (res.ok) {
@@ -170,7 +170,7 @@ export const editUserCoverPhotoThunk = (photo, userId) => async ( dispatch ) => 
     })
 
     if(res.ok) {
-      console.log("res in the if statement: ", res)
+      // console.log("res in the if statement: ", res)
       const newPhoto = await res.json();
       dispatch(editUserCoverPhoto(newPhoto));
       return newPhoto;
@@ -187,7 +187,7 @@ const initialState = { userFav: {}, userInfo: {}, userShowcase: {}, userProfileP
 const userReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_USER_INFO: {
-      console.log("get user info called");
+      // console.log("get user info called");
       const newState = { ...state };
       newState.userInfo = action.userInfo;
       return newState;
@@ -213,10 +213,10 @@ const userReducer = (state = initialState, action) => {
       return newState;
     }
     case UPDATE_USER_SHOWCASE: {
-      console.log(
-        "in update user showcase reducer usershowcase",
-        action.userShowcase
-      );
+      // console.log(
+      //   "in update user showcase reducer usershowcase",
+      //   action.userShowcase
+      // );
       const newState = {
         ...state,
         userShowcase: { ...state.userShowcase },

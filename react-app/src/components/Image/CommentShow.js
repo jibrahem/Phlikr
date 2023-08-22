@@ -29,8 +29,8 @@ function CommentShow(image) {
   const openMenu = (e) => {
     if (showMenu) return;
     commentArr.forEach((comment) => {
-      console.log("comment", comment.id);
-      console.log("e", e.target.id);
+      // console.log("comment", comment.id);
+      // console.log("e", e.target.id);
       if (Number(comment.id) === Number(e.target.id)) {
         setShowMenu(true);
       }
@@ -41,8 +41,8 @@ function CommentShow(image) {
     if (!showMenu) return;
 
     const closeMenu = (e) => {
-      console.log("ulred", ulRef);
-      console.log("etarget", e.target);
+      // console.log("ulred", ulRef);
+      // console.log("etarget", e.target);
       if (!ulRef.current.contains(e.target)) {
         setShowMenu(false);
       }

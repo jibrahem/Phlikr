@@ -27,7 +27,7 @@ function ProfileFormDetails() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log("occupation here", occupation);
+    // console.log("occupation here", occupation);
     let newBio = {
       occupation: occupation,
       hometown: hometown,
@@ -41,13 +41,13 @@ function ProfileFormDetails() {
       pinterest: pinterest,
       tumblr: tumblr,
     };
-    console.log("sessionUserInfoProp", sessionUser.id);
+    // console.log("sessionUserInfoProp", sessionUser.id);
     const data = await dispatch(
       updateUserInfoThunk(newBio, sessionUser.id, "details")
     );
     if (data) {
       setErrors(data);
-      console.log("errors set");
+      // console.log("errors set");
     }
   };
 

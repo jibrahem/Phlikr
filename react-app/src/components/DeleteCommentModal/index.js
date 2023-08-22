@@ -9,11 +9,11 @@ function DeleteCommentModal(comment, image){
     const dispatch = useDispatch()
     const { closeModal } = useModal();
 
-    console.log('comment', comment)
+    // console.log('comment', comment)
     const handleDelete = async (e) => {
         e.preventDefault()
         const deleted = await dispatch(deleteCommentThunk(comment.comment))
-       console.log('deleted', deleted)
+    //    console.log('deleted', deleted)
         if(!comment.comment.id)
             dispatch(getSingleImageThunk(comment.image.image.id))
             dispatch(getImageCommentsThunk(comment.image.image.id))

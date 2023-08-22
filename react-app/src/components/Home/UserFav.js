@@ -6,7 +6,7 @@ export default function AddUserFav( { image }) {
 
     // const sessionUser = useState((state) => state.session.user);
     const sessionUser = useSelector((state) => state.session.user);
-    console.log("session user in userFav: ", sessionUser)
+    // console.log("session user in userFav: ", sessionUser)
     const dispatch = useDispatch();
 
     const addUserFavFunction = () => {

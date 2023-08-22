@@ -13,9 +13,9 @@ function ShowcaseModal({ userImageArr }) {
   // const userImages = useSelector((state) => state.session.user);
   // let userImageArr = Object.values(userImages)[0];
   const { closeModal } = useModal();
-  console.log("userImgArr in showcase modal", userImageArr);
+  // console.log("userImgArr in showcase modal", userImageArr);
   const payload = {};
-  console.log("userimagearr", userImageArr);
+  // console.log("userimagearr", userImageArr);
   for (let i = 0; i < userImageArr.length; i++) {
     payload[userImageArr[i].id] = userImageArr[i].showcase;
   }
@@ -28,12 +28,12 @@ function ShowcaseModal({ userImageArr }) {
   //build starting state for showcaseInputs
   // setShowcaseInputs(payload);
   // console.log("showcase/starting inputs", showcaseInputs);
-  console.log("payload after loading in  sttart data", showcaseInputs);
+  // console.log("payload after loading in  sttart data", showcaseInputs);
   //   let bool_list = s{};
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("payload on submit", showcaseInputs);
+    // console.log("payload on submit", showcaseInputs);
     dispatch(updateUserShowcaseThunk(sessionUser.id, showcaseInputs));
     closeModal();
   };
@@ -45,7 +45,7 @@ function ShowcaseModal({ userImageArr }) {
   // };
 
   const imageClick = (imageId) => {
-    console.log("ImageClick");
+    // console.log("ImageClick");
     // let nextPayload = { ...showcaseInputs };
     // nextPayload[imageId] = bool;
     // console.log('payload', nextp);
@@ -56,7 +56,7 @@ function ShowcaseModal({ userImageArr }) {
     history.push("/photos/upload");
   };
   const handleChange = (imageId, event) => {
-    console.log("handle change", imageId, "hefdfdf   ");
+    // console.log("handle change", imageId, "hefdfdf   ");
     let nextPayload = { ...showcaseInputs };
     nextPayload[imageId] = event.target.checked;
     setShowcaseInputs(nextPayload);
@@ -92,7 +92,7 @@ function ShowcaseModal({ userImageArr }) {
   //   console.log("input list ids", input_list);
   if (userImageArr.length < 1) return null;
 
-  console.log("showcaseInputs", showcaseInputs);
+  // console.log("showcaseInputs", showcaseInputs);
   return (
     <>
       <div className="showcase-modal">

@@ -23,7 +23,7 @@ import { addUserFavThunk } from "../../store/image";
 
 export default function SingleImage() {
   // console.log("SingleImage in SingelImage component: ");
-  console.log("Before userParams");
+  // console.log("Before userParams");
   const { imageId } = useParams();
   const singleImage = useSelector((state) => state.images.singleImage);
   const favImaUserStore = useSelector((state) => state.images.allFavImgUser);
@@ -64,7 +64,7 @@ export default function SingleImage() {
 
   const addUserFavorite = async () => {
 
-    console.log("in addUserFavorite function in single image")
+    // console.log("in addUserFavorite function in single image")
 
     const payload = {
       user_id: sessionUser.id,

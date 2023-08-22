@@ -20,7 +20,7 @@ function SignupFormModal() {
 		e.preventDefault();
 		// if (password === confirmPassword) {
 			const data = await dispatch(signUp(username, email, password, first_name, last_name, age));
-			console.log("data", data)
+			// console.log("data", data)
 		// 	if (data) {
 		// 		setErrors(data);
 		// 	} else {
