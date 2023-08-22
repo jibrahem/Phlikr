@@ -136,3 +136,8 @@
     /* padding: 2rem 10%; */
 
 }
+
+
+.fav > i {
+    cursor: pointer;
+}
