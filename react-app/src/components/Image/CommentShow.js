@@ -83,7 +83,7 @@ function CommentShow(image) {
                     <div>
                       {comment.User.first_name} {comment.User.last_name}
                     </div>
-                    <div>{comment.description}</div>
+                    <div className='comment-content'>{comment.description}</div>
                   </div>
                 </div>
                 {comment.user_id === user.id && (

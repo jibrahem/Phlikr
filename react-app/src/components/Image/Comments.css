@@ -91,6 +91,10 @@
     /* padding: 2rem 10%; */
 }
 
+.comment-content {
+    overflow-wrap: break-word;
+}
+
 #image-container {
     margin-top: 5rem;
     display: flex;
