@@ -2,21 +2,21 @@
 
 ### Snapr is our clone of the image posting site Flickr! You are able to upload images, comment, and create your profile.
 
-### Live Link: [snapr](https://snapr.onrender.com/)
+- Live Link:  [snapr](https://snapr.onrender.com/)
+<br></br>
 
-
-### Technologies used:
-![image](https://github.com/jibrahem/Snapr/assets/6230804/4dfcb44e-7fb1-4901-90c1-17151bc6cb84)
-![image](https://github.com/jibrahem/Snapr/assets/6230804/48158bb3-15fc-4824-8964-c781f6fed5f7)
-![image](https://github.com/jibrahem/Snapr/assets/6230804/138b1b40-c209-46ab-8c3c-25cc5759bdad)
-![image](https://github.com/jibrahem/Snapr/assets/6230804/3fad113d-be43-49d9-940e-ec7f27acfe77)
-![image](https://github.com/jibrahem/Snapr/assets/6230804/b609f32a-efeb-472f-8755-ac8a920e5ec1)
-![image](https://github.com/jibrahem/Snapr/assets/6230804/5e508d97-f758-43fc-b903-c1d9cf2aebda)
-![image](https://github.com/jibrahem/Snapr/assets/6230804/d3cbb227-bf49-4408-a208-2eb65777c5d7)
-![image](https://github.com/jibrahem/Snapr/assets/6230804/c85ddbd2-d468-46cc-9a94-0706dc901751)
-
-
-Python, JavaScript, Flask, React, Redux, CSS, HTML, AWS
+### Technologies used: Python, JavaScript, Flask, React, Redux, CSS, HTML, AWS
+<div align='center'>
+<img src="https://github.com/jibrahem/Snapr/assets/6230804/4dfcb44e-7fb1-4901-90c1-17151bc6cb84" width="80" height="80"/>
+<img src="https://github.com/jibrahem/Snapr/assets/6230804/48158bb3-15fc-4824-8964-c781f6fed5f7" width="80" height="80"/>
+<img src="https://github.com/jibrahem/Snapr/assets/6230804/138b1b40-c209-46ab-8c3c-25cc5759bdad" width="80" height="80"/>
+<img src="https://github.com/jibrahem/Snapr/assets/6230804/3fad113d-be43-49d9-940e-ec7f27acfe77" width="80" height="80"/>
+<img src="https://github.com/jibrahem/Snapr/assets/6230804/b609f32a-efeb-472f-8755-ac8a920e5ec1" width="80" height="80"/>
+<img src="https://github.com/jibrahem/Snapr/assets/6230804/5e508d97-f758-43fc-b903-c1d9cf2aebda" width="80" height="80"/>
+<img src="https://github.com/jibrahem/Snapr/assets/6230804/d3cbb227-bf49-4408-a208-2eb65777c5d7" width="80" height="80"/>
+<img src="https://github.com/jibrahem/Snapr/assets/6230804/c85ddbd2-d468-46cc-9a94-0706dc901751" width="80" height="80"/>
+</div>
+<br></br>
 
 ## Screen Shots: 
 ### Landing page: 
@@ -54,12 +54,7 @@ Python, JavaScript, Flask, React, Redux, CSS, HTML, AWS
 <div align="center">
 <img src='https://github.com/jibrahem/Snapr/assets/108157183/d6a1de2f-20d4-48df-9f75-852503a39050' alt="" width="800" height="600">
 </div>
-
-
-
-
-
-
+<br></br>
 
 ## AWS code snippet
 ```
@@ -88,7 +83,7 @@ def upload_file_to_s3(file, acl="public-read"):
 
 - get_unique_filename(filename): This helper function generates a unique and random UUID (Universally Unique Identifier) filename using Python "uuid" module.
 - upload_file_to_s3(file, acl="public-read"): This function uploads the selected file to the assigned AWS (Amazon Web Service) S3 bucket and returns a URL when the file is successfully uploaded. It also returns an error statement if the upload fails.
-
+<br></br>
 
 ### LinkedIn of developers: 
 * Ben Lee: https://www.linkedin.com/in/benkalee/
