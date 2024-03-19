@@ -2,7 +2,7 @@
 
 ### Snapr is our clone of the image posting site Flickr! You are able to upload images, comment, and create your profile.
 
-- Live Link:  [snapr](https://snapr.onrender.com/)
+- Live Link:  [snapr](https://snapr-u6b2.onrender.com/)
 <br></br>
 
 ### Technologies used: Python, JavaScript, Flask, React, Redux, CSS, HTML, AWS
